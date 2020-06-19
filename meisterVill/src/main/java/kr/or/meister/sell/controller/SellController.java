@@ -14,7 +14,7 @@ import kr.or.meister.sell.model.service.SellService;
 import kr.or.meister.sell.model.vo.SellVO;
 
 @Controller
-@RequestMapping(value="/meister/sell")
+@RequestMapping("/meister/sell")
 public class SellController {
 	
 	@Autowired
