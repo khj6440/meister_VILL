@@ -12,11 +12,9 @@
 <body>
 
 
-	<h1>전체조회페이지</h1>
+	<h1>전체조회페이지 ${sessionScope.member.memberNo}</h1>
 	
-		<c:forEach items="${m }" var="m">
-		<div>${m.memberEmail }</div>
-		</c:forEach>
+
 	
 </body>
 </html>

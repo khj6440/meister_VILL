@@ -29,14 +29,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.or.meister.admin.model.service.AdminService;
 import kr.or.meister.fileupload.model.vo.FileUploadVO;
 
 @Controller
 /* @RequestMapping("/meister") */
 public class CkeditorController {
 	
-
-
+	
 	@RequestMapping(value="/imageUpload.do", method=RequestMethod.POST)
 	public String imageUpload(HttpServletRequest request,
             HttpServletResponse response, MultipartHttpServletRequest multiFile
@@ -159,7 +159,7 @@ public class CkeditorController {
 			
 			@RequestMapping(value="/adminJoin.do")
 		public String adminJoin() {
-			return "admin/index";
+			return "admin/adminIndex";
 		}
 	 
 	}

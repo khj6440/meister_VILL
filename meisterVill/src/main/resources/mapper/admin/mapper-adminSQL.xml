@@ -8,7 +8,7 @@
   			member_email as memberEmail,
   			member_pw as memberPw,
   			member_name as memberName,
-  			member_hbr as memberHbr,
+  			member_hbd as memberHbd,
   			member_nickname as memberNickname,
   			member_phone as memberPhone,
   			member_img as memberImg,
