@@ -7,7 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="/write.do">글쓰기 이동</a>
-	<a href="/adminJoin.do">관리자 페이지 이동</a>
+<form action="/ckeditorView.do" method="get">
+
+	<jsp:include page="/WEB-INF/views/notice/ckeditor.jsp" />
+	
+		<button type="submit">작성</button>
+	
+	</form>
 </body>
 </html>

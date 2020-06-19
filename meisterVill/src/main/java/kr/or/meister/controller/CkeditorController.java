@@ -144,6 +144,24 @@ public class CkeditorController {
 	            }
 	        }
 	    }
+
+		@RequestMapping(value="/write.do")
+		public String write() {
+		return "notice/ckeditorWrite";
+		}
+		
+		@RequestMapping(value="/ckeditorView.do")
+		public String ckeditorView(String ck4, HttpSession session) {
+			session.setAttribute("ck4", ck4);
+			return "notice/su";
+		}
+		
+			
+			@RequestMapping(value="/adminJoin.do")
+		public String adminJoin() {
+			return "admin/index";
+		}
+	 
 	}
 
 
