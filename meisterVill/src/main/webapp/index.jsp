@@ -20,7 +20,7 @@ CKEDITOR.replace('ckeditor'); // 에디터로 생성
 
 
 <body>
-	<h1>a미안하다ggggggggg</h1>
+	<h1>글쓰기</h1>
 	
 	<textarea id="ck4" name="ck4"></textarea>
 	<script>CKEDITOR.replace('ck4',{filebrowserUploadUrl:'/imageUpload.do'});</script>

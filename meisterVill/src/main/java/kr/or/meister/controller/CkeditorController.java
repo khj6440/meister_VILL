@@ -37,58 +37,113 @@ public class CkeditorController {
 	
 
 
-
 	@RequestMapping(value="/imageUpload.do", method=RequestMethod.POST)
-	public String communityImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) {
-		 
+	public String imageUpload(HttpServletRequest request,
+            HttpServletResponse response, MultipartHttpServletRequest multiFile
+            , @RequestParam MultipartFile upload) throws Exception{
+        // 랜덤 문자 생성
+        UUID uid = UUID.randomUUID();
+        
         OutputStream out = null;
         PrintWriter printWriter = null;
+        
+        //인코딩
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         
-        String fileName = upload.getOriginalFilename();
-		HttpSession session = request.getSession();
-		String root_path = session.getServletContext().getRealPath("/");
-
-		System.out.println(root_path);
- 
         try{
-            fileName = upload.getOriginalFilename();
+            
+            //파일 이름 가져오기
+            String fileName = upload.getOriginalFilename();
             byte[] bytes = upload.getBytes();
-            String uploadPath = root_path+"/imgUpload/"+fileName;//저장경로
- 
-            out = new FileOutputStream(new File(uploadPath));
+            
+            //이미지 경로 생성
+
+            String path = request.getSession().getServletContext().getRealPath("/upload/");
+            String ckUploadPath = path + uid + "_" + fileName;
+            File folder = new File(path);
+            
+            //해당 디렉토리 확인
+            if(!folder.exists()){
+                try{
+                    folder.mkdirs(); // 폴더 생성
+                }catch(Exception e){
+                    e.getStackTrace();
+                }
+            }
+            
+            out = new FileOutputStream(new File(ckUploadPath));
             out.write(bytes);
+            out.flush(); // outputStram에 저장된 데이터를 전송하고 초기화
+            
             String callback = request.getParameter("CKEditorFuncNum");
- 
             printWriter = response.getWriter();
-            String fileUrl = "/webapp/imgUpload/" + fileName;//url경로
- 
-            printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
-                    + callback
-                    + ",'"
-                    + fileUrl
-                    + "','이미지를 업로드 하였습니다.'"
-                    + ")</script>");
-            printWriter.flush();
- 
+            String fileUrl = "/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName;  // 작성화면
+            
+        // 업로드시 메시지 출력
+          printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
+          printWriter.flush();
+            
         }catch(IOException e){
             e.printStackTrace();
         } finally {
-            try {
-                if (out != null) {
-                    out.close();
-                }
-                if (printWriter != null) {
-                    printWriter.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
- 
+          try {
+           if(out != null) { out.close(); }
+           if(printWriter != null) { printWriter.close(); }
+          } catch(IOException e) { e.printStackTrace(); }
+         }
+        
         return "su";
     }
-}
+	
+	
+	
+	 @RequestMapping(value="/ckImgSubmit.do")
+	    public void ckSubmit(@RequestParam(value="uid") String uid
+	                            , @RequestParam(value="fileName") String fileName
+	                            , HttpServletRequest request, HttpServletResponse response)
+	 throws ServletException, IOException{
+	        
+	        //서버에 저장된 이미지 경로
+		 	String path = request.getSession().getServletContext().getRealPath("/upload/");
+	    
+	        String sDirPath = path + uid + "_" + fileName;
+	    
+	        File imgFile = new File(sDirPath);
+	        
+	        //사진 이미지 찾지 못하는 경우 예외처리로 빈 이미지 파일을 설정한다.
+	        if(imgFile.isFile()){
+	            byte[] buf = new byte[1024];
+	            int readByte = 0;
+	            int length = 0;
+	            byte[] imgBuf = null;
+	            
+	            FileInputStream fileInputStream = null;
+	            ByteArrayOutputStream outputStream = null;
+	            ServletOutputStream out = null;
+	            
+	            try{
+	                fileInputStream = new FileInputStream(imgFile);
+	                outputStream = new ByteArrayOutputStream();
+	                out = response.getOutputStream();
+	                
+	                while((readByte = fileInputStream.read(buf)) != -1){
+	                    outputStream.write(buf, 0, readByte);
+	                }
+	                
+	                imgBuf = outputStream.toByteArray();
+	                length = imgBuf.length;
+	                out.write(imgBuf, 0, length);
+	                out.flush();
+	                
+	            }catch(IOException e){
+	            }finally {
+	                outputStream.close();
+	                fileInputStream.close();
+	                out.close();
+	            }
+	        }
+	    }
+	}
 
 
