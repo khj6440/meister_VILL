@@ -262,7 +262,7 @@
               <span>회원관리</span>
               </a>
             <ul class="sub">
-              <li><a href="general.html">General</a></li>
+              <li><a href="/memberAllViewFrm.do">회원 전체 조회</a></li>
               <li><a href="buttons.html">Buttons</a></li>
               <li><a href="panels.html">Panels</a></li>
               <li><a href="font_awesome.html">Font Awesome</a></li>
