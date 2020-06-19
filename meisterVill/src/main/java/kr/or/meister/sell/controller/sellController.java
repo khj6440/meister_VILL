@@ -1,14 +1,15 @@
 package kr.or.meister.sell.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.meister.sell.model.service.SellService;
 
 @Controller
-public class sellController {
-
-	@RequestMapping(value="/sellList.do")
-	public String goList() {
-		
-		return "sell/sellList";
-	}
+public class SellController {
+	
+	@Autowired
+	@Qualifier("sellService")
+	private SellService service;
 }
