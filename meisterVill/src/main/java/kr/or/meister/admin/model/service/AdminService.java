@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import kr.or.meister.admin.model.dao.AdminDao;
+import kr.or.meister.admin.model.vo.MemberJoinReportVO;
 import kr.or.meister.member.model.vo.MemberVO;
 
 @Service("adminService")
@@ -17,7 +18,13 @@ public class AdminService {
 	@Qualifier("adminDao")
 	private AdminDao dao;
 
-	public List<MemberVO> memberAllView() {
-		return dao.selectAllMember();
+	public ArrayList<MemberJoinReportVO> memberAllView() {
+		
+		return (ArrayList<MemberJoinReportVO>)dao.selectAllMember();
+		
+	}
+
+	public MemberVO memberOneView(int num) {
+		return dao.selectOneMember(num);
 	}
 }

@@ -9,6 +9,8 @@
 
 	<typeAliases>
 		<typeAlias type="kr.or.meister.member.model.vo.MemberVO" alias="MemberVO"/>
+		<typeAlias type="kr.or.meister.etc.model.vo.ReportVO" alias="ReportVO"/>
+		<typeAlias type="kr.or.meister.admin.model.vo.MemberJoinReportVO" alias="MemberJoinReportVO"/>
 	</typeAliases>
 	
 </configuration>

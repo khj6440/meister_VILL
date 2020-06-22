@@ -1,10 +1,10 @@
-package kr.or.meister.member.model.vo;
+package kr.or.meister.admin.model.vo;
 
-import kr.or.meister.etc.model.vo.ReportVO;
 import lombok.Data;
 
 @Data
-public class MemberVO {
+public class MemberJoinReportVO {
+
 	private int memberNo;
 	private String memberEmail;
 	private String memberPw;
@@ -25,6 +25,8 @@ public class MemberVO {
 	private String memberMajor;
 	private String memberGrade;
 	private String memberDate;
-	private ReportVO ReportVO;
-	
- }
+	private int reportNo;
+	private String reportMemberNickname;
+	private int reportBoardType;
+	private int reportBoardNo;
+}
