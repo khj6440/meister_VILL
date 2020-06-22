@@ -1,4 +1,4 @@
-package kr.or.meisert.admin.model.dao;
+package kr.or.meister.admin.model.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
