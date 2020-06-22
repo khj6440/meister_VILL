@@ -1,10 +1,11 @@
-package kr.or.meister.member.model.vo;
+package kr.or.meister.admin.model.vo;
 
 
 import lombok.Data;
 
 @Data
-public class MemberVO {
+public class MemberJoinVO {
+
 	private int memberNo;
 	private String memberEmail;
 	private String memberPw;
@@ -25,5 +26,22 @@ public class MemberVO {
 	private String memberMajor;
 	private String memberGrade;
 	private String memberDate;
+	private int reportNo;
+	private String reportMemberNickname;
+	private int reportBoardType;
+	private int reportBoardNo;
+	private int orderNo;
+	private int orderMemberNo;
+	private int orderBoardNo;
+	private String orderDate;
+	private int orderBoardType;
+	private int reviewNo;
+	private int sellNo;
+	private String reviewWriter;
+	private String reviewContent;
+	private int reviewPoint;
+	private String reviewDate;
+	private String reviewWriterImg;
 	
- }
+	
+}

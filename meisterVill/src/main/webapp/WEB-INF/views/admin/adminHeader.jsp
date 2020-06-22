@@ -7,12 +7,12 @@
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
     <!--header start-->
-    <header class="header black-bg">
+    <header class="header black-bg" style="background-color: #f8f9fa; border-color: #f8f9fa;">
       <div class="sidebar-toggle-box">
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="/adminIndexFrm.do" class="logo"><b>Meister<span style="color: #A593E0;">Vill</span></b></a>
+      <a href="/adminIndexFrm.do" class="logo" style="color: black;"><b>Meister<span style="color: #A593E0;">Vill</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->

@@ -10,5 +10,4 @@ public class ReportVO {
 	private String reportMemberNickname;
 	private int reportBoardType;
 	private int reportBoardNo;
-	private MemberVO MemberVO;
 }

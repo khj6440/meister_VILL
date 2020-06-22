@@ -2,42 +2,65 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="MemberVO">
 
+	<select id="memberLogin" parameterType="Map"  resultType="MemberVO">
+		select 
+			member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate
+  			from member where member_email = #{memberEmail} and member_pw = #{memberPw} and member_level=2
+	</select>
 
-<!-- <resultMap type="MemberVO" id="MemberVO">
-		<id column="member_nickname" property="memberNickname" />
-		<result column="member_no" property="memberNo" />
-		<result column="member_email" property="memberEmail" />
-		<result column="member_pw" property="memberPw" />
-		<result column="member_name" property="memberName" />
-		<result column="member_hbd" property="memberHbd" />
-		<result column="member_phone" property="memberPhone" />
-		<result column="member_img" property="memberImg" />
-		<result column="member_bank" property="memberBank" />
-		<result column="member_account" property="memberAccount" />
-		<result column="member_time" property="memberTime" />
-		<result column="member_level" property="memberLevel" />
-		<result column="member_status" property="memberStatus" />
-		<result column="member_intro" property="memberIntro" />
-		<result column="member_field" property="memberField" />
-		<result column="member_skill" property="memberSkill" />
-		<result column="member_school" property="memberSchool" />
-		<result column="member_major" property="memberMajor" />
-		<result column="member_grade" property="memberGrade" />
-		<result column="member_date" property="memberDate" />
-		
-		1 : 다 관계의 경우 데이터 매핑시켜준다. 
-			association => 1 : 1 관계 
-			collection => 1 : 다 관계 (한명의 유저가 작성한 글 목록)
-			일반 컬럼과 pk 구분 가능 pk 칼럼에게는 result 아닌 id 사용
-		
-		<association javaType="ReportVO" property="ReportVO">
-			<id column="report_member_nickname" property="reportMemberNickname"/>
-			<result column="report_board_type" property="reportBoardType"/>
-			<result column="report_board_no" property="reportBoardNo"/>
-			<result column="report_no" property="reportNo"/>
-		</association>
-	</resultMap> -->
-
+	<select id="selectList" parameterType="Map"  resultType="MemberVO">
+		select *
+		 from(select rownum as rnum, n.* from
+		(select 
+			member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate
+		from member order by member_no desc)n)
+		where rnum between #{start} and #{end}
+	
+	</select>
+	
+	<select id="totalCount" resultType="_int">
+		select count(*) as cnt from member
+	</select>
+	
+	
 	
   	<select id="selectOneMember" parameterType="int" resultType="MemberVO">
 		select 

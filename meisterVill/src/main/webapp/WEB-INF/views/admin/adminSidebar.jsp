@@ -9,11 +9,11 @@
         *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
     <aside>
-      <div id="sidebar" class="nav-collapse ">
+      <div id="sidebar" class="nav-collapse" style="background-color: #4D4D4D;">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="resources/adminCss/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Sam Soffes</h5>
+          <p class="centered"><a href="profile.html"><img src="upload/admin/${member.memberImg}" class="img-circle" width="90px;" height="80px;"></a></p>
+          <h5 class="centered">${member.memberName}</h5>
           <li class="mt">
             <a class="active" href="index.html">
               <i class="fa fa-dashboard"></i>
@@ -26,7 +26,7 @@
               <span>회원관리</span>
               </a>
             <ul class="sub">
-              <li><a href="/memberAllViewFrm.do">회원 전체 조회</a></li>
+              <li><a href="/memberAllViewFrm.do?reqPage=1">회원 전체 조회</a></li>
               <li><a href="/memberOneViewFrm.do">회원 하나 조회</a></li>
               <li><a href="panels.html">Panels</a></li>
               <li><a href="font_awesome.html">Font Awesome</a></li>
