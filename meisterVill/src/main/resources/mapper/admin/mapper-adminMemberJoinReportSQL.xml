@@ -27,13 +27,8 @@
   			report_no as reportNo,
   			report_member_nickname as reportMemberNickname,
   			report_board_type as reportBoardType,
-  			report_board_no as reportBoardNo,
-  			order_no as orderNo,
-  			order_member_no as orderMemberNo,
-  			order_board_no as orderBoardNo,
-  			order_date as orderDate,
-  			order_board_type as orderBoardType
-  			from member JOIN orders ON (member_no = order_member_no)
+  			report_board_no as reportBoardNo
+  			from member JOIN report ON (member_nickname = report_member_nickname)
   	</select>
 
   	
