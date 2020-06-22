@@ -12,16 +12,16 @@
   <title>Landing Page - Start Bootstrap Theme</title>
 
   <!-- Bootstrap core CSS -->
-  <link type="text/css" href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link type="text/css" href="${pageContext.request.contextPath}/resources/yr/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
-  <link type="text/css" href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link type="text/css" href="${pageContext.request.contextPath}/resources/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link type="text/css" href="${pageContext.request.contextPath}/resources/yr/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link type="text/css" href="${pageContext.request.contextPath}/resources/yr/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
-  <link type="text/css" href="${pageContext.request.contextPath}/resources/css/landing-page.min.css" rel="stylesheet">
-
+  <link type="text/css" href="${pageContext.request.contextPath}/resources/yr/css/landing-page.min.css" rel="stylesheet">
+	
 </head>
 
 <body>
@@ -223,8 +223,8 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="<c:url value="/resources/vendor/jquery/jquery.min.js" />"/>
-  <script src="<c:url value="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" />"/>
+  <script src="<c:url value="/resources/yr/vendor/jquery/jquery.min.js" />"></script>
+  <script src="<c:url value="/resources/yr/vendor/bootstrap/js/bootstrap.bundle.min.js"/>"></script>
 
 
 </body>
