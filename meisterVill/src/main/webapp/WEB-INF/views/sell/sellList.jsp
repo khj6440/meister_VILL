@@ -7,43 +7,53 @@
 <meta charset="UTF-8">
 <title> 판매글 리스트</title>
   <!-- Bootstrap core CSS -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-  <link href="sell-css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+ 
+  <link href="/sell-css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="sell-css/css/heroic-features.css" rel="stylesheet">
+  <link href="/sell-css/css/heroic-features.css" rel="stylesheet">
+   <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+   <style>
+   		 .pick_button {
+   			position: absolute;
+   			right: 5px;
+   			top: 5px;
+   			height: 25px;
+   		}
+   </style>
   <script>
   	$(function() {
-  		String html = "";
   		$.ajax({
-  			url : "/getSellList.do",
-			type : "get",
+  			url : "/meister/sell/getSellList.do",
 			data : "json",
 			success : function(data) {
+				var number = data["number"];
+				html = "";
+				for (var i = 0; i < number; i++) {
   				html += "<div class='col-lg-3 col-md-6 mb-4'>";
-  				html += "<div class='card h-100'>";
-  				html += "<img class='card-img-top' src="data.getSellImg"";
+  				html += "<div class='card' style='height: 400px;'>";
+  				html += "<img class='card-img-top' src='/resources/upload/sellImg/"+data["sell"+i].sellImg+"'>";
+  				html += "<img class='pick_button' id='pick' src='/resources/upload/homeImg/heart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
   				html += "<div class='card-body'>";
-  				html += "<h4 class='card-title'>"data.getwriter"</h4>";
-  				html += "<p class='card-text'>"data.getSellTitle"</p>";
+  				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
+  				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
   				html += "</div>";
   				html += "</div>";
   				html += "</div>";
+			}
+			$("#sell").append(html);
+		}
   		});
-  		$("#sell_list_view").append(html);
   	 });
-  	
-  
   </script>
 </head>
 <body>
   <!-- Page Content -->
   <div class="container">
-
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
     </header>
-    <div class="sell_content" style="display:inline-flex;">
+    <div class="sell_content" style="display:flex">
     <nav class="sell_side_list" style="width:20%">
     <div class="side_list_header">
     <h5>디자인</h5>
@@ -83,7 +93,7 @@
     </nav>
 
     <!-- Page Features -->	
-    <div class="row text-center" style="width:80%" id="sell_list_view">
+    <div class="row text-center" style="width:80%" id="sell">
       
     </div>
     <!-- /.row -->
@@ -91,7 +101,34 @@
   </div>
   <!-- /.container -->
     <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/sell-css/vendor/jquery/jquery.min.js"></script>
+  <script src="/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+    function pick(get,no) {
+        if ($(get).attr("src") == "/resources/upload/homeImg/heart.png") {
+            $(get).attr("src","/resources/upload/homeImg/InHeart.png");
+            $(function() {
+		        $.ajax({
+			    url : "/meister/sell/pickList.do",
+                data : {no : no},
+                success : function(data) {
+                	
+                }
+               });
+            });   
+        } else {
+            $(get).attr("src","/resources/upload/homeImg/heart.png");
+            $(function() {
+		        $.ajax({
+			    url : "/meister/sell/deletePickList.do",
+                data : {no : no},
+                success : function(data) {
+                	
+                }
+               });
+            });   
+        }
+    }
+    </script>
 </body>
 </html>
