@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+
 <configuration>
+
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
-	<typeAliases>
-	</typeAliases>
 
+	<typeAliases>
+		<typeAlias type="kr.or.meister.admin.model.vo.MemberJoinVO" alias="MemberJoinVO"/>
+		<typeAlias type="kr.or.meister.member.model.vo.MemberVO" alias="MemberVO"/>
+		<typeAlias type="kr.or.meister.etc.model.vo.ReportVO" alias="ReportVO"/>
+		<typeAlias type="kr.or.meister.admin.model.vo.MemberJoinReportVO" alias="MemberJoinReportVO"/>
+		<typeAlias type="kr.or.meister.admin.model.vo.SelectAllMemberPageVO" alias="SelectAllMemberPageVO"/>
+	</typeAliases>
+	
 </configuration>
