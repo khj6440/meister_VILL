@@ -29,14 +29,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.or.meister.admin.model.service.AdminService;
 import kr.or.meister.fileupload.model.vo.FileUploadVO;
 
 @Controller
 /* @RequestMapping("/meister") */
 public class CkeditorController {
 	
-
-
+	
 	@RequestMapping(value="/imageUpload.do", method=RequestMethod.POST)
 	public String imageUpload(HttpServletRequest request,
             HttpServletResponse response, MultipartHttpServletRequest multiFile
@@ -144,6 +144,24 @@ public class CkeditorController {
 	            }
 	        }
 	    }
+
+		@RequestMapping(value="/write.do")
+		public String write() {
+		return "notice/ckeditorWrite";
+		}
+		
+		@RequestMapping(value="/ckeditorView.do")
+		public String ckeditorView(String ck4, HttpSession session) {
+			session.setAttribute("ck4", ck4);
+			return "notice/su";
+		}
+		
+			
+			@RequestMapping(value="/adminJoin.do")
+		public String adminJoin() {
+			return "admin/adminIndex";
+		}
+	 
 	}
 
 
