@@ -110,7 +110,8 @@
     .hd-category {
         clear: left;
         width: 100%;
-        margin-top: 2%;
+        margin-top : 3%;
+        padding-bottom : 1%;
     }
 
     .hd-category>ul {
@@ -132,6 +133,7 @@
         font-family: 'Nanum Gothic Coding', monospace;
         font-size: 17px;
         font-weight: 700;
+        margin-bottom : 2%;
     }
 
     .hd-category a:hover {

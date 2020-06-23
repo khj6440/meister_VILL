@@ -181,6 +181,10 @@
         display: block;
     }
         
+        
+        .n-header{
+        	width : 100%;
+        }
 
     </style>
     <div class="normal-header">

@@ -16,6 +16,15 @@ public class MemberController {
 	@Qualifier("memberService")
 	private MemberService service;
 	
+	@RequestMapping("/mypage.do")
+	public String mypage() {
+		return "member/mypage";
+	}
+	
+	@RequestMapping("/myprofile.do")
+	public String myprofile() {
+		return "member/myprofile";
+	}
 	@RequestMapping("/login.do")
 	public void login(MemberVO m) {
 		MemberVO loginM =  service.selectOneMember(m);
