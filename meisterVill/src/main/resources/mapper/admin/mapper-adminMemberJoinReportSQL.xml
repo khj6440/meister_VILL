@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="MemberJoinReportVO">
+
+<select id="selectAllMember" parameterType="List" resultType="MemberJoinReportVO">
+  		select 
+  			member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate,
+  			report_no as reportNo,
+  			report_member_nickname as reportMemberNickname,
+  			report_board_type as reportBoardType,
+  			report_board_no as reportBoardNo
+  			from member JOIN report ON (member_nickname = report_member_nickname)
+  	</select>
+
+  	
+</mapper>
