@@ -1,5 +1,6 @@
 package kr.or.meister.member.model.vo;
 
+
 import lombok.Data;
 
 @Data
