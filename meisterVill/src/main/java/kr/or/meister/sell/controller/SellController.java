@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.sell.model.service.SellService;
 import kr.or.meister.sell.model.vo.SellJoinMemberVO;
+import kr.or.meister.sell.model.vo.SellPageData;
 
 @Controller
 @RequestMapping("/meister/sell")
@@ -24,9 +25,8 @@ public class SellController {
 	
 	@ResponseBody
 	@RequestMapping(value="/getSellList.do", produces = "application/json;charset=utf-8")
-	public String getList(MemberVO m) {
-		HashMap<String, Object> list = service.selectAllList();
-		System.out.println(list.get("number"));
+	public String getList(MemberVO m, int reqPage) {
+		SellPageData list = service.selectAllList(reqPage);
 		return new Gson().toJson(list);
 	}
 	@RequestMapping(value="/sellList.do")

@@ -15,8 +15,11 @@ public class SellDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public List selectAllList() {
-		return sqlSession.selectList("sell.selectAllList");
+	public List selectAllList(HashMap<String, Integer> map) {
+		return sqlSession.selectList("sell.selectAllList", map);
+	}
+	public int totalCount() {
+		return sqlSession.selectOne("sell.selectTotal");
 	}
 
 	public int insertPick(HashMap<String, Integer> pick) {

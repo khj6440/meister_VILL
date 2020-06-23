@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.meister.sell.model.dao.SellDao;
 import kr.or.meister.sell.model.vo.SellJoinMemberVO;
+import kr.or.meister.sell.model.vo.SellPageData;
 
 @Service("sellService")
 public class SellService {
@@ -17,8 +18,23 @@ public class SellService {
 	@Qualifier("sellDao")
 	private SellDao dao;
 
-	public HashMap<String, Object> selectAllList() {
-		List list = dao.selectAllList();
+	public SellPageData selectAllList(int reqPage) {
+		int numPerPage = 12;
+		int totalCount = dao.totalCount();
+		int totalPage = 0;
+		
+		if (totalCount % numPerPage == 0) {
+			totalPage = totalCount / numPerPage;
+		} else {
+			totalPage = totalCount / numPerPage + 1;
+		}
+		int start = (reqPage - 1) * numPerPage + 1;
+		int end = reqPage * numPerPage;
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", start);
+		map.put("end", end);
+
+		List list = dao.selectAllList(map);
 		HashMap<String, Object> sjm = new HashMap<String, Object>();
 		for (int i = 0; i < list.size(); i++) {
 			SellJoinMemberVO sell = (SellJoinMemberVO)list.get(i);
@@ -26,7 +42,28 @@ public class SellService {
 			sjm.put("member"+i, sell.getMembervo());
 			sjm.put("number", list.size());
 		}
-		return sjm;
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+		if (pageNo != 1) {
+			pageNavi += "<a class='btn' href='/meister/sell/sellList.do?reqPage=" + (pageNo - pageNaviSize) + "'>이전</a>";
+		}
+		for (int i = 0; i < pageNaviSize; i++) {
+			if (reqPage == pageNo) {
+				pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
+			} else {
+				pageNavi += "<a class='btn' href='/meister/sell/sellList.do?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+			}
+			pageNo++;
+			if (pageNo > totalPage) {
+				break;
+			}
+		}
+		if (pageNo <= totalPage) {
+			pageNavi += "<a class='btn' href='/meister/sell/sellList.do?reqPage=" + pageNo + "'>다음</a>";
+		}
+		SellPageData spd = new SellPageData(sjm, pageNavi);
+		return spd;
 	}
 
 	public int insertPick(int no, int m) {

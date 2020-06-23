@@ -24,9 +24,10 @@
   <script>
   	$(function() {
   		$.ajax({
-  			url : "/meister/sell/getSellList.do",
+  			url : "/meister/sell/getSellList.do?reqPage=1",
 			data : "json",
 			success : function(data) {
+				console.log(data);
 				var number = data["number"];
 				html = "";
 				for (var i = 0; i < number; i++) {

@@ -50,10 +50,19 @@
 </resultMap>
 
 <select id="selectAllList" resultMap="sjm">
-	select 
-		*
-	from sell
-	join member
-	on (sell_writer = member_no)
+	select * from
+		(select rownum as rnum, n.* from
+			(select 
+				*
+			from sell
+			join member
+			on (sell_writer = member_no)
+		order by 1 desc)n
+		)
+	where rnum between #{start} and #{end}
+</select>
+
+<select id="selectTotal" resultType="_int">
+	select count(*) as cnt from sell
 </select>
 </mapper>
