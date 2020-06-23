@@ -9,8 +9,10 @@
 <link rel="stylesheet" href="resources/ckeditor/contents.css">
 <script src="resources/ckeditor/ckeditor.js" ></script>
 
+<a href="/meister/member/mypage.do">마이페이지이동</a>
+<a href="meister/member/myprofile.do">프로필이동</a>
 
-	<textarea id="ck4" name="ck4"></textarea>
-	<script>CKEDITOR.replace('ck4',{filebrowserUploadUrl:'/imageUpload.do'});</script>
+<!-- 	<textarea id="ck4" name="ck4"></textarea>
+	<script>CKEDITOR.replace('ck4',{filebrowserUploadUrl:'/imageUpload.do'});</script> -->
 
 
