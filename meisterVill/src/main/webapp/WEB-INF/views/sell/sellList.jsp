@@ -33,6 +33,7 @@
   				html += "<div class='col-lg-3 col-md-6 mb-4'>";
   				html += "<div class='card' style='height: 400px;'>";
   				html += "<img class='card-img-top' src='/resources/upload/sellImg/"+data["sell"+i].sellImg+"'>";
+  				html += "<c:if test='${not empty sessionScope.member.memberNo}'>";
   				html += "<img class='pick_button' id='pick' src='/resources/upload/homeImg/heart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
   				html += "<div class='card-body'>";
   				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
@@ -40,6 +41,15 @@
   				html += "</div>";
   				html += "</div>";
   				html += "</div>";
+  				html += "</c:if>";
+  				html += "<c:if test='${empty sessionScope.member.memberNo}'>";
+  				html += "<div class='card-body'>";
+  				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
+  				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
+  				html += "</div>";
+  				html += "</div>";
+  				html += "</div>";
+  				html += "</c:if>";
 			}
 			$("#sell").append(html);
 		}
