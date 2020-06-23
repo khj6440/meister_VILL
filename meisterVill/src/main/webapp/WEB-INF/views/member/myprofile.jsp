@@ -28,7 +28,7 @@
             
         }
         .user_container{
-        	border-radius : 5;
+        	border-radius : 5px;
             border: 1px solid black;
             margin-top: 40px;
             background-color: rgb(243, 244, 248);
