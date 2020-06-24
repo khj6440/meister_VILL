@@ -21,6 +21,9 @@
         <link href="/resources/sh/css/styles.css" rel="stylesheet" />
     </head>
     <style>
+    	.profile_container{
+    		padding-top : 20%;
+    	}
     	  .main_hcontainer{
             width : 100%;
             height : 100%;
@@ -29,7 +32,7 @@
         }
         .user_container{
         	border-radius : 5px;
-            border: 1px solid black;
+            border: 1px solid white;
             margin-top: 40px;
             background-color: rgb(243, 244, 248);
             width : 1000px;
@@ -40,14 +43,12 @@
             
         }
         .user_inf_container{
-            border: 1px solid red;
             width : 1000px;
             height: 150px;
-            margin-top: 60px;
+            margin-top: 50px;
             box-sizing: content-box;
         }
         .p_user_inf{
-            border: 1px solid blue;
             position: absolute;
             width : 1000px;
             height: 150px;
@@ -111,10 +112,15 @@
 			box-shadow: 0px px 3px darkgray;
         }
         
+        .p_content_navi{
+        	margin : 0 auto;
+        	border : 1px solid black;
+            margin-top: 100px;
+        	width : 1000px;
+        }
         .p_content{
             margin: 0 auto;
             border: 1px solid black;
-            margin-top: 50px;
             width: 1000px;
             overflow: hidden;
             box-sizing: content-box;
@@ -135,6 +141,7 @@
         
     </style>
     <body>
+    <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
     <section class="profile_container">
         <div class="main_hcontainer">
             <div class="user_container">
@@ -166,10 +173,10 @@
                 
                 </div>
             </div>
-            <div class="p_content">
-                <div class="p_content1">
-                <!-- nav -->
-              <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+            </div>
+            
+            <div class="p_content_navi">
+              <nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
             <div class="container">
                 <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
@@ -184,6 +191,11 @@
                 </div>
             </div>
         </nav>
+            </div>
+            <div class="p_content">
+            
+                <div class="p_content1">
+                <!-- nav -->
        	
        	<!-- content -->
         	<!-- <header class="masthead bg-primary text-white text-center">
