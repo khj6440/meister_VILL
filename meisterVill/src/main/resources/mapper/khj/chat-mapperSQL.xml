@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chat">
+  <select id="selectAllChat" parameterType="member" resultType="chat">
+		select 
+			chat_no as chatNo,
+			chat_sender as chatSender,
+			chat_receiver as chatReceiver,
+			chat_content as chatContent,
+			chat_time as chatTime,
+			chat_out as chatOut,
+			chat_read as chatRead,
+			sender_img as senderImg,
+			receiver_img as receiver_img			
+		from
+			chat
+		where chat_receiver =#{memberNickname}
+	</select>
+	
+	 <select id="showChat" parameterType="map" resultType="chat">
+		select 
+			chat_no as chatNo,
+			chat_sender as chatSender,
+			chat_receiver as chatReceiver,
+			chat_content as chatContent,
+			chat_time as chatTime,
+			chat_out as chatOut,
+			chat_read as chatRead,
+			sender_img as senderImg,
+			receiver_img as receiver_img			
+		from
+			chat
+		where chat_receiver =#{receiver} and chat_sender=#{sender}
+	</select>
+</mapper>

@@ -17,6 +17,8 @@
 		<typeAlias type="kr.or.meister.etc.model.vo.ReportVO" alias="ReportVO"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.MemberJoinReportVO" alias="MemberJoinReportVO"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.SelectAllMemberPageVO" alias="SelectAllMemberPageVO"/>
+		<typeAlias type="kr.or.meister.chat.model.vo.ChatVO" alias="chat"/>
+		
 	</typeAliases>
 	
 </configuration>
