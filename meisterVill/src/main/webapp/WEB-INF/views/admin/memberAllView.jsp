@@ -61,7 +61,7 @@
                 <c:forEach items="${list}" var="m"> 
                   <tr>
                     <td>
-                      <a href="/memberOneViewFrm.do?memberNo=${m.memberNo}">${m.memberEmail }</a>
+                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}">${m.memberEmail }</a>
                       </td>
                     <td class="hidden-phone">
                     <c:if test="${m.memberImg != null }">
@@ -99,7 +99,7 @@
                     <td>${m.memberDate } </td>
                     <td>
                       <!-- <span class="label label-info label-mini" style="background-color: red">신고 접수</span> -->
-                      <button class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42;"><i class="fa fa-check"></i><a href="/memberOneViewFrm.do?memberNo=${m.memberNo}" style="text-decoration: none; color: white;">회원정보 보기</a></button>
+                      <button class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42;"><i class="fa fa-check"></i><a href="meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}" style="text-decoration: none; color: white;">회원정보 보기</a></button>
                       <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
                       <button class="btn btn-danger btn-xs" style="background-color: #6c757d; border-color: #6c757d;"><i class="fa fa-trash-o" ></i>회원 정지</button>
                     </td>
@@ -129,13 +129,13 @@
 
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="resources/adminCss/lib/jquery/jquery.min.js"></script>
-  <script src="resources/adminCss/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/resources/adminCss/lib/jquery/jquery.min.js"></script>
+  <script src="/resources/adminCss/lib/bootstrap/js/bootstrap.min.js"></script>
   <script class="include" type="text/javascript" src="resources/adminCss/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="resources/adminCss/lib/jquery.scrollTo.min.js"></script>
-  <script src="resources/adminCss/lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <script src="/resources/adminCss/lib/jquery.scrollTo.min.js"></script>
+  <script src="/resources/adminCss/lib/jquery.nicescroll.js" type="text/javascript"></script>
   <!--common script for all pages-->
-  <script src="resources/adminCss/lib/common-scripts.js"></script>
+  <script src="/resources/adminCss/lib/common-scripts.js"></script>
   <!--script for this page-->
   
 </body>

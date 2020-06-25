@@ -385,13 +385,13 @@
 
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="resources/adminCss/lib/jquery/jquery.min.js"></script>
-  <script src="resources/adminCss/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="resources/adminCss/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="resources/adminCss/lib/jquery.scrollTo.min.js"></script>
-  <script src="resources/adminCss/lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <script src="/resources/adminCss/lib/jquery/jquery.min.js"></script>
+  <script src="/resources/adminCss/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="/resources/adminCss/lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="/resources/adminCss/lib/jquery.scrollTo.min.js"></script>
+  <script src="/resources/adminCss/lib/jquery.nicescroll.js" type="text/javascript"></script>
   <!--common script for all pages-->
-  <script src="resources/adminCss/lib/common-scripts.js"></script>
+  <script src="/resources/adminCss/lib/common-scripts.js"></script>
   <!--script for this page-->
   <!-- MAP SCRIPT - ALL CONFIGURATION IS PLACED HERE - VIEW OUR DOCUMENTATION FOR FURTHER INFORMATION -->
  <!--  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>

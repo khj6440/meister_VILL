@@ -18,6 +18,7 @@ import kr.or.meister.admin.model.vo.SelectAllMemberPageVO;
 import kr.or.meister.member.model.vo.MemberVO;
 
 @Controller
+@RequestMapping(value="/meister/admin")
 public class AdminController {
 
 
@@ -47,7 +48,7 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping(value="/memberLogin.do")
+	@RequestMapping(value="/adminLogin.do")
 	public String memberLogin(HttpSession session, String memberEmail,String memberPw ) {
 		MemberVO member = new MemberVO();
 
@@ -59,13 +60,18 @@ public class AdminController {
 		}else {
 			return "redirect:/index.jsp";
 		}
+	}
+	
 
-		
+		@RequestMapping(value="/loginFrm.do")
+	public String loginFrm() {
+		return "admin/loginPage";
 	}
 	
 	
-	@RequestMapping(value="adminIndexFrm.do")
+	@RequestMapping(value="/adminIndexFrm.do")
 	public String adminIndexFrm() {
 		return "admin/adminIndex";
 	}
 }
+

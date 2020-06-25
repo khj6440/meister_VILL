@@ -359,7 +359,7 @@
                         </div>
                         <div class="hd hd-member">
                             <a class="member-top-menu" href="#">마이스터 등록</a>
-                            <a class="member-top-menu" href="#">로그인</a>
+                            <a class="member-top-menu" href="/meister/admin/loginFrm.do">로그인</a>
                             <a class="btn btn-insert" href="#">무료 회원가입</a>
                         </div>
                     </div>
@@ -392,7 +392,7 @@
         <header class="masthead text-center pic-header">
             <div class="member-top-line">
                 <a class="member-top-menu" href="#">마이스터 등록</a>
-                <a class="member-top-menu" href="#">로그인</a>
+                <a class="member-top-menu" href="/meister/admin/loginFrm.do">로그인</a>
                 <a class="btn btn-insert" href="#">무료 회원가입</a>
             </div>
             <!--    <div class="overlay"></div>-->

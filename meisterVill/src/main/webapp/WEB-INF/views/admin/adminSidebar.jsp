@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <meta charset="UTF-8">
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
 <!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
@@ -12,7 +12,7 @@
       <div id="sidebar" class="nav-collapse" style="background-color: #4D4D4D;">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="upload/admin/${member.memberImg}" class="img-circle" width="90px;" height="80px;"></a></p>
+          <p class="centered"><a href="profile.html"><img src="/upload/admin/${member.memberImg}" class="img-circle" width="90px;" height="80px;"></a></p>
           <h5 class="centered">${member.memberName}</h5>
           <li class="mt">
             <a class="active" href="index.html">
@@ -26,8 +26,8 @@
               <span>회원관리</span>
               </a>
             <ul class="sub">
-              <li><a href="/memberAllViewFrm.do?reqPage=1">회원 전체 조회</a></li>
-              <li><a href="/memberOneViewFrm.do">회원 하나 조회</a></li>
+              <li><a href="/meister/admin/memberAllViewFrm.do?reqPage=1">회원 전체 조회</a></li>
+              <li><a href="/meister/admin/memberOneViewFrm.do">회원 하나 조회</a></li>
               <li><a href="panels.html">Panels</a></li>
               <li><a href="font_awesome.html">Font Awesome</a></li>
             </ul>

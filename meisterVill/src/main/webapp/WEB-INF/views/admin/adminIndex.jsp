@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
 <head>
+
 <!-- ******************************************************************************** -->
 	<!-- Default : link , meta , script -->
 	<jsp:include page="/WEB-INF/views/admin/adminDefault.jsp" />
@@ -11,9 +14,9 @@
 <!-- ******************************************************************************** -->
 
 <title>관리자 메인</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
 </head>
-
 <body>
   <section id="container">
   
@@ -466,21 +469,21 @@
 
 
   </section>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="resources/adminCss/lib/jquery/jquery.min.js"></script>
-
-  <script src="resources/adminCss/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="resources/adminCss/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="resources/adminCss/lib/jquery.scrollTo.min.js"></script>
-  <script src="resources/adminCss/lib/jquery.nicescroll.js" type="text/javascript"></script>
-  <script src="resources/adminCss/lib/jquery.sparkline.js"></script>
+  <script src="/resources/adminCss/lib/jquery/jquery.min.js"></script>
+  <script src="/resources/adminCss/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="/resources/adminCss/lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="/resources/adminCss/lib/jquery.scrollTo.min.js"></script>
+  <script src="/resources/adminCss/lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <script src="/resources/adminCss/lib/jquery.sparkline.js"></script>
   <!--common script for all pages-->
-  <script src="resources/adminCss/lib/common-scripts.js"></script>
-  <script type="text/javascript" src="resources/adminCss/lib/gritter/js/jquery.gritter.js"></script>
-  <script type="text/javascript" src="resources/adminCss/lib/gritter-conf.js"></script>
+  <script src="/resources/adminCss/lib/common-scripts.js"></script>
+  <script type="text/javascript" src="/resources/adminCss/lib/gritter/js/jquery.gritter.js"></script>
+  <script type="text/javascript" src="/resources/adminCss/lib/gritter-conf.js"></script>
   <!--script for this page-->
-  <script src="resources/adminCss/lib/sparkline-chart.js"></script>
-  <script src="resources/adminCss/lib/zabuto_calendar.js"></script>
+  <script src="/resources/adminCss/lib/sparkline-chart.js"></script>
+  <script src="/resources/adminCss/lib/zabuto_calendar.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       var unique_id = $.gritter.add({

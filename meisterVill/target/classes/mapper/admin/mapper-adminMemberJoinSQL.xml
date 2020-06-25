@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="MemberJoinVO">
+<mapper namespace="memberJoin">
 
   
-  <select id="memberOneView" parameterType="int"  resultType="MemberJoinVO">
+  <select id="memberOneView" parameterType="int"  resultType="memberJoin">
            select
   			member_no as memberNo,
   			member_email as memberEmail,
