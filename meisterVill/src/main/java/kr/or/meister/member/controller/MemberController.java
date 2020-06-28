@@ -37,6 +37,11 @@ public class MemberController {
 		return "member/myprofile";
 	}
 	
+	@RequestMapping("/loginFrm.do")
+	public String loginFrm() {
+		return "project/login";
+	}
+	
 	@RequestMapping("/login.do")
 	public String login(HttpSession session, MemberVO m) {
 		MemberVO member =  service.selectOneMember(m);
@@ -44,10 +49,10 @@ public class MemberController {
 		if(member != null) {
 			session.setAttribute("member", member);
 			System.out.println("로그인 성공");
-			return "redirect:/";			
+			return "redirect:/meister/member/loginFrm.do";			
 		}else {
 			System.out.println("로그인 실패");
-			return "redirect:/";
+			return "redirect:/meister/member/loginFrm.do";
 		}
 	}
 	@RequestMapping(value="/logout.do")
