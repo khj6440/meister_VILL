@@ -6,25 +6,20 @@
 
 <head>
 <meta charset="utf-8">
-<title>Adminty - Premium Admin Template by Colorlib</title>
+<title>Project Room</title>
 <meta name="description" content="Comming soon page - flat able">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Codedthemes">
 <!-- Favicon -->
+<link rel="stylesheet" href="/resources/hj/project/css/style-v3.css">
 <link rel="shortcut icon" href="/resources/hj/project/img/favicon.ico">
-<link rel="stylesheet" href="/resources/hj/project/css/style-v2.css">
 <!-- Modernizr runs quickly on page load for detecting features -->
 <script src="/resources/hj/project/js/modernizr.custom.js"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.3.1.js"></script>
 
 <style>
-.sl-slider-wrapper .sl-slider .sl-slide-inner:after {
-	opacity: 0.9;
-}
-.nav-multi-square .nav-square:before{
-	background: linear-gradient(to left, #FFBC42, #946c22);
-}
+
 </style>
 </head>
 
