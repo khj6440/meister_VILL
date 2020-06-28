@@ -12,9 +12,9 @@
 			chat_read as chatRead,
 			sender_img as senderImg,
 			receiver_img as receiver_img			
-		from
-			chat
-		where chat_receiver =#{memberNickname}
+		from chat 
+		where chat_no in 
+		(select max(chat_no) from chat where chat_receiver=#{memberNickname} group by chat_sender)
 	</select>
 	
 	 <select id="showChat" parameterType="map" resultType="chat">
@@ -30,6 +30,11 @@
 			receiver_img as receiver_img			
 		from
 			chat
-		where chat_receiver =#{receiver} and chat_sender=#{sender}
+		where (chat_receiver =#{receiver} and chat_sender=#{sender})
+		or (chat_receiver=#{sender} and chat_sender=#{receiver})
 	</select>
+	<insert id="insertChat" parameterType="chat">
+		insert into chat values
+		(chat_seq.nextval,#{chatSender},#{chatReceiver},#{chatContent},sysdate,null,0,#{senderImg},null)
+	</insert>
 </mapper>

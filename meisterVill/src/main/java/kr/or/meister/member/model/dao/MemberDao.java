@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.meister.chat.model.vo.ChatVO;
 import kr.or.meister.member.model.vo.MemberVO;
 
 @Repository("memberDao")
@@ -28,5 +29,10 @@ public class MemberDao {
 	public List showChat(HashMap<String, String> map) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("chat.showChat",map);
+	}
+
+	public int insertChat(ChatVO newChat) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("chat.insertChat",newChat);
 	}
 }

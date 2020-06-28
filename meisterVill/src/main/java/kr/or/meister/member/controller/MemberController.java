@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import kr.or.meister.chat.model.vo.ChatVO;
 import kr.or.meister.member.model.service.MemberService;
@@ -42,7 +43,6 @@ public class MemberController {
 		
 		if(member != null) {
 			session.setAttribute("member", member);
-			System.out.println(member);
 			System.out.println("로그인 성공");
 			return "redirect:/";			
 		}else {
@@ -62,7 +62,6 @@ public class MemberController {
 		MemberVO m = (MemberVO)session.getAttribute("member");
 		ArrayList<ChatVO> list = service.selectAllChat(m);
 		model.addAttribute("list",list);
-		System.out.println(list.size());
 		return "member/chat";
 	}
 	
@@ -71,7 +70,12 @@ public class MemberController {
 	public String showChat(HttpSession session,String sender) {
 		MemberVO m = (MemberVO)session.getAttribute("member");
 		ArrayList<ChatVO> list = service.showChat(sender,m.getMemberNickname());
-		System.out.println(list.get(0));
-		return new Gson().toJson(list);
+		Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+		return gson.toJson(list);
+	}
+	
+	@RequestMapping(value="/goProject.do")
+	public String project() {
+		return "project/project";
 	}
 }
