@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import kr.or.meister.member.model.dao.MemberDao;
+import kr.or.meister.member.model.vo.MemberDataVO;
 import kr.or.meister.member.model.vo.MemberVO;
 
 @Service("memberService")
@@ -14,9 +15,13 @@ public class MemberService {
 	@Qualifier("memberDao")
 	private MemberDao dao;
 
-	public MemberVO selectOneMember(MemberVO m) {
+	public MemberVO selectOneMember3(MemberVO m) {
 		// TODO Auto-generated method stub
-		MemberVO lm =  dao.selectOneMember(m);
+		MemberVO lm =  dao.selectOneMember3(m);
 		return lm;
+	}
+
+	public MemberDataVO selectOneMember2(MemberDataVO mdv) {
+		return dao.selectOneMember2(mdv);
 	}
 }

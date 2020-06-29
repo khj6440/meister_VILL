@@ -87,6 +87,8 @@
 	border: 1px solid lightgray;
 	background-color: white;
 	width: 100%;
+	text-decoration: none;
+	color : #4D4D4D;
 }
 
 .my_transform_btn:hover {
@@ -141,7 +143,6 @@
 	text-decoration: none;
 	font-size : 15px;
 	color : #4D4D4D;
-	padding : 5px;
 }
 .my_sub_menu li a:hover{
 	font-weight: bold;
@@ -197,7 +198,7 @@
 
 							<li class="my_menu"><span class="my_menu_span">보낸견적</span>
 								<ul class="my_sub_menu">
-									<li><a href="/meister/member/myRequest.do">전체</a></li>
+									<li><a href="/myRequest.do">전체</a></li>
 									<li><a href="#">대기중</a></li>
 									<li><a href="#">채택</a></li>
 									<li><a href="#">마감</a></li>
@@ -237,7 +238,7 @@
 	<script>
 		$(document).ready(function() {
 	
-			$('.my_sub_menu').eq(0).show();
+			$('.my_sub_menu').eq(1).show();
 			
 			// menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
 			$(".my_menu").click(function() {
