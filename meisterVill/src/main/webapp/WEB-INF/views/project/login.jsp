@@ -20,7 +20,7 @@
 		<h1>[${sessionScope.member.memberNickname }]</h1>
 		<a href="/meister/member/goChat.do">쪽지함</a><br>
 		<a href="/meister/member/goProject.do">프로젝트룸</a><br>
-		
+		<a href="/meister/member/message.do">메세지</a><br>
 		<a href="/meister/member/logout.do">로그아웃</a><br>
 		
 	</c:if>

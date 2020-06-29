@@ -90,8 +90,8 @@ ul.list-style-none li a:hover{
 				<div class="row">
 					<div class="col-md-12">
 						<div class="card">
-							<div class="row no-gutters">
-								<div class="col-lg-3 col-xl-2 border-right">
+							<div class="row no-gutters" style="height: 780px;">
+								<div class="col-lg-3 col-xl-2 border-right" style="height: 780px;">
 									<div class="card-body border-bottom">
 										<form>
 											<input class="form-control" type="text"
@@ -131,8 +131,8 @@ ul.list-style-none li a:hover{
 									</div>
 								</div>
 								<div class="col-lg-9  col-xl-10">
-									<div class="chat-box scrollable position-relative"
-										style="height: calc(100vh - 111px);">
+									<div style="overflow:auto;height: 700px;" id="chat-box"  class="chat-box scrollable position-relative"
+										>
 										<!--chat Row -->
 										<ul class="chat-list list-style-none px-3 pt-3">
 											
@@ -158,6 +158,7 @@ ul.list-style-none li a:hover{
 					</div>
 				</div>
 			</div>
+			<button onclick="totop()" >zz</button>
 			<!-- ============================================================== -->
 			<!-- End Container fluid  -->
 			<!-- ============================================================== -->
@@ -248,16 +249,18 @@ ul.list-style-none li a:hover{
             })
             
             $(".message-center>a:first-child").click();
+
+            $('#chat-box').stop().animate({ scrollTop: $('#chat-box')[0].scrollHeight }, 100);
         });
         
         var ws;
 		var memberNickname = '${sessionScope.member.memberNickname}';
 		function connect() {
-			ws = new WebSocket("ws://192.168.0.6/chat.do");	//protocol이 http가 아닌 ws://임
+			ws = new WebSocket("ws://192.168.10.15/chat.do");	//protocol이 http가 아닌 ws://임
 			//연결 -> 메세지 받았을 때 -> 종료
 			//연결
 			ws.onopen = function(){
-				console.log("웹 소켓 연결 생성");
+				console.log("웹 소켓 연결 생성(chat)");
 				//객체 생성
 				var msg = {
 						type : "register",
@@ -285,12 +288,13 @@ ul.list-style-none li a:hover{
 				
 				$(".chat-list").html("");
 				$(".chat-list").append(html);
+				$('#chat-box').stop().animate({ scrollTop: $('#chat-box')[0].scrollHeight }, 300);
 		
 			};
 
 			//종료
 			ws.onclose = function () {
-				console.log("웹 소켓 연결 종료")
+				console.log("웹 소켓 연결 종료(chat)")
 			};
 		}
 		$(function() {
@@ -319,6 +323,8 @@ ul.list-style-none li a:hover{
 					
 					$(".chat-list").html("");
 					$(".chat-list").append(chat);
+			
+					$('#chat-box').stop().animate({ scrollTop: $('#chat-box')[0].scrollHeight }, 100);
 					var target = $(".message-center>a").eq(clickIndex).find("h6").html();
 					var sendMsg = {
 							/* 이번엔 type:chat으로 보내줬기 때문에 다른 로직을 탄다. */
@@ -333,6 +339,7 @@ ul.list-style-none li a:hover{
 				}
 			});
 		});
+	
     </script>
 
 
