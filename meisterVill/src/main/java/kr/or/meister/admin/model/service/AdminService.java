@@ -9,9 +9,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import kr.or.meister.admin.model.dao.AdminDao;
+import kr.or.meister.admin.model.vo.AdminMemberJoinSellJoinOrdersVO;
 import kr.or.meister.admin.model.vo.MemberJoinReportVO;
 import kr.or.meister.admin.model.vo.MemberJoinVO;
+import kr.or.meister.admin.model.vo.MemberStatsVO;
+import kr.or.meister.admin.model.vo.RequestSellVO;
 import kr.or.meister.admin.model.vo.SelectAllMemberPageVO;
+import kr.or.meister.admin.model.vo.SellAndRequestVO;
+import kr.or.meister.admin.model.vo.SellSellVO;
+import kr.or.meister.admin.model.vo.SellJoinOrdersJoinOptionVO;
+import kr.or.meister.admin.model.vo.SellStatsVO;
 import kr.or.meister.member.model.vo.MemberVO;
 
 @Service("adminService")
@@ -106,5 +113,51 @@ public class AdminService {
 		login.put("memberEmail", memberEmail);
 		login.put("memberPw", memberPw);
 		return dao.memberLogin(login);
+	}
+
+
+	public List<AdminMemberJoinSellJoinOrdersVO> memberSell(int memberNo) {
+		return (List<AdminMemberJoinSellJoinOrdersVO>)dao.memberSell(memberNo);
+		
+	}
+
+
+	public List<SellJoinOrdersJoinOptionVO> memberOrder(int memberNo) {
+		return (List<SellJoinOrdersJoinOptionVO>)dao.memberOrder(memberNo);
+	}
+
+
+	public MemberStatsVO memberStats() {
+		MemberStatsVO ms = new MemberStatsVO();
+		 ms.setCnt(dao.cnt());
+		 ms.setLevel0Cnt(dao.level0Cnt());
+		 ms.setLevel1Cnt(dao.level1Cnt());
+		 ms.setLevel2Cnt(dao.level2Cnt());
+		 return ms;
+	}
+
+
+	public SellStatsVO sellStats() {
+		   SellStatsVO ss = new SellStatsVO();
+		   
+		   ss.setSCnt(dao.sCnt());
+		   ss.setRCnt(dao.rCnt());
+		   ss.setECnt(dao.eCnt());
+		   ss.setEmployCnt(dao.employCnt());
+		   ss.setRequestCnt(dao.requestCnt());
+		   ss.setSellCnt(dao.sellCnt());
+		   
+		   return ss;
+	}
+
+
+	public SellAndRequestVO sellAndRequest() {
+		
+		List<SellSellVO> ss = dao.sellSell();
+		List<RequestSellVO> rs = dao.RequestSell();
+		
+		SellAndRequestVO saq = new SellAndRequestVO(ss,rs);
+
+		return saq;
 	}
 }

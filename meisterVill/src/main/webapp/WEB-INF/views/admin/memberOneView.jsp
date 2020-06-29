@@ -12,6 +12,7 @@
 <!-- ******************************************************************************** -->
 
 <title>회원 상제 정보</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
 </head>
 
@@ -63,13 +64,25 @@
                 <div class="profile-pic">
                   <p>
                   <c:if test="${m.memberImg != null}">
-                  <img src="upload/admin/${m.memberImg}" class="img-circle">
-                  </c:if>
                   
+                  	<c:if test="${m.memberLevel == 2 }">
+                  		<img src="/upload/common/adminImg.jpg" class="img-circle">
+                  	</c:if>
+                  	
+                  	<c:if test="${m.memberLevel != 2 }">
+                  		<img src="/upload/memberImg/${m.memberImg}" class="img-circle">
+                  	</c:if>
+                  	
+                  </c:if>
                   <c:if test="${m.memberImg == null}">
-                  <img src="upload/admin/unnamed.png" class="img-circle">
+                 	<c:if test="${m.memberLevel == 2 }">
+                  		<img src="/upload/common/adminImg.jpg" class="img-circle">
+                  	</c:if>
+                  	
+                  	<c:if test="${m.memberLevel != 2 }">
+                  		<img src="/upload/memberImg/unnamed.png" class="img-circle">
+                  	</c:if>
                   </c:if>
-                  
                   </p>
                   <p>
                     <button class="btn btn-theme02" style="background-color: #6c757d; border-color: #6c757d;">회원 삭제</button>
@@ -91,9 +104,6 @@
                   </li>
                   <li>
                     <a data-toggle="tab" href="#contact" class="contact-map">상세 정보</a>
-                  </li>
-                  <li>
-                    <a data-toggle="tab" href="#edit">Edit Profile</a>
                   </li>
                 </ul>
               </div>
@@ -138,62 +148,56 @@
                       </div>
                       <!-- /col-md-6 -->
                       <div class="col-md-6 detailed">
-                        <h4>User Stats</h4>
+                        <h4>회원 판매정보</h4>
                         <div class="row centered mt mb">
                           <div class="col-sm-4">
                             <h1><i class="fa fa-money"></i></h1>
-                            <h3>$22,980</h3>
-                            <h6>LIFETIME EARNINGS</h6>
+                            <h3>
+                            <c:if test="${sum != 0 }">${sum}원</c:if> 
+                            <c:if test="${sum == 0 }">0원</c:if>
+                            </h3>
+                            <h6>총판매 금액</h6>
                           </div>
                           <div class="col-sm-4">
                             <h1><i class="fa fa-trophy"></i></h1>
-                            <h3>37</h3>
-                            <h6>COMPLETED TASKS</h6>
+                            <h3>
+                            <c:if test="${price != 0 }">${price}</c:if>
+                             <c:if test="${price == 0 }">0</c:if>
+								
+                            </h3>
+                            <h6>게시물 최고 가격</h6>
                           </div>
                           <div class="col-sm-4">
                             <h1><i class="fa fa-shopping-cart"></i></h1>
-                            <h3>1980</h3>
-                            <h6>ITEMS SOLD</h6>
+                            <h3>
+                          <c:if test="${listNum != 0 }">${listNum}</c:if>
+                             <c:if test="${listNum == 0 }">0</c:if> 
+                            </h3>
+                            <h6>총 판매글</h6>
                           </div>
                         </div>
                         <!-- /row -->
-                        <h4>My Friends</h4>
+                        <h4>판매글 목록</h4>
+
                         <div class="row centered mb">
-                          <ul class="my-friends">
-                            <li>
-                              <div class="friends-pic"><img class="img-circle" width="35" height="35" src="img/friends/fr-01.jpg"></div>
-                            </li>
-                            <li>
-                              <div class="friends-pic"><img class="img-circle" width="35" height="35" src="img/friends/fr-02.jpg"></div>
-                            </li>
-                            <li>
-                              <div class="friends-pic"><img class="img-circle" width="35" height="35" src="img/friends/fr-03.jpg"></div>
-                            </li>
-                            <li>
-                              <div class="friends-pic"><img class="img-circle" width="35" height="35" src="img/friends/fr-04.jpg"></div>
-                            </li>
-                            <li>
-                              <div class="friends-pic"><img class="img-circle" width="35" height="35" src="img/friends/fr-05.jpg"></div>
-                            </li>
-                            <li>
-                              <div class="friends-pic"><img class="img-circle" width="35" height="35" src="img/friends/fr-06.jpg"></div>
-                            </li>
-                            <li>
-                              <div class="friends-pic"><img class="img-circle" width="35" height="35" src="img/friends/fr-07.jpg"></div>
-                            </li>
-                            <li>
-                              <div class="friends-pic"><img class="img-circle" width="35" height="35" src="img/friends/fr-08.jpg"></div>
-                            </li>
-                            <li>
-                              <div class="friends-pic"><img class="img-circle" width="35" height="35" src="img/friends/fr-09.jpg"></div>
-                            </li>
-                            <li>
-                              <div class="friends-pic"><img class="img-circle" width="35" height="35" src="img/friends/fr-10.jpg"></div>
-                            </li>
-                            <li>
-                              <div class="friends-pic"><img class="img-circle" width="35" height="35" src="img/friends/fr-11.jpg"></div>
-                            </li>
-                          </ul>
+
+                          
+                           <c:forEach items="${s}" var="sell" begin="0" end="6" step="1" varStatus="i">
+                       		<c:if test="${sell.sellImg !=null }">
+                              <div style="display: inline-block;">
+                              <img class="img-circle" width="35" height="35" src="/upload/sellImg/${sell.sellImg}">
+                              <br>
+                              <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 70px; height: 15px; display:inline-block;">
+                              ${sell.sellTitle}
+                              </div>
+                              </div> 
+                            </c:if>
+                            
+                            <c:if test="${sell.sellImg == null }">
+                         			<div>목록 없음</div>
+                            </c:if>
+						 </c:forEach>
+                          
                           <div class="row mt">
                             <div class="col-md-4 col-md-offset-4">
                               <h6><a href="#">VIEW ALL</a></h6>
@@ -238,36 +242,29 @@
                     <!-- /OVERVIEW -->
                   </div>
                   <!-- /tab-pane -->
-                  <div id="contact" class="tab-pane">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div id="map"></div>
-                      </div>
-                      <!-- /col-md-6 -->
-                      <div class="col-md-6 detailed" style="margin: o auto; text-align: center;">
-                        <h4>회원 상세 정보</h4>
-                        <div class="col-md-8 col-md-offset-2 mt">
-                          <p>
-                            생년월일 : ${m.memberHbd }<br/>
-                          </p>
-                          <br>
-                          <p>
-                            연락가능 번호 : ${m.memberPhone }<br/>
-                          </p>
-                        </div>
-                        
-                        <div class="col-md-8 col-md-offset-2 mt">
-                          <p>
-                            은행명 : ${m.memberBank }<br/>
-                          </p>
-                          <p>
-                            계좌번호 : ${m.memberAccount }<br/>
-                          </p>
-                        </div>
-                      </div>
-                      <!-- /col-md-6 -->
-                    </div>
-                    <!-- /row -->
+                  <div id="contact" class="tab-pane" style="text-align: center;">
+     		  이메일 : ${m.memberEmail}<br>
+                            생년월일 : ${m.memberHbd }<br>     
+                            연락가능 번호 : ${m.memberPhone }<br>
+                            은행명 : ${m.memberBank }<br>
+                            계좌번호 : ${m.memberAccount }<br>
+               연락가능 시간 : ${m.memberTime }<br>
+               <!-- 0:정상 1:정지 2:탈퇴 -->
+               <c:if test="${m.memberStatus == 0}">
+                회원상태 : <div class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 12px;">
+                   	정상</div>
+               </c:if>
+               
+                <c:if test="${m.memberStatus == 1}">
+               	                회원상태 : <div class="label label-info label-mini"style="background-color: #A593E0; font-size: 12px;">
+                   	정지</div>
+               </c:if>
+               
+                <c:if test="${m.memberStatus == 2}">      
+                회원상태 : <div class="label label-info label-mini"style="background-color: #6c757d; font-size: 12px;">
+                   	삭제</div>
+               </c:if>
+
                   </div>
                   <!-- /tab-pane -->
                   <div id="edit" class="tab-pane">
@@ -416,6 +413,35 @@
       }
       google.maps.event.addDomListener(window, 'click', initialize);
     });
+  </script> -->
+  
+<!--   <script>
+  $(function(){
+	
+	  var memberNo = ${m.memberNo};
+  $.ajax({
+
+	    url: "/meister/admin/memberSell.do?memberNo="+memberNo,
+
+	    data: "json",
+	    
+	    success: function(data){
+	    	console.log(data);
+	    	
+			alert("환영"+data[0].memberNo);
+			
+			$("#asd").html("환영"+data[0].memberNo);
+
+	    },
+
+	    error: function (request, status, error){        
+
+
+
+	    }
+
+	  });
+  });
   </script> -->
 </body>
 

@@ -61,6 +61,55 @@
 	</select>
 	
 	
+	<select id="cnt" resultType="_int">
+		select count(*) as cnt from member
+	</select>
+	
+	<select id="level0Cnt" resultType="_int">
+	<!-- 일반 회원 총인원  -->
+		 select count(*) as level0Cnt from member where member_level = 0
+	</select>
+	
+	<select id="level1Cnt" resultType="_int">
+	<!-- 전문가 회원 총인원  -->
+		select count(*) as level1Cnt from member where member_level = 1
+	</select>
+	
+	<select id="level2Cnt" resultType="_int">
+	<!-- 관리자 회원 총인원  -->
+		select count(*) as level2Cnt from member where member_level = 2
+	</select>
+	
+	
+
+	<select id="sCnt" resultType="_int">
+		select count(*) as sCnt from sell
+	</select>
+	
+	<select id="rCnt" resultType="_int">
+		select count(*) as rCnt from request
+	</select>
+	
+	<select id="eCnt" resultType="_int">
+		select count(*) as eCnt from employ
+	</select>
+	
+	<select id="sellCnt" resultType="_int">
+	<!-- sell 총 게시물 수  -->
+		 select count(*) as sellCnt from sell
+	</select>
+	
+	<select id="requestCnt" resultType="_int">
+	<!-- request 총 게시물 수  -->
+		select count(*) as requestCnt from REQUEST
+	</select>
+	
+	<select id="employCnt" resultType="_int">
+	<!-- employ 총 게시물 수  -->
+		select count(*) as employCnt from EMPLOY
+	</select>
+	
+	
 	
   	<select id="selectOneMember" parameterType="int" resultType="adminMember">
 		select 
@@ -85,5 +134,24 @@
   			member_grade as memberGrade,
   			member_date as memberDate 
   			from member where member_no = #{num}
+	</select>
+	
+	
+	<select id="sellSell" resultType="sellSell">
+		 select
+            sell_price as sellPrice,
+            option_title as optionTitle,
+            option_price as optionPrice 
+  			from sell LEFT JOIN orders ON (sell_no = order_board_no)
+                   LEFT JOIN order_option using (order_no)
+                  LEFT JOIN options using (option_no)
+  			 				where order_board_type = 0 order by sell_price desc
+	</select>
+	
+	<select id="requestSell" resultType="requestSell">
+		select
+            request_price as requestPrice
+  			from request LEFT JOIN orders ON (request_no = order_board_no)
+  			 				where order_board_type = 1 order by request_price desc
 	</select>
 </mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="joinSellJoinOrders">
+
+<select id="memberSell" parameterType="int"  resultType="joinSellJoinOrders">
+        select
+            member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate,
+            sell_no as sellNo,
+            sell_title as sellTitle,
+            sell_writer as sellWriter,
+            sell_price as sellPrice,
+            sell_category1 as sellCategory1,
+            sell_category2 as sellCategory2,
+            sell_skill as sellSkill,
+            sell_date as sellDate,
+            sell_appro as sellAppro,
+            sell_status as sellStatus,
+            sell_opt1 as sellOpt1,
+            sell_opt2 as sellOpt2,
+            sell_opt3 as sellOpt3,
+            sell_opt_fix as sellOptFix,
+            sell_period as sellPeriod,
+            sell_content as sellContent,
+            sell_fix as sellFix,
+            sell_img as sellImg
+  			from member LEFT JOIN sell ON (member_no = sell_writer)
+  			 				where member_no = #{memberNo}				
+  	</select>
+  	
+  			 				
+</mapper>
