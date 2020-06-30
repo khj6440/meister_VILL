@@ -36,21 +36,20 @@
               <span>회원관리</span>
               </a>
             <ul class="sub">
-              <li><a href="/meister/admin/memberAllViewFrm.do?reqPage=1">회원 전체 조회</a></li>
-              <li><a href="/meister/admin/memberOneViewFrm.do">회원 하나 조회</a></li>
-              <li><a href="panels.html">Panels</a></li>
-              <li><a href="font_awesome.html">Font Awesome</a></li>
+              <li><a href="/meister/admin/memberAllViewFrm.do?reqPage=1">회원 전체 관리</a></li>
+              <li><a href="/meister/admin/memberHaltFrm.do?reqPage=1">정지 회원 관리</a></li>
+              <li><a href="/meister/admin/memberDeletionFrm.do?reqPage=1">탈퇴 회원  관리</a></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;" style="background-color: #4D4D4D;">
               <i class="fa fa-cogs"></i>
-              <span>마이스터 판매글 관리</span>
+              <span>거래글 관리</span>
               </a>
             <ul class="sub">
-              <li><a href="grids.html">Grids</a></li>
-              <li><a href="calendar.html">Calendar</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="grids.html">마이스터 판매글 관리</a></li>
+              <li><a href="calendar.html">견적요청글 관리</a></li>
+              <li><a href="gallery.html">프로젝트글 관리</a></li>
               <li><a href="todo_list.html">Todo List</a></li>
               <li><a href="dropzone.html">Dropzone File Upload</a></li>
               <li><a href="inline_editor.html">Inline Editor</a></li>

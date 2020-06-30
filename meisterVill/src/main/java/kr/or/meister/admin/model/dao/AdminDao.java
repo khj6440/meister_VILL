@@ -30,6 +30,14 @@ public class AdminDao {
 	public List<MemberJoinReportVO> selectAllMember() {
 		return sqlSession.selectList("memberJoinReport.selectAllMember");
 	}
+	
+	public List<MemberJoinReportVO> selectAllHaltMember() {
+		return sqlSession.selectList("memberJoinReport.selectAllHaltMember");
+	}
+	
+	public List<MemberJoinReportVO> selectAllDeletionMember() {
+		return sqlSession.selectList("memberJoinReport.selectAllDeletionMember");
+	}
 
 	public MemberJoinVO memberOneView(int memberNo) {
 		return sqlSession.selectOne("memberJoin.memberOneView",memberNo);
@@ -38,9 +46,25 @@ public class AdminDao {
 	public int totalCount() {
 		return sqlSession.selectOne("totalCount");
 	}
+	
+	public int totalHaltCount() {
+		return sqlSession.selectOne("totalHaltCount");
+	}
+	
+	public int totalDeletionCount() {
+		return sqlSession.selectOne("totalDeletionCount");
+	}
 
 	public List<MemberVO> selectList(HashMap<String, Integer> se) {
 		return sqlSession.selectList("adminMember.selectList",se);
+	}
+	
+	public List<MemberVO> memberHaltPage(HashMap<String, Integer> se) {
+		return sqlSession.selectList("adminMember.selectHaltList",se);
+	}
+	
+	public List<MemberVO> memberDeletionPage(HashMap<String, Integer> se) {
+		return sqlSession.selectList("adminMember.selectDeletionList",se);
 	}
 
 	public MemberVO memberLogin(HashMap<String, String> login) {
@@ -109,6 +133,19 @@ public class AdminDao {
 	
 	public List<RequestSellVO> RequestSell() {
 		return sqlSession.selectList("adminMember.requestSell");
+	}
+
+	public int memberHalt(int memberNo) {
+		return sqlSession.update("adminMember.memberHalt",memberNo);
+	}
+
+	public int memberRollback(int memberNo) {
+		return sqlSession.update("adminMember.memberRollback",memberNo);
+	}
+
+
+	public int memberDelete(int memberNo) {
+		return sqlSession.update("adminMember.memberDelete",memberNo);
 	}
 	
 }

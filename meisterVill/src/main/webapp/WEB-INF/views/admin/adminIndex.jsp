@@ -140,7 +140,7 @@
                   <div class="chart mt">
                     <!-- <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div> -->
                   </div>
-                  <p class="mt"><b style="font-size: xx-large;">${sellRequestSum } ￦</b></p>
+                  <p class="mt"><b style="font-size: xx-large;">${sellRequestSum } ￦</b><p>총 누적 판매금액</p></p>
                 </div>
               </div>
               <!-- /col-md-4 -->
@@ -420,11 +420,11 @@
     $(document).ready(function() {
       var unique_id = $.gritter.add({
         // (string | mandatory) the heading of the notification
-        title: 'Welcome to Dashio!',
+        title: '관리자님 환영합니다!',
         // (string | mandatory) the text inside the notification
-        text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo.',
+        text: '페이지 테스트 중!',
         // (string | optional) the image to display on the left
-        image: 'img/ui-sam.jpg',
+        image: '/upload/common/adminImg.jpg',
         // (bool | optional) if you want it to fade out on its own or just sit there
         sticky: false,
         // (int | optional) the time you want it to be alive for before fading out

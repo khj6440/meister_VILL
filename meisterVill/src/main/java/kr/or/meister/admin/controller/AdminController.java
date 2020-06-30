@@ -1,7 +1,12 @@
 package kr.or.meister.admin.controller;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,6 +43,75 @@ public class AdminController {
 	@Qualifier("adminService")
 	private AdminService service;
 	
+
+
+	@RequestMapping(value="/memberHalt.do")
+	public String memberHalt(HttpServletRequest request, int memberNo) {
+		
+		int result = service.memberHalt(memberNo);
+
+       if(result>0) {
+    	   return "redirect:/meister/admin/memberAllViewFrm.do?reqPage=1";
+       }else {
+    	   return "redirect:/meister/admin/memberAllViewFrm.do?reqPage=1";
+       }
+	}
+	
+	
+		
+	@RequestMapping(value="/memberRollback.do")
+	public String memberRollback(HttpServletRequest request, int memberNo) {
+		
+		int result = service.memberRollback(memberNo);
+		
+		if(result > 0) {
+			return "redirect:/meister/admin/memberAllViewFrm.do?reqPage=1";
+		}else {
+	    	return "redirect:/meister/admin/memberAllViewFrm.do?reqPage=1";
+	       }
+	}
+	
+	@RequestMapping(value="/memberDeleteRollback.do")
+	public String memberDeleteRollback(HttpServletRequest request, int memberNo) {
+		
+		int result = service.memberRollback(memberNo);
+		
+		if(result > 0) {
+			return "redirect:/meister/admin/memberDeletionFrm.do?reqPage=1";
+		}else {
+			return "redirect:/meister/admin/memberDeletionFrm.do?reqPage=1";
+	       }
+	}
+	
+	@RequestMapping(value="/memberHaltRollback.do")
+	public String memberHaltRollback(HttpServletRequest request, int memberNo) {
+		
+		int result = service.memberRollback(memberNo);
+		
+		if(result > 0) {
+			return "redirect:/meister/admin/memberHaltFrm.do?reqPage=1";
+		}else {
+	    	return "redirect:/meister/admin/memberHaltFrm.do?reqPage=1";
+	       }
+	}
+	
+	
+	
+	@RequestMapping(value="/memberDeletion.do")
+	public String memberDeletion(HttpServletRequest request, int memberNo) {
+		
+		int result = service.memberDelete(memberNo);
+		
+		if(result > 0) {
+			return "redirect:/meister/admin/memberAllViewFrm.do?reqPage=1";
+		}else {
+			return "redirect:/meister/admin/memberAllViewFrm.do?reqPage=1";
+	       }
+	}
+	
+	
+	
+	
 	@RequestMapping(value="/memberAllViewFrm.do")
 	public String memberAllViewFrm(HttpSession session, HttpServletRequest request, int reqPage) {
 		
@@ -60,7 +135,7 @@ public class AdminController {
 		int listNum = 0;
 		int sellHigh = 0;
 		
-		if(sellList.size() != 1) {
+		if(sellList.get(0).getSellNo() != 0) {
 		listNum = sellList.size();
 		}
 		
@@ -123,6 +198,32 @@ public class AdminController {
 	public String loginFrm() {
 		return "admin/loginPage";
 	}
+		
+			
+		@RequestMapping(value="/memberHaltFrm.do")
+		public String memberHaltFrm(HttpSession session, HttpServletRequest request, int reqPage) {
+			
+			SelectAllMemberPageVO sap = service.memberHaltPage(reqPage);
+			
+			if(sap.getList() != null) {
+			request.setAttribute("list", sap.getList());
+			}
+			request.setAttribute("pageNavi", sap.getPageNavi());
+
+			return "admin/memberHaltView.jsp?"+reqPage;
+		}
+		
+			
+			@RequestMapping(value="/memberDeletionFrm.do")
+			public String memberDeletionFrm(HttpSession session, HttpServletRequest request, int reqPage) {
+				
+				SelectAllMemberPageVO sap = service.memberDeletion(reqPage);
+				
+				request.setAttribute("list", sap.getList());
+				request.setAttribute("pageNavi", sap.getPageNavi());
+
+				return "admin/memberDeletionView.jsp?"+reqPage;
+			}
 	
 	
 	@RequestMapping(value="/adminIndexFrm.do")

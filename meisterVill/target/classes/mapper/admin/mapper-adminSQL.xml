@@ -27,6 +27,7 @@
   			from member where member_email = #{memberEmail} and member_pw = #{memberPw} and member_level=2
 	</select>
 
+
 	<select id="selectList" parameterType="Map"  resultType="adminMember">
 		select *
 		 from(select rownum as rnum, n.* from
@@ -51,13 +52,79 @@
   			member_major as memberMajor,
   			member_grade as memberGrade,
   			member_date as memberDate
-		from member order by member_no desc)n)
+		from member where member_status=2 or member_status = 0 order by member_no desc)n)
 		where rnum between #{start} and #{end}
 	
 	</select>
 	
+
+	<select id="selectHaltList" parameterType="Map"  resultType="adminMember">
+		select *
+		 from(select rownum as rnum, n.* from
+		(select 
+			member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate
+		from member where member_status=2 order by member_no desc)n)
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="selectDeletionList" parameterType="Map"  resultType="adminMember">
+		select *
+		 from(select rownum as rnum, n.* from
+		(select 
+			member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate
+		from member where member_status=1 order by member_no desc)n)
+		where rnum between #{start} and #{end}
+	</select>
+	
+	
 	<select id="totalCount" resultType="_int">
-		select count(*) as cnt from member
+		select count(*) as cnt from member where member_status = 2 or member_status = 0
+	</select>
+	
+	<select id="totalHaltCount" resultType="_int">
+		select count(*) as cnt from member where member_status = 2
+	</select>
+	
+	<select id="totalDeletionCount" resultType="_int">
+		select count(*) as cnt from member where member_status = 1
 	</select>
 	
 	
@@ -136,6 +203,18 @@
   			from member where member_no = #{num}
 	</select>
 	
+	<update id="memberHalt" parameterType="int">
+		UPDATE member SET member_status = 2 WHERE member_no = #{memberNo}
+	</update>
+	
+	<update id="memberRollback" parameterType="int">
+		UPDATE member SET member_status = 0 WHERE member_no = #{memberNo}
+	</update>
+	
+	<update id="memberDelete" parameterType="int">
+		UPDATE member SET member_status = 1 WHERE member_no = #{memberNo}
+	</update>
+	
 	
 	<select id="sellSell" resultType="sellSell">
 		 select
@@ -154,4 +233,6 @@
   			from request LEFT JOIN orders ON (request_no = order_board_no)
   			 				where order_board_type = 1 order by request_price desc
 	</select>
+	
+
 </mapper>

@@ -66,7 +66,7 @@
                   <c:if test="${m.memberImg != null}">
                   
                   	<c:if test="${m.memberLevel == 2 }">
-                  		<img src="/upload/common/adminImg.jpg" class="img-circle">
+                  		<img src="/upload/memberImg/${m.memberImg}" class="img-circle">
                   	</c:if>
                   	
                   	<c:if test="${m.memberLevel != 2 }">
@@ -85,8 +85,13 @@
                   </c:if>
                   </p>
                   <p>
-                    <button class="btn btn-theme02" style="background-color: #6c757d; border-color: #6c757d;">회원 삭제</button>
-                    <button class="btn btn-theme02">회원 정지</button>
+                    <a class="btn btn-theme02" style="background-color: #6c757d; border-color: #6c757d;">회원 삭제</a>
+                  <c:if test="${m.memberStatus != 2 }">
+                    <a class="btn btn-theme02" href="/meister/admin/memberHalt.do?memberNo="${m.memberNo }>회원 정지</a>
+                  </c:if>
+                  <c:if test="${m.memberStatus == 2 }">
+                    <a class="btn btn-theme02" href="/meister/admin/memberRollback.do?memberNo="${m.memberNo }">정지 취소</a>
+                  </c:if>
                   </p>
                 </div>
               </div>
