@@ -130,13 +130,13 @@ public class MemberController {
 		
 		Session session = Session.getDefaultInstance(prop,new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("ravly.b.4702@gmail.com", "930706!ra");
+				return new PasswordAuthentication("meister@gmail.com", "meister0714!");
 			}
 		});
 		MimeMessage msg = new MimeMessage(session);
 		try {
 			msg.setSentDate(new Date());
-			msg.setFrom(new InternetAddress("ravly.b.4702@gmail.com","마이스터빌"));
+			msg.setFrom(new InternetAddress("meister@gmail.com","마이스터빌"));
 			System.out.println(memberEmail);
 			InternetAddress to = new InternetAddress(memberEmail);
 			msg.setRecipient(Message.RecipientType.TO, to);
@@ -156,7 +156,7 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="/mailSendLink.do",method=RequestMethod.POST, produces="application/json;charset-utf-8")
-	public String mailSendLink(String memberEmail, Model model, HttpServletRequest request) {
+	public void mailSendLink(String memberEmail, Model model, HttpServletRequest request) {
 		
 		
 		
@@ -169,13 +169,13 @@ public class MemberController {
 		
 		Session session = Session.getDefaultInstance(prop,new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("ravly.b.4702@gmail.com", "930706!ra");
+				return new PasswordAuthentication("meister@gmail.com", "meister0714!");
 			}
 		});
 		MimeMessage msg = new MimeMessage(session);
 		try {
 			msg.setSentDate(new Date());
-			msg.setFrom(new InternetAddress("ravly.b.4702@gmail.com","마이스터빌"));
+			msg.setFrom(new InternetAddress("meister@gmail.com","마이스터빌"));
 			System.out.println(memberEmail);
 			InternetAddress to = new InternetAddress(memberEmail);
 			msg.setRecipient(Message.RecipientType.TO, to);
@@ -189,7 +189,7 @@ public class MemberController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return sb.toString();
+		
 		
 	}
 	

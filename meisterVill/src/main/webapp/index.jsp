@@ -25,7 +25,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/resources/yr/css/landing-page.min.css" rel="stylesheet" type="text/css">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
 
@@ -35,9 +35,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    
+
     <!--내css-->
-    
+
     <link rel="stylesheet" href="/resources/yr/css/header_css.css" type="text/css">
     <link rel="stylesheet" href="/resources/yr/css/login_modal_css.css" type="text/css">
     <link rel="stylesheet" href="/resources/yr/css/main_header_css.css" type="text/css">
@@ -46,8 +46,8 @@
 </head>
 
 <body>
-    
-    
+
+
     <!--헤더-->
 
     <div class="normal-header">
@@ -88,8 +88,8 @@
                     </div>
                 </c:if>
                 <c:if test="${not empty sessionScope.member }">
-                    
-                    
+
+
                     <div class="member-top-menu hd-hver1 normal-hd-list">
 
                         <ul class="hd-profile-boundary1">
@@ -114,8 +114,8 @@
                         <a class="member-top-menu" href="#">마이페이지</a>
                         <a class="member-top-menu" href="#">메세지</a>
                     </div>
-                    
-                
+
+
                 </c:if>
 
 
@@ -172,7 +172,7 @@
                                     <img src="/upload/member/${sessionScope.member.memberImg })" width="100%">
                                 </a>
                             </c:if>
-                           
+
                             <ul class="hd-profile-menu1">
                                 <li id="none" name="hd-menu1"><a href="#">프로필 관리</a></li>
                                 <li name="hd-menu1"><a href="#">마이스터 등록</a></li>
@@ -189,7 +189,7 @@
                     <a class="member-top-menu" href="#">마이페이지</a>
                     <a class="member-top-menu" href="#">메세지</a>
                 </div>
-                
+
             </c:if>
 
 
@@ -293,7 +293,7 @@
     </div>
     <div>
 
-        
+
         <a href="/meister/member/changePw.do">비밀번호 변경</a><br>
         <a href="/meister/member/pwChangeSuccessModalTest.do">비밀번호변경완료 모달테스트</a><br>
         <a href="/meister/member/joinSuccessModalTest.do">회원가입완료 모달테스트</a><br>
@@ -348,7 +348,7 @@
                 <div class="modal-body">
 
                     <div class="login-pic-div">
-                       <div class="login-input-box">
+                        <div class="login-input-box">
                             <div class="login-title-dv">
                                 LOGIN
                             </div>
@@ -363,9 +363,10 @@
 
                                             <input type="checkbox" name="loginMaintain" value="true" id="login-maintain">
                                             <span>
-                                                <img src="/resources/yr/imgs/chkbox.png" id="checked-yellow" width="20px" height="20px">
-                                                <img src="/resources/yr/imgs/chkbox_none2.png" id="checked-none" width="20px" height="20px">
-                                                <label class="lm-la" for="login-maintain"> 로그인 유지</label>
+                                                <label class="lm-la" for="login-maintain">
+                                                    <img src="/resources/yr/imgs/chkbox.png" id="checked-yellow" width="20px" height="20px">
+                                                    <img src="/resources/yr/imgs/chkbox_none2.png" id="checked-none" width="20px" height="20px">
+                                                    로그인 유지</label>
                                             </span>
                                         </div>
                                         <div>
@@ -406,7 +407,7 @@
 
     <script>
         $(function() {
-        	$(".btn-in-modal").click(function() {
+            $(".btn-in-modal").click(function() {
 
                 var memberEmail = $("input[name=memberEmail]").val();
                 var memberPw = $("input[name=memberPw]").val();
@@ -423,19 +424,19 @@
                         },
                         type: "post",
                         success: function(data) {
-                        	console.log("success");
-                        	var ajaxEmail = data.memberEmail;
-                        	var ajaxPw = data.memberPw;
-                        	
+                            console.log("success");
+                            var ajaxEmail = data.memberEmail;
+                            var ajaxPw = data.memberPw;
+
                             if (data == null) {
                                 $(".login-msg-box").html("해당하는 계정이 없습니다.");
                             } else {
-                            	if(memberPw!=ajaxPw){
-                            		$(".login-msg-box").html("패스워드가 맞지 않습니다.");
-                            	}else{
-                            		
-                                $("#loginFrm").submit();
-                            	}
+                                if (memberPw != ajaxPw) {
+                                    $(".login-msg-box").html("패스워드가 맞지 않습니다.");
+                                } else {
+
+                                    $("#loginFrm").submit();
+                                }
                             }
                         },
                         error: function() {

@@ -58,9 +58,10 @@
 
                                             <input type="checkbox" name="loginMaintain" value="loginMaintain" id="login-maintain">
                                             <span>
-                                                <img src="/resources/yr/imgs/chkbox.png" id="checked-yellow" width="20px" height="20px">
-                                                <img src="/resources/yr/imgs/chkbox_none2.png" id="checked-none" width="20px" height="20px">
-                                                <label class="lm-la" for="login-maintain"> 로그인 유지</label>
+                                                <label class="lm-la" for="login-maintain">
+                                                    <img src="/resources/yr/imgs/chkbox.png" id="checked-yellow" width="20px" height="20px">
+                                                    <img src="/resources/yr/imgs/chkbox_none2.png" id="checked-none" width="20px" height="20px">
+                                                    로그인 유지</label>
                                             </span>
                                         </div>
 
@@ -94,14 +95,15 @@
         </div>
     </div>
     <style>
-        .login-msg-box{
+        .login-msg-box {
             width: 100%;
             height: 50px;
             text-align: center;
             color: white;
-            
+
             border: 1px solid red;
         }
+
     </style>
 
     <script type="text/javascript">
@@ -123,19 +125,19 @@
                         },
                         type: "post",
                         success: function(data) {
-                        	console.log("success");
-                        	var ajaxEmail = data.memberEmail;
-                        	var ajaxPw = data.memberPw;
-                        	
+                            console.log("success");
+                            var ajaxEmail = data.memberEmail;
+                            var ajaxPw = data.memberPw;
+
                             if (data == null) {
                                 $(".login-msg-box").html("해당하는 계정이 없습니다.");
                             } else {
-                            	if(memberPw!=ajaxPw){
-                            		$(".login-msg-box").html("패스워드가 맞지 않습니다.");
-                            	}else{
-                            		
-                                $("#loginFrm").submit();
-                            	}
+                                if (memberPw != ajaxPw) {
+                                    $(".login-msg-box").html("패스워드가 맞지 않습니다.");
+                                } else {
+
+                                    $("#loginFrm").submit();
+                                }
                             }
                         },
                         error: function() {
@@ -146,7 +148,6 @@
 
             });
         });
-
 
     </script>
 

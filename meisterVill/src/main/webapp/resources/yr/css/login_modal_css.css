@@ -146,11 +146,11 @@
     color: #FFBC42;
 }
 
-#login-maintain:checked + span > #checked-yellow {
+#login-maintain:checked + span>label>#checked-yellow {
     display: inline-block;
 }
 
-#login-maintain:checked + span > #checked-none {
+#login-maintain:checked + span>label>#checked-none {
     display: none;
 }
 
