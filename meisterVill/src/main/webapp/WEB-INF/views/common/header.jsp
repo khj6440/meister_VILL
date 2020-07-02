@@ -25,11 +25,8 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
 </head>
-
-
-
 <body>
-    
+
     <header>
 <!-- Bootstrap core JavaScript -->
    
@@ -46,8 +43,6 @@
                     $(".side-info-menu").addClass("sim-open");
                 }
             });
-
-
 
             var didScroll;
             var lastScrollTop = 0;
@@ -257,7 +252,7 @@
             </div>
             <div class="hd-category">
                 <ul>
-                    <li><a href="#">IT/Programming</a></li>
+                    <li><a href="/meister/sell/sellList.do">IT/Programming</a></li>
                     <li><a href="#">Design</a></li>
                 </ul>
             </div>

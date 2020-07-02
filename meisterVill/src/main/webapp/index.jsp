@@ -359,13 +359,13 @@
                         </div>
                         <div class="hd hd-member">
                             <a class="member-top-menu" href="#">마이스터 등록</a>
-                            <a class="member-top-menu" href="#">로그인</a>
+                            <a class="member-top-menu" href="/meister/admin/loginFrm.do">로그인</a>
                             <a class="btn btn-insert" href="#">무료 회원가입</a>
                         </div>
                     </div>
                     <div class="hd-category">
                         <ul>
-                            <li><a href="#">IT/Programming</a></li>
+                            <li><a href="/meister/sell/sellList.do?reqPage=1">IT/Programming</a></li>
                             <li><a href="#">Design</a></li>
                         </ul>
                     </div>
@@ -393,7 +393,10 @@
             <div class="member-top-line">
                 <a class="member-top-menu" href="#">마이스터 등록</a>
                 <a class="member-top-menu" href="#">로그인</a>
+                <a class="btn btn-insert" href="/meister/sell/makeSell.do?sellWriter=1">무료 회원가입</a>
+                <a class="member-top-menu" href="/meister/admin/loginFrm.do">로그인</a>
                 <a class="btn btn-insert" href="#">무료 회원가입</a>
+
             </div>
             <!--    <div class="overlay"></div>-->
 
