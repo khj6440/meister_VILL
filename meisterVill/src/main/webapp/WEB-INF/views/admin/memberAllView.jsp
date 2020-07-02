@@ -12,7 +12,8 @@
 	
 <!-- ******************************************************************************** -->
 
-<title>회원 전체 조회</title>
+<title>전체 회원 관리</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
 <body>
@@ -43,7 +44,7 @@
           <div class="col-md-12">
             <div class="content-panel">
               <table class="table table-striped table-advance table-hover">
-                <h4><i class="fa fa-angle-right"></i>회원 전체 관리</h4>
+                <h4><i class="fa fa-angle-right"></i>전체 회원 관리</h4>
                 <hr>
                 <thead>
                   <tr>
@@ -58,18 +59,29 @@
                   </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${list}" var="m"> 
+                <c:forEach items="${list}" var="m" varStatus="i">
                   <tr>
                     <td>
-                      <a href="/memberOneViewFrm.do?memberNo=${m.memberNo}">${m.memberEmail }</a>
+                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}">${m.memberEmail }</a>
                       </td>
                     <td class="hidden-phone">
+
                     <c:if test="${m.memberImg != null }">
-                    <img src="/upload/admin/${m.memberImg}" style="width: 20px; height: 18px;"> 
+                        <c:if test="${m.memberLevel == 2}">
+                    		<img src="/upload/memberImg/${m.memberImg}" style="width: 20px; height: 20px;"> 
+                    	</c:if>
+                    	<c:if test="${m.memberLevel != 2}">
+                    		<img src="/upload/memberImg/${m.memberImg}" style="width: 20px; height: 20px;"> 
+                    	</c:if>
                     </c:if>
                     
                     <c:if test="${m.memberImg == null }">
-                    <img src="/upload/admin/unnamed.png" style="width: 20px; height: 18px;"> 
+                    	<c:if test="${m.memberLevel == 2}">
+                    		<img src="/upload/common/adminImg.jpg" style="width: 20px; height: 20px;"> 
+                    	</c:if>
+                    	<c:if test="${m.memberLevel != 2}">
+                    		<img src="/upload/memberImg/unnamed.png" style="width: 20px; height: 20px;"> 
+                    	</c:if>
                     </c:if>
                     
                     ${m.memberName }</td>
@@ -99,16 +111,27 @@
                     <td>${m.memberDate } </td>
                     <td>
                       <!-- <span class="label label-info label-mini" style="background-color: red">신고 접수</span> -->
-                      <button class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42;"><i class="fa fa-check"></i><a href="/memberOneViewFrm.do?memberNo=${m.memberNo}" style="text-decoration: none; color: white;">회원정보 보기</a></button>
+                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}" class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42; text-decoration: none; color: white;"><i class="fa fa-check"></i>회원정보 보기</a>
                       <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
-                      <button class="btn btn-danger btn-xs" style="background-color: #6c757d; border-color: #6c757d;"><i class="fa fa-trash-o" ></i>회원 정지</button>
+                    <c:if test="${m.memberStatus != 2 }">
+                      <button value="${m.memberNo }" class="btn btn-danger btn-xs modalHalt" style="background-color: #6c757d; border-color: #6c757d; color: white;"><i class="fa fa-trash-o"></i>회원 정지</button>
+                    </c:if>
+                    
+                    <c:if test="${m.memberStatus == 2 }">
+                    	<button value="${m.memberNo }" class="btn btn-danger btn-xs modalHaltRollback" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-trash-o" ></i>정지 취소</button>
+                    </c:if>
+                    
+                    <c:if test="${m.memberStatus != 1 }">
+                      <button value="${m.memberNo }" class="btn btn-danger btn-xs modalDelete" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>회원 탈퇴</button>
+                    </c:if>
                     </td>
                   </tr> 
+
                   </c:forEach>
                 </tbody>
               </table>
             </div>
-            
+
             <div id="pageNavi" style="margin-top: 3%; text-align: center;">${pageNavi }</div>
             <!-- /content-panel -->
           </div>
@@ -129,14 +152,157 @@
 
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="resources/adminCss/lib/jquery/jquery.min.js"></script>
-  <script src="resources/adminCss/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="resources/adminCss/lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="resources/adminCss/lib/jquery.scrollTo.min.js"></script>
-  <script src="resources/adminCss/lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <script src="/resources/adminCss/lib/jquery/jquery.min.js"></script>
+  <script src="/resources/adminCss/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="/resources/adminCss/lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="/resources/adminCss/lib/jquery.scrollTo.min.js"></script>
+  <script src="/resources/adminCss/lib/jquery.nicescroll.js" type="text/javascript"></script>
   <!--common script for all pages-->
-  <script src="resources/adminCss/lib/common-scripts.js"></script>
+  <script src="/resources/adminCss/lib/common-scripts.js"></script>
   <!--script for this page-->
+     
+
+     
+     
+<!-- --------------------------------Modal----------------------------------------------------- -->
+    <div style="padding-top: 10%;" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="width: 600px; height: 600px;" class="modal-dialog" role="document">
+            <div  class="modal-content">
+                <div style="border-top-left-radius: 4px; border-top-right-radius: 4px; background-color: #6c757d;"class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">회원 정지</h5>
+                </div>
+                <div class="modal-body">
+                   		 정말로 정지하시겠습니까?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    <button style="background-color: #6c757d;" type="button" class="btn btn-primary memberValue">회원 정지</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!-- --------------------------------Modal-mini----------------------------------------------------- -->  
+    
+        <div style="padding-top: 10%;" class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="width: 400px; height: 400px;" class="modal-dialog" role="document">
+            <div style="background-color: #6c757d; border-radius: 12px;" class="modal-content2">
+
+                <div style=" width: 400px; height: 150px; text-align: center; line-height: 50px; color: white;" class="modal-body2">
+                   		<span style="font-size: xx-large; line-height: 150px;" class="modal2text">정지되었습니다.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+              
+  
+      <script>
+  $(function(){
+	  
+	  $(".modalHalt").click(function() {
+		  $("#exampleModal").modal("show");  
+		  var memberNo = $(this).val(); 
+		  $(".modal-title").html("회원 정지");
+		  $(".modal-header").css("background-color","#6c757d");
+		  $(".memberValue").css("background-color","#6c757d");
+		  $(".memberValue").css("border-color","#6c757d");
+		  $(".memberValue").html("회원 정지");
+		  $(".modal-body").html("정말로 회원을 정지시키시겠습니까?");
+	  $(".memberValue").click(function() {		
+  $.ajax({
+	    url: "/meister/admin/memberHalt.do?memberNo="+memberNo,
+
+	    success: function(){
+	    	$("#exampleModal").modal("hide");
+	    	$(".modal2text").html("정지되었습니다.");
+	    	$(".modal-content2").css("background-color","#6c757d");
+	    	$("#exampleModal2").modal("show");
+	    	setTimeout(function() {
+	    		location.reload();
+	    		}, 1000);
+	    	
+
+	    			
+	    }
+	    
+	    
+	  		});
+		});
+	});
+
+/*--------------------------------------------------------------------------------------------- */	  
+
+
+	  $(".modalHaltRollback").click(function() {
+		  $("#exampleModal").modal("show");  
+		  var memberNo = $(this).val();
+		  $(".modal-title").html("정지 취소");
+		  $(".modal-header").css("background-color","#30A9DE");
+		  $(".memberValue").css("background-color","#30A9DE");
+		  $(".memberValue").css("border-color","#30A9DE");
+		  $(".memberValue").html("정지 취소");
+		  $(".modal-body").html("정말로 정지를 취소하시겠습니까?");
+	  $(".memberValue").click(function() {		
+  $.ajax({
+	    url: "/meister/admin/memberRollback.do?memberNo="+memberNo,
+	    		
+	    
+
+	    success: function(){	
+	    	$("#exampleModal").modal("hide");
+	    	$(".modal2text").html("정지가 취소되었습니다.");
+	    	$(".modal-content2").css("background-color","#30A9DE");
+	    	$("#exampleModal2").modal("show");
+	    	setTimeout(function() {
+	    		location.reload();
+	    		}, 1000);
+	    }
+	    
+			});
+		});
+	});
+
+	  
+/*--------------------------------------------------------------------------------------------- */	 
+	  
+	  
+	  
+	  $(".modalDelete").click(function() {
+		  $("#exampleModal").modal("show");  
+		  var memberNo = $(this).val(); 
+		  $(".modal-header").css("background-color","#F16B6F");
+		  $(".modal-title").html("회원 탈퇴");
+		  $(".memberValue").html("회원 탈퇴");
+		  $(".modal-body").html("정말로 회원를 탈퇴시키시겠습니까?<br>※ 회원을 탈퇴할 경우, 회원정보가 손실될 수 있습니다. ※");
+		  $(".memberValue").css("background-color","#F16B6F");
+		  $(".memberValue").css("border-color","#F16B6F");
+	  $(".memberValue").click(function() {		
+  $.ajax({
+	    url: "/meister/admin/memberDeletion.do?memberNo="+memberNo,
+
+	    success: function(){	
+	    	$("#exampleModal").modal("hide");
+	    	$(".modal2text").html("탈퇴되었습니다.");
+	    	$(".modal-content2").css("background-color","#F16B6F");
+	    	$("#exampleModal2").modal("show");
+	    	setTimeout(function() {
+	    		location.reload();
+	    		}, 1000);
+	    }
+	    
+			});
+		});
+	});
+	  
+	  
+
+	  $("#close_modal").click(function() {
+          $("#exampleModal").modal("hide");
+      });
+  });
+  </script>
+  
   
 </body>
 

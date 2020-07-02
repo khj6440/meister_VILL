@@ -1,10 +1,10 @@
+
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
 
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,10 +31,9 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-
 </head>
-<body>
 
+<body>
 
 
 
@@ -360,7 +359,7 @@
                         </div>
                         <div class="hd hd-member">
                             <a class="member-top-menu" href="#">마이스터 등록</a>
-                            <a class="member-top-menu" href="#">로그인</a>
+                            <a class="member-top-menu" href="/meister/admin/loginFrm.do">로그인</a>
                             <a class="btn btn-insert" href="#">무료 회원가입</a>
                         </div>
                     </div>
@@ -393,7 +392,7 @@
         <header class="masthead text-center pic-header">
             <div class="member-top-line">
                 <a class="member-top-menu" href="#">마이스터 등록</a>
-                <a class="member-top-menu" href="#">로그인</a>
+                <a class="member-top-menu" href="/meister/admin/loginFrm.do">로그인</a>
                 <a class="btn btn-insert" href="#">무료 회원가입</a>
             </div>
             <!--    <div class="overlay"></div>-->
@@ -729,4 +728,7 @@
 
 
 </body>
+
+
 </html>
+

@@ -14,14 +14,13 @@ import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.sell.model.service.SellService;
 import kr.or.meister.sell.model.vo.SellJoinMemberVO;
 
-
 @Controller
+@RequestMapping("/meister/sell")
 public class SellController {
 	
 	@Autowired
 	@Qualifier("sellService")
 	private SellService service;
-
 	
 	@ResponseBody
 	@RequestMapping(value="/getSellList.do", produces = "application/json;charset=utf-8")
@@ -52,5 +51,4 @@ public class SellController {
 		} else 
 		return "1";
 	}
-
 }

@@ -9,6 +9,7 @@ import kr.or.meister.member.model.service.MemberService;
 import kr.or.meister.member.model.vo.MemberVO;
 
 @Controller
+@RequestMapping("/meister/member")
 public class MemberController {
 
 	@Autowired
@@ -26,12 +27,15 @@ public class MemberController {
 	}
 	@RequestMapping("/login.do")
 	public void login(MemberVO m) {
+		MemberVO member = new MemberVO();	
 		MemberVO loginM =  service.selectOneMember(m);
 		
 		if(loginM!=null){
-			System.out.println("성공");
+			System.out.println("�꽦怨�");
 		}else {
-			System.out.println("실패");
+			System.out.println("�떎�뙣");
 		}
+
+		
 	}
 }

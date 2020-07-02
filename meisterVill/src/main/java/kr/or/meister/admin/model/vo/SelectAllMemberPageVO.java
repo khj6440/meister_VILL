@@ -1,6 +1,5 @@
 package kr.or.meister.admin.model.vo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import kr.or.meister.member.model.vo.MemberVO;
