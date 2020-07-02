@@ -1,6 +1,7 @@
 package kr.or.meister.member.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
@@ -130,13 +131,13 @@ public class MemberController {
 		
 		Session session = Session.getDefaultInstance(prop,new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("meister@gmail.com", "meister0714!");
+				return new PasswordAuthentication("meister.vill0714@gmail.com", "meister0714!");
 			}
 		});
 		MimeMessage msg = new MimeMessage(session);
 		try {
 			msg.setSentDate(new Date());
-			msg.setFrom(new InternetAddress("meister@gmail.com","마이스터빌"));
+			msg.setFrom(new InternetAddress("meister.vill0714@gmail.com","마이스터빌"));
 			System.out.println(memberEmail);
 			InternetAddress to = new InternetAddress(memberEmail);
 			msg.setRecipient(Message.RecipientType.TO, to);

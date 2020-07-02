@@ -6,11 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" type="image⁄x-icon" href="/resources/yr/imgs/logo.png">
+    <link rel="stylesheet" href="/resources/yr/css/joinEnd_css.css" type="text/css">
     <title>Join End</title>
 </head>
 
 <body>
-    <jsp:include page="/WEB-INF/views/common/header.jsp" />
+    <jsp:include page="/WEB-INF/views/common/header2.jsp" />
 
 
     <div class="content-box-yr">
@@ -26,18 +27,18 @@
 
 
                 <form action="/meister/member/joinInput.do" method="post">
-                    
-                        <div class="jcb-title">
-                            이메일
-                        </div>
-                        <input type="text" class="input-yr-normal jcb-mail" name="memberEmail" placeholder="이메일을 입력해주세요.">
-                        <button type="button" id="btnEmail" class="btn btn-yr-normal-gray btn-mail-confirm">이메일 인증</button><br>
-                            
-                        <input type="text" class="input-yr-normal jcb-mail" name="confirm-code" placeholder="인증번호를 입력해주세요.">
-                        <button type="button" id="btnConfirm" class="btn btn-yr-normal-gray btn-mail-confirm">인증하기</button>
-                        <div class="time-limit"></div>
-                        <div class="wrong-msg jcb-mail-msg"></div>
-                
+
+                    <div class="jcb-title">
+                        이메일
+                    </div>
+                    <input type="text" class="input-yr-normal jcb-mail" name="memberEmail" placeholder="이메일을 입력해주세요.">
+                    <button type="button" id="btnEmail" class="btn btn-yr-normal-gray btn-mail-confirm">이메일 인증</button><br>
+
+                    <input type="text" class="input-yr-normal jcb-mail cursor-not" name="confirm-code" placeholder="인증번호를 입력해주세요." disabled>
+                    <button type="button" id="btnConfirm" class="btn btn-yr-normal-gray btn-mail-confirm" disabled>인증하기</button>
+                    <div class="time-limit"></div>
+                    <div class="wrong-msg jcb-mail-msg"></div>
+
                     <div class="jcb-mail-msg"></div>
                     <div class="jcb-title">
                         비밀번호
@@ -78,126 +79,6 @@
     </div>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-
-
-    <style>
-        .content-box-yr {
-            width: 30%;
-            height: auto;
-            margin: 0 auto;
-        }
-
-        .join-content-wrapper {
-            text-align: center;
-            height: 1230px;
-            padding: 10%;
-            padding-left: 15%;
-            padding-right: 15%;
-            margin-top: 10%;
-            margin-bottom: 10%;
-
-            border: 1px solid #dbdbdb;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .jcb-step {
-            margin-top: 3%;
-            margin-bottom: 3%;
-        }
-
-        .jcb-step>i {
-            margin-left: 1%;
-            margin-right: 1%
-        }
-
-        .jcb-step>i:last-child {
-            color: #ffbc42;
-        }
-
-        .jcb-title {
-            font-size: 17px;
-            font-weight: 900;
-            color: #4d4d4d;
-            margin-top: 3%;
-            margin-bottom: 3%;
-            text-align: justify;
-        }
-
-        .join-content-box {
-            width: 100%;
-        }
-
-        .join-content-box input {
-            width: 100%;
-            height: 45px;
-            margin-top: 1%;
-            margin-bottom: 1%;
-            font-size: 13px;
-        }
-
-
-        .jcb-mail {
-            padding-right: 27%;
-            position: relative;
-            z-index: 5;
-        }
-
-        .btn-mail-confirm {
-            font-size: 13px;
-            width: 100px;
-            height: 35px;
-            position: absolute;
-            z-index: 10;
-
-            margin-left: -105px;
-            margin-top: 9px;
-        }
-
-        .btn-join-finish {
-            width: 100%;
-            height: 45px;
-            margin-top: 50px;
-        }
-
-        .wrong-msg {
-            width: 100%;
-            height: 50px;
-            color: #D00C0A;
-            font-weight: 700;
-            font-size: 13px;
-
-        }
-
-        .wrong-msg2 {
-            width: 200px;
-            height: 30px;
-            color: #D00C0A;
-            font-weight: 700;
-            font-size: 13px;
-
-            border: 1px solid red;
-        }
-
-        .jcbt {
-            margin-top: 30px;
-        }
-
-
-        .invalid-input {
-            border: 3px solid #D00C0A;
-            box-shadow: 0px 0px 3px #D00C0A;
-            outline: 0 none;
-            
-        }
-
-        .cursor-not {
-            cursor: not-allowed;
-
-        }
-
-    </style>
-
     <script>
         $(function() {
             var emailConfirm = 0;
@@ -206,7 +87,7 @@
             var name = 0;
             var hbd = 0;
             var nick = 0;
-            var phone=0;
+            var phone = 0;
 
             //비밀번호
             $(".jcb-pw-input").eq(0).keyup(function() {
@@ -259,12 +140,12 @@
                         $("input[name=memberEmail]").css("box-shadow", "0px 0px 3px #d00c0a");
                         $(".jcb-mail-msg").html("유효하지 않은 입력입니다.");
                         $("#btnEmail").prop("disabled", false);
-                    } else {//유효성 검사 통과
+                    } else { //유효성 검사 통과
                         $("input[name=memberEmail]").css("border", "1px solid #eeeeee");
                         $("input[name=memberEmail]").css("box-shadow", "none");
                         $(".jcb-mail-msg").html("");
                         $("#btnEmail").prop("disabled", false);
-	
+
                     }
                 } else {
                     $(".jcb-mail-msg").html("");
@@ -293,7 +174,7 @@
                 }
 
             });
-            
+
             //생년월일
             $(".jcb-hbd-input").keyup(function() {
                 if ($(".jcb-dbc-input").val() != "") {
@@ -314,7 +195,7 @@
                 }
 
             });
-            
+
             //닉네임
             $(".jcb-nick-input").keyup(function() {
                 if ($(".jcb-nick-input").val() != "") {
@@ -335,7 +216,7 @@
                 }
 
             });
-            
+
             //전화번호
             $(".jcb-phone-input").keyup(function() {
                 if ($(".jcb-phone-input").val() != "") {
@@ -356,27 +237,51 @@
                 }
 
             });
-            
-            
+
+
             //이메일 인증
-            $("#btnEmail").click(function(){
-            	console.log("ok");
-            	var memberEmail = $(this).prev().val();
-            	console.log(memberEmail);
-            	$.ajax({
-            		url : "/meister/member/mailSend.do",
-            		data : {memberEmail:memberEmail},
-            		type : "post",
-            		success : function(data){
-            			console.log("success");
-            			console.log(data);
-            		},
-            		error : function(){
-            			console.log("ajax통신실패");
-            		}
-            	});
+            $("#btnEmail").click(function() {
+                console.log("ok");
+                $("input[name=confirm-code]").prop("disabled", "false");
+                $("input[name=confirm-code]").removeClass("cursor-not");
+                $("#btnConfirm").prop("disabled", "false");
+
+                var memberEmail = $(this).prev().val();
+                console.log(memberEmail);
+                $.ajax({
+                    url: "/meister/member/mailSend.do",
+                    data: {
+                        memberEmail: memberEmail
+                    },
+                    type: "post",
+                    success: function(data) {
+
+                        var min = 2; //분
+                        var sec = 59;
+                        intervalId = window.setInterval(function() {
+
+                            $(".time-limit").html(min + " : " + sec);
+                            if (min > 0) {
+                                if (sec > 0) {
+                                    sec--;
+                                } else {
+                                    sec = 59;
+                                    min--;
+                                }
+                            }
+                            if (min == 0 && sec == 0) {
+                                $("input[name=confirm-code]").prop("disabled", "true");
+                                $("input[name=confirm-code]").addClass("cursor-not");
+                                $("#btnConfirm").prop("disabled", "true");
+                            }
+                        }, 1000);
+                    },
+                    error: function() {
+                        console.log("ajax통신실패");
+                    }
+                });
             });
-            
+
         });
 
     </script>

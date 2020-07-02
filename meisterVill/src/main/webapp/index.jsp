@@ -385,7 +385,7 @@
 
 
                                 <a href="#" class="btn btn-insert btn-log-ins">회원가입</a>
-                                <img src="/resources/yr/imgs/logo.png" class="modal-in-logo">
+                               
 
                             </div>
                         </div>
@@ -396,7 +396,6 @@
                         <img src="/resources/yr/imgs/background-balance-business-commerce-583846.jpg" width="100%">
 
                     </div>
-
 
                 </div>
             </div>
