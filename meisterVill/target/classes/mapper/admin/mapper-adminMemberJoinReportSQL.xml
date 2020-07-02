@@ -27,9 +27,7 @@
   			report_no as reportNo,
   			report_member_nickname as reportMemberNickname,
   			report_board_type as reportBoardType,
-
   			report_board_no as reportBoardNo
-
   			from member JOIN report ON (member_nickname = report_member_nickname)
   	</select>
 
