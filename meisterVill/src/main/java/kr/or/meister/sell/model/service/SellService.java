@@ -1,8 +1,8 @@
 package kr.or.meister.sell.model.service;
 
-
 import java.util.HashMap;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,6 @@ import kr.or.meister.sell.model.dao.SellDao;
 import kr.or.meister.sell.model.vo.SellJoinMemberVO;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
 import kr.or.meister.sell.model.vo.SellVO;
-
 
 @Service("sellService")
 public class SellService {
@@ -24,7 +23,8 @@ public class SellService {
 
 
 	public HashMap<String, Object> selectAllList(int reqPage) {
-		List list = dao.selectAllList();
+
+
 		int numPerPage = 12;
 		int totalCount = dao.totalCount();
 		int totalPage = 0;
@@ -106,5 +106,4 @@ public class SellService {
 		int result = dao.insertOpt(opt);
 		return result;
 	}
-
 }

@@ -15,7 +15,7 @@
             Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
             Licensing information: https://templatemag.com/license/
           -->
-          Created with MeisterVill template by <a href="/adminIndexFrm.do" style="color: #4D4D4D;">MeisterVill_Main</a>
+          Created with MeisterVill template by <a href="/meister/admin/adminIndexFrm.do" style="color: #4D4D4D;">MeisterVill_Main</a>
         </div>
         <a href="#" class="go-top" style="background-color: #6c757d;">
           <i class="fa fa-angle-up" style="color: #eeeeee; border-radius: 30px;"></i>

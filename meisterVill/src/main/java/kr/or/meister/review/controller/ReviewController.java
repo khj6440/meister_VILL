@@ -14,6 +14,7 @@ import kr.or.meister.review.model.vo.ReviewJoinMemberVO;
 import kr.or.meister.review.model.vo.ReviewVO;
 
 @Controller
+@RequestMapping("/meister/review")
 public class ReviewController {
 
 	@Autowired
