@@ -1,14 +1,14 @@
 package kr.or.meister.sell.model.service;
 
+
 import java.util.HashMap;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import kr.or.meister.sell.model.dao.SellDao;
 import kr.or.meister.sell.model.vo.SellJoinMemberVO;
+
 
 @Service("sellService")
 public class SellService {
@@ -16,6 +16,7 @@ public class SellService {
 	@Autowired
 	@Qualifier("sellDao")
 	private SellDao dao;
+
 
 	public HashMap<String, Object> selectAllList() {
 		List list = dao.selectAllList();
@@ -44,4 +45,5 @@ public class SellService {
 		int result = dao.deletePick(pick);	
 		return 0;
 	}
+
 }

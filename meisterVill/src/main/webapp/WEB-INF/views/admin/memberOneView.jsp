@@ -100,40 +100,11 @@
               <!-- /panel-heading -->
               <div class="panel-body">
                 <div class="tab-content">
-                  <div id="overview" class="tab-pane active">
+                  <div id="overview" class="tab-pane active" style="margin: 0 auto; text-align: center;">
                     <div class="row">
                       <div class="col-md-6">
-                        <textarea rows="3" class="form-control" placeholder="Whats on your mind?"></textarea>
-                        <div class="grey-style">
-                          <div class="pull-left">
-                            <button class="btn btn-sm btn-theme"><i class="fa fa-camera"></i></button>
-                            <button class="btn btn-sm btn-theme"><i class="fa fa-map-marker"></i></button>
-                          </div>
-                          <div class="pull-right">
-                            <button class="btn btn-sm btn-theme03">POST</button>
-                          </div>
-                        </div>
-                        <div class="detailed mt">
-                          <h4>Recent Activity</h4>
-                          <div class="recent-activity">
-                            <div class="activity-icon bg-theme"><i class="fa fa-check"></i></div>
-                            <div class="activity-panel">
-                              <h5>1 HOUR AGO</h5>
-                              <p>Purchased: Dashio Admin Panel & Front-end theme.</p>
-                            </div>
-                            <div class="activity-icon bg-theme02"><i class="fa fa-trophy"></i></div>
-                            <div class="activity-panel">
-                              <h5>5 HOURS AGO</h5>
-                              <p>Task Completed. Resolved issue with Disk Space.</p>
-                            </div>
-                            <div class="activity-icon bg-theme04"><i class="fa fa-rocket"></i></div>
-                            <div class="activity-panel">
-                              <h5>3 DAYS AGO</h5>
-                              <p>Launched a new product: Flat Pack Heritage.</p>
-                            </div>
-                          </div>
-                          <!-- /recent-activity -->
-                        </div>
+
+
                         <!-- /detailed -->
                       </div>
                       <!-- /col-md-6 -->
@@ -241,29 +212,42 @@
                   <div id="contact" class="tab-pane">
                     <div class="row">
                       <div class="col-md-6">
-                        <div id="map"></div>
+                       <!--  <div id="map"></div> -->
                       </div>
                       <!-- /col-md-6 -->
-                      <div class="col-md-6 detailed" style="margin: o auto; text-align: center;">
-                        <h4>회원 상세 정보</h4>
-                        <div class="col-md-8 col-md-offset-2 mt">
-                          <p>
-                            생년월일 : ${m.memberHbd }<br/>
-                          </p>
-                          <br>
-                          <p>
-                            연락가능 번호 : ${m.memberPhone }<br/>
-                          </p>
-                        </div>
-                        
-                        <div class="col-md-8 col-md-offset-2 mt">
-                          <p>
-                            은행명 : ${m.memberBank }<br/>
-                          </p>
-                          <p>
-                            계좌번호 : ${m.memberAccount }<br/>
-                          </p>
-                        </div>
+                      <div style="margin: 0 auto; text-align: center;" >
+                        <br> 
+                        <span style="font-size: 20px;">이메일 : ${m.memberEmail }</span><br>
+                         
+                           <span style="font-size: 20px;">생년월일 : ${m.memberHbd }</span><br>
+
+                            <span style="font-size: 20px;">연락가능 번호 : ${m.memberPhone }</span><br>
+                         
+                           <span style="font-size: 20px;"> 은행명 : ${m.memberBank }</span><br>
+              
+              <span style="font-size: 20px;">계좌번호 : ${m.memberAccount}</span><br>
+
+		<div style="font-size: 20px;">
+              <c:if test="${m.memberStatus == 0 }">
+              		이메일 : ${m.memberEmail }</span><br>회원상태 : <span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 18px;">
+                   	정상
+                    </span>
+              </c:if> 
+              <c:if test="${m.memberStatus == 1 }">
+              	회원상태 : <span class="label label-info label-mini"style="background-color: #F16B6F; font-size: 18px;">
+                   	탈퇴
+                    </span>
+              </c:if> 
+              <c:if test="${m.memberStatus == 2 }">
+              	회원상태 : <span class="label label-info label-mini"style="background-color: #A593E0; font-size: 18px;">
+                   	정지
+                    </span>
+              </c:if> 
+              </div>             
+              
+              
+                       
+                 
                       </div>
                       <!-- /col-md-6 -->
                     </div>
@@ -381,6 +365,24 @@
 		<jsp:include page="/WEB-INF/views/admin/adminFooter.jsp" />
 		
 <!-- ******************************************************************************** -->
+
+	<script>
+		(function(){
+			$.ajax({
+	            type : "GET", //전송방식을 지정한다 (POST,GET)
+	            url : "adminSellView.do?memberNo="{m.memberNo},//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+	            dataType : "json",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+	            error : function(){
+	                alert("통신실패!!!!");
+	            },
+	            success : function(Parse_data){
+	                $("#Parse_Area").html(Parse_data); //div에 받아온 값을 넣는다.
+	                alert("통신 데이터 값 : " + Parse_data);
+	            }
+	             
+	        });
+	});
+	</script>
 
 
   </section>

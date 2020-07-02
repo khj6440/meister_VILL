@@ -9,7 +9,6 @@ import kr.or.meister.member.model.service.MemberService;
 import kr.or.meister.member.model.vo.MemberVO;
 
 @Controller
-@RequestMapping("/meister/member")
 public class MemberController {
 
 	@Autowired
