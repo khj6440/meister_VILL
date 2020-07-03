@@ -72,7 +72,7 @@
 
                     <input type="text" name="memberPhone" class="input-yr-normal jcb-phone-input" placeholder="'-'를 제외한 숫자만 입력하세요.">
 
-                    <button type="submit" class="btn btn-yr-normal btn-join-next btn-join-finish">회원가입 완료</button>
+                    <button type="submit" class="btn btn-yr-normal btn-join-next btn-join-finish cursor-not" disabled>회원가입 완료</button>
                 </form>
             </div>
         </div>
@@ -88,7 +88,15 @@
             var hbd = 0;
             var nick = 0;
             var phone = 0;
-
+			
+            if(emailConfirm==1 && pwConfirm==1 && pwSame==1 && name==1 && hbd==1 && nick==1 && phone==1){
+            	$(".btn-join-finish").removeClass("cursor-not");
+            	$(".btn-join-finish").prop("disabled",false);
+            }else{
+            	$(".btn-join-finish").addClass("cursor-not");
+            	$(".btn-join-finish").prop("disabled",true);
+            }
+            
             //비밀번호
             $(".jcb-pw-input").eq(0).keyup(function() {
                 var pw = $(".jcb-pw-input").eq(0).val();
@@ -370,7 +378,7 @@
                     }
                 });
             });
-
+            
         });
 
     </script>

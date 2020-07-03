@@ -405,7 +405,6 @@
     <script>
         $(function() {
             $(".btn-in-modal").click(function() {
-
                 var memberEmail = $("input[name=memberEmail]").val();
                 var memberPw = $("input[name=memberPw]").val();
                 var loginMaintain = $("input[type=checkbox]").val();

@@ -87,4 +87,7 @@
 		from member
 		where member_nickname=#{memberNickname}
 	</select>
+	<insert id="joinInput" parameterType="member" resultType="parameter">
+		
+	</insert>
 </mapper>

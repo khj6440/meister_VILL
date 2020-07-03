@@ -208,6 +208,11 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping("/joinInput.do")
+	public String joinInput(MemberVO m) {
+		int result = service.joinInput(m);
+	}
+	
 	
 	
 	

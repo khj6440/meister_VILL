@@ -43,5 +43,9 @@ public class MemberService {
 		return dao.checkNickname(memberNickname);
 	}
 
+	public int joinInput(MemberVO m) {
+		return dao.joinInput(m);
+	}
+
 
 }

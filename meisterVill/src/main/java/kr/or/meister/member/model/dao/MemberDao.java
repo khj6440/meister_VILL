@@ -41,4 +41,8 @@ public class MemberDao {
 		return sqlSession.selectOne("member.checkNickname",memberNickname);
 	}
 
+	public int joinInput(MemberVO m) {
+		return sqlSession.insert("member.joinInput",m);
+	}
+
 }
