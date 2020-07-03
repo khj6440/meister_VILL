@@ -132,9 +132,34 @@
     </div>
 
 
-
-
-
+                <!-- <div class="n-header">
+                    <div class="hd-menu">
+                        <div class="hd hd-logo">
+                            <a href="#">
+                                <img src="/resources/yr/imgs/meistervill_01.png">
+                            </a>
+                        </div>
+                        <div class="hd hd-search">
+                            <div class="hdsc">
+                                <span class="hdsc-icon"><a href="#"><i class="fa fa-search"></i></a></span>
+                                <input type="text" name="keyword" class="form-control form-control-sm" placeholder="Search..." />
+                            </div>
+                        </div>
+                        <div class="hd hd-member">
+                            <a class="member-top-menu" href="#">마이스터 등록</a>
+                            <a class="member-top-menu" href="/meister/admin/loginFrm.do">로그인</a>
+                            <a class="btn btn-insert" href="#">무료 회원가입</a>
+                        </div>
+                    </div>
+                    <div class="hd-category">
+                        <ul>
+                            <li><a href="/meister/sell/sellList.do?reqPage=1">IT/Programming</a></li>
+                            <li><a href="#">Design</a></li>
+                        </ul>
+                    </div>
+                </div> -->
+            </div>
+    
     <div class="header-scr">
         <!-- Navigation -->
         <nav class="navbar navbar-light bg-light static-top">
@@ -149,6 +174,16 @@
 
         <!-- Masthead -->
         <header class="masthead text-center pic-header">
+
+            <!-- <div class="member-top-line">
+                <a class="member-top-menu" href="#">마이스터 등록</a>
+                <a class="member-top-menu" href="#">로그인</a>
+                <a class="btn btn-insert" href="/meister/sell/makeSell.do?sellWriter=1">무료 회원가입</a>
+                <a class="member-top-menu" href="/meister/admin/loginFrm.do">로그인</a>
+                <a class="btn btn-insert" href="#">무료 회원가입</a>
+
+            </div> -->
+            <!--    <div class="overlay"></div>-->
 
             <c:if test="${empty sessionScope.member }">
                 <div class="member-top-line">

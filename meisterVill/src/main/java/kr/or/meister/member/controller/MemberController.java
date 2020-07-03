@@ -52,13 +52,16 @@ public class MemberController {
 	}
 	@RequestMapping("/login.do")
 	public void login(MemberVO m) {
+		MemberVO member = new MemberVO();	
 		MemberVO loginM =  service.selectOneMember(m);
 		
 		if(loginM!=null){
-			System.out.println("성공");
+			System.out.println("�꽦怨�");
 		}else {
-			System.out.println("실패");
+			System.out.println("�떎�뙣");
 		}
+
+		
 	}
 	@ResponseBody
 	@RequestMapping(value="/checkLogin.do", produces="application/json;charset=utf-8")
@@ -194,7 +197,29 @@ public class MemberController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/checkEmail.do", produces = "text/html;charset=utf-8")
+	public String checkEmail(String memberEmail) {
+		MemberVO m = service.checkLoginEmail(memberEmail);
+		if(m==null) {
+			return "0";
+			
+		}else {
+			return "1";
+		}
+	}
 	
+	@ResponseBody
+	@RequestMapping(value="/checkNickname.do", produces = "text/html;charset=utf-8")
+	public String checkNickname(String memberNickname) {
+		MemberVO m = service.checkNickname(memberNickname);
+		if(m==null) {
+			return "0";
+			
+		}else {
+			return "1";
+		}
+	}
 	
 	
 	

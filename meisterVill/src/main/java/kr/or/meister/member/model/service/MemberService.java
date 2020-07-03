@@ -39,5 +39,9 @@ public class MemberService {
 		return dao.loginMaintain(mcookie);
 	}
 
+	public MemberVO checkNickname(String memberNickname) {
+		return dao.checkNickname(memberNickname);
+	}
+
 
 }

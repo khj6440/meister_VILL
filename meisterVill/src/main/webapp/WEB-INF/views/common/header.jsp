@@ -45,9 +45,6 @@
     <link rel="stylesheet" href="/resources/yr/css/login_modal_css.css" type="text/css">
     <link rel="stylesheet" href="/resources/yr/css/login_header_css.css" type="text/css">
 </head>
-
-
-
 <body>
 
     <header>
@@ -95,6 +92,7 @@
                         });
                     }
 
+
                 });
 
 
@@ -106,6 +104,12 @@
                     $(this).css("box-shadow", "none");
                     $(this).css("border-color", "#ced4da");
                 });
+
+            var didScroll;
+            var lastScrollTop = 0;
+            var delta = 5;
+            var navHeight = $(".normal-header").outerHeight();
+
 
 
                 $("input[type=password]").focusin(function() {
@@ -237,12 +241,20 @@
                     </c:if>
 
                 </div>
+
                 <div class="hd-category">
                     <ul>
                         <li><a href="#">IT/Programming</a></li>
                         <li><a href="#">Design</a></li>
                     </ul>
                 </div>
+            </div>
+            <div class="hd-category">
+                <ul>
+                    <li><a href="/meister/sell/sellList.do">IT/Programming</a></li>
+                    <li><a href="#">Design</a></li>
+                </ul>
+
             </div>
         </div>
         <div class="side-info-menu sim-close">
