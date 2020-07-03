@@ -132,7 +132,6 @@
     </div>
 
 
-    
 
     <div class="header-scr">
         <!-- Navigation -->
@@ -189,9 +188,6 @@
                 </div>
 
             </c:if>
-
-
-
 
 
             <!--    <div class="overlay"></div>-->
