@@ -350,10 +350,10 @@
                                 LOGIN
                             </div>
                             <div class="login-input-dv">
-                                <form action="/meister/member/loginMember.do" method="post">
+                                <form action="/meister/member/loginMember.do" id="loginFrm" method="post">
                                     <input type="text" name="memberEmail" class="login-input" placeholder="이메일을 입력하세요"><br>
                                     <input type="password" name="memberPw" class="login-input" placeholder="비밀번호를 입력하세요"><br>
-                                    <div class="login-msg-box">msg</div>
+                                    <div class="login-msg-box"></div>
                                     <input type="button" class="btn btn-insert btn-in-modal" value="로그인">
                                     <div class="login-chk-dv">
                                         <div>
@@ -409,7 +409,7 @@
                 var memberPw = $("input[name=memberPw]").val();
                 var loginMaintain = $("input[type=checkbox]").val();
                 if (memberEmail == "" || memberPw == "") {
-                    $(".login-msg-box").html("이메일과 패스워드를 입력해주세요.")
+                    $(".login-msg-box").html("이메일과 패스워드를 입력해주세요.");
                 } else {
                     $.ajax({
                         url: "/meister/member/checkLogin.do",
@@ -421,6 +421,7 @@
                         type: "post",
                         success: function(data) {
                             console.log("success");
+                            console.log("성공:"+data.memberEmail);
                             var ajaxEmail = data.memberEmail;
                             var ajaxPw = data.memberPw;
 
