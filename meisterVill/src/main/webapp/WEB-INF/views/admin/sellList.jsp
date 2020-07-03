@@ -6,6 +6,8 @@
 <html>
 
 <head>
+
+
 <!-- ******************************************************************************** -->
 	<!-- Default : link , meta , script -->
 	<jsp:include page="/WEB-INF/views/admin/adminDefault.jsp" />
@@ -51,10 +53,10 @@
                 <tr>
                 <c:forEach items="${list}" var="s" varStatus="i">
                     <td style=" margin-left: 5%; margin-bottom: 5%; margin-top:5%; display: inline-block; border-top-style: none; width: 25%; height: 25%;">
-                     <div><img src="/upload/sellImg/${s.sellImg}" style="width: 100%; height: 300px;" ></div> 
+                     <div class="sellView"><img src="/upload/sellImg/${s.sellImg}" style="width: 100%; height: 300px;" ></div> 
                      
                     <div style="margin: 0 auto;">
-                    <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 95%;"><a href="/meister/admin/memberOneViewFrm.do?memberNo=${s.sellTitle}">${s.sellTitle}</a></div>
+                    <div class="sellView" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 95%;"><a>${s.sellTitle}</a></div>
 				
 				<div>
                     <c:if test="${s.memberImg != null }">
@@ -169,7 +171,9 @@
                     <h5 class="modal-title" id="exampleModalLabel">회원 정지</h5>
                 </div>
                 <div class="modal-body">
-                   		 내용
+                   		 
+            	 
+                   		 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -190,6 +194,8 @@
                 </div>
                 <div class="sell-modal-body modal-body">
                    		 
+                   		
+                   		
                    		  
                    		 
                 </div>
@@ -223,22 +229,6 @@
     		  var sellNo = $(this).val(); 
     		  $(".sell-modal-title").html("상세 내용");
     		  $(".sell-modal-header").css("background-color","#6c757d");
-    		  $(".sell-modal-body").html("내용<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>넣는 칸");
-    	  $(".memberValue").click(function() {		
-      $.ajax({
-    	    url: "/meister/admin/memberOneViewFrm.do?sellNo="+sellNo,
-    	         
-    	    success: function(){
-    	    	$("#exampleModal").modal("hide");
-    	    	$(".modal2text").html("정지되었습니다.");
-    	    	$(".modal-content2").css("background-color","#6c757d");
-    	    	$("#exampleModal2").modal("show");
-    	    	setTimeout(function() {
-    	    		location.reload();
-    	    		}, 1000);			
-    	    } 
-    	  		});
-    		});
     	});
 
 
@@ -247,8 +237,7 @@
       });
   });
   </script>
-  
+
   
 </body>
-
 </html>
