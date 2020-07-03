@@ -132,7 +132,6 @@
     </div>
 
 
-    
 
     <div class="header-scr">
         <!-- Navigation -->
@@ -191,9 +190,6 @@
             </c:if>
 
 
-
-
-
             <!--    <div class="overlay"></div>-->
             <div class="container">
 
@@ -250,7 +246,6 @@
                     </li>
                 </ul>
             </div>
-
 
 
         </header>

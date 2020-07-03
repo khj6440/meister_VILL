@@ -13,6 +13,12 @@
 		<typeAlias type="kr.or.meister.sell.model.vo.SellJoinOthersVO" alias="sjo"/>
 		<typeAlias type="kr.or.meister.member.model.vo.MemberVO" alias="member"/>
 		<typeAlias type="kr.or.meister.etc.model.vo.PickVO" alias="pick"/>
+		<typeAlias type="kr.or.meister.etc.model.vo.ReportVO" alias="ReportVO"/>
+		<typeAlias type="kr.or.meister.admin.model.vo.MemberJoinReportVO" alias="MemberJoinReportVO"/>
+		<typeAlias type="kr.or.meister.admin.model.vo.SelectAllMemberPageVO" alias="SelectAllMemberPageVO"/>
+		<typeAlias type="kr.or.meister.chat.model.vo.ChatVO" alias="chat"/>
+		<typeAlias type="kr.or.meister.message.model.vo.MessageVO" alias="message"/>
+		<typeAlias type="kr.or.meister.member.model.vo.MemberDataVO" alias="MemberDataVO"/>
 		<typeAlias type="kr.or.meister.options.model.vo.OptionsVO" alias="options"/>
 		<typeAlias type="kr.or.meister.etc.model.vo.MultiImgVO" alias="multiImg"/>
 		<typeAlias type="kr.or.meister.review.model.vo.ReviewVO" alias="review"/>
