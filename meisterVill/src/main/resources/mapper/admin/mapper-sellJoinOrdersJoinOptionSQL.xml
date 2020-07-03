@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sellJoinOrdersJoinOption">
+  
+  	<select id="memberOrder" parameterType="int" resultType="sellJoinOrdersJoinOption">
+               select
+            sell_price as sellPrice,
+            option_title as optionTitle,
+            option_price as optionPrice 
+  			from sell LEFT JOIN orders ON (sell_no = order_board_no)
+                   LEFT JOIN order_option using (order_no)
+                  LEFT JOIN options using (option_no)
+  			 				where sell_writer = #{memberNo}
+                            and order_board_type = 0 order by sell_price desc
+    
+     </select>
+</mapper>
