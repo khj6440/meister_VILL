@@ -138,3 +138,16 @@ width:1100px;
 .main-img {
 	width:100%;
 }
+.plus-img {
+	width:30%;
+}
+#plusImgArea {
+	display: flex;
+}
+.plus-img-area {
+	width:33%;
+}
+.plus-img-area>img {
+	width:100%;
+	margin-right:10px;
+}
