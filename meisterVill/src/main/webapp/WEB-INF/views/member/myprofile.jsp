@@ -399,7 +399,7 @@
 									<div class="cbp_tmlabel p_timeline_div">
 										<span class="p_span">경력 사항</span>
 										<hr>
-										<p>${list.companyName}</p>
+										<%-- <p>${list.companyName}</p> --%>
 										
 									</div>
 								</li>

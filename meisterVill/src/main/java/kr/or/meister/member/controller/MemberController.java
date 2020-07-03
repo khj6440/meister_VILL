@@ -59,10 +59,10 @@ public class MemberController {
 	@RequestMapping("/myprofile.do")
 	public String myprofile(HttpSession session, Model model, MemberDataVO mdv) {
 		MemberDataVO mdv2 = service.selectOneMember2(mdv);
+		System.out.println("mdv2 : "+mdv2);
 		MemberVO m = (MemberVO) session.getAttribute("member");
 		model.addAttribute("m", m);
 		model.addAttribute("list", mdv2);
-		System.out.println(mdv2);
 		return "member/myprofile";
 	}
 
