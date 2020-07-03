@@ -1,7 +1,15 @@
 package kr.or.meister.member.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
@@ -72,7 +80,19 @@ public class MemberController {
 		// hyeokjin
 		return "project/login";
 	}
+	@RequestMapping("/login2.do")
+	public String login2(HttpSession session, MemberVO m) {
+		MemberVO loginM = service.selectOneMember3(m);
 
+		if (loginM != null) {
+			session.setAttribute("member", loginM);
+			return "redirect:/meister/member/loginFrm.do";
+		} else {
+			return "redirect:/meister/member/loginFrm.do";
+		}
+	}
+	
+	
 	@RequestMapping("/login.do")
 	public String login(HttpSession session, MemberVO m) {
 		MemberVO loginM = service.selectOneMember3(m);
@@ -247,7 +267,7 @@ public class MemberController {
 	@RequestMapping(value = "/message.do")
 	public String message() {
 		// hyeokjin
-		return "common/message";
+		return "common/message2";
 	}
 
 	@ResponseBody
@@ -267,15 +287,80 @@ public class MemberController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/uploadChatFile.do")
+	@RequestMapping(value = "/uploadChatFile.do",produces = "text/html;charset=utf-8")
 	public String uploadChatFile(HttpServletRequest request, MultipartFile file) {
 		// hyeokjin
-		System.out.println("test");
-		System.out.println(file);
+		String resultStr = null;
+		if (!file.isEmpty()) {
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/chat/");
+			// 업로드한 파일의 실제 파일명
+			String originalFilename = file.getOriginalFilename();
+			// 확장자를 제외한 파일명 ->text
+			String onlyFilename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
+			// 확장자 ->.txt
+			String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+			String filepath = onlyFilename + "_" + Calendar.getInstance().getTimeInMillis()+ extension;
+			String fullpath = savePath + filepath;
 
-		return "test";
+			resultStr = originalFilename+":"+filepath;
+			
+			try {
+				byte[] bytes = file.getBytes();
+				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));
+				bos.write(bytes);
+				bos.close();
+				System.out.println("파일 업로드 완료");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+//		int result = service.insertChatFile(resultStr);
+		System.out.println("resultStr: "+resultStr);
+		return resultStr;
 	}
+	
 
+	@RequestMapping(value = "/chatFileDownload.do", produces = "application/octet-stream;charset=utf-8")
+	public void chatFileDownload(String filename, String filepath, HttpServletRequest request,
+			HttpServletResponse response) {
+		//hyeokjin
+		String resFilename=null;
+		try {
+			resFilename = new String(filename.getBytes("UTF-8"),"ISO-8859-1");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		response.setHeader("Content-Disposition", "attachment;filename=" + resFilename);
+		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/chat/");
+
+		BufferedInputStream bis = null;
+		BufferedOutputStream bos = null;
+		try {
+			bis = new BufferedInputStream(new FileInputStream(saveDir + filepath));
+			bos = new BufferedOutputStream(response.getOutputStream());
+			int read = -1;
+			while ((read = bis.read()) != -1) {
+				bos.write(read);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				bos.close();
+				bis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/mailSendLink.do", method = RequestMethod.POST, produces = "application/json;charset-utf-8")
 	public void mailSendLink(String memberEmail, Model model, HttpServletRequest request) {

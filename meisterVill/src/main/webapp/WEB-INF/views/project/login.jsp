@@ -10,7 +10,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 <body>
 <c:if test="${empty sessionScope.member }">
-		<form action="/meister/member/login.do" method="post">
+		<form action="/meister/member/login2.do" method="post">
 			아이디 : <input type="text" name="memberEmail"><br> 비밀번호 : <input
 				type="password" name="memberPw"><br> <input
 				type="submit" value="로그인">

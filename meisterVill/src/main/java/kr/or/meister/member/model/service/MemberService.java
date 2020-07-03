@@ -3,6 +3,7 @@ package kr.or.meister.member.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -102,5 +103,16 @@ public class MemberService {
 	public MemberVO checkNickname(String memberNickname) {
 		return dao.checkNickname(memberNickname);
 	}
+
+//	public int insertChatFile(String resultStr) {
+//		//hyeokjin
+//		StringTokenizer sT = new StringTokenizer(resultStr,":");
+//		HashMap<String, String> map = new HashMap<String, String>();
+//		
+//		map.put("filename", sT.nextToken());
+//		map.put("filepath", sT.nextToken());
+//		
+//		return dao.insertChatFile(map);
+//	}
 
 }

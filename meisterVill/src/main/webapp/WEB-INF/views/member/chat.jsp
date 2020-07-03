@@ -152,13 +152,13 @@ ul.list-style-none li a:hover{
 											<div class="col-3">
 												<label for="myFile">파일업로드</label>
 												<a class="btn-circle btn-lg btn-cyan float-right text-white transBtn"
-													href="javascript:void(0)"><i class="fas fa-paper-plane"></i></a>
+													href="javascript:void(0)" onclick="transChat()"><i class="fas fa-paper-plane"></i></a>
 											</div>
 											
 										</div>
 									</div>
 									<form id="uploadForm">
-										<input id="myFile" type="file" name="file" >
+										<input id="myFile" type="file" name="file" multiple="multiple" >
 									</form>
 								</div>
 							</div>
@@ -220,7 +220,7 @@ ul.list-style-none li a:hover{
 					contentType : false,
 				    processData : false,    
 					success : function(data) {
-						console.log(data);
+						transChat(data);
 					},
 					error : function() {
 						console.log("ajax 실패");
@@ -232,7 +232,8 @@ ul.list-style-none li a:hover{
         	
             $(document).on('keypress', "#textarea1", function (e) {
                 if (e.keyCode == 13) {
-                  $(".transBtn").click();
+                  //$(".transBtn").click();
+                  transChat();
                 }
             });
             
@@ -354,57 +355,72 @@ ul.list-style-none li a:hover{
 				console.log("웹 소켓 연결 종료(chat)")
 			};
 		}
+		
+		function transChat(param){
+			
+			var msg="";
+			
+			if(param==undefined){
+				msg = $("#textarea1").val();
+			}else{
+				var arr = param.split(":");
+				
+				msg = `<a href="/meister/member/chatFileDownload.do?filename=`+arr[0]+`&filepath=`+arr[1]+ `"style="color:red" >`;
+				msg+=arr[0];
+				msg+=`</a>`;
+				console.log(msg)
+			}
+			
+			//var msg = $("#textarea1").val();
+			
+			if(msg!=="" || param!=undefined){
+				$("#textarea1").val("");
+				$("#textarea1").focus();
+
+				let today = new Date();
+				let year = today.getFullYear();
+				let month = (today.getMonth()+1)<10?"0"+(today.getMonth()+1):today.getMonth()+1;
+				let day = today.getDate()<10?"0"+today.getDate():today.getDate();
+				let hours = today.getHours()<10?"0"+today.getHours():today.getHours(); // 시
+				let minutes = today.getMinutes()<10?"0"+today.getMinutes():today.getMinutes();  // 분
+
+				var chat = $(".chat-list").html();
+				chat+=`<li class="chat-item odd list-style-none mt-3">`;
+				chat+=`<div class="chat-content text-right d-inline-block pl-3">`;
+				var arrDate =  $(".chat-gap").last().html().split("/");
+			
+				if(arrDate[0]!=year || arrDate[1]!=month || arrDate[2]!= day || arrDate[4] !=minutes){
+					chat+=`<div>2020</div>`;
+				}
+				chat+=`<div class="box msg p-2 d-inline-block mb-1 box">`+msg+`</div>`
+				chat+=`<br></div>`;
+				chat+=`<div class="chat-time text-right d-block font-10 mt-1 mr-0 mb-3">`;
+				chat+=`<div class="chat-gap" style="display:none;">`+year+"/"+month+"/"+day+"/"+hours+"/"+minutes+`</div> `;
+				chat+= (hours<=12?"오전 "+hours :"오후 "+(hours-12) ) +":"+minutes;
+				chat+=`</div></li>`;
+				
+				$(".chat-list").html("");
+				$(".chat-list").append(chat);
+		
+				$('#chat-box').stop().animate({ scrollTop: $('#chat-box')[0].scrollHeight }, 100);
+				var target = $(".message-center>a").eq(clickIndex).find("h6").html();
+				var sendMsg = {
+						/* 이번엔 type:chat으로 보내줬기 때문에 다른 로직을 탄다. */
+						type:"chat", 
+						target : target,
+						sender : "${sessionScope.member.memberNickname}",
+						senderImg :"${sessionScope.member.memberImg }",
+						sendTime : year+"/"+month+"/"+day+"/"+hours+"/"+minutes,
+						msg : msg
+				};
+				ws.send(JSON.stringify(sendMsg));
+			}
+			
+		}
 		$(function() {
 			connect();
+			transChat();
 			
-			$(".transBtn").click(function() {
-				
-				var msg = $("#textarea1").val();
-			
-				if(msg!==""){
-					$("#textarea1").val("");
-					$("#textarea1").focus();
-	
-					let today = new Date();
-					let year = today.getFullYear();
-					let month = (today.getMonth()+1)<10?"0"+(today.getMonth()+1):today.getMonth()+1;
-					let day = today.getDate()<10?"0"+today.getDate():today.getDate();
-					let hours = today.getHours()<10?"0"+today.getHours():today.getHours(); // 시
-					let minutes = today.getMinutes()<10?"0"+today.getMinutes():today.getMinutes();  // 분
-	
-					var chat = $(".chat-list").html();
-					chat+=`<li class="chat-item odd list-style-none mt-3">`;
-					chat+=`<div class="chat-content text-right d-inline-block pl-3">`;
-					var arrDate =  $(".chat-gap").last().html().split("/");
-				
-					if(arrDate[0]!=year || arrDate[1]!=month || arrDate[2]!= day || arrDate[4] !=minutes){
-						chat+=`<div>2020</div>`;
-					}
-					
-					chat+=`<div class="box msg p-2 d-inline-block mb-1 box">`+msg+`</div>`
-					chat+=`<br></div>`;
-					chat+=`<div class="chat-time text-right d-block font-10 mt-1 mr-0 mb-3">`;
-					chat+=`<div class="chat-gap" style="display:none;">`+year+"/"+month+"/"+day+"/"+hours+"/"+minutes+`</div> `;
-					chat+= (hours<=12?"오전 "+hours :"오후 "+(hours-12) ) +":"+minutes;
-					chat+=`</div></li>`;
-					
-					$(".chat-list").html("");
-					$(".chat-list").append(chat);
-			
-					$('#chat-box').stop().animate({ scrollTop: $('#chat-box')[0].scrollHeight }, 100);
-					var target = $(".message-center>a").eq(clickIndex).find("h6").html();
-					var sendMsg = {
-							/* 이번엔 type:chat으로 보내줬기 때문에 다른 로직을 탄다. */
-							type:"chat", 
-							target : target,
-							sender : "${sessionScope.member.memberNickname}",
-							senderImg :"${sessionScope.member.memberImg }",
-							sendTime : year+"/"+month+"/"+day+"/"+hours+"/"+minutes,
-							msg : msg
-					};
-					ws.send(JSON.stringify(sendMsg));
-				}
-			});
 		});
 	
     </script>

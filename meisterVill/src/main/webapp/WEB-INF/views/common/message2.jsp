@@ -378,7 +378,6 @@
 .openbtn {
 	font-size: 13px;
 	cursor: pointer;
-	background-color: red;
 	z-index:300;
 	color: #4D4D4D;
 	padding: 5px 10px;
@@ -387,7 +386,7 @@
 }
 
 .openbtn:hover {
-	background-color: #FFBC42;
+	background-color: #f0f0f0;
 }
 
 .toList {
@@ -418,12 +417,22 @@
 
 #main{
 	position: fixed;
-	bottom: 50px;
-	right: 50px;
+	bottom: 130px;
+	right: 100px;
 	z-index: 5;
 }
 .get-message{
 	color:#666666;
+}
+.unreadCnt{
+	font-size: 13px;
+	position: absolute;
+	right: 10px;
+	top: 0px;
+	width: 18px;
+	height: 18px;
+	background-color: #FFBC42;
+	border-radius: 50px;
 }
 </style>
 <div id="mySidebar" class="sidebar">
@@ -459,8 +468,9 @@
 </div>
 
 <div id="main">
-	<button class="openbtn" onclick="openNav()">
-		Meister Vill<br>알림ㅋ
+	<button class="openbtn" onclick="openNav()" style="border: 1px solid #eeeeee;outline: none; position: relative;">
+	<i class="far fa-bell" style="font-size: 30px; color:#FFBC42"></i><div class="unreadCnt">6</div>
+		<br><span style="font-size: 11px;">Meister Vill</span><br>알림
 	</button>
 	<!-- <div>
 		읽지 않은 메시지:<span> </span>

@@ -97,4 +97,9 @@ public class MemberDao {
 		return sqlSession.selectOne("member.checkNickname",memberNickname);
 	}
 
+	public int insertChatFile(HashMap<String, String> map) {
+		//hyeokjin
+		return sqlSession.insert("chat.insertChatFile",map);
+	}
+
 }
