@@ -11,6 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Codedthemes">
 <!-- Favicon -->
+<link href="/resources/hj/chat/dist/css/style.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/resources/hj/project/css/style-v3.css">
 <link rel="shortcut icon" href="/resources/hj/project/img/favicon.ico">
 <!-- Modernizr runs quickly on page load for detecting features -->
@@ -30,7 +31,7 @@
 		<span class="loading-text opacity-0">L o a d i n g . . .</span>
 	</div>
 	<!-- Informations bar on top of the screen -->
-	<div class="info-bar bar-intro opacity-0" style="height: 87px">
+	<div class="info-bar bar-intro opacity-0">
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-lg-6 info-bar-left">
 				<p>
@@ -38,7 +39,6 @@
 					<!-- <span id="countdown"></span> -->
 				</p>
 			</div>
-			
 			<div class="col-xs-12 col-sm-6 col-lg-6 info-bar-right">
 				<a data-dialog="somedialog" class="action-btn trigger"
 					style="background-color: #FFBC42;">Click Me !</a>
@@ -47,42 +47,18 @@
 	</div>
 	<!-- END - Informations bar on top of the screen -->
 	<!-- Slider Wrapper -->
-	<div id="slider" class="sl-slider-wrapper" style="width: 100%;" >
-		<div class="sl-slider" style="padding-top:87px; padding-bottom: 120px;">
+	<div id="slider" class="sl-slider-wrapper">
+		<div class="sl-slider">
 			<!-- SLIDE 1 / Home -->
 			<div class="sl-slide bg-1" data-orientation="horizontal"
 				data-slice1-rotation="-25" data-slice2-rotation="-25"
-				data-slice1-scale="2" data-slice2-scale="2" >
+				data-slice1-scale="2" data-slice2-scale="2">
 				<div class="sl-slide-inner">
 					<div class="content-slide">
-						<div class="container" style="margin:0px;width: 100%">
+						<div class="container">
+							<!-- <iframe width="100%" height="500px" src="/meister/member/loginFrm.do"></iframe> -->	
 							<img src="img\logo.png" alt=""
 								class="brand-logo text-intro opacity-0">
-							<h1 class="text-intro opacity-0">Project Title</h1>
-							<p class="text-intro opacity-0">
-								So Excited !!!<strong> Product Launch</strong> by Codedthemes. <br>
-								Top bar Time countdown - Chill your excitement.
-							</p>
-							<h1 class="text-intro opacity-0">Project Title</h1>
-							<p class="text-intro opacity-0">
-								So Excited !!!<strong> Product Launch</strong> by Codedthemes. <br>
-								Top bar Time countdown - Chill your excitement.
-							</p>
-							<h1 class="text-intro opacity-0">Project Title</h1>
-							<p class="text-intro opacity-0">
-								So Excited !!!<strong> Product Launch</strong> by Codedthemes. <br>
-								Top bar Time countdown - Chill your excitement.
-							</p>
-							<h1 class="text-intro opacity-0">Project Title</h1>
-							<p class="text-intro opacity-0">
-								So Excited !!!<strong> Product Launch</strong> by Codedthemes. <br>
-								Top bar Time countdown - Chill your excitement.
-							</p>
-							<h1 class="text-intro opacity-0">Project Title</h1>
-							<p class="text-intro opacity-0">
-								So Excited !!!<strong> Product Launch</strong> by Codedthemes. <br>
-								Top bar Time countdown - Chill your excitement.
-							</p>
 							<h1 class="text-intro opacity-0">Project Title</h1>
 							<p class="text-intro opacity-0">
 								So Excited !!!<strong> Product Launch</strong> by Codedthemes. <br>
@@ -107,7 +83,9 @@
 			</div>
 			<!-- END - SLIDE 1 / Home -->
 			<!-- SLIDE 2 / About -->
-			<div class="sl-slide">
+			<div class="sl-slide bg-2" data-orientation="vertical"
+				data-slice1-rotation="10" data-slice2-rotation="-15"
+				data-slice1-scale="1.5" data-slice2-scale="1.5">
 				<div class="sl-slide-inner">
 					<div class="content-slide">
 						<div class="container">
@@ -139,7 +117,9 @@
 			</div>
 			<!-- END - SLIDE 2 / About -->
 			<!-- SLIDE 3 / Portfolio -->
-			<div class="sl-slide">
+			<div class="sl-slide bg-3" data-orientation="horizontal"
+				data-slice1-rotation="3" data-slice2-rotation="3"
+				data-slice1-scale="2" data-slice2-scale="1">
 				<div class="sl-slide-inner">
 					<div class="content-slide">
 						<div class="container">
@@ -301,12 +281,13 @@
 			</div>
 			<!-- END - SLIDE 3 / Portfolio -->
 			<!-- SLIDE 4 / Services -->
-			<div class="sl-slide">
+			<div class="sl-slide bg-4" data-orientation="vertical"
+				data-slice1-rotation="-5" data-slice2-rotation="25"
+				data-slice1-scale="2" data-slice2-scale="1">
 				<div class="sl-slide-inner">
 					<div class="content-slide">
 						<div class="container">
 							<h2>All new features</h2>
-							<iframe src="/meister/member/goChat.do" width="600" height="300"></iframe>
 							<p class="resume">The goal of a startup is to figure out the
 								right thing to build the thing customers want and will pay for
 								as quickly as possible. In other words, the Lean Startup is a
@@ -373,8 +354,87 @@
 				data-slice1-scale="2" data-slice2-scale="1">
 				<div class="sl-slide-inner">
 					<div class="content-slide">
-						<div class="container" style="margin:0px;width: 100%">
-							<iframe src="/meister/member/goChat.do" width="100%" id="the_iframe"></iframe>
+						<div class="container">
+							<h2>Get in touch</h2>
+							<p class="resume">
+								We are here to help you <strong>Tuesday through
+									Saturday</strong>, from 9:00 AM to 10:00 PM. <br> Fill the next
+								online form to get in touch with our friendly support team!
+							</p>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-6 col-lg-5 info-contact">
+									<h3>WAVE Service Department</h3>
+									<p>If you have any further suggestions, questions or
+										comments, here are the best ways to connect with us!</p>
+									<br>
+									<p class="list-info">
+										<i class="icon ion-ios-telephone"></i> Phone : (+33)
+										66-1254-611 <br> <i class="icon ion-ios-email"></i> Email
+										: <a
+											href="..\..\..\..\..\cdn-cgi\l\email-protection.htm#641d0b1116490109050d0824011c05091408014a070b09"
+											class="phone-mail-link"><span class="__cf_email__"
+											data-cfemail="166177607356736e777b667a733875797b">[email&#160;protected]</span></a>
+										<br> <i class="icon ion-ios-location"></i> Location : 66
+										Grand Central, NY 66564, USA
+									</p>
+								</div>
+								<div
+									class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-lg-offset-1">
+									<!-- Contact Form -->
+									<form id="contact-form" name="contact-form" method="POST"
+										data-name="Contact Form">
+										<div class="row">
+											<!-- Full name -->
+											<div class="col-xs-12 col-sm-12 col-lg-6">
+												<div class="form-group">
+													<input type="text" id="name" class="form form-control"
+														placeholder="Your Name*" onfocus="this.placeholder = ''"
+														onblur="this.placeholder = 'Your Name*'" name="name"
+														data-name="Name" required="">
+												</div>
+											</div>
+											<!-- E-mail -->
+											<div class="col-xs-12 col-sm-12 col-lg-6">
+												<div class="form-group">
+													<input type="email" id="email" class="form form-control"
+														placeholder="Your Email*" onfocus="this.placeholder = ''"
+														onblur="this.placeholder = 'Your Email*'"
+														name="email-address" data-name="Email Address" required="">
+												</div>
+											</div>
+											<!-- Subject -->
+											<div class="col-xs-12 col-sm-12 col-lg-12">
+												<div class="form-group">
+													<input type="text" id="subject" class="form form-control"
+														placeholder="Regarding..." onfocus="this.placeholder = ''"
+														onblur="this.placeholder = 'Regarding...'" name="subject"
+														data-name="Subject">
+												</div>
+											</div>
+											<!-- Message -->
+											<div class="col-xs-12 col-sm-12 col-lg-12 no-padding">
+												<div class="form-group">
+													<textarea id="text-area" class="form textarea form-control"
+														placeholder="Your message here... 20 characters Min.*"
+														onfocus="this.placeholder = ''"
+														onblur="this.placeholder = 'Your message here... 20 characters Min.*'"
+														name="message" data-name="Text Area" required=""></textarea>
+												</div>
+												<span class="sub-text">* Required fields</span>
+											</div>
+										</div>
+										<!-- Button submit -->
+										<button type="submit" id="valid-form" class="btn btn-color">Send
+											my Message</button>
+									</form>
+									<!-- END - Contact Form -->
+									<!-- Answer for the contact form is displayed in the next div, do not remove it. -->
+									<div id="block-answer">
+										<div id="answer"></div>
+									</div>
+									<!-- END - Answer for the contact form is displayed in the next div, do not remove it. -->
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -387,7 +447,7 @@
 		<!-- END - Arrow nav -->
 		<!-- Bottom nav -->
 		<nav id="nav-multi-square"
-			class="nav-multi-square nav-intro opacity-0" style="height: 120px;">
+			class="nav-multi-square nav-intro opacity-0">
 			<span class="nav-square-current nav-square"> <span><i
 					class="fa fa-home"></i>Home</span>
 			</span> <span class="nav-square"> <span><i
@@ -553,24 +613,20 @@
 	<!-- Main application scripts -->
 	<script src="/resources/hj/project/js/main2.js"></script>
 
-	<script type="text/javascript">
-	function calcHeight(){
-		 //find the height of the internal page
 
-		 var the_height=document.getElementById('the_iframe').contentWindow.document.body.scrollHeight;
 
-		 //change the height of the iframe
-		 document.getElementById('the_iframe').height= the_height;
-
-		 //document.getElementById('the_iframe').scrolling = "no";
-		 document.getElementById('the_iframe').style.overflow = "hidden";
-		}
+	<script
+		src="/resources/hj/chat/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+	<script
+		src="/resources/hj/chat/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="/resources/hj/chat/dist/js/app-style-switcher.js"></script>
+	<script src="/resources/hj/chat/dist/js/feather.min.js"></script>
+	<script
+		src="/resources/hj/chat/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+	<script src="/resources/hj/chat/dist/js/sidebarmenu.js"></script>
+	<!--Custom JavaScript -->
+	<script src="/resources/hj/chat/dist/js/custom.min.js"></script>
 	
-	$(function(){
-		calcHeight();
-	})
-	</script>
-
 	
 </body>
 

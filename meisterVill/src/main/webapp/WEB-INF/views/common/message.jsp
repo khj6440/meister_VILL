@@ -13,31 +13,16 @@
 <link
 	href="/resources/hj/message/vendor/mdi-font/css/material-design-iconic-font.min.css"
 	rel="stylesheet" media="all">
-<link
+<!-- <link
 	href="/resources/hj/message/vendor/bootstrap-4.1/bootstrap.min.css"
 	rel="stylesheet" media="all">
-
+ -->
 <link href="/resources/hj/message/vendor/animsition/animsition.min.css"
-	rel="stylesheet" media="all">
-<link
-	href="/resources/hj/message/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css"
 	rel="stylesheet" media="all">
 <link href="/resources/hj/message/vendor/wow/animate.css"
 	rel="stylesheet" media="all">
-<link
-	href="/resources/hj/message/vendor/css-hamburgers/hamburgers.min.css"
-	rel="stylesheet" media="all">
-<link href="/resources/hj/message/vendor/slick/slick.css"
-	rel="stylesheet" media="all">
-<link href="/resources/hj/message/vendor/select2/select2.min.css"
-	rel="stylesheet" media="all">
-<link
-	href="/resources/hj/message/vendor/perfect-scrollbar/perfect-scrollbar.css"
-	rel="stylesheet" media="all">
-
 <link href="/resources/hj/message/css/theme.css" rel="stylesheet"
 	media="all">
-
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.3.1.js"></script>
@@ -48,15 +33,14 @@
 
 .sidebar {
 	height: 100%;
-	width: 400px;
+	width: 0px;
 	position: fixed;
-	z-index: 1;
+	z-index: 3001;
 	top: 0;
 	right: 0;
 	background-color: white;
 	border: 1px solid rgb(204, 203, 203);
 	overflow-x: hidden;
-	/* padding-top: 30px; */
 }
 
 .add_transition {
@@ -101,7 +85,8 @@
 .openbtn {
 	font-size: 13px;
 	cursor: pointer;
-	background-color: white;
+	background-color: red;
+
 	color: #4D4D4D;
 	padding: 5px 10px;
 	border-radius: 10px;
@@ -136,6 +121,13 @@
 	width: 50%;
 	height: 45px;
 }
+
+#main{
+	position: fixed;
+	bottom: 50px;
+	right: 50px;
+	z-index:3000;
+}
 </style>
 <div id="mySidebar" class="sidebar">
 	<div class="side_header">
@@ -144,7 +136,7 @@
 	</div>
 
 	<div class="col-lg-18" style="margin-top: 10px;">
-		<div class="au-card au-card--no-shadow au-card--no-pad m-b-40" style="margin-bottom:0px;">
+		<div class="au-card au-card--no-shadow au-card--no-pad m-b-40" style="margin-bottom:0px;border-radius: 0px;">
 			<div id="Cbox" class="au-inbox-wrap js-inbox-wrap">
 				<div class="au-message js-list-load">
 					<div class="au-message-list"
@@ -176,10 +168,10 @@
 	<button class="openbtn" onclick="openNav()">
 		Meister Vill<br>알림
 	</button>
-	<div>
+	<!-- <div>
 		읽지 않은 메시지:<span> </span>
 	</div>
-	<button id="sendBtn">sendBtn</button>
+	<button id="sendBtn">sendBtn</button> -->
 </div>
 <script>
 	//소켓기능
@@ -191,6 +183,20 @@
 
 		ws.onopen = function() {
 			console.log("웹 소켓 연결 생성(msg)");
+			
+			$.ajax({
+				url : "/meister/member/getUnreadMsgCnt.do",
+				data : {
+					memberNickname : "${sessionScope.member.memberNickname}"
+				},
+				type : "get",
+				success : function(data) {
+					$("#main>div>span").html(data);
+				},
+				error : function() {
+					console.log("ajax 실패");
+				}
+			})
 			var msg = {
 				type : "register",
 				memberNickname : memberNickname
@@ -202,13 +208,13 @@
 			console.log(JSON.parse(e.data));
 			console.log(e);
 			$("#main>div>span").html(e.data);
+		
 		};
 		
 		ws.onclose = function() {
 			console.log("웹 소켓 연결 종료(msg)");
 		};
 	}
-	
 	
 	$(function() {
 		connect();
@@ -291,28 +297,6 @@
 		$(".get-message").html(msgContent);
 	}
 </script>
-<!-- Jquery JS-->
-<script src="/resources/hj/message/vendor/jquery-3.2.1.min.js"></script>
-<!-- Bootstrap JS-->
-<script src="/resources/hj/message/vendor/bootstrap-4.1/popper.min.js"></script>
-<script
-	src="/resources/hj/message/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-<!-- Vendor JS       -->
-<script src="/resources/hj/message/vendor/slick/slick.min.js"></script>
-<script src="/resources/hj/message/vendor/wow/wow.min.js"></script>
-<script src="/resources/hj/message/vendor/animsition/animsition.min.js"></script>
-<script
-	src="/resources/hj/message/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-<script
-	src="/resources/hj/message/vendor/counter-up/jquery.waypoints.min.js"></script>
-<script
-	src="/resources/hj/message/vendor/counter-up/jquery.counterup.min.js"></script>
-<script
-	src="/resources/hj/message/vendor/circle-progress/circle-progress.min.js"></script>
-<script
-	src="/resources/hj/message/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="/resources/hj/message/vendor/chartjs/Chart.bundle.min.js"></script>
-<script src="/resources/hj/message/vendor/select2/select2.min.js"></script>
-<!-- Main JS-->
+
 <script src="/resources/hj/message/js/main.js"></script>
 

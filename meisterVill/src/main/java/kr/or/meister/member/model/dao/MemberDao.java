@@ -50,7 +50,7 @@ public class MemberDao {
 	}
 
 	public int selectUnreadCnt(String target) {
-		// hyeok
+		// hyeokjin
 		return sqlSession.selectOne("message.selectUnreadCnt",target);
 	}
 }

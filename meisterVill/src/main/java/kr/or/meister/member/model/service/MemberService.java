@@ -45,4 +45,9 @@ public class MemberService {
 		// hyeokjin
 		return (ArrayList<MessageVO>)(dao.getMessage(memberNickname));
 	}
+
+	public int getUnreadMsgCnt(String memberNickname) {
+		// hyekojin
+		return dao.selectUnreadCnt(memberNickname);
+	}
 }

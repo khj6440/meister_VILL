@@ -39,11 +39,14 @@ ul.list-style-none li a:hover{
 	<!-- ============================================================== -->
 	<!-- Main wrapper - style you can find in pages.scss -->
 	<!-- ============================================================== -->
+	
+	<jsp:include page="/WEB-INF/views/common/header.jsp" /> 
+	<jsp:include page="/WEB-INF/views/common/message2.jsp" />
+	
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
 		data-sidebar-position="fixed" data-header-position="fixed"
 		data-boxed-layout="full">
-		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<!-- ============================================================== -->
 		<!-- Page wrapper  -->
 		<!-- ============================================================== -->
@@ -56,12 +59,12 @@ ul.list-style-none li a:hover{
 				<div class="row">
 					<div class="col-7 align-self-center">
 						<h4
-							class="page-title text-truncate text-dark font-weight-medium mb-1">1 : 1 Chat</h4>
+							class="page-title text-truncate text-dark font-weight-medium mb-1">Chat</h4>
 						<div class="d-flex align-items-center">
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb m-0 p-0">
 									<li class="breadcrumb-item text-muted active"
-										aria-current="page">채팅을 통한 의견조율</li>
+										aria-current="page">1 : 1 채팅</li>
 									<li class="breadcrumb-item text-muted" aria-current="page"></li>
 								</ol>
 							</nav>
@@ -147,18 +150,22 @@ ul.list-style-none li a:hover{
 												</div>
 											</div>
 											<div class="col-3">
+												<label for="myFile">파일업로드</label>
 												<a class="btn-circle btn-lg btn-cyan float-right text-white transBtn"
 													href="javascript:void(0)"><i class="fas fa-paper-plane"></i></a>
 											</div>
+											
 										</div>
 									</div>
+									<form id="uploadForm">
+										<input id="myFile" type="file" name="file" >
+									</form>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<button onclick="totop()" >zz</button>
 			<!-- ============================================================== -->
 			<!-- End Container fluid  -->
 			<!-- ============================================================== -->
@@ -172,7 +179,7 @@ ul.list-style-none li a:hover{
 	<!-- ============================================================== -->
 	<!-- All Jquery -->
 	<!-- ============================================================== -->
-	<script src="/resources/hj/chat/assets/libs/jquery/dist/jquery.min.js"></script>
+ 	<script src="/resources/hj/chat/assets/libs/jquery/dist/jquery.min.js"></script>
 	<script
 		src="/resources/hj/chat/assets/libs/popper.js/dist/umd/popper.min.js"></script>
 	<script
@@ -182,12 +189,47 @@ ul.list-style-none li a:hover{
 	<script
 		src="/resources/hj/chat/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
 	<script src="/resources/hj/chat/dist/js/sidebarmenu.js"></script>
-	<!--Custom JavaScript -->
-	<script src="/resources/hj/chat/dist/js/custom.min.js"></script>
+
+	<script src="/resources/hj/chat/dist/js/custom.min.js"></script> 
 	<!--This page JavaScript -->
 	<script>
 		var clickIndex;
+		function uploadFile(input){
+		 	console.log(input)
+			/* if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+
+		        reader.onload = function (e) {
+		        	console.log(e);
+		           // $('#blah').attr('src', e.target.result);
+		        }
+		        reader.readAsDataURL(input.files[0]);
+		    }*/
+		 }
         $(function () {
+
+            $("#myFile").on('change', function () {
+              //  uploadFile(this);
+              	 var form = $('#uploadForm')[0];
+			     var formData = new FormData(form);
+              
+            	$.ajax({
+					url : "/meister/member/uploadChatFile.do",
+					data : formData,
+					type : "POST",
+					contentType : false,
+				    processData : false,    
+					success : function(data) {
+						console.log(data);
+					},
+					error : function() {
+						console.log("ajax 실패");
+					}
+				});
+              	
+            });
+        	
+        	
             $(document).on('keypress', "#textarea1", function (e) {
                 if (e.keyCode == 13) {
                   $(".transBtn").click();
@@ -225,8 +267,11 @@ ul.list-style-none li a:hover{
 								html+=`<div class="box msg p-2 d-inline-block mb-1 box">`+data[i].chatContent+`</div>`
 								html+=`<br></div>`;
 								html+=`<div class="chat-time text-right d-block font-10 mt-1 mr-0 mb-3">`;
-								html+=data[i].chatTime;
+								var arr =  data[i].chatTime.split("/");
+								html+=`<div class="chat-gap" style="display:none;">`+arr[0]+"/"+arr[1]+"/"+arr[2]+"/"+arr[3]+"/"+arr[4]+`</div> `;
+								html+= (arr[3]<=12?"오전 "+arr[3] :"오후 "+(arr[3]-12) ) +":"+arr[4],
 								html+=`</div></li>`;
+								
 							}else{
 								html+=`<li class="chat-item list-style-none mt-3">`;
 								html+=`<div class="chat-img d-inline-block">`;
@@ -236,7 +281,13 @@ ul.list-style-none li a:hover{
 								html+=`<h6 class="font-weight-medium">`+data[i].chatSender+`</h6>`;
 								html+=`<div class="msg p-2 d-inline-block mb-1">`+data[i].chatContent+`</div>`;
 								html+=`</div>`;
-								html+=`<div class="chat-time d-block font-10 mt-1 mr-0 mb-3">`+data[i].chatTime+`</div>`;
+								html+=`<div class="chat-time d-block font-10 mt-1 mr-0 mb-3">`;
+								
+								var arr =  data[i].chatTime.split("/");
+								html+=`<div class="chat-gap" style="display:none;">`+arr[0]+"/"+arr[1]+"/"+arr[2]+"/"+arr[3]+"/"+arr[4]+`</div> `;
+								html+= (arr[3]<=12?"오전 "+arr[3] :"오후 "+(arr[3]-12) ) +":"+arr[4];
+
+								html+=`</div>`;
 								html+=`</li>`;
 							}
 						}
@@ -283,7 +334,13 @@ ul.list-style-none li a:hover{
 				html+=`<h6 class="font-weight-medium">`+data.sender+`</h6>`;
 				html+=`<div class="msg p-2 d-inline-block mb-1">`+data.msg+`</div>`;
 				html+=`</div>`;
-				html+=`<div class="chat-time d-block font-10 mt-1 mr-0 mb-3">`+data.sendTime+`</div>`;
+				html+=`<div class="chat-time d-block font-10 mt-1 mr-0 mb-3">`
+				
+				var arr = data.sendTime.split("/");
+				html+=`<div class="chat-gap" style="display:none;">`+arr[0]+"/"+arr[1]+"/"+arr[2]+"/"+arr[3]+"/"+arr[4]+`</div> `;
+				html+= (arr[3]<=12?"오전 "+arr[3] :"오후 "+(arr[3]-12) ) +":"+arr[4];
+				
+				html+=`</div>`;
 				html+=`</li>`;
 				
 				$(".chat-list").html("");
@@ -303,22 +360,32 @@ ul.list-style-none li a:hover{
 			$(".transBtn").click(function() {
 				
 				var msg = $("#textarea1").val();
-				
+			
 				if(msg!==""){
 					$("#textarea1").val("");
 					$("#textarea1").focus();
 	
 					let today = new Date();
-					let hours = today.getHours(); // 시
-					let minutes = today.getMinutes();  // 분
+					let year = today.getFullYear();
+					let month = (today.getMonth()+1)<10?"0"+(today.getMonth()+1):today.getMonth()+1;
+					let day = today.getDate()<10?"0"+today.getDate():today.getDate();
+					let hours = today.getHours()<10?"0"+today.getHours():today.getHours(); // 시
+					let minutes = today.getMinutes()<10?"0"+today.getMinutes():today.getMinutes();  // 분
 	
 					var chat = $(".chat-list").html();
 					chat+=`<li class="chat-item odd list-style-none mt-3">`;
 					chat+=`<div class="chat-content text-right d-inline-block pl-3">`;
+					var arrDate =  $(".chat-gap").last().html().split("/");
+				
+					if(arrDate[0]!=year || arrDate[1]!=month || arrDate[2]!= day || arrDate[4] !=minutes){
+						chat+=`<div>2020</div>`;
+					}
+					
 					chat+=`<div class="box msg p-2 d-inline-block mb-1 box">`+msg+`</div>`
 					chat+=`<br></div>`;
 					chat+=`<div class="chat-time text-right d-block font-10 mt-1 mr-0 mb-3">`;
-					chat+=hours+" : "+minutes;
+					chat+=`<div class="chat-gap" style="display:none;">`+year+"/"+month+"/"+day+"/"+hours+"/"+minutes+`</div> `;
+					chat+= (hours<=12?"오전 "+hours :"오후 "+(hours-12) ) +":"+minutes;
 					chat+=`</div></li>`;
 					
 					$(".chat-list").html("");
@@ -332,7 +399,7 @@ ul.list-style-none li a:hover{
 							target : target,
 							sender : "${sessionScope.member.memberNickname}",
 							senderImg :"${sessionScope.member.memberImg }",
-							sendTime : hours+" : "+minutes,
+							sendTime : year+"/"+month+"/"+day+"/"+hours+"/"+minutes,
 							msg : msg
 					};
 					ws.send(JSON.stringify(sendMsg));

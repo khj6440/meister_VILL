@@ -32,9 +32,10 @@
 			chat
 		where (chat_receiver =#{receiver} and chat_sender=#{sender})
 		or (chat_receiver=#{sender} and chat_sender=#{receiver})
+		order by chat_time
 	</select>
 	<insert id="insertChat" parameterType="chat">
 		insert into chat values
-		(chat_seq.nextval,#{chatSender},#{chatReceiver},#{chatContent},sysdate,null,0,#{senderImg},null)
+		(chat_seq.nextval,#{chatSender},#{chatReceiver},#{chatContent},to_char(SYSDATE,'YYYY/MM/DD/HH24/mi'),null,0,#{senderImg},null)
 	</insert>
 </mapper>
