@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<link type="text/css" href="/resources/yr/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
@@ -429,11 +429,12 @@
 	position: absolute;
 	right: 10px;
 	top: 0px;
-	width: 18px;
-	height: 18px;
+	width: 20px;
+	height: 20px;
 	background-color: #FFBC42;
 	border-radius: 50px;
 }
+
 </style>
 <div id="mySidebar" class="sidebar">
 	<div class="side_header">
@@ -446,7 +447,7 @@
 			<div id="Cbox" class="au-inbox-wrap js-inbox-wrap">
 				<div class="au-message js-list-load">
 					<div class="au-message-list"
-						style="height: 80vh;">
+						style="height: 90vh;">
 						<!-- messages -->
 					</div>
 				</div>
@@ -469,7 +470,7 @@
 
 <div id="main">
 	<button class="openbtn" onclick="openNav()" style="border: 1px solid #eeeeee;outline: none; position: relative;">
-	<i class="far fa-bell" style="font-size: 30px; color:#FFBC42"></i><div class="unreadCnt">6</div>
+	<i class="far fa-bell" style="font-size: 30px; color:#FFBC42"></i><div class="unreadCnt"></div>
 		<br><span style="font-size: 11px;">Meister Vill</span><br>알림
 	</button>
 	<!-- <div>
@@ -495,7 +496,7 @@
 				},
 				type : "get",
 				success : function(data) {
-					$("#main>div>span").html(data);
+					$(".unreadCnt").html(data);
 				},
 				error : function() {
 					console.log("ajax 실패");
@@ -551,13 +552,14 @@
 					},
 					type : "get",
 					success : function(data) {
+						console.log(data);
 						$(".au-message-list").html("");
 						var html = "";
 						for (var i = 0; i < data.length; i++) {
 							html += `<div class="au-message__item unread one_msg" onclick=msgDetail("`
 									+ data[i].msgContent
 									+ `","`
-									+ data[i].msgTime + `")>`;
+									+data[i].msgTime +`")>`;
 							html += `<div class="au-message__item-inner" style="border-left:5px solid #FFBC42">`;
 							html += `<div class="au-message__item-text">`;
 							html += `<div class="avatar-wrap">`;
@@ -568,10 +570,16 @@
 							html += `<div class="text">`;
 							html += `<div class="name" style="display: flex; justify-content: space-between; width: 260px;">`;
 							html += `<span>` + data[i].msgSender + `</span>`;
+							
+						
+
+
+
+							
 							html += `<span class="msgTime" style="margin-right:25px; color: #878787; font-size: 12px;">`
-									+ data[i].msgTime + `</span>`;
+									+ data[i].msgTime.replace("/"," ") + `</span>`;
 							html += `</div>`;
-							html += `<p class="msgContent">` + data[i].msgTitle
+							html += `<p class="msgContent" style="color:gray;">` + data[i].msgTitle
 									+ `</p>`;
 							html += `</div>`;
 							html += `</div>`;
@@ -585,6 +593,9 @@
 					}
 				});
 	}
+	function changeTime(param){
+	
+	}
 
 	function closeNav() {
 		$(".sidebar").removeClass("add_transition");
@@ -597,7 +608,7 @@
 
 	function msgDetail(msgContent, msgTime) {
 		$("#Cbox").addClass("show-chat-box");
-		$(".get-time").html(msgTime);
+		$(".get-time").html(msgTime.replace("/"," "));
 		$(".get-message").html(msgContent);
 	}
 </script>
