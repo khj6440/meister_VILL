@@ -12,7 +12,8 @@
   <link href="/resources/sell-css/css/heroic-features.css?after" rel="stylesheet">
   <link href="/resources/showSell-css/showSell.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script>
+
+<!-- <script>
 function goLocation(where) {
 	switch(where.text) {
 	case  "이미지" :
@@ -126,7 +127,7 @@ function goLocation(where) {
 	});
 	
 	 
-</script>
+</script> -->
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -270,4 +271,5 @@ function goLocation(where) {
   <script src="/resources/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

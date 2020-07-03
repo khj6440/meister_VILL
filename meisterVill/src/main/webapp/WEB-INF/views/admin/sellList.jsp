@@ -6,6 +6,8 @@
 <html>
 
 <head>
+
+
 <!-- ******************************************************************************** -->
 	<!-- Default : link , meta , script -->
 	<jsp:include page="/WEB-INF/views/admin/adminDefault.jsp" />
@@ -50,11 +52,11 @@
                <tbody style="text-align: center;">
                 <tr>
                 <c:forEach items="${list}" var="s" varStatus="i">
-                    <td style=" margin-left: 5%; margin-bottom: 5%; margin-top:5%; display: inline-block; border-top-style: none;">
-                     <div><img src="/upload/sellImg/${s.sellImg}" style="width: 450px; height: 450px;"></div> 
+                    <td style=" margin-left: 5%; margin-bottom: 5%; margin-top:5%; display: inline-block; border-top-style: none; width: 25%; height: 25%;">
+                     <div class="sellView"><img src="/upload/sellImg/${s.sellImg}" style="width: 100%; height: 300px;" ></div> 
                      
                     <div style="margin: 0 auto;">
-                    <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 440px;"><a href="/meister/admin/memberOneViewFrm.do?memberNo=${s.sellTitle}">${s.sellTitle}</a></div>
+                    <div class="sellView" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 95%;"><a>${s.sellTitle}</a></div>
 				
 				<div>
                     <c:if test="${s.memberImg != null }">
@@ -107,7 +109,7 @@
 
 					<div>
                       <!-- <span class="label label-info label-mini" style="background-color: red">신고 접수</span> -->
-                      <button value="${s.sellNo }" class="btn btn-success btn-xs sellView" style="background-color: #FFBC42; border-color: #FFBC42; color: white;"><i class="fa fa-check"></i>상세보기</button>
+                      <button value="${s.memberNo }" class="btn btn-success btn-xs sellView" style="background-color: #FFBC42; border-color: #FFBC42; color: white;"><i class="fa fa-check"></i>상세보기</button>
                       <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
                     <c:if test="${s.sellStatus != 1 }">
                       <button value="${s.sellNo }" class="btn btn-danger btn-xs modalHalt" style="background-color: #6c757d; border-color: #6c757d; color: white;"><i class="fa fa-trash-o"></i>비활성하기</button>
@@ -169,7 +171,9 @@
                     <h5 class="modal-title" id="exampleModalLabel">회원 정지</h5>
                 </div>
                 <div class="modal-body">
-                   		 내용
+                   		 
+            	
+                   		 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -180,7 +184,6 @@
         </div>
     </div>
     
-    
 <!-- --------------------------------sellViewModal----------------------------------------------------- -->
     <div style="padding-top: 10%;" class="modal fade" id="sellExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div style="width: 70%;" class="modal-dialog" role="document">
@@ -189,14 +192,19 @@
                     <h5 class="modal-title sell-modal-title" id="exampleModalLabel">상세 내용</h5>
                 </div>
                 <div class="sell-modal-body modal-body">
-                   		 내용
+ 		
+                   		<div id="memberNo"></div>
+                   		
+                   		<div id="memberName"></div>
+	 
                 </div>
                 <div class="sell-modal-footer modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>       
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>     
                 </div>
             </div>
         </div>
     </div>
+    
     
 <!-- --------------------------------Modal-mini----------------------------------------------------- -->  
     
@@ -215,38 +223,33 @@
       <script>
       
       $(function(){
-    	  
+
     	  $(".sellView").click(function() {
     		  $("#sellExampleModal").modal("show");  
-    		  var sellNo = $(this).val(); 
+    		  var memberNo = $(this).val(); 
     		  $(".sell-modal-title").html("상세 내용");
     		  $(".sell-modal-header").css("background-color","#6c757d");
-    		  $(".sell-modal-body").html("내용<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>넣는 칸");
-    	  $(".memberValue").click(function() {		
-      $.ajax({
-    	    url: "/meister/admin/memberOneViewFrm.do?sellNo="+sellNo,
-    	         
-    	    success: function(){
-    	    	$("#exampleModal").modal("hide");
-    	    	$(".modal2text").html("정지되었습니다.");
-    	    	$(".modal-content2").css("background-color","#6c757d");
-    	    	$("#exampleModal2").modal("show");
-    	    	setTimeout(function() {
-    	    		location.reload();
-    	    		}, 1000);			
-    	    } 
-    	  		});
-    		});
-    	});
 
+    	  $.ajax({
+  		    url: "/meister/admin/memberOneViewSellView.do?memberNo="+memberNo,
+			
+  		  	data: "json",
+  		  	
+  		    success: function(data){
+  		    	
+  		    	$("#memberNo").html(""+data[0].memberNo);
+			
+  		    }
+  		  		});
+      		});
+ 	
 
 	  $("#close_modal").click(function() {
           $("#exampleModal").modal("hide");
       });
   });
   </script>
-  
+
   
 </body>
-
 </html>
