@@ -24,4 +24,18 @@ public class MemberService {
 	public MemberDataVO selectOneMember2(MemberDataVO mdv) {
 		return dao.selectOneMember2(mdv);
 	}
+
+	
+	public int updateMemberLevel(MemberVO member) {
+		return dao.updateMemberLevel(member);
+	}
+
+	public int updateMemberLevel2(MemberVO member) {
+		return dao.updateMemberLevel2(member);
+	}
+
+	public MemberVO selectOneMember4(MemberVO member) {
+		return dao.selectOneMember4(member);
+	}
+
 }

@@ -20,6 +20,18 @@ public class MemberDao {
 	}
 
 	public MemberDataVO selectOneMember2(MemberDataVO mdv) {
-		return sqlSession.selectOne("member.selectOneMember2", mdv);
+		return sqlSession.selectOne("memberDataVO.selectOneMember2", mdv);
+	}
+
+	public int updateMemberLevel(MemberVO member) {
+		return sqlSession.update("member.updateMemberLevel",member);
+	}
+
+	public int updateMemberLevel2(MemberVO member) {
+		return sqlSession.update("member.updateMemberLevel2",member);
+	}
+
+	public MemberVO selectOneMember4(MemberVO member) {
+		return sqlSession.selectOne("member.selectOneMember4",member);
 	}
 }

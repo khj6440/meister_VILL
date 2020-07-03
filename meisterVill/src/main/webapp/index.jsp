@@ -14,9 +14,10 @@
 
 <!-- 	<textarea id="ck4" name="ck4"></textarea>
 	<script>CKEDITOR.replace('ck4',{filebrowserUploadUrl:'/imageUpload.do'});</script> -->
-
-<a href="/meister/member/mypage.do">마이페이지이동</a>
-<a href="meister/member/myprofile.do">프로필이동</a>
+<c:if test="${not empty sessionScope.member }">
+	<a href="/meister/member/mypage.do">마이페이지이동</a>
+	<a href="/meister/member/myprofile.do">프로필이동</a>
+</c:if>
 <jsp:include page="/WEB-INF/views/common/message.jsp"/>
 <form action="/meister/member/login.do" method="post">
 	이메일 : <input type="text" name="memberEmail"><br> 비밀번호 : <input

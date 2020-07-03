@@ -27,7 +27,6 @@
 	height: 1200px;
 	margin: 0 auto;
 	box-sizing: content-box;
-	
 }
 
 .my_sub_container1 {
@@ -80,7 +79,7 @@
 }
 
 .my_transform_btn {
-	box-shadow : 1px 1px 1px lightgray;
+box-shadow : 1px 1px 1px lightgray;
 	margin-top: 20px;
 	width: 100%;
 	height: 40px;
@@ -163,7 +162,7 @@
 .project_content{
 	border : 1px solid lightgray;
 	width : 90%;
-	height : 350px;
+	height : 300px;
 	margin : 0 auto;
 }
 .project_null{
@@ -176,18 +175,19 @@
 	line-height: 2;
 }
 .project_margin{
-	margin-top : 65px;
+	margin-top : 35px;
 }
 .project_write_img{
-margin-top : 30px;
+	margin-top : 20px;
 	width : 70px;
 	height : 70px;
 	opacity: 0.8;
 	margin-left : 5px;
+	
 }
 .project_request_write{
 	box-shadow : 3px 3px 3px lightgray;
-	margin-top : 20px;
+	margin-top : 10px;
 	border : none;
 	width : 250px;
 	height : 50px;
@@ -255,6 +255,7 @@ margin-top : 30px;
 				
 					<h4 style="margin-bottom : 10px;">마이 마이스터</h4>
 				<div class="my_menubar">
+					
 					<div class="my_navi">
 						<ul style="margin-left : -40px;">
 						<c:if test="${sessionScope.member.memberLevel == 1 }">
@@ -341,40 +342,38 @@ margin-top : 30px;
 			<div class="my_sub_container2">
 				<c:if test="${sessionScope.member.memberLevel == 1 }">
 					<div class="my_project">
-						<h5 style="margin-left : 40px;">프로젝트 모집글 관리</h5>
+						<h5 style="margin-left : 40px;">보낸 견적</h5>
 						<div class="project_content">
-						<c:if test="${empty e.employNo }">
+						<c:if test="${empty order.orderNo }">
 							<div class="project_null">
 								<div class="project_margin">
-								<span>등록된 프로젝트 모집글이 없습니다.</span><br>
-								<span>프로젝트 모집글을 작성하여 모집해보세요!</span><br>
+								<span>보낸 견적이 없습니다.</span><br>
+								<span>견적 요청글을 확인하여 견적을 내어보세요!</span><br>
 								<img class="project_write_img" src="/upload/common/service.png"><br>
-								<button type="button" class="project_request_write" onclick="location.href='#'">프로젝트 모집글 작성하기</button>
+								<button type="button" class="project_request_write" onclick="location.href='#'">맞춤견적 목록보기</button>
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${not empty e.employNo }">
-							내가 올린 프로젝트 모집글
+						<c:if test="${not empty order.orderNo }">
+							내가 구매한 글 목록
 						</c:if>
 						</div>
 					</div>
 				</c:if>
 				<c:if test="${sessionScope.member.memberLevel == 0 }">
 					<div class="my_project">
-						<h5 style="margin-left : 40px;">나의 견적요청</h5>
+						<h5 style="margin-left : 40px;">구매 관리</h5>
 						<div class="project_content">
-						<c:if test="${empty r.requestNo }">
+						<c:if test="${empty order.orderNo }">
 							<div class="project_null">
 								<div class="project_margin">
-								<span>등록된 맞춤 견적 요청이 없습니다.</span><br>
-								<span>요청글을 등록하여 맞춤 견적을 받아보세요!</span><br>
-								<img class="project_write_img" src="/upload/common/service.png"><br>
-								<button type="button" class="project_request_write" onclick="location.href='#'">맞춤견적글 보러가기</button>
+								<span style="line-height : 10;">구매이력이 없습니다.</span><br>
+								
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${not empty r.requestNo }">
-							내가 올린 견적글
+						<c:if test="${not empty order.orderNo }">
+							내가 구매한 글 목록
 						</c:if>
 						</div>
 					</div>
@@ -387,9 +386,9 @@ margin-top : 30px;
 	<script>
 		$(document).ready(function() {
 	
-			$('.my_sub_menu').eq(0).show();
-			$('.my_sub_menu').find("a").first().css("color","#FFBC42");
-			$('.my_sub_menu').find("a").first().css("font-weight","bold");
+			$('.my_sub_menu').eq(1).show();
+			$('.my_sub_menu').eq(1).find("a").first().css("color","#FFBC42");
+			$('.my_sub_menu').eq(1).find("a").first().css("font-weight","bold");
 			
 			
 			// menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
