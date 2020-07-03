@@ -177,6 +177,44 @@ public class AdminController {
 	
 	
 	
+	@RequestMapping(value="/memberOneViewSellView.do", produces="application/json; charset=utf-8;")
+	public String memberOneViewSellView(HttpServletRequest request, int memberNo) {
+		MemberJoinVO member = new MemberJoinVO();
+		System.out.println("회원번호 : "+memberNo);
+		member = service.memberOneView(memberNo);
+		List<AdminMemberJoinSellJoinOrdersVO> sellList = service.memberSell(memberNo);
+		List<SellJoinOrdersJoinOptionVO> sellOrderList =service.memberOrder(memberNo);
+
+		int sum = 0;
+		int listNum = 0;
+		int sellHigh = 0;
+		
+		if(sellList.get(0).getSellNo() != 0) {
+		listNum = sellList.size();
+		}
+		
+		if(sellOrderList.size() != 0) {
+
+			for(int i=0; i<sellOrderList.size(); i++) {		
+				sum += sellOrderList.get(i).getSellPrice();
+				sum += sellOrderList.get(i).getOptionPrice();
+			}
+			sellHigh = sellOrderList.get(0).getSellPrice();
+
+		}
+	
+		request.setAttribute("listNum", listNum);
+		request.setAttribute("price", sellHigh);
+		request.setAttribute("sum", sum);
+		request.setAttribute("so", sellOrderList);
+		request.setAttribute("m", member);
+		request.setAttribute("s", sellList);
+		
+		return new Gson().toJson(sellList); 
+	}
+	
+	
+	
 	/*
 	 * @ResponseBody
 	 * 
