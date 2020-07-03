@@ -45,6 +45,11 @@ public class AdminController {
 	private AdminService service;
 	
 
+	
+	@RequestMapping(value="/qwe.do")
+	public String qwe() {
+		return "admin/qwe";
+	}
 
 	@RequestMapping(value="/memberHalt.do")
 	public String memberHalt(HttpServletRequest request, int memberNo) {

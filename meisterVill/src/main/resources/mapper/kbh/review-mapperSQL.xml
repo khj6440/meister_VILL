@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="review">
+<resultMap id="rjm" type="rjm">
+	 <association property="reviewvo" javaType="review">
+		<id property="reviewNo" column="review_no" />
+	    <result property="reviewWriter" column="review_writer" />
+		<result property="reviewContent" column="review_content" />
+		<result property="reviewPoint" column="review_point" />
+		<result property="reviewDate" column="review_date" />
+		<result property="reviewWriterImg" column="review_writer_img" />
+    </association>
+     <association property="membervo" javaType="member">
+         <id property="memberNo" column="member_no" />
+         <result property="memberEmail" column="member_email" />
+         <result property="memberPw" column="member_pw" />
+         <result property="memberName" column="member_name" />
+         <result property="memberHbd" column="member_hbd" />
+         <result property="memberNickname" column="member_nickname" />
+         <result property="memberPhone" column="member_phone" />
+         <result property="memberImg" column="member_img" />
+         <result property="memberBank" column="member_bank" />
+         <result property="memberAccount" column="member_account" />
+         <result property="memberTime" column="member_time" />
+         <result property="memberLevel" column="member_level" />
+         <result property="memberStatus" column="member_status" />
+         <result property="memberIntro" column="member_intro" />
+         <result property="memberField" column="member_field" />
+         <result property="memberSkill" column="member_skill" />
+         <result property="memberSchool" column="member_school" />
+         <result property="memberMajor" column="member_major" />
+         <result property="memberGrade" column="member_grade" />
+         <result property="memberDate" column="member_date" />
+    </association>
+ </resultMap>
+ 
+ <select id="selectReview" parameterType="int" resultMap="rjm">
+ 	select * from review 
+ 		join member on (member.member_nickname = review.review_writer) 
+ 	where review.sell_no = #{parameter}
+ </select>
+</mapper>

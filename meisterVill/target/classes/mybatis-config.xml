@@ -10,8 +10,13 @@
 	<typeAliases>
 		<typeAlias type="kr.or.meister.sell.model.vo.SellVO" alias="sell"/>
 		<typeAlias type="kr.or.meister.sell.model.vo.SellJoinMemberVO" alias="sjm"/>
+		<typeAlias type="kr.or.meister.sell.model.vo.SellJoinOthersVO" alias="sjo"/>
 		<typeAlias type="kr.or.meister.member.model.vo.MemberVO" alias="member"/>
 		<typeAlias type="kr.or.meister.etc.model.vo.PickVO" alias="pick"/>
+		<typeAlias type="kr.or.meister.options.model.vo.OptionsVO" alias="options"/>
+		<typeAlias type="kr.or.meister.etc.model.vo.MultiImgVO" alias="multiImg"/>
+		<typeAlias type="kr.or.meister.review.model.vo.ReviewVO" alias="review"/>
+		<typeAlias type="kr.or.meister.review.model.vo.ReviewJoinMemberVO" alias="rjm"/>
  		<typeAlias type="kr.or.meister.etc.model.vo.ReportVO" alias="report"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.MemberJoinVO" alias="memberJoin"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.MemberJoinReportVO" alias="memberJoinReport"/>
@@ -23,7 +28,6 @@
 		<typeAlias type="kr.or.meister.admin.model.vo.SellStatsVO" alias="sellStats"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.RequestSellVO" alias="requestSell"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.SellSellVO" alias="sellSell"/>
-		
 		
 	</typeAliases>
 	

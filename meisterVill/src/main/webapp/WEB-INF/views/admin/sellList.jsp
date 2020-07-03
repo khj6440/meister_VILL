@@ -50,11 +50,11 @@
                <tbody style="text-align: center;">
                 <tr>
                 <c:forEach items="${list}" var="s" varStatus="i">
-                    <td style=" margin-left: 5%; margin-bottom: 5%; margin-top:5%; display: inline-block; border-top-style: none;">
-                     <div><img src="/upload/sellImg/${s.sellImg}" style="width: 450px; height: 450px;"></div> 
+                    <td style=" margin-left: 5%; margin-bottom: 5%; margin-top:5%; display: inline-block; border-top-style: none; width: 25%; height: 25%;">
+                     <div><img src="/upload/sellImg/${s.sellImg}" style="width: 100%; height: 300px;" ></div> 
                      
                     <div style="margin: 0 auto;">
-                    <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 440px;"><a href="/meister/admin/memberOneViewFrm.do?memberNo=${s.sellTitle}">${s.sellTitle}</a></div>
+                    <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 95%;"><a href="/meister/admin/memberOneViewFrm.do?memberNo=${s.sellTitle}">${s.sellTitle}</a></div>
 				
 				<div>
                     <c:if test="${s.memberImg != null }">
@@ -189,10 +189,12 @@
                     <h5 class="modal-title sell-modal-title" id="exampleModalLabel">상세 내용</h5>
                 </div>
                 <div class="sell-modal-body modal-body">
-                   		 내용
+                   		 
+                   		  
+                   		 
                 </div>
                 <div class="sell-modal-footer modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>       
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>     
                 </div>
             </div>
         </div>
