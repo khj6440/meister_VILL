@@ -103,8 +103,8 @@ public class MemberService {
 		return dao.checkNickname(memberNickname);
 	}
 
-	public int joinInput(MemberVO m) {
-		return dao.joinInput(m);
+	public int joinMember(MemberVO m) {
+		return dao.joinMember(m);
 	}
 
 }

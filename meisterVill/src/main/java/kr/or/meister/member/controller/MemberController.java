@@ -14,6 +14,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -335,11 +336,17 @@ public class MemberController {
 			return "1";
 		}
 	}
-
-	@RequestMapping("/joinInput.do")
-	public String joinInput(MemberVO m) {
-		int result = service.joinInput(m);
+	
+	@RequestMapping("/joinMember.do")
+	public String joinMember(MemberVO m) {
+		int result = service.joinMember(m);
+		if(result>0) {
+			return "redirect: /";
+		}else {
+			return "member/join";
+		}
 	}
+
 
 	@RequestMapping("/loginModalTest.do")
 	public String loginModalTest() {

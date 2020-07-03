@@ -87,7 +87,30 @@
 		from member
 		where member_nickname=#{memberNickname}
 	</select>
-	<insert id="joinInput" parameterType="member" resultType="parameter">
+	<insert id="joinMember" parameterType="member">
+		insert into member values(
+			member_seq.nextval(),
+			#{memberEmail},
+			#{memberPw},
+			#{memberName},
+			#{memberHbd},
+			#{memberNickname},
+			#{memberPhone},
+			null,
+			null,
+			null,
+			null,
+			0,
+			0,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			sysdate
+		)
 		
+			
 	</insert>
 </mapper>

@@ -97,8 +97,8 @@ public class MemberDao {
 		return sqlSession.selectOne("member.checkNickname",memberNickname);
 	}
 
-	public int joinInput(MemberVO m) {
-		return sqlSession.insert("member.joinInput",m);
+	public int joinMember(MemberVO m) {
+		return sqlSession.insert("member.joinMember",m);
 	}
 
 }
