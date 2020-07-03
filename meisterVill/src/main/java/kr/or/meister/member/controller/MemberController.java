@@ -69,30 +69,17 @@ public class MemberController {
 		System.out.println(m.getMemberEmail());
 		MemberVO member = service.checkLoginEmail(m.getMemberEmail());
 		if(member!=null) {
-			
 			System.out.println("controller:"+member.getMemberName());
 		}
 		return new Gson().toJson(member);
 	}
 	@RequestMapping("/loginMember.do")
 	public String loginMember(HttpSession session, MemberVO m, String loginMaintain, HttpServletResponse response) {
-		System.out.println(loginMaintain);
+		System.out.println("로그인 : "+m.getMemberEmail());
 		MemberVO member = service.selectLoginMember(m);
 		if(member !=null) {
 			session.setAttribute("member", member);
-			if(loginMaintain=="true") {
-				//로그인 유지에 체크한 상태
-				//쿠키를 생성하고 현재 로그인 되어있을 때 생성되었던 세션의 id를 쿠키에 저장
-				Cookie cookie = new Cookie("loginCookie",session.getId());
-				cookie.setPath("/");//쿠키 찾을 경로를 컨텍스트 경로로 변경...
-				cookie.setMaxAge(60*60*24*7);//단위(초) :  7일 유효시간 설정
-				response.addCookie(cookie);
-				MemberCookieVO mcookie = new MemberCookieVO();
-				mcookie.setSessionkey(session.getId());
-				mcookie.setMemberEmail(m.getMemberEmail());
-				mcookie.setSessionlimit(cookie.getMaxAge());
-				int result = service.loginMaintain(mcookie);
-			}
+			System.out.println(m.getMemberEmail());
 			System.out.println("로그인성공");
 			return "redirect:/";
 		}else {
