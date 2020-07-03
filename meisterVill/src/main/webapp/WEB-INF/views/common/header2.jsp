@@ -41,10 +41,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
     <!--내 css-->
-    <link rel="stylesheet" type="text/css" href="/resources/yr/css/header_css.css">
+    <link rel="stylesheet" type="text/css" href="/resources/yr/css/header2_css.css">
     <link rel="stylesheet" href="/resources/yr/css/login_modal_css.css" type="text/css">
     <link rel="stylesheet" href="/resources/yr/css/login_header_css.css" type="text/css">
 </head>
+
+
+
 <body>
 
     <header>
@@ -92,12 +95,6 @@
                         });
                     }
 
-
-            var didScroll;
-            var lastScrollTop = 0;
-            var delta = 5;
-            var navHeight = $(".normal-header").outerHeight();
-
                 });
 
 
@@ -109,12 +106,6 @@
                     $(this).css("box-shadow", "none");
                     $(this).css("border-color", "#ced4da");
                 });
-
-            var didScroll;
-            var lastScrollTop = 0;
-            var delta = 5;
-            var navHeight = $(".normal-header").outerHeight();
-
 
 
                 $("input[type=password]").focusin(function() {
@@ -136,41 +127,6 @@
                         $(".side-info-menu").addClass("sim-open");
                     }
                 });
-
-
-
-                var didScroll;
-                var lastScrollTop = 0;
-                var delta = 5;
-                var navHeight = $(".normal-header").outerHeight();
-
-                $(window).scroll(function(event) {
-                    didScroll = true;
-                });
-                setInterval(function() {
-                    if (didScroll) {
-                        hasScrolled();
-                        didScroll = false;
-                    }
-                }, 250);
-
-
-                function hasScrolled() {
-                    var st = $(this).scrollTop();
-                    if (Math.abs(lastScrollTop - st) <= delta) {
-                        return;
-                    }
-                    if (st > lastScrollTop && st > navHeight) {
-                        $(".normal-header").removeClass("nav-down").addClass("nav-up");
-                    } else {
-                        if (st + $(window).height() < $(document).height()) {
-                            $(".normal-header").removeClass("nav-up").addClass("nav-down");
-                        }
-                    }
-                    lastScrollTop = st;
-                }
-
-
 
             });
 
@@ -246,16 +202,13 @@
                     </c:if>
 
                 </div>
-
                 <div class="hd-category">
                     <ul>
-                        <li><a href="/meister/sell/sellList.do">IT/Programming</a></li>
+                        <li><a href="#">IT/Programming</a></li>
                         <li><a href="#">Design</a></li>
                     </ul>
                 </div>
-
             </div>
-           
         </div>
         <div class="side-info-menu sim-close">
 

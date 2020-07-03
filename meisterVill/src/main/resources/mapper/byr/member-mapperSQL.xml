@@ -62,4 +62,29 @@
 		insert cookie set sessionkey=#{sessionId}, sessionlimit=#{next}
 		where member_no=#{memberNo}
 	</insert>
+	<select id="checkNickname" parameterType="string" resultType="member">
+		select
+			member_no as memberNo,
+			member_email as memberEmail,
+			member_pw as memberPw,
+			member_name as memberName,
+			member_hbd as memberHbd,
+			member_nickname as memberNickname,
+			member_phone as memberPhone,
+			member_img as memberImg,
+			member_bank as memberBank,
+			member_account as memberAccount,
+			member_time as memberTime,
+			member_level as memberLevel,
+			member_status as memerStatus,
+			member_intro as memberIntro,
+			member_field as memberField,
+			member_skill as memberSkill,
+			member_school as memberSchool,
+			member_major as memberMajor,
+			member_grade as memberGrade,
+			member_date as memberDate
+		from member
+		where member_nickname=#{memberNickname}
+	</select>
 </mapper>

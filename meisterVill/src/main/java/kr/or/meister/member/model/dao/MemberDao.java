@@ -37,5 +37,8 @@ public class MemberDao {
 		return sqlSession.insert("member.loginMaintain",mcookie);
 	}
 
+	public MemberVO checkNickname(String memberNickname) {
+		return sqlSession.selectOne("member.checkNickname",memberNickname);
+	}
 
 }

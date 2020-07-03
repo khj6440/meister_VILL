@@ -1,6 +1,7 @@
 package kr.or.meister.member.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
@@ -133,13 +134,13 @@ public class MemberController {
 		
 		Session session = Session.getDefaultInstance(prop,new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("ravly.b.4702@gmail.com", "930706!ra");
+				return new PasswordAuthentication("meister.vill0714@gmail.com", "meister0714!");
 			}
 		});
 		MimeMessage msg = new MimeMessage(session);
 		try {
 			msg.setSentDate(new Date());
-			msg.setFrom(new InternetAddress("ravly.b.4702@gmail.com","마이스터빌"));
+			msg.setFrom(new InternetAddress("meister.vill0714@gmail.com","마이스터빌"));
 			System.out.println(memberEmail);
 			InternetAddress to = new InternetAddress(memberEmail);
 			msg.setRecipient(Message.RecipientType.TO, to);
@@ -159,7 +160,7 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="/mailSendLink.do",method=RequestMethod.POST, produces="application/json;charset-utf-8")
-	public String mailSendLink(String memberEmail, Model model, HttpServletRequest request) {
+	public void mailSendLink(String memberEmail, Model model, HttpServletRequest request) {
 		
 		
 		
@@ -172,13 +173,13 @@ public class MemberController {
 		
 		Session session = Session.getDefaultInstance(prop,new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("ravly.b.4702@gmail.com", "930706!ra");
+				return new PasswordAuthentication("meister@gmail.com", "meister0714!");
 			}
 		});
 		MimeMessage msg = new MimeMessage(session);
 		try {
 			msg.setSentDate(new Date());
-			msg.setFrom(new InternetAddress("ravly.b.4702@gmail.com","마이스터빌"));
+			msg.setFrom(new InternetAddress("meister@gmail.com","마이스터빌"));
 			System.out.println(memberEmail);
 			InternetAddress to = new InternetAddress(memberEmail);
 			msg.setRecipient(Message.RecipientType.TO, to);
@@ -192,11 +193,33 @@ public class MemberController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return sb.toString();
+		
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/checkEmail.do", produces = "text/html;charset=utf-8")
+	public String checkEmail(String memberEmail) {
+		MemberVO m = service.checkLoginEmail(memberEmail);
+		if(m==null) {
+			return "0";
+			
+		}else {
+			return "1";
+		}
+	}
 	
+	@ResponseBody
+	@RequestMapping(value="/checkNickname.do", produces = "text/html;charset=utf-8")
+	public String checkNickname(String memberNickname) {
+		MemberVO m = service.checkNickname(memberNickname);
+		if(m==null) {
+			return "0";
+			
+		}else {
+			return "1";
+		}
+	}
 	
 	
 	

@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset "UTF-8";@charset "UTF-8";
 
 header{
     top:0;
@@ -237,7 +237,6 @@ header.masthead {
 
 .normal-header {
     width: 100%;
-    position: fixed;
     z-index: 1000;
     height: 210px;
     background-color: white;
@@ -268,10 +267,7 @@ section > .container {
     margin-top: 15%;
 }
 
-.content-box-yr {
-    padding-top: 210px;
-    font-family: 'Noto Sans KR', sans-serif;
-}
+
 
 .hd-member > .btn-insert {
     margin-left: 20px;

@@ -49,8 +49,8 @@
                             </div>
                             <div class="login-input-dv">
                                 <form id="loginFrm" action="/meister/member/loginMember.do" method="post">
-                                    <input type="text" name="memberEmail" class="login-input" placeholder="이메일을 입력하세요"><br>
-                                    <input type="password" name="memberPw" class="login-input" placeholder="비밀번호를 입력하세요"><br>
+                                    <input type="text" name="memberEmail" class="login-input input-yr-normal" placeholder="이메일을 입력하세요"><br>
+                                    <input type="password" name="memberPw" class="login-input input-yr-normal" placeholder="비밀번호를 입력하세요"><br>
                                     <div class="login-msg-box">msg</div>
                                     <input type="button" class="btn btn-insert btn-in-modal" value="로그인">
                                     <div class="login-chk-dv">
@@ -58,14 +58,16 @@
 
                                             <input type="checkbox" name="loginMaintain" value="loginMaintain" id="login-maintain">
                                             <span>
-                                                <img src="/resources/yr/imgs/chkbox.png" id="checked-yellow" width="20px" height="20px">
-                                                <img src="/resources/yr/imgs/chkbox_none2.png" id="checked-none" width="20px" height="20px">
-                                                <label class="lm-la" for="login-maintain"> 로그인 유지</label>
+                                                <label class="lm-la" for="login-maintain">
+                                                    <img src="/resources/yr/imgs/chkbox.png" id="checked-yellow" width="20px" height="20px">
+                                                    <img src="/resources/yr/imgs/chkbox_none2.png" id="checked-none" width="20px" height="20px">
+                                                    로그인 유지</label>
                                             </span>
                                         </div>
 
                                         <div>
-                                            <a href="/meister/member/forgetIdPw.do">아이디·비밀번호 찾기</a></div>
+                                            <a href="/meister/member/forgetIdPw.do">아이디·비밀번호 찾기</a>
+                                        </div>
                                     </div>
 
                                 </form>
@@ -74,11 +76,11 @@
 
                             <div class="login-line"></div>
                             <div class="login-msg">
-                                <h6>지금 회원가입시</h6>
-                                <h6>1만원 할인 쿠폰 지급!</h6>
+                                <h4>지금 회원가입시</h4>
+                                <h4>1만원 할인 쿠폰 지급!</h4>
 
                                 <a href="#" class="btn btn-insert btn-log-ins">회원가입</a>
-                                <img src="/resources/yr/imgs/logo.png" class="modal-in-logo">
+
                             </div>
                         </div>
 
@@ -94,14 +96,50 @@
         </div>
     </div>
     <style>
-        .login-msg-box{
+        .input-yr-normal {
+            border: 2px solid #eeeeee;
+            box-shadow: 0px 0px 2px #eee;
+            outline: 0 none;
+            border-radius: 5px;
+            padding-left: 3%;
+            padding-right: 3%;
+        }
+
+        .input-yr-normal:focus {
+            border: 2px solid #ffbc42;
+            box-shadow: 0px 0px 3px #ffbc42;
+        }
+
+        #loginFrm {
+            width: 100%;
+            text-align: center;
+        }
+
+        .login-msg-box {
             width: 100%;
             height: 50px;
             text-align: center;
-            color: white;
-            
-            border: 1px solid red;
+            color: #D00C0A;
+            line-height: 50px;
+            font-size: 15px;
         }
+
+        .login-msg>h4 {
+            font-weight: 700;
+        }
+
+        .login-chk-dv>div:first-child {
+            float: left;
+            line-height: 45px;
+            margin-left: 20px;
+        }
+
+        .login-chk-dv>div:last-child {
+            float: right;
+            line-height: 45px;
+            margin-right: 20px;
+        }
+
     </style>
 
     <script type="text/javascript">
@@ -123,19 +161,19 @@
                         },
                         type: "post",
                         success: function(data) {
-                        	console.log("success");
-                        	var ajaxEmail = data.memberEmail;
-                        	var ajaxPw = data.memberPw;
-                        	
+                            console.log("success");
+                            var ajaxEmail = data.memberEmail;
+                            var ajaxPw = data.memberPw;
+
                             if (data == null) {
                                 $(".login-msg-box").html("해당하는 계정이 없습니다.");
                             } else {
-                            	if(memberPw!=ajaxPw){
-                            		$(".login-msg-box").html("패스워드가 맞지 않습니다.");
-                            	}else{
-                            		
-                                $("#loginFrm").submit();
-                            	}
+                                if (memberPw != ajaxPw) {
+                                    $(".login-msg-box").html("패스워드가 맞지 않습니다.");
+                                } else {
+
+                                    $("#loginFrm").submit();
+                                }
                             }
                         },
                         error: function() {
@@ -146,7 +184,6 @@
 
             });
         });
-
 
     </script>
 
