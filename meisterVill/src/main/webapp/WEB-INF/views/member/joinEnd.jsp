@@ -26,7 +26,7 @@
             <div class="join-content-box">
 
 
-                <form action="/meister/member/joinInput.do" method="post">
+                <form action="/meister/member/joinMember.do" method="post">
 
                     <div class="jcb-title">
                         이메일
@@ -72,7 +72,7 @@
 
                     <input type="text" name="memberPhone" class="input-yr-normal jcb-phone-input" placeholder="'-'를 제외한 숫자만 입력하세요.">
 
-                    <button type="submit" class="btn btn-yr-normal btn-join-next btn-join-finish">회원가입 완료</button>
+                    <button type="submit" class="btn btn-yr-normal btn-join-next btn-join-finish cursor-not" disabled>회원가입 완료</button>
                 </form>
             </div>
         </div>
@@ -81,6 +81,7 @@
 
     <script>
         $(function() {
+        	var emailCode;
             var emailConfirm = 0;
             var pwConfirm = 0;
             var pwSame = 0;
@@ -88,7 +89,15 @@
             var hbd = 0;
             var nick = 0;
             var phone = 0;
-
+			
+            if(emailConfirm==1 && pwConfirm==1 && pwSame==1 && name==1 && hbd==1 && nick==1 && phone==1){
+            	$(".btn-join-finish").removeClass("cursor-not");
+            	$(".btn-join-finish").prop("disabled",false);
+            }else{
+            	$(".btn-join-finish").addClass("cursor-not");
+            	$(".btn-join-finish").prop("disabled",true);
+            }
+            
             //비밀번호
             $(".jcb-pw-input").eq(0).keyup(function() {
                 var pw = $(".jcb-pw-input").eq(0).val();
@@ -301,12 +310,19 @@
                         $(".jcb-phone-input").addClass("invalid-input");
                         phone = 0;
                     } else {
-                        $(".jcb-phone-msg").html(".");
+                        $(".jcb-phone-msg").html("");
                         $(".jcb-phone-input").removeClass("invalid-input");
                         phone = 1;
+                        console.log("이메일인증"+emailConfirm);
+                        console.log("비번"+pwConfirm);
+                        console.log("비확"+pwSame);
+                        console.log("이름"+name);
+                        console.log("닉넴"+nick);
+                        console.log("생일"+hbd);
+                        console.log(phone);
                     }
                 } else {
-                    $(".jcb-phone-msg").html(".");
+                    $(".jcb-phone-msg").html("");
                     $(".jcb-phone-input").removeClass("invalid-input");
                     phone = 0;
                 }
@@ -328,6 +344,7 @@
                     },
                     type: "post",
                     success: function(data) {
+                    	emailCode = data;
                         $("#btnEmail").prop("disabled",true);
                     	$(".check-msg-box").html("인증메일이 발송되었습니다.");
                     	$("input[name=confirm-code]").prop("disabled", false);
@@ -338,6 +355,11 @@
                         intervalId = window.setInterval(function() {
 
                             $(".time-limit").html(min + " : " + sec);
+                            if(emailConfirm==1){
+                            	clearInterval(intervalId);
+                            	$(".time-limit").html("");
+                            }else{
+                            	
                             if (min >= 0) {
                                 if (sec > 0) {
                                     sec--;
@@ -349,7 +371,7 @@
                                         $("input[name=confirm-code]").prop("disabled", true);
                                         $("input[name=confirm-code]").addClass("cursor-not");
                                         $("#btnConfirm").prop("disabled", true);
-                                        clearInterval(interval);
+                                        clearInterval(intervalId);
                                 		}
                                     }else{
                                     sec = 59;
@@ -361,8 +383,10 @@
                                 $("input[name=confirm-code]").prop("disabled", "true");
                                 $("input[name=confirm-code]").addClass("cursor-not");
                                 $("#btnConfirm").prop("disabled", "true");
-                                clearInterval(interval);
+                                clearInterval(intervalId);
                             }
+                            }
+                            
                         }, 1000);
                     },
                     error: function() {
@@ -370,7 +394,21 @@
                     }
                 });
             });
-
+            
+            //이메일 인증 버튼
+            $("#btnConfirm").click(function(){
+            	if(emailCode==$("input[name=confirm-code]").val()){
+            		$("input[name=confirm-code]").prop("disabled", "true");
+                    $("input[name=confirm-code]").addClass("cursor-not");
+                    $("#btnConfirm").prop("disabled", "true");
+                    $(".check-msg-box").html("인증완료");
+                    emailConfirm = 1;
+            	}else{
+            		$(".check-msg-box").html("인증번호를 확인해주세요.");
+            		emailConfirm = 0;
+            	}
+            });
+            
         });
 
     </script>
