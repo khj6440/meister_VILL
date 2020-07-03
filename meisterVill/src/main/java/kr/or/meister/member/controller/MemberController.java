@@ -57,7 +57,16 @@ public class MemberController {
 
 		return "member/mypage";
 	}
-
+	@ResponseBody
+	@RequestMapping(value="/joinMember.do",produces = "text/html;charset=utf-8")
+	public String joinMember(MemberVO m) {
+		int result = service.joinMember(m);
+		if(result>0) {
+			return "1";
+		}else {
+			return "0";
+		}
+	}
 	@RequestMapping("/myprofile.do")
 	public String myprofile(HttpSession session, Model model, MemberDataVO mdv) {
 		MemberDataVO mdv2 = service.selectOneMember2(mdv);
@@ -337,15 +346,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping("/joinMember.do")
-	public String joinMember(MemberVO m) {
-		int result = service.joinMember(m);
-		if(result>0) {
-			return "redirect: /";
-		}else {
-			return "member/join";
-		}
-	}
+	
 
 
 	@RequestMapping("/loginModalTest.do")

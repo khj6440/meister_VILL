@@ -92,12 +92,6 @@
                         });
                     }
 
-
-            var didScroll;
-            var lastScrollTop = 0;
-            var delta = 5;
-            var navHeight = $(".normal-header").outerHeight();
-
                 });
 
 
@@ -109,11 +103,6 @@
                     $(this).css("box-shadow", "none");
                     $(this).css("border-color", "#ced4da");
                 });
-
-            var didScroll;
-            var lastScrollTop = 0;
-            var delta = 5;
-            var navHeight = $(".normal-header").outerHeight();
 
 
 

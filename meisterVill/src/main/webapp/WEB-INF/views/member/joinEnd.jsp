@@ -24,10 +24,7 @@
                 <i class="fa fa-circle" aria-hidden="true"></i>
             </div>
             <div class="join-content-box">
-
-
-                <form action="/meister/member/joinMember.do" method="post">
-
+				
                     <div class="jcb-title">
                         이메일
                     </div>
@@ -71,17 +68,18 @@
                     </div>
 
                     <input type="text" name="memberPhone" class="input-yr-normal jcb-phone-input" placeholder="'-'를 제외한 숫자만 입력하세요.">
-
-                    <button type="submit" class="btn btn-yr-normal btn-join-next btn-join-finish cursor-not" disabled>회원가입 완료</button>
-                </form>
+                    <button type="button" id="btn-join-cl" class="btn btn-yr-normal btn-join-next btn-join-finish cursor-not" disabled>회원가입 완료</button>
+             
             </div>
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    <jsp:include page="/WEB-INF/views/member/loginSuccess.jsp" />
 
     <script>
         $(function() {
         	var emailCode;
+        	
             var emailConfirm = 0;
             var pwConfirm = 0;
             var pwSame = 0;
@@ -90,14 +88,43 @@
             var nick = 0;
             var phone = 0;
 			
-            if(emailConfirm==1 && pwConfirm==1 && pwSame==1 && name==1 && hbd==1 && nick==1 && phone==1){
-            	$(".btn-join-finish").removeClass("cursor-not");
-            	$(".btn-join-finish").prop("disabled",false);
-            }else{
-            	$(".btn-join-finish").addClass("cursor-not");
-            	$(".btn-join-finish").prop("disabled",true);
-            }
             
+            $("#btn-join-cl").click(function(){
+            	var memberEmail = $("input[name=memberEmail]").val();
+            	var memberPw = $("input[name=memberPw]").val();
+            	var memberName = $("input[name=memberHbd]").val();
+            	var memberNickname= $("input[name=memberNickname]").val();
+            	var memberHbd = $("input[name=memberHbd]").val();
+            	var memberPhone = $("input[name=memberPhone]").val();
+            	$.ajax({
+            		url: "/meister/member/joinMember.do",
+            		data: {memberEmail: memberEmail, memberPw: memberPw, memberName: memberName, memberHbd: memberHbd, memberNickname:memberNickname, memberPhone:memberPhone},
+            		type: "post",
+            		success: function(data){
+            			if(data=="1"){
+            				 $('#loginResultModal').show();
+            			}else{
+            				console.log("로그인 실패해서 메인으로 ㄱㄱ");
+            				location.href("/");
+            			}
+            		},
+            		error: function(){
+            			
+            		}
+            		
+            	});
+            });
+            
+            $("body").mouseover(function(){
+	            if(emailConfirm==1 && pwConfirm==1 && pwSame==1 && name==1 && hbd==1 && nick==1 && phone==1){
+	            	$(".btn-join-finish").removeClass("cursor-not");
+	            	$(".btn-join-finish").prop("disabled",false);
+	            }else{
+	            	$(".btn-join-finish").addClass("cursor-not");
+	            	$(".btn-join-finish").prop("disabled",true);
+	            }
+            
+            });
             //비밀번호
             $(".jcb-pw-input").eq(0).keyup(function() {
                 var pw = $(".jcb-pw-input").eq(0).val();
@@ -313,13 +340,13 @@
                         $(".jcb-phone-msg").html("");
                         $(".jcb-phone-input").removeClass("invalid-input");
                         phone = 1;
-                        console.log(emailConfirm);
-                        console.log(pwConfirm);
-                        console.log(pwSame);
-                        console.log(name);
-                        console.log(nick);
-                        console.log(hbd);
-                        console.log(phone);
+                        console.log("이메일:" +emailConfirm);
+                        console.log("비번:"+pwConfirm);
+                        console.log("비확"+pwSame);
+                        console.log("이름"+name);
+                        console.log("닉넴"+nick);
+                        console.log("생일"+hbd);
+                        console.log("폰"+phone);
                     }
                 } else {
                     $(".jcb-phone-msg").html("");
