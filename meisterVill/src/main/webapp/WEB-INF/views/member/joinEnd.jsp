@@ -319,7 +319,7 @@
                         console.log("이름"+name);
                         console.log("닉넴"+nick);
                         console.log("생일"+hbd);
-                        console.log(phone);
+                        console.log("전화번호"+phone);
                     }
                 } else {
                     $(".jcb-phone-msg").html("");
