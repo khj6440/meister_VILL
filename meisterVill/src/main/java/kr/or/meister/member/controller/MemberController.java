@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
@@ -34,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -263,6 +265,11 @@ public class MemberController {
 		// hyeokjin
 		return "project/pHome";
 	}
+	@RequestMapping(value = "/goProjectIntro.do")
+	public String project2() {
+		// hyeokjin
+		return "project/pIntro";
+	}
 
 	@RequestMapping(value = "/message.do")
 	public String message() {
@@ -285,7 +292,13 @@ public class MemberController {
 		int unReadMsgCnt = service.getUnreadMsgCnt(memberNickname);
 		return unReadMsgCnt;
 	}
-
+	
+	@ResponseBody
+	@RequestMapping(value="/readMsg.do")
+	public void readMsg(int msgNo) {
+		int result = service.readMsg(msgNo);
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/uploadChatFile.do",produces = "text/html;charset=utf-8")
 	public String uploadChatFile(HttpServletRequest request, MultipartFile file) {
@@ -316,11 +329,44 @@ public class MemberController {
 			}
 		}
 
-//		int result = service.insertChatFile(resultStr);
 		System.out.println("resultStr: "+resultStr);
 		return resultStr;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/uploadChatFile2.do", produces = "text/html;charset=utf-8")
+	public String uploadChatFile2(HttpServletRequest request, MultipartHttpServletRequest mtfRequest) {
+		// hyeokjin
+		List<MultipartFile> fileList = mtfRequest.getFiles("file");
+		ArrayList<String> resultList = new ArrayList<String>();
+		if (!fileList.isEmpty()) {
+			for (MultipartFile file : fileList) {
+				String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/chat/");
+				// 업로드한 파일의 실제 파일명
+				String originalFilename = file.getOriginalFilename();
+				// 확장자를 제외한 파일명 ->text
+				String onlyFilename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
+				// 확장자 ->.txt
+				String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+				String filepath = onlyFilename + "_" + Calendar.getInstance().getTimeInMillis() + extension;
+				String fullpath = savePath + filepath;
+
+				resultList.add(originalFilename + ":" + filepath);
+
+				try {
+					byte[] bytes = file.getBytes();
+					BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));
+					bos.write(bytes);
+					bos.close();
+					System.out.println("파일 업로드 완료");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return new Gson().toJson(resultList);
+	}
 
 	@RequestMapping(value = "/chatFileDownload.do", produces = "application/octet-stream;charset=utf-8")
 	public void chatFileDownload(String filename, String filepath, HttpServletRequest request,

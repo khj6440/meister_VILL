@@ -104,15 +104,10 @@ public class MemberService {
 		return dao.checkNickname(memberNickname);
 	}
 
-//	public int insertChatFile(String resultStr) {
-//		//hyeokjin
-//		StringTokenizer sT = new StringTokenizer(resultStr,":");
-//		HashMap<String, String> map = new HashMap<String, String>();
-//		
-//		map.put("filename", sT.nextToken());
-//		map.put("filepath", sT.nextToken());
-//		
-//		return dao.insertChatFile(map);
-//	}
+	public int readMsg(int msgNo) {
+		//hyeokjin
+		return dao.readMsg(msgNo);
+	}
+
 
 }

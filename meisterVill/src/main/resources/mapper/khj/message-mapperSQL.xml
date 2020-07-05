@@ -24,5 +24,12 @@
 		from message
 		where msg_receiver=#{parameter} and msg_read=0
 	</select>
+	
+	<update id="readMsg" parameterType="int">
+		update message
+		set msg_read=1
+		where msg_no = #{paramater}
+		
+	</update>
 
 </mapper>

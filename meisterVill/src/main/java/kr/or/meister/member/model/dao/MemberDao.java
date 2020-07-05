@@ -102,4 +102,9 @@ public class MemberDao {
 		return sqlSession.insert("chat.insertChatFile",map);
 	}
 
+	public int readMsg(int msgNo) {
+		//hyeokjin
+		return sqlSession.update("message.readMsg",msgNo);
+	}
+
 }
