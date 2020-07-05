@@ -185,7 +185,12 @@ public class AdminController {
 	 * List<AdminMemberJoinSellJoinOrdersVO> sellList =
 	 * service.memberSell(memberNo);
 	 * 
+<<<<<<< HEAD
 	 * return new Gson().toJson(sellList); }
+=======
+	 * return new Gson().toJson(sellList); 
+	 * }
+>>>>>>> e68f3dca71154b8511ce468bf983a27010a113ec
 	 */
 	
 	

@@ -68,19 +68,33 @@
 
                     <c:if test="${m.memberImg != null }">
                         <c:if test="${m.memberLevel == 2}">
+<<<<<<< HEAD
                     		<img src="/upload/memberImg/${m.memberImg}" style="width: 20px; height: 18px;"> 
                     	</c:if>
                     	<c:if test="${m.memberLevel != 2}">
                     		<img src="/upload/memberImg/${m.memberImg}" style="width: 20px; height: 18px;"> 
+=======
+                    		<img src="/upload/memberImg/${m.memberImg}" style="width: 20px; height: 20px;"> 
+                    	</c:if>
+                    	<c:if test="${m.memberLevel != 2}">
+                    		<img src="/upload/memberImg/${m.memberImg}" style="width: 20px; height: 20px;"> 
+>>>>>>> e68f3dca71154b8511ce468bf983a27010a113ec
                     	</c:if>
                     </c:if>
                     
                     <c:if test="${m.memberImg == null }">
                     	<c:if test="${m.memberLevel == 2}">
+<<<<<<< HEAD
                     		<img src="/upload/common/adminImg.jpg" style="width: 20px; height: 18px;"> 
                     	</c:if>
                     	<c:if test="${m.memberLevel != 2}">
                     		<img src="/upload/memberImg/unnamed.png" style="width: 20px; height: 18px;"> 
+=======
+                    		<img src="/upload/common/adminImg.jpg" style="width: 20px; height: 20px;"> 
+                    	</c:if>
+                    	<c:if test="${m.memberLevel != 2}">
+                    		<img src="/upload/memberImg/unnamed.png" style="width: 20px; height: 20px;"> 
+>>>>>>> e68f3dca71154b8511ce468bf983a27010a113ec
                     	</c:if>
                     </c:if>
                     
