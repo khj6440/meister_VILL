@@ -31,6 +31,7 @@ import kr.or.meister.admin.model.vo.SellAndRequestVO;
 import kr.or.meister.admin.model.vo.SellSellVO;
 import kr.or.meister.admin.model.vo.SellJoinOrdersJoinOptionVO;
 import kr.or.meister.admin.model.vo.SellStatsVO;
+import kr.or.meister.admin.model.vo.selectAllSellPageVO;
 import kr.or.meister.member.model.vo.MemberVO;
 
 @Controller
@@ -55,6 +56,17 @@ public class AdminController {
        }else {
     	   return "redirect:/meister/admin/memberAllViewFrm.do?reqPage=1";
        }
+	}
+	
+	
+	@RequestMapping(value="sellListFrm.do")
+	public String sellList(HttpSession session, HttpServletRequest request, int reqPage) {
+		
+		selectAllSellPageVO sap = service.sellList(reqPage);
+		
+		request.setAttribute("list", sap.getList());
+		request.setAttribute("pageNavi", sap.getPageNavi());
+		return "admin/sellList.jsp?"+reqPage;
 	}
 	
 	

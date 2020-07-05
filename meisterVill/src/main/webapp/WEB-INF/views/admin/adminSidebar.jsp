@@ -47,13 +47,10 @@
               <span>거래글 관리</span>
               </a>
             <ul class="sub">
-              <li><a href="grids.html">마이스터 판매글 관리</a></li>
+            
+              <li><a href="/meister/admin/sellListFrm.do?reqPage=1">마이스터 판매글 관리</a></li>
               <li><a href="calendar.html">견적요청글 관리</a></li>
               <li><a href="gallery.html">프로젝트글 관리</a></li>
-              <li><a href="todo_list.html">Todo List</a></li>
-              <li><a href="dropzone.html">Dropzone File Upload</a></li>
-              <li><a href="inline_editor.html">Inline Editor</a></li>
-              <li><a href="file_upload.html">Multiple File Upload</a></li>
             </ul>
           </li>
           <li class="sub-menu">

@@ -78,6 +78,10 @@ public class AdminDao {
 	public List<SellJoinOrdersJoinOptionVO> memberOrder(int memberNo) {
 		return sqlSession.selectList("sellJoinOrdersJoinOption.memberOrder",memberNo);
 	}
+	
+	public List<AdminMemberJoinSellJoinOrdersVO> sellList(HashMap<String, Integer> se) {
+		return sqlSession.selectList("joinSellJoinOrders.sellList",se);
+	}
 
 /*-----------------------------------member 통계------------------------------------------ */
 	public int cnt() {
@@ -147,5 +151,6 @@ public class AdminDao {
 	public int memberDelete(int memberNo) {
 		return sqlSession.update("adminMember.memberDelete",memberNo);
 	}
+
 	
 }

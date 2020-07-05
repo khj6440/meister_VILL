@@ -12,7 +12,7 @@
 	
 <!-- ******************************************************************************** -->
 
-<title>전체 회원 관리</title>
+<title>판매글 리스트</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
@@ -43,91 +43,69 @@
         <div class="row mt">
           <div class="col-md-12">
             <div class="content-panel">
-              <table class="table table-striped table-advance table-hover">
-                <h4><i class="fa fa-angle-right"></i>전체 회원 관리</h4>
+              <table>
+                <h4><i class="fa fa-angle-right"></i>판매글 리스트</h4>
                 <hr>
-                <thead>
-                  <tr>
-                    <th><i class="fa fa-bullhorn"></i>유저 이메일</th>
-                    <th class="hidden-phone"><i class="fa fa-question-circle"></i>유저 이름</th>
-                    <th><i class="fa fa-question-circle"></i>유저 닉네임 </th>
-                    <th><i class="fa fa-question-circle"></i>유저 레벨 </th>
-                    <!-- <i class="fa fa-bookmark"> -->
-                    <!-- <i class=" fa fa-edit"> -->
-                    <th><i class="fa fa-bookmark"></i>유저 가입일</th>
-                    <th></th>
-                  </tr>
-                </thead>
                 <tbody>
-                <c:forEach items="${list}" var="m" varStatus="i">
-                  <tr>
-                    <td>
-                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}">${m.memberEmail }</a>
-                      </td>
-                    <td class="hidden-phone">
-
-                    <c:if test="${m.memberImg != null }">
-                        <c:if test="${m.memberLevel == 2}">
-                    		<img src="/upload/memberImg/${m.memberImg}" style="width: 20px; height: 18px;"> 
+                <tr style="margin: 0 auto; text-align: center;">
+                <c:forEach items="${list}" var="s" varStatus="i">
+                
+                    <td style="display:inline-block;">
+                    <div style="border: 1px solid black;">
+                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${s.sellTitle}">
+                      <div><img src="/upload/sellImg/${s.sellImg}" style="width: 400px; height: 400px; display:block; margin: 0 auto;"></div> 
+                      </a>
+                      <div>${s.sellTitle}</div>
+                      
+                      <c:if test="${s.memberImg != null }">
+                        <c:if test="${s.memberLevel == 2}">
+                    		<img src="/upload/common/adminImg.jpg" style="width: 30px; height: 28px;"> 
                     	</c:if>
-                    	<c:if test="${m.memberLevel != 2}">
-                    		<img src="/upload/memberImg/${m.memberImg}" style="width: 20px; height: 18px;"> 
-                    	</c:if>
-                    </c:if>
-                    
-                    <c:if test="${m.memberImg == null }">
-                    	<c:if test="${m.memberLevel == 2}">
-                    		<img src="/upload/common/adminImg.jpg" style="width: 20px; height: 18px;"> 
-                    	</c:if>
-                    	<c:if test="${m.memberLevel != 2}">
-                    		<img src="/upload/memberImg/unnamed.png" style="width: 20px; height: 18px;"> 
+                    	<c:if test="${s.memberLevel != 2}">
+                    		<img src="/upload/memberImg/${s.memberImg}" style="width: 30px; height: 28px;"> 
                     	</c:if>
                     </c:if>
                     
-                    ${m.memberName }</td>
-                    
-                    
-                    <td>${m.memberNickname } </td>
-                    <td>
-                    <c:if test="${m.memberLevel == 0}">
-                    <span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 12px;">
-                   	일반회원
-                    </span>
+                    <c:if test="${s.memberImg == null }">
+                    	<c:if test="${s.memberLevel == 2}">
+                    		<img src="/upload/common/adminImg.jpg" style="width: 30px; height: 28px;"> 
+                    	</c:if>
+                    	<c:if test="${s.memberLevel != 2}">
+                    		<img src="/upload/memberImg/unnamed.png" style="width: 30px; height: 28px;"> 
+                    	</c:if>
                     </c:if>
                     
-                    <c:if test="${m.memberLevel == 1}">
-                    <span class="label label-info label-mini" style="font-size: 12px;">
-                   	마이스터
-                    </span>
-                    </c:if>
+                   <div>${s.memberName}</div> 
                     
-                    <c:if test="${m.memberLevel == 2}">
-                    <span class="label label-info label-mini" style="background-color: #A593E0; font-size: 12px;">
-                   	관리자
-                    </span>
-                    </c:if>
+                    ${s.sellCategory1 }
                     
-                    </td>
-                    <td>${m.memberDate } </td>
-                    <td>
-                      <!-- <span class="label label-info label-mini" style="background-color: red">신고 접수</span> -->
+                    ${s.sellPrice} ￦
+                    
+                    ${s.sellDate }
+                    
+                                          <!-- <span class="label label-info label-mini" style="background-color: red">신고 접수</span> -->
                       <a href="/meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}" class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42; text-decoration: none; color: white;"><i class="fa fa-check"></i>회원정보 보기</a>
                       <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
-                    <c:if test="${m.memberStatus != 2 }">
-                      <button value="${m.memberNo }" class="btn btn-danger btn-xs modalHalt" style="background-color: #6c757d; border-color: #6c757d; color: white;"><i class="fa fa-trash-o"></i>회원 정지</button>
+                    <c:if test="${s.sellStatus != 2 }">
+                      <button value="${s.sellNo }" class="btn btn-danger btn-xs modalHalt" style="background-color: #6c757d; border-color: #6c757d; color: white;"><i class="fa fa-trash-o"></i>회원 정지</button>
                     </c:if>
                     
-                    <c:if test="${m.memberStatus == 2 }">
-                    	<button value="${m.memberNo }" class="btn btn-danger btn-xs modalHaltRollback" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-trash-o" ></i>정지 취소</button>
+                    <c:if test="${s.sellStatus == 2 }">
+                    	<button value="${s.sellNo }" class="btn btn-danger btn-xs modalHaltRollback" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-trash-o" ></i>정지 취소</button>
                     </c:if>
                     
-                    <c:if test="${m.memberStatus != 1 }">
-                      <button value="${m.memberNo }" class="btn btn-danger btn-xs modalDelete" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>회원 탈퇴</button>
+                    <c:if test="${s.sellStatus != 1 }">
+                      <button value="${s.sellNo }" class="btn btn-danger btn-xs modalDelete" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>회원 탈퇴</button>
                     </c:if>
-                    </td>
-                  </tr> 
+                    </div>
+                      </td>
 
+                    
+
+                  
+					
                   </c:forEach>
+                  </tr> 
                 </tbody>
               </table>
             </div>

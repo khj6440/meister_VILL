@@ -122,7 +122,7 @@
                       <!-- <span class="label label-info label-mini" style="background-color: red">신고 접수</span> -->
                       <a href="/meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}" class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42; text-decoration: none; color: white;"><i class="fa fa-check"></i>회원정보 보기</a>
                       <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
-                      <a href="/meister/admin/memberDeleteRollback.do?memberNo=${m.memberNo}" class="btn btn-danger btn-xs" style="background-color: #6c757d; border-color: #6c757d;"><i class="fa fa-trash-o" ></i>회원 복구</a>
+                      <button value="${m.memberNo}" class="btn btn-danger btn-xs modalDeleteRollback" style="background-color: #6c757d; border-color: #6c757d;"><i class="fa fa-trash-o" ></i>회원 복구</button>
                     </td>
                   </tr> 
                 </tbody>
@@ -159,6 +159,89 @@
   <!--common script for all pages-->
   <script src="/resources/adminCss/lib/common-scripts.js"></script>
   <!--script for this page-->
+  
+  
+  
+  
+    <!-- --------------------------------Modal----------------------------------------------------- -->
+    <div style="padding-top: 10%;" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="width: 600px; height: 600px;" class="modal-dialog" role="document">
+            <div  class="modal-content">
+                <div style="border-top-left-radius: 4px; border-top-right-radius: 4px; background-color: #6c757d;"class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">회원 정지</h5>
+                </div>
+                <div class="modal-body">
+                   		 정말로 정지하시겠습니까?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    <button style="background-color: #6c757d;" type="button" class="btn btn-primary memberValue">회원 정지</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!-- --------------------------------Modal-mini----------------------------------------------------- -->  
+    
+        <div style="padding-top: 10%;" class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="width: 400px; height: 400px;" class="modal-dialog" role="document">
+            <div style="background-color: #6c757d; border-radius: 12px;" class="modal-content2">
+
+                <div style=" width: 400px; height: 150px; text-align: center; line-height: 50px; color: white;" class="modal-body2">
+                   		<span style="font-size: xx-large; line-height: 150px;" class="modal2text">정지되었습니다.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+              
+  
+      <script>
+  $(function(){
+	  
+	  $(".modalDeleteRollback").click(function() {
+		  $("#exampleModal").modal("show");  
+		  var memberNo = $(this).val(); 
+		  $(".modal-title").html("탈퇴 복구");
+		  $(".modal-header").css("background-color","#6c757d");
+		  $(".memberValue").css("background-color","#6c757d");
+		  $(".memberValue").css("border-color","#6c757d");
+		  $(".memberValue").html("탈퇴 복구");
+		  $(".modal-body").html("정말로 회원을 복구시키시겠습니까?");
+	  $(".memberValue").click(function() {		
+  $.ajax({
+	    url: "/meister/admin/memberDeleteRollback.do?memberNo="+memberNo,
+	    
+	    
+
+	    success: function(){
+	    	$("#exampleModal").modal("hide");
+	    	$(".modal2text").html("회원이 복구되었습니다.");
+	    	$(".modal-content2").css("background-color","#6c757d");
+	    	$("#exampleModal2").modal("show");
+	    	setTimeout(function() {
+	    		location.reload();
+	    		}, 1000);		
+	    }
+	    
+	    
+	  		});
+		});
+	});
+
+
+	  $("#close_modal").click(function() {
+          $("#exampleModal").modal("hide");
+      });
+  });
+  </script>
+  
+  
+  
+  
+  
+  
+  
   
 </body>
 

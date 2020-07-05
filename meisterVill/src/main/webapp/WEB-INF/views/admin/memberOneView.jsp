@@ -85,12 +85,18 @@
                   </c:if>
                   </p>
                   <p>
-                    <a class="btn btn-theme02" style="background-color: #6c757d; border-color: #6c757d;">회원 삭제</a>
+                  
+                  <c:if test="${m.memberStatus == 1 }">
+                    <button value="${m.memberNo }" class="btn btn-theme02 modalDeleteRollback" style="background-color: #F16B6F; border-color: #F16B6F;">탈퇴 복구</button>
+                  </c:if>
+                  <c:if test="${m.memberStatus != 1 }">
+                    <button value="${m.memberNo }" class="btn btn-theme02 modalDelete" style="background-color: #F16B6F; border-color: #F16B6F;">회원 탈퇴</button>
+                  </c:if>
                   <c:if test="${m.memberStatus != 2 }">
-                    <a class="btn btn-theme02" href="/meister/admin/memberHalt.do?memberNo="${m.memberNo }>회원 정지</a>
+                    <button value="${m.memberNo }" class="btn btn-theme02 modalHalt" style="background-color: #6c757d;">회원 정지</button>
                   </c:if>
                   <c:if test="${m.memberStatus == 2 }">
-                    <a class="btn btn-theme02" href="/meister/admin/memberRollback.do?memberNo="${m.memberNo }">정지 취소</a>
+                    <button value="${m.memberNo }" class="btn btn-theme02 modalHaltRollback" style="background-color: #30A9DE; border-color: #30A9DE;">정지 취소</button>
                   </c:if>
                   </p>
                 </div>
@@ -254,20 +260,20 @@
                             은행명 : ${m.memberBank }<br>
                             계좌번호 : ${m.memberAccount }<br>
                연락가능 시간 : ${m.memberTime }<br>
-               <!-- 0:정상 1:정지 2:탈퇴 -->
+               <!-- 0:정상 1:탈퇴 2:정지 -->
                <c:if test="${m.memberStatus == 0}">
                 회원상태 : <div class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 12px;">
                    	정상</div>
                </c:if>
                
                 <c:if test="${m.memberStatus == 1}">
-               	                회원상태 : <div class="label label-info label-mini"style="background-color: #A593E0; font-size: 12px;">
-                   	정지</div>
+               	                회원상태 : <div class="label label-info label-mini"style="background-color: #F16B6F; font-size: 12px;">
+                   	탈퇴</div>
                </c:if>
                
                 <c:if test="${m.memberStatus == 2}">      
                 회원상태 : <div class="label label-info label-mini"style="background-color: #6c757d; font-size: 12px;">
-                   	삭제</div>
+                   	정지</div>
                </c:if>
 
                   </div>
@@ -396,8 +402,183 @@
   <script src="/resources/adminCss/lib/common-scripts.js"></script>
   <!--script for this page-->
   <!-- MAP SCRIPT - ALL CONFIGURATION IS PLACED HERE - VIEW OUR DOCUMENTATION FOR FURTHER INFORMATION -->
- <!--  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
-  <script>
+  <!--  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script> -->
+  
+  
+  
+    <!-- --------------------------------Modal----------------------------------------------------- -->
+    <div style="padding-top: 10%;" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="width: 600px; height: 600px;" class="modal-dialog" role="document">
+            <div  class="modal-content">
+                <div style="border-top-left-radius: 4px; border-top-right-radius: 4px; background-color: #6c757d;"class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">회원 정지</h5>
+                </div>
+                <div class="modal-body">
+                   		 정말로 정지하시겠습니까?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    <button style="background-color: #6c757d;" type="button" class="btn btn-primary memberValue">회원 정지</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<!-- --------------------------------Modal-mini----------------------------------------------------- -->  
+    
+        <div style="padding-top: 10%;" class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="width: 400px; height: 400px;" class="modal-dialog" role="document">
+            <div style="background-color: #6c757d; border-radius: 12px;" class="modal-content2">
+
+                <div style=" width: 400px; height: 150px; text-align: center; line-height: 50px; color: white;" class="modal-body2">
+                   		<span style="font-size: xx-large; line-height: 150px;" class="modal2text">정지되었습니다.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+              
+  
+      <script>
+	  
+	  $(function(){
+		  
+		  $(".modalHalt").click(function() {
+			  $("#exampleModal").modal("show");  
+			  var memberNo = $(this).val(); 
+			  $(".modal-title").html("회원 정지");
+			  $(".modal-header").css("background-color","#6c757d");
+			  $(".memberValue").css("background-color","#6c757d");
+			  $(".memberValue").css("border-color","#6c757d");
+			  $(".memberValue").html("회원 정지");
+			  $(".modal-body").html("정말로 회원을 정지시키시겠습니까?");
+		  $(".memberValue").click(function() {		
+	  $.ajax({
+		    url: "/meister/admin/memberHalt.do?memberNo="+memberNo,
+
+		    success: function(){
+		    	$("#exampleModal").modal("hide");
+		    	$(".modal2text").html("정지되었습니다.");
+		    	$(".modal-content2").css("background-color","#6c757d");
+		    	$("#exampleModal2").modal("show");
+		    	setTimeout(function() {
+		    		location.reload();
+		    		}, 1000);			
+		    }
+		    
+		    
+		  		});
+			});
+		});
+		  
+		  
+		  
+		   $(".modalHaltRollback").click(function() {
+				  $("#exampleModal").modal("show");  
+				  var memberNo = $(this).val();
+				  $(".modal-title").html("정지 취소");
+				  $(".modal-header").css("background-color","#30A9DE");
+				  $(".memberValue").css("background-color","#30A9DE");
+				  $(".memberValue").css("border-color","#30A9DE");
+				  $(".memberValue").html("정지 취소");
+				  $(".modal-body").html("정말로 정지를 취소하시겠습니까?");
+			  $(".memberValue").click(function() {		
+		  $.ajax({
+			    url: "/meister/admin/memberRollback.do?memberNo="+memberNo,
+			         
+			    
+
+			    success: function(){	
+			    	$("#exampleModal").modal("hide");
+			    	$(".modal2text").html("정지가 취소되었습니다.");
+			    	$(".modal-content2").css("background-color","#30A9DE");
+			    	$("#exampleModal2").modal("show");
+			    	setTimeout(function() {
+			    		location.reload();
+			    		}, 1000);
+			    }
+			    
+					});
+				});
+			});
+		   
+		   
+		   
+		   
+			  $(".modalDelete").click(function() {
+				  $("#exampleModal").modal("show");  
+				  var memberNo = $(this).val(); 
+				  $(".modal-header").css("background-color","#F16B6F");
+				  $(".modal-title").html("회원 탈퇴");
+				  $(".memberValue").html("회원 탈퇴");
+				  $(".modal-body").html("정말로 회원를 탈퇴시키시겠습니까?<br>※ 회원을 탈퇴할 경우, 회원정보가 손실될 수 있습니다. ※");
+				  $(".memberValue").css("background-color","#F16B6F");
+				  $(".memberValue").css("border-color","#F16B6F");
+			  $(".memberValue").click(function() {		
+		  $.ajax({
+			    url: "/meister/admin/memberDeletion.do?memberNo="+memberNo,
+
+			    success: function(){	
+			    	$("#exampleModal").modal("hide");
+			    	$(".modal2text").html("탈퇴되었습니다.");
+			    	$(".modal-content2").css("background-color","#F16B6F");
+			    	$("#exampleModal2").modal("show");
+			    	setTimeout(function() {
+			    		location.reload();
+			    		}, 1000);
+			    }
+			    
+					});
+				});
+			});
+			  
+			  
+			  
+			  $(".modalDeleteRollback").click(function() {
+				  $("#exampleModal").modal("show");  
+				  var memberNo = $(this).val(); 
+				  $(".modal-title").html("탈퇴 복구");
+				  $(".modal-header").css("background-color","#6c757d");
+				  $(".memberValue").css("background-color","#6c757d");
+				  $(".memberValue").css("border-color","#6c757d");
+				  $(".memberValue").html("탈퇴 복구");
+				  $(".modal-body").html("정말로 회원을 복구시키시겠습니까?");
+			  $(".memberValue").click(function() {		
+		  $.ajax({
+			    url: "/meister/admin/memberDeleteRollback.do?memberNo="+memberNo,
+			    
+			    
+
+			    success: function(){
+			    	$("#exampleModal").modal("hide");
+			    	$(".modal2text").html("회원이 복구되었습니다.");
+			    	$(".modal-content2").css("background-color","#6c757d");
+			    	$("#exampleModal2").modal("show");
+			    	setTimeout(function() {
+			    		location.reload();
+			    		}, 1000);		
+			    }
+			    
+			    
+			  		});
+				});
+			});
+
+
+	  $("#close_modal").click(function() {
+          $("#exampleModal").modal("hide");
+      });
+  });
+  </script>
+  
+
+  
+
+  
+  
+  
+  
+<!--  <script>
     $('.contact-map').click(function() {
 
       //google map in tab click initialize

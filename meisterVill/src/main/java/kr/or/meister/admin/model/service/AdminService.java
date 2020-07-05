@@ -19,6 +19,7 @@ import kr.or.meister.admin.model.vo.SellAndRequestVO;
 import kr.or.meister.admin.model.vo.SellSellVO;
 import kr.or.meister.admin.model.vo.SellJoinOrdersJoinOptionVO;
 import kr.or.meister.admin.model.vo.SellStatsVO;
+import kr.or.meister.admin.model.vo.selectAllSellPageVO;
 import kr.or.meister.member.model.vo.MemberVO;
 
 @Service("adminService")
@@ -286,5 +287,62 @@ public class AdminService {
 
 	public int memberDelete(int memberNo) {
 		return dao.memberDelete(memberNo);
+	}
+
+
+	public selectAllSellPageVO sellList(int reqPage) {
+		int numPerPage = 6;
+		System.out.println("한번에 표시할 회원 갯수 : "+numPerPage);
+		
+		int totalCount = dao.sellCnt();
+		System.out.println("회원의 전체 갯수 : "+totalCount);
+		
+		int totalPage = 0;
+		
+		if(totalCount%numPerPage == 0) {
+			totalPage = totalCount/numPerPage;
+		}else {
+			totalPage = totalCount/numPerPage+1;
+		}
+		
+		
+		int start = (reqPage-1)*numPerPage+1;
+		int end = reqPage*numPerPage;
+		
+		HashMap<String ,Integer> se = new HashMap<String, Integer>();
+		se.put("start", start);
+		se.put("end", end);
+		List<AdminMemberJoinSellJoinOrdersVO> list = dao.sellList(se);
+
+		
+		
+		String pageNavi = "";
+		
+		int pageNaviSize = 5; 
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		
+		if(pageNo != 1) {
+			pageNavi += "<a class='btn' href='/meister/admin/sellListFrm.do?reqPage="+(pageNo-pageNaviSize)+"' style=' background-color:#F4F4F4; border-radius: 5px; margin-left: 2px;'>이전</a>";
+		}
+		for(int i=0; i<pageNaviSize; i++) {
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='btn' style=' background-color:#76D5FF; border-radius: 5px; margin-left: 2px;'>"+pageNo+"</span>";
+			}else {
+				pageNavi += "<a class='btn' href='/meister/admin/sellListFrm.do?reqPage="+pageNo+"' style=' background-color:#B6EAFA; border-radius: 5px; margin-left: 2px;'>"+pageNo+"</a>";			
+				}
+			pageNo++;
+			if(pageNo>totalPage) {
+				break;
+			}
+		}
+		
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='btn' href='/meister/admin/sellListFrm.do?reqPage="+pageNo+"' style=' background-color:#F4F4F4; border-radius: 5px; margin-left: 2px;'>다음</a>";
+		}
+
+		
+		selectAllSellPageVO sap = new selectAllSellPageVO(list, pageNavi);		
+		
+		return sap;
 	}
 }
