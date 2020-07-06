@@ -260,16 +260,16 @@ public class MemberController {
 		return gson.toJson(list);
 	}
 
-	@RequestMapping(value = "/goProject.do")
-	public String project() {
-		// hyeokjin
-		return "project/pHome";
-	}
-	@RequestMapping(value = "/goProjectIntro.do")
-	public String project2() {
-		// hyeokjin
-		return "project/pIntro";
-	}
+//	@RequestMapping(value = "/goProject.do")
+//	public String project() {
+//		// hyeokjin
+//		return "project/pHome";
+//	}
+//	@RequestMapping(value = "/goProjectIntro.do")
+//	public String project2() {
+//		// hyeokjin
+//		return "project/pIntro";
+//	}
 
 	@RequestMapping(value = "/message.do")
 	public String message() {
@@ -296,6 +296,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value="/readMsg.do")
 	public void readMsg(int msgNo) {
+		// heokjin
 		int result = service.readMsg(msgNo);
 	}
 	

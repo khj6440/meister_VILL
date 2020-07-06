@@ -66,11 +66,11 @@ html, body {
 					<div id="top-tabs" class="tabs tabs-style-bar">
 						<nav>
 							<ul>
-								<li><a href="/meister/project/home.do?projectNo=1"  style="background-color: #FFBC42; color: white;"><i style="margin-right: 15px" class="fas fa-home"></i><span>Home</span></a></li>
-								<li><a href="/meister/project/chat.do?projectNo=1"><i style="margin-right: 15px;"class="far fa-comments"></i><span>Chat</span></a></li>
+								<li><a href="/meister/project/home.do" ><i style="margin-right: 15px" class="fas fa-home"></i><span>Home</span></a></li>
+								<li><a href="/meister/project/chat.do"><i style="margin-right: 15px;"class="far fa-comments"></i><span>Chat</span></a></li>
 								<li><a href="/meister/project/todo.do" ><i style="margin-right: 15px;"class="fas fa-list-ul"></i><span>To do</span></a></li>
-								<li><a href="/meister/project/schedule.do"><i style="margin-right: 15px;"class="far fa-calendar-alt"></i><span>Schedule</span></a></li>
-								<li><a href="/meister/project/files.do"><i style="margin-right: 15px;"class="far fa-file"></i><span>Files</span></a></li>
+								<li><a href="/meister/project/schedule.do"  style="background-color: #FFBC42; color: white;"><i style="margin-right: 15px;"class="far fa-calendar-alt"></i><span>Schedule</span></a></li>
+								<li><a href="/meister/project/files.do" ><i style="margin-right: 15px;"class="far fa-file"></i><span>Files</span></a></li>
 							</ul>
 						</nav>
 					</div>
@@ -79,17 +79,13 @@ html, body {
 			
 			
 			<div class="project-content">
-        		 <div style="width: 100%;">${project.employNo}</div>
-       			 <div style="width: 100%;">${project.employTitle}</div>
-       			 <div style="width: 100%;">${project.employContent}</div>
-       			 <div style="width: 100%;">${project.projectMembers}</div>
-       			 
+       			 <div style="width: 100%;">test</div>
     		</div>
 
 		</div>
 		<nav class="outer-nav right vertical">
-			<a href="/meister/project/home.do?projectNo=1" class=""><i style="margin-right: 15px;" class="fas fa-home"></i>Home</a> 
-			<a href="/meister/project/chat.do?projectNo=1" class=""><i style="margin-right: 15px;"class="far fa-comments"></i>Chat</a> 
+			<a href="/meister/project/home.do" class=""><i style="margin-right: 15px;" class="fas fa-home"></i>Home</a> 
+			<a href="/meister/project/chat.do" class=""><i style="margin-right: 15px;"class="far fa-comments"></i>Chat</a> 
 			<a href="/meister/project/todo.do" class=""><i style="margin-right: 15px;"class="fas fa-list-ul"></i>To do</a>
 			<a href="/meister/project/schedule.do" class=""><i style="margin-right: 15px;"class="far fa-calendar-alt"></i>Schedule</a> 
 			<a href="/meister/project/files.do"	class=""><i style="margin-right: 15px;"class="far fa-file"></i>Files</a>
