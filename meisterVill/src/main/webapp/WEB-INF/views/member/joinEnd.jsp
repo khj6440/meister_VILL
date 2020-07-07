@@ -6,12 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" type="image⁄x-icon" href="/resources/yr/imgs/logo.png">
+    <link rel="stylesheet" href="/resources/yr/css/joinSuccessModal_css.css" type="text/css">
     <link rel="stylesheet" href="/resources/yr/css/joinEnd_css.css" type="text/css">
     <title>Join End</title>
 </head>
 
 <body>
-    <jsp:include page="/WEB-INF/views/common/header2.jsp" />
+    <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 
     <div class="content-box-yr">
@@ -28,7 +29,7 @@
                     <div class="jcb-title">
                         이메일
                     </div>
-                    <input type="text" class="input-yr-normal jcb-mail" name="memberEmail" placeholder="이메일을 입력해주세요.">
+                    <input type="text" class="input-yr-normal jcb-mail jm-email" name="memberEmail" placeholder="이메일을 입력해주세요.">
                     <button type="button" id="btnEmail" class="btn btn-yr-normal-gray btn-mail-confirm cursor-not" disabled>이메일 인증</button><br>
 
                     <input type="text" class="input-yr-normal jcb-mail cursor-not" name="confirm-code" placeholder="인증번호를 입력해주세요." disabled>
@@ -41,7 +42,7 @@
                         비밀번호
                     </div>
 
-                    <input type="password" name="memberPw" class="input-yr-normal jcb-pw-input" placeholder="비밀번호를 입력해주세요.">
+                    <input type="password" name="memberPw" class="input-yr-normal jcb-pw-input jm-pw" placeholder="비밀번호를 입력해주세요.">
                     <input type="password" class="input-yr-normal cursor-not jcb-pw-input" placeholder="한 번 더 입력해주세요." disabled>
                     <div class="wrong-msg jcb-pw-msg"></div>
                     <div class="jcb-title jcbt">
@@ -74,7 +75,42 @@
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
-    <jsp:include page="/WEB-INF/views/member/loginSuccess.jsp" />
+    
+
+<!-- The Modal -->
+            <div class="modal fade" id="joinResultModal">
+                <div class="modal-dialog modal-m">
+                    <div class="modal-content jrm-modal-content">
+
+                        <!-- Modal body -->
+                        <div class="modal-body jrm-body">
+                            <div class="jrm-content-box">
+                                <div class="modal-btn-top">
+                                    <button type="button" class="close" onclick="location.href='/meister/member/goMain.do'" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="pcn-result-logo">
+                                    <img src="/resources/yr/imgs/meistervill_01.png" width="40%">
+                                </div>
+
+                                <div class="pcn-result">
+                                    <p>회원가입 완료!</p>
+                                </div>
+                                <div class="pcn-result-msg">
+                                    <p>1만원 웰컴 쿠폰이 발급되었습니다.</p>
+                                    <p>로그인 후 마이페이지에서 확인하세요!</p>
+                                </div>
+
+                                <div class="pcn-result-btn">
+                                    <a href="/" class="btn btn-yr-normal pcn-btn">메인화면 이동</a>
+                                    <a href="/" class="btn btn-yr-normal pcn-btn" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">로그인</a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
     <script>
         $(function() {
@@ -90,8 +126,9 @@
 			
             
             $("#btn-join-cl").click(function(){
-            	var memberEmail = $("input[name=memberEmail]").val();
-            	var memberPw = $("input[name=memberPw]").val();
+            	//회원가입 버튼 클릭
+            	var memberEmail = $(".jm-email").val();
+            	var memberPw = $(".jm-pw").val();
             	var memberName = $("input[name=memberHbd]").val();
             	var memberNickname= $("input[name=memberNickname]").val();
             	var memberHbd = $("input[name=memberHbd]").val();
@@ -101,15 +138,17 @@
             		data: {memberEmail: memberEmail, memberPw: memberPw, memberName: memberName, memberHbd: memberHbd, memberNickname:memberNickname, memberPhone:memberPhone},
             		type: "post",
             		success: function(data){
+            			console.log(data);
             			if(data=="1"){
-            				 $('#loginResultModal').show();
+            				console.log("회원가입완료");
+            				$("#joinResultModal").modal("show");
             			}else{
             				console.log("로그인 실패해서 메인으로 ㄱㄱ");
             				location.href("/");
             			}
             		},
             		error: function(){
-            			
+            			console.log("ajax실패");
             		}
             		
             	});
@@ -437,6 +476,10 @@
             });
             
         });
+        
+        function joinModalOpen(){
+        	$("#joinResultModal").show();
+        }
 
     </script>
 </body>

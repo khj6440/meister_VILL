@@ -28,7 +28,7 @@
                         <div>
                             <p class="fib-msg"></p>
                         </div>
-                        <button type="submit" class="btn btn-yr-normal fg-btn fg-btn-email">이메일 찾기</button>
+                        <button type="button" class="btn btn-yr-normal fg-btn fg-btn-email">이메일 찾기</button>
                 </div>
             </div>
             <div class="fg-pw-box">
@@ -64,18 +64,56 @@
             $("#findPw").click(function(){
             	console.log("ok");
             	var memberEmail = $("#memberEmailInput").val();
+            	var html="";
             	console.log(memberEmail);
             	$.ajax({
-            		url : "/meister/member/mailSendLink.do",
+            		url : "/meister/member/checkLogin.do",
             		data : {memberEmail:memberEmail},
             		type : "post",
             		success : function(data){
             			console.log("success");
-            			console.log(data);
+            			console.log("이메일존재"+data);
+            			/* if(data!=null){ */
+            				//이메일 있음
+            				$.ajax({
+            					url : "/meister/member/mailSendLink.do",
+                        		data : {memberEmail:memberEmail},
+                        		type : "post",
+                        		success : function(data){
+                        			console.log("success-notnull");
+                        			console.log("받아온 이메일"+data);
+                        			html+= "<div class='fpb-content ajax-fpb'>";
+                                	html+="<div class='fib-userEmail'>";
+                                    html+=data+"</div>";
+                                html+="<div class='fpb-resultEnd1'> 으로 비밀번호 변경 URL이</div>";
+                                 html+="<div class='fpb-resultEnd2'>전송되었습니다.</div>";
+                                html+="<div class='fib-result-logo'>";
+                                    html+="<img src='/resources/yr/imgs/logo.png' width='20%'></div></div>";
+                                    $(".fpb-content").html("");
+                            		$(".fpb-header").after(html);
+                        		},
+                        		error : function(){
+                        			console.log("ajax통신실패");
+                        		}
+            				});
+            			/* }else{
+            				//이메일 없음
+            				
+            				console.log("success-null");
+                			html+= "<div class='fpb-content ajax-fpb'>";
+                        	
+                        html+="<div class='fpb-resultEnd1'>해당하는 회원의 정보가</div>";
+                         html+="<div class='fpb-resultEnd2'>없습니다.</div>";
+                        html+="<div class='fib-result-logo'>";
+                            html+="<img src='/resources/yr/imgs/logo.png' width='20%'></div></div>";
+                            $(".fpb-content").html("");
+                    		$(".fpb-header").after(html);
+            			} */
             		},
             		error : function(){
-            			console.log("ajax통신실패");
+            			
             		}
+            		
             	});
             });
         	
@@ -222,24 +260,12 @@
                     }
                 
                 });
+            
+            
             });
 
 
-//        function funcId() {
-//            if (name == 1 && phone == 1) {
-//                return true;
-//            } else {
-//                $(".fib-msg").html("유효하지 않은 입력입니다.");
-//                return false;
-//            }
-//        };
-//
-//        function funcPw() {
-//            if (email == 1) {
-//                return true;
-//            } else {
-//                return false;
-//            }
+
         
 
     </script>

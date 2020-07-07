@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import kr.or.meister.chat.model.vo.ChatVO;
+import kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO;
+import kr.or.meister.coupon.model.vo.CouponVO;
 import kr.or.meister.member.model.dao.MemberDao;
 
 import kr.or.meister.member.model.vo.MemberDataVO;
@@ -105,6 +107,18 @@ public class MemberService {
 
 	public int joinMember(MemberVO m) {
 		return dao.joinMember(m);
+	}
+
+	public int changeForgottenPw(MemberVO m) {
+		return dao.changeForgottenPw(m);
+	}
+
+	public int welcomeCoupon(int memberNo) {
+		return dao.welcomeCoupon(memberNo);
+	}
+
+	public ArrayList<CouponJoinCouponIssuedVO> selectAllCoupon(int memberNo) {
+		return (ArrayList<CouponJoinCouponIssuedVO>)dao.couponMoalOpen(memberNo);
 	}
 
 }

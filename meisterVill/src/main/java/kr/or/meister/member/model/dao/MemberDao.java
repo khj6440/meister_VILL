@@ -1,5 +1,6 @@
 package kr.or.meister.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.meister.chat.model.vo.ChatVO;
+import kr.or.meister.coupon.model.vo.CouponVO;
 import kr.or.meister.member.model.vo.MemberCookieVO;
 import kr.or.meister.member.model.vo.MemberDataVO;
 import kr.or.meister.member.model.vo.MemberVO;
@@ -99,6 +101,19 @@ public class MemberDao {
 
 	public int joinMember(MemberVO m) {
 		return sqlSession.insert("member.joinMember",m);
+	}
+
+	public int changeForgottenPw(MemberVO m) {
+		return sqlSession.update("member.changeForgottenPw",m);
+	}
+
+	public int welcomeCoupon(int memberNo) {
+		return sqlSession.insert("member.welcomeCoupon",memberNo);
+	}
+
+	public List couponMoalOpen(int memberNo) {
+		return sqlSession.selectList("member.couponList", memberNo);
+				
 	}
 
 }

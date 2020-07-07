@@ -26,7 +26,7 @@
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
 
 
@@ -172,7 +172,7 @@
                 <div class="container">
                     <a class="navbar-brand" href="#">맞춤견적</a>
                     <a class="navbar-brand" href="#">커뮤니티</a>
-                    <a class="navbar-brand" href="#">마이스터</a>
+                    <a class="navbar-brand" href="/meister/member/meisterList.do">마이스터</a>
                     <a class="navbar-brand" href="#">프로젝트</a>
 
                 </div>

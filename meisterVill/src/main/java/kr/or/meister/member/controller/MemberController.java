@@ -14,7 +14,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,10 +31,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import kr.or.meister.chat.model.vo.ChatVO;
+import kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO;
 import kr.or.meister.member.model.service.MemberService;
 import kr.or.meister.member.model.vo.MemberDataVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
+import kr.or.meister.sell.model.vo.SellJoinOthersVO;
 
 @Controller
 @RequestMapping("/meister/member")
@@ -57,12 +58,24 @@ public class MemberController {
 
 		return "member/mypage";
 	}
+	
 	@ResponseBody
 	@RequestMapping(value="/joinMember.do",produces = "text/html;charset=utf-8")
 	public String joinMember(MemberVO m) {
+		//유라:회원가입
+		System.out.println("회원가입"+m.getMemberEmail());
 		int result = service.joinMember(m);
 		if(result>0) {
-			return "1";
+			//웰컴쿠폰 발급
+			MemberVO mem = service.selectLoginMember(m);
+			int result2 = service.welcomeCoupon(mem.getMemberNo());
+			if(result2>0) {
+				System.out.println("쿠폰 발급 완");
+				return "1";
+			}else {
+				System.out.println("쿠폰 ㄴㄴ");
+				return "0";
+			}
 		}else {
 			return "0";
 		}
@@ -146,6 +159,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/checkLogin.do", produces = "application/json;charset=utf-8")
 	public String checkLogin(MemberVO m, String loginMaintain) {
+		//유라:로그인 이메일 검사
 		System.out.println(m.getMemberEmail());
 		MemberVO member = service.checkLoginEmail(m.getMemberEmail());
 		if (member != null) {
@@ -156,6 +170,7 @@ public class MemberController {
 
 	@RequestMapping("/loginMember.do")
 	public String loginMember(HttpSession session, MemberVO m, String loginMaintain, HttpServletResponse response) {
+		//유라: 로그인
 		System.out.println("로그인 : " + m.getMemberEmail());
 		MemberVO member = service.selectLoginMember(m);
 		if (member != null) {
@@ -171,6 +186,7 @@ public class MemberController {
 
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
+		//유라: 로그아웃
 		session.invalidate();
 		return "redirect:/";
 	}
@@ -178,16 +194,17 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/findEmail.do", produces = "application/json;charset-utf-8")
 	public String findEmail(MemberVO m) {
+		//유라: 이메일 찾기
 		String memberEmail = service.findEmail(m);
 
-		System.out.println(memberEmail);
+		System.out.println("비번찾기"+memberEmail);
 		return new Gson().toJson(memberEmail);
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/mailSend.do", method = RequestMethod.POST, produces = "application/json;charset-utf-8")
 	public String mailSend(String memberEmail, Model model, HttpServletRequest request) {
-
+		//유라: 회원가입-이메일 인증키 메일전송
 		Random r = new Random();
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < 6; i++) {
@@ -215,7 +232,21 @@ public class MemberController {
 			InternetAddress to = new InternetAddress(memberEmail);
 			msg.setRecipient(Message.RecipientType.TO, to);
 			msg.setSubject("메일제목: 인증메일", "UTF-8");
-			msg.setContent("<h1>이메일 인증번호</h1><h3>[" + sb.toString() + "]", "text/html;charset=UTF-8");
+			
+			msg.setContent(
+					"    <div style='width:600px; height:400px; background-image: url(http://192.168.10.161/resources/yr/imgs/bg-5gray.png); background-position: bottom; background-repeat: no-repeat; background-size: 100%; padding: 50px; margin:100px auto; text-align: center; font-family: 'Noto Sans KR', sans-serif;'>" + 
+					"        <div>" + 
+					"            <div style='margin-top: 70px; color: #4d4d4d; font-size: 24px; font-weight: 700px;'>" + 
+					"                이메일 인증 번호" + 
+					"            </div>" + 
+					"            <div style='margin-top: 30px; font-size: 30px;'>" + 
+					sb.toString() + 
+					"            </div>" + 
+					"            <div class='margin-top: 20px;'>" + 
+					"                정확하게 입력 해 주세요." + 
+					"            </div>" + 
+					"        </div>" + 
+					"    </div>", "text/html;charset=UTF-8");
 			Transport.send(msg);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
@@ -227,6 +258,11 @@ public class MemberController {
 		}
 		return sb.toString();
 
+	}
+	@RequestMapping("/meisterList.do")
+	public String meisterList() {
+		//유라: 마이스터 찾기 페이지 이동
+		return "member/meisterList";
 	}
 
 	@RequestMapping(value = "/goChat.do")
@@ -285,11 +321,15 @@ public class MemberController {
 
 		return "test";
 	}
+	
 
 	@ResponseBody
-	@RequestMapping(value = "/mailSendLink.do", method = RequestMethod.POST, produces = "application/json;charset-utf-8")
-	public void mailSendLink(String memberEmail, Model model, HttpServletRequest request) {
-
+	@RequestMapping(value = "/mailSendLink.do", method = RequestMethod.POST)
+	public String mailSendLink(String memberEmail, Model model, HttpServletRequest request) {
+		//유라: 비밀번호 찾기 이메일 링크 전송
+		System.out.println("비번찾기"+memberEmail);
+		long time = System.currentTimeMillis();
+		System.out.println(time);
 		Properties prop = System.getProperties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
 		prop.put("mail.smtp.port", 465);
@@ -299,19 +339,37 @@ public class MemberController {
 
 		Session session = Session.getDefaultInstance(prop, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("meister@gmail.com", "meister0714!");
+				return new PasswordAuthentication("meister.vill0714@gmail.com", "meister0714!");
 			}
 		});
 		MimeMessage msg = new MimeMessage(session);
 		try {
 			msg.setSentDate(new Date());
-			msg.setFrom(new InternetAddress("meister@gmail.com", "마이스터빌"));
+			msg.setFrom(new InternetAddress("meister.vill0714@gmail.com", "마이스터빌"));
 			System.out.println(memberEmail);
 			InternetAddress to = new InternetAddress(memberEmail);
 			msg.setRecipient(Message.RecipientType.TO, to);
 			msg.setSubject("메일제목: 비밀번호 수정", "UTF-8");
-			msg.setContent("<h1>비밀번호 수정 링크:</h1>", "text/html;charset=UTF-8");
+			msg.setContent(
+					"    <div style='width:600px; height:400px; background-image: url(http://192.168.10.161/resources/yr/imgs/bg-5gray.png); background-position: bottom; background-repeat: no-repeat; background-size: 100%; padding: 50px; margin:100px auto; text-align: center; font-family: 'Noto Sans KR', sans-serif;'>" + 
+					"        <div>" + 
+					"            <div style='margin-top: 70px; color: #4d4d4d; font-size: 24px; font-weight: 700px;'>" + 
+					"                비밀번호 변경" + 
+					"            </div>" + 
+					"            <div style='margin-top: 30px; font-size: 30px;'>" + 
+					"<form action='http://192.168.10.161/meister/member/changePw.do' method='post'>" + 
+					"                    <input type='hidden' value="+time+" name='time'>" + 
+					"                    <input type='hidden' value="+memberEmail+" name='memberEmail'>" + 
+					"                    <button type='submit' style='border-radius: 4px; width: 300px; height: 45px; background-color: #FFBC42; border: white; font-family: 'Noto Sans KR', sans-serif;font-size: 17px; font-weight: 700; outline: 0 none; color: white;'>비밀번호 변경하기</button>" + 
+					"                </form>" + 
+					"            </div>" + 
+					"            <div class='margin-top: 20px;'>" + 
+					"                메일 수신 후 3시간 이내로 버튼을 누르면 해당 페이지로 이동합니다." + 
+					"            </div>" + 
+					"        </div>" + 
+					"    </div>", "text/html;charset=UTF-8");
 			Transport.send(msg);
+			
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -319,12 +377,14 @@ public class MemberController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return memberEmail;
 
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/checkEmail.do", produces = "text/html;charset=utf-8")
 	public String checkEmail(String memberEmail) {
+		//유라: 회원가입 - 이메일 중복검사
 		MemberVO m = service.checkLoginEmail(memberEmail);
 		if (m == null) {
 			return "0";
@@ -337,6 +397,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/checkNickname.do", produces = "text/html;charset=utf-8")
 	public String checkNickname(String memberNickname) {
+		//유라: 회원가입 - 닉네임 중복검사
 		MemberVO m = service.checkNickname(memberNickname);
 		if (m == null) {
 			return "0";
@@ -346,37 +407,79 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping("/coupon.do")
+	public String coupon() {
+		//유라: 쿠폰페이지 이동
+		return "member/coupon";
+	}
+	@RequestMapping("/joinEnd.do")
+	public String joinEnd() {
+		//유라: 회원가입 다음페이지 이동
+		return "member/joinEnd";
+	}
+	
+	@RequestMapping("/forgetIdPw.do")
+	public String forgetIdPw() {
+		//유라: 아이디. 비번찾기 페이지 이동
+		return "member/forgetIdPw";
+	}
+	
+	@RequestMapping("/join.do")
+	public String join() {
+		//유라: 회원가입 페이지 이동
+		return "member/join";
+	}
+	@RequestMapping("/purchaseSuccess.do")
+	public String purchaseSuccess() {
+		return "order/purchaseSuccess";
+	}
 	
 
 
-	@RequestMapping("/loginModalTest.do")
-	public String loginModalTest() {
-		return "member/loginModal";
+	@RequestMapping("/joinEmail.do")
+	public String joinEmail() {
+		return "member/joinEmail";
 	}
 
-	@RequestMapping("/forgetIdPw.do")
-	public String forgetIdPw() {
-		return "member/forgetIdPw";
-	}
+	
 
 	@RequestMapping("/changePw.do")
-	public String changePw() {
-		return "member/changePw";
+	public String changePw(String memberEmail, long time, Model m) {
+		//유라 : 비밀번호 변경페이지 링크 연결
+		long time2 = System.currentTimeMillis();
+		System.out.println(time2);
+		System.out.println(time);
+		long time3 = (long)((time2-time)/1000);
+		System.out.println("!!"+time3);
+		if(time3>60*60*3) {
+			System.out.println("링크 시간 초과!");
+			return "redirect:/";
+		}else {
+			m.addAttribute("memberEmail",memberEmail);
+			return "member/changePw";
+			
+		}
 	}
-
+	@ResponseBody
+	@RequestMapping(value="/changeForgottenPw.do", produces = "text/html;charset=utf-8")
+	public String changeForgottenPw(MemberVO m){
+		//유라: 비밀번호 변경
+		int result = service.changeForgottenPw(m);
+		if(result>0) {
+			return "0";
+		}else {
+			return "1";
+		}
+	}
+	
+	@RequestMapping("/goMain.do")
+	public String goMain() {
+		//유라: 메인 이동
+		return "redirect:/";
+	}
 	@RequestMapping("/pwChangeSuccessModalTest.do")
 	public String pwChangeSuccessModalTest() {
 		return "member/pwChangeSuccessModalTest";
-	}
-
-	@RequestMapping("/join.do")
-	public String join() {
-		return "member/join";
-	}
-
-	@RequestMapping("/joinInput.do")
-	public String joinInput() {
-		return "member/joinEnd";
 	}
 
 	@RequestMapping("/serviceTermModalTest.do")
@@ -403,15 +506,31 @@ public class MemberController {
 	public String forgetIdPwTest() {
 		return "member/forgetIdPwTest";
 	}
-
-	@RequestMapping("/joinEnd.do")
-	public String joinEnd() {
-		return "member/joinEnd";
+	@RequestMapping("/changePwLink.do")
+	public String changePwLink() {
+		return "member/pwLinkEmail";
 	}
-
-	@RequestMapping("/coupon.do")
-	public String coupon() {
-		return "member/coupon";
+	@RequestMapping("/couponListModal.do")
+	public String couponListModal() {
+		return "member/couponListModal";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/couponMoalOpen.do", produces = "application/json;charset=UTF-8")
+	public String couponMoalOpen(int memberNo){
+		ArrayList<CouponJoinCouponIssuedVO> arr = service.selectAllCoupon(memberNo);
+		return new Gson().toJson(arr);
+	}
+	
+
+	
+	@RequestMapping("/order.do")
+	public String order(SellJoinOthersVO sjo, Model model) {
+		model.addAttribute("sell",sjo.getSellvo());
+		model.addAttribute("member",sjo.getMembervo());
+		model.addAttribute("options",sjo.getOptionsvo());
+		return "order/order";
+	}
+	
 
 }
