@@ -444,7 +444,7 @@ ul.list-style-none li a:hover {
 		}
 		$(function() {
 			connect();
-			transChat();
+			/* transChat(); */
 			
 		});
 	

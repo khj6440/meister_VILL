@@ -31,4 +31,9 @@ public class ProjectDao {
 		List result = sqlSession.selectList("project.selectProjectMember",list);
 		return (ArrayList<MemberVO>)result;
 	}
+
+	public int insertProjectChat(ProjectChatVO pc) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("project.insertProjectChat",pc);
+	}
 }

@@ -40,6 +40,7 @@ public class ProjectController {
 		
 		ArrayList<MemberVO> members = service.seletProjectMember(e.getProjectMembers());
 		ArrayList<ProjectChatVO> chats = service.selectProjectChat(projectNo);
+		model.addAttribute("projectNo",projectNo);
 		model.addAttribute("chats",chats);
 		model.addAttribute("members",members);
 		return "project/pChat";
@@ -58,5 +59,9 @@ public class ProjectController {
 	@RequestMapping(value = "/files.do")
 	public String files() {
 		return "project/pFiles";
+	}
+	@RequestMapping(value="/goFiles.do")
+	public String files2() {
+		return "project/ttt";
 	}
 }
