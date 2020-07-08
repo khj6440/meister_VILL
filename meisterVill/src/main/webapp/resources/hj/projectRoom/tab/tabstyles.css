@@ -21,6 +21,7 @@
 
 .tabs-style-bar nav ul li a:hover{
 	color: #FFBC42;
+	text-decoration: none;
 }
 
 .tabs-style-bar nav ul li a span {

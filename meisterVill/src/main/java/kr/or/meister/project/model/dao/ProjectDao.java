@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.meister.employ.model.vo.EmployVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.project.model.vo.ProjectChatVO;
+import kr.or.meister.project.model.vo.ProjectFileVO;
 
 @Repository("projectDao")
 public class ProjectDao {
@@ -33,7 +34,15 @@ public class ProjectDao {
 	}
 
 	public int insertProjectChat(ProjectChatVO pc) {
-		// TODO Auto-generated method stub
 		return sqlSession.insert("project.insertProjectChat",pc);
+	}
+
+	public int insertProjectFile(ProjectFileVO newFile) {
+		return sqlSession.insert("project.insertProjectFile",newFile);
+	}
+
+	public ArrayList<ProjectFileVO> selectProjectFile(int projectNo) {
+		List list =  sqlSession.selectList("project.selectProjectFile",projectNo);
+		return (ArrayList<ProjectFileVO>)list;
 	}
 }

@@ -260,21 +260,10 @@ public class MemberController {
 		return gson.toJson(list);
 	}
 
-//	@RequestMapping(value = "/goProject.do")
-//	public String project() {
-//		// hyeokjin
-//		return "project/pHome";
-//	}
-//	@RequestMapping(value = "/goProjectIntro.do")
-//	public String project2() {
-//		// hyeokjin
-//		return "project/pIntro";
-//	}
-
 	@RequestMapping(value = "/message.do")
 	public String message() {
 		// hyeokjin
-		return "common/message2";
+		return "common/message";
 	}
 
 	@ResponseBody
@@ -300,42 +289,9 @@ public class MemberController {
 		int result = service.readMsg(msgNo);
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/uploadChatFile.do",produces = "text/html;charset=utf-8")
-	public String uploadChatFile(HttpServletRequest request, MultipartFile file) {
-		// hyeokjin
-		String resultStr = null;
-		if (!file.isEmpty()) {
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/chat/");
-			// 업로드한 파일의 실제 파일명
-			String originalFilename = file.getOriginalFilename();
-			// 확장자를 제외한 파일명 ->text
-			String onlyFilename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
-			// 확장자 ->.txt
-			String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
-			String filepath = onlyFilename + "_" + Calendar.getInstance().getTimeInMillis()+ extension;
-			String fullpath = savePath + filepath;
 
-			resultStr = originalFilename+":"+filepath;
-			
-			try {
-				byte[] bytes = file.getBytes();
-				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));
-				bos.write(bytes);
-				bos.close();
-				System.out.println("파일 업로드 완료");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-		System.out.println("resultStr: "+resultStr);
-		return resultStr;
-	}
-	
 	@ResponseBody
-	@RequestMapping(value = "/uploadChatFile2.do", produces = "text/html;charset=utf-8")
+	@RequestMapping(value = "/uploadChatFile.do", produces = "text/html;charset=utf-8")
 	public String uploadChatFile2(HttpServletRequest request, MultipartHttpServletRequest mtfRequest) {
 		// hyeokjin
 		List<MultipartFile> fileList = mtfRequest.getFiles("file");

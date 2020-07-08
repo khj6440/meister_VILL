@@ -19,11 +19,9 @@
 	<c:if test="${not empty sessionScope.member }">
 		<h1>[${sessionScope.member.memberNickname }]</h1>
 		<a href="/meister/member/goChat.do">쪽지함</a><br>
-		<a href="/meister/member/goProject.do">프로젝트룸</a><br>
-		<a href="/meister/project/home.do?projectNo=1">프로젝트 인트로(1번프로젝트)</a><br>
-		<a href="/meister/project/home.do?projectNo=21">프로젝트 인트로(21번프로젝)</a><br>
+		<a href="/meister/project/home.do?projectNo=1">프로젝트 룸(1번프로젝트)</a><br>
+		<a href="/meister/project/home.do?projectNo=21">프로젝트 룸(21번프로젝)</a><br>
 		<a href="/meister/member/message.do">메세지</a><br>
-		<a href="/meister/project/goFiles.do">파일</a><br>
 		<a href="/meister/member/logout.do">로그아웃</a><br>
 		
 	</c:if>

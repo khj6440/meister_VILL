@@ -36,7 +36,7 @@
 		<typeAlias type="kr.or.meister.admin.model.vo.SellSellVO" alias="sellSell"/>
 		<typeAlias type="kr.or.meister.employ.model.vo.EmployVO" alias="project"/>
 		<typeAlias type="kr.or.meister.project.model.vo.ProjectChatVO" alias="pChat"/>
-		
+		<typeAlias type="kr.or.meister.project.model.vo.ProjectFileVO" alias="pFile"/>
 	</typeAliases>
 	
 </configuration>

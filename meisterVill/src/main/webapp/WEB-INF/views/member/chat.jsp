@@ -47,7 +47,7 @@ ul.list-style-none li a:hover {
 	<!-- ============================================================== -->
 
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	<jsp:include page="/WEB-INF/views/common/message2.jsp" />
+	<jsp:include page="/WEB-INF/views/common/message.jsp" />
 
 	<div id="main-wrapper" data-theme="light" data-layout="vertical"
 		data-navbarbg="skin6" data-sidebartype="full"
@@ -211,7 +211,7 @@ ul.list-style-none li a:hover {
                  }
 
             	$.ajax({
-					url : "/meister/member/uploadChatFile2.do",
+					url : "/meister/member/uploadChatFile.do",
 					data : formData,
 					type : "POST",
 					contentType : false,
@@ -235,7 +235,7 @@ ul.list-style-none li a:hover {
               	var form = $('#uploadForm')[0];
 			    var formData = new FormData(form);
             	$.ajax({
-					url : "/meister/member/uploadChatFile2.do",
+					url : "/meister/member/uploadChatFile.do",
 					data : formData,
 					type : "POST",
 					contentType : false,

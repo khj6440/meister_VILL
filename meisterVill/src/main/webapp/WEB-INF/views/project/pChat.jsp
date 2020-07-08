@@ -89,12 +89,12 @@ html, body {
 								<li><a href="/meister/project/chat.do?projectNo=${projectNo }"
 									style="background-color: #FFBC42; color: white;"><i
 										style="margin-right: 15px;" class="far fa-comments"></i><span>Chat</span></a></li>
-								<li><a href="/meister/project/todo.do"><i
+								<li><a href="/meister/project/todo.do?projectNo=${projectNo }"><i
 										style="margin-right: 15px;" class="fas fa-list-ul"></i><span>To
 											do</span></a></li>
-								<li><a href="/meister/project/schedule.do"><i
+								<li><a href="/meister/project/schedule.do?projectNo=${projectNo }"><i
 										style="margin-right: 15px;" class="far fa-calendar-alt"></i><span>Schedule</span></a></li>
-								<li><a href="/meister/project/files.do"><i
+								<li><a href="/meister/project/files.do?projectNo=${projectNo }"><i
 										style="margin-right: 15px;" class="far fa-file"></i><span>Files</span></a></li>
 							</ul>
 						</nav>
@@ -126,7 +126,7 @@ html, body {
 					<!-- Page wrapper  -->
 					<!-- ============================================================== -->
 					<div class="page-wrapper"
-						style="padding-top: 0px; margin-left: 0px;">
+						style="padding-top: 0px; margin-left: 8%;margin-right:8%;">
 						<!-- ============================================================== -->
 						<!-- Bread crumb and right sidebar toggle -->
 						<!-- ============================================================== -->
@@ -305,7 +305,7 @@ html, body {
 							</div>
 						</div>
 						<form id="uploadForm">
-							<input style="display: none;" id="myFile" type="file" name="file"
+							<input style="display: none;" id="myFile" type="file" name="file[]"
 								multiple="multiple">
 						</form>
 						<!-- ============================================================== -->
@@ -324,11 +324,11 @@ html, body {
 				style="margin-right: 15px;" class="fas fa-home"></i>Home</a> <a
 				href="/meister/project/chat.do?projectNo=${projectNo }" class=""><i
 				style="margin-right: 15px;" class="far fa-comments"></i>Chat</a> <a
-				href="/meister/project/todo.do" class=""><i
+				href="/meister/project/todo.do?projectNo=${projectNo }" class=""><i
 				style="margin-right: 15px;" class="fas fa-list-ul"></i>To do</a> <a
-				href="/meister/project/schedule.do" class=""><i
+				href="/meister/project/schedule.do?projectNo=${projectNo }" class=""><i
 				style="margin-right: 15px;" class="far fa-calendar-alt"></i>Schedule</a>
-			<a href="/meister/project/files.do" class=""><i
+			<a href="/meister/project/files.do?projectNo=${projectNo }" class=""><i
 				style="margin-right: 15px;" class="far fa-file"></i>Files</a>
 		</nav>
 	</div>
@@ -352,22 +352,23 @@ html, body {
 		obj.on("drop", function(e) {
 			e.preventDefault();
 			$(this).css('border', 'none');
+			
 			var files = e.originalEvent.dataTransfer.files;
 			var formData = new FormData();
-
 			for (var i = 0; i < files.length; i++) {
-				formData.append('file', files[i]);
+				formData.append('file[]', files[i]);
 			}
-
+			formData.append("projectNo","${projectNo}");
+			formData.append("pFileWriter","${sessionScope.member.memberNickname}");
+			
 			$.ajax({
-				url : "/meister/member/uploadChatFile2.do",
+				url : "/meister/project/uploadProjectFile.do",
 				data : formData,
 				type : "POST",
 				contentType : false,
 				processData : false,
 				enctype : 'multipart/form-data',
 				success : function(data) {
-					console.log("통신성공")
 					var resultList = JSON.parse(data);
 					resultList.forEach(function(item, index) {
 						transChat(item);
@@ -383,8 +384,10 @@ html, body {
 
 			var form = $('#uploadForm')[0];
 			var formData = new FormData(form);
+			formData.append("projectNo","${projectNo}");
+			formData.append("pFileWriter","${sessionScope.member.memberNickname}");
 			$.ajax({
-				url : "/meister/member/uploadChatFile2.do",
+				url : "/meister/project/uploadProjectFile.do",
 				data : formData,
 				type : "POST",
 				contentType : false,
@@ -423,14 +426,14 @@ html, body {
 		} else {
 			var arr = param.split(":");
 			var extensions = [ ".jpg", ".gif", ".png", ".JPG", ".PNG", ".GIF" ];
-			msg = `<a href="/meister/member/chatFileDownload.do?filename=`
+			msg = `<a href="/meister/project/projectFileDownload.do?filename=`
 					+ arr[0] + `&filepath=` + arr[1] + `"style="color:red;">`;
 			msg += arr[0];
 
 			for (var i = 0; i < extensions.length; i++) {
 				if (arr[0].substring(arr[0].lastIndexOf(".")) == extensions[i]) {
 					msg += `<br>`;
-					msg += `<img style="width:300px;height:220px;" src="/resources/upload/chat/`+arr[1]+`">`;
+					msg += `<img style="width:300px;height:220px;" src="/resources/upload/project/file/`+arr[1]+`">`;
 					break;
 				}
 			}
@@ -491,7 +494,6 @@ html, body {
 						+ minutes,
 				msg : msg
 			};
-			console.log("채팅침");
 			ws.send(JSON.stringify(sendMsg));
 		}
 

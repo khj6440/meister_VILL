@@ -68,9 +68,9 @@ html, body {
 							<ul>
 								<li><a href="/meister/project/home.do?projectNo=${project.employNo }"  style="background-color: #FFBC42; color: white;"><i style="margin-right: 15px" class="fas fa-home"></i><span>Home</span></a></li>
 								<li><a href="/meister/project/chat.do?projectNo=${project.employNo }"><i style="margin-right: 15px;"class="far fa-comments"></i><span>Chat</span></a></li>
-								<li><a href="/meister/project/todo.do" ><i style="margin-right: 15px;"class="fas fa-list-ul"></i><span>To do</span></a></li>
-								<li><a href="/meister/project/schedule.do"><i style="margin-right: 15px;"class="far fa-calendar-alt"></i><span>Schedule</span></a></li>
-								<li><a href="/meister/project/files.do"><i style="margin-right: 15px;"class="far fa-file"></i><span>Files</span></a></li>
+								<li><a href="/meister/project/todo.do?projectNo=${project.employNo }" ><i style="margin-right: 15px;"class="fas fa-list-ul"></i><span>To do</span></a></li>
+								<li><a href="/meister/project/schedule.do?projectNo=${project.employNo }"><i style="margin-right: 15px;"class="far fa-calendar-alt"></i><span>Schedule</span></a></li>
+								<li><a href="/meister/project/files.do?projectNo=${project.employNo }"><i style="margin-right: 15px;"class="far fa-file"></i><span>Files</span></a></li>
 							</ul>
 						</nav>
 					</div>
@@ -90,9 +90,9 @@ html, body {
 		<nav class="outer-nav right vertical">
 			<a href="/meister/project/home.do?projectNo=${project.employNo }" class=""><i style="margin-right: 15px;" class="fas fa-home"></i>Home</a> 
 			<a href="/meister/project/chat.do?projectNo=${project.employNo }" class=""><i style="margin-right: 15px;"class="far fa-comments"></i>Chat</a> 
-			<a href="/meister/project/todo.do" class=""><i style="margin-right: 15px;"class="fas fa-list-ul"></i>To do</a>
-			<a href="/meister/project/schedule.do" class=""><i style="margin-right: 15px;"class="far fa-calendar-alt"></i>Schedule</a> 
-			<a href="/meister/project/files.do"	class=""><i style="margin-right: 15px;"class="far fa-file"></i>Files</a>
+			<a href="/meister/project/todo.do?projectNo=${project.employNo }" class=""><i style="margin-right: 15px;"class="fas fa-list-ul"></i>To do</a>
+			<a href="/meister/project/schedule.do?projectNo=${project.employNo }" class=""><i style="margin-right: 15px;"class="far fa-calendar-alt"></i>Schedule</a> 
+			<a href="/meister/project/files.do?projectNo=${project.employNo }"	class=""><i style="margin-right: 15px;"class="far fa-file"></i>Files</a>
 		</nav>
 	</div>
 </body>

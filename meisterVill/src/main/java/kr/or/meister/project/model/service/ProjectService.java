@@ -11,6 +11,7 @@ import kr.or.meister.employ.model.vo.EmployVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.project.model.dao.ProjectDao;
 import kr.or.meister.project.model.vo.ProjectChatVO;
+import kr.or.meister.project.model.vo.ProjectFileVO;
 
 @Service("projectService")
 public class ProjectService {
@@ -35,6 +36,14 @@ public class ProjectService {
 		}
 		
 		return dao.selectProjectMember(list);
+	}
+
+	public int insertProjectFile(ProjectFileVO newFile) {
+		return dao.insertProjectFile(newFile);
+	}
+
+	public ArrayList<ProjectFileVO> selectProjectFile(int projectNo) {
+		return dao.selectProjectFile(projectNo);
 	}
 	
 	

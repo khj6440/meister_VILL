@@ -72,4 +72,23 @@
 		(project_chat_seq.nextval,#{projectNo},#{pChatSender},#{pChatContent},#{pChatTime},#{pChatImg})
 	</insert>
 	
+	<insert id="insertProjectFile" parameterType="pFile">
+		insert into project_file values
+		(project_file_seq.nextval,#{projectNo},#{pFileWriter},#{pFilename},#{pFilepath},to_char(SYSDATE,'YYYY-MM-DD/HH24:mi:ss'))
+	</insert>
+	
+	<select id="selectProjectFile" parameterType="int" resultType="pFile">
+		select
+			p_file_no as pFileNo,
+			project_no as projectNo,
+			p_file_writer as pFileWriter,
+			p_filename as pFilename,
+			p_filepath as pFilepath,
+			p_file_time as pFileTime
+		from 
+			project_file
+		where 
+			project_no =#{_parameter}		
+	</select>
+	
 </mapper>
