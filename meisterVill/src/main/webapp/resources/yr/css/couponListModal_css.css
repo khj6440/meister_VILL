@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-        .modal-title {
+   
+         .modal-title {
             font-weight: 900;
         }
 
@@ -18,6 +19,7 @@
         .coupon-list {
             width: 100%;
             height: 300px;
+            overflow-x: hidden;
             overflow-y: scroll;
             border: 1px solid #dbdbdb;
             border-radius: 8px;
@@ -38,7 +40,7 @@
             font-size: 13px;
         }
 
-        .one-coupon>label>input[type=radio] {
+        .one-coupon>label>input[type=checkbox] {
             display: none;
 
         }
@@ -47,8 +49,8 @@
             color: #4d4d4d;
         }
 
-        .one-coupon>label>input[type=radio]:checked+.chk-circle,
-        .one-coupon>label>input[type=radio]:checked+.chk-circle+label {
+        .one-coupon>label>input[type=checkbox]:checked+.chk-circle,
+        .one-coupon>label>input[type=checkbox]:checked+.chk-circle+label {
             color: #ffbc42;
         }
 
@@ -69,10 +71,11 @@
 
         .discount-div>div:last-child {
             font-size: 23px;
+            text-align: right;
             font-weight: 900;
             color: #ffbc42;
             margin-top: 10px;
-            margin-left: 50px;
+            margin-left: 10px;
         }
 
         .discount-btn {
@@ -85,5 +88,4 @@
             height: 45px;
             margin-top: 30px;
         }
-
-
+ 

@@ -31,7 +31,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import kr.or.meister.chat.model.vo.ChatVO;
+import kr.or.meister.coupon.model.vo.CouponApplyVO;
 import kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO;
+import kr.or.meister.coupon.model.vo.CouponJoinMemberVO;
 import kr.or.meister.member.model.service.MemberService;
 import kr.or.meister.member.model.vo.MemberDataVO;
 import kr.or.meister.member.model.vo.MemberVO;
@@ -518,18 +520,47 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/couponMoalOpen.do", produces = "application/json;charset=UTF-8")
 	public String couponMoalOpen(int memberNo){
+		//유라: 구매화면에서 쿠폰모달 오픈
 		ArrayList<CouponJoinCouponIssuedVO> arr = service.selectAllCoupon(memberNo);
 		return new Gson().toJson(arr);
 	}
 	
-
+	@RequestMapping("/couponWriteFrm.do")
+	public String couponWriteFrm() {
+		//유라: 쿠폰이벤트 작성 페이지 이동
+		 return "member/couponWrite";
+	}
 	
 	@RequestMapping("/order.do")
 	public String order(SellJoinOthersVO sjo, Model model) {
+		//유라: 구매하기 버튼 누름
+		ArrayList<CouponJoinCouponIssuedVO> arrCjci = service.selectAllCoupon(sjo);
 		model.addAttribute("sell",sjo.getSellvo());
 		model.addAttribute("member",sjo.getMembervo());
 		model.addAttribute("options",sjo.getOptionsvo());
+		int cnt = arrCjci.size();
+		model.addAttribute("couponCnt",cnt);
 		return "order/order";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/couponApply.do", produces="application/json;charset=UTF-8")
+	public String couponApply(CouponApplyVO cav) {
+		//유라: 쿠폰 적용 버튼 누름
+		System.out.println(cav.getTotalDiscount());
+		return new Gson().toJson(cav);
+	}
+	@RequestMapping("/carouselTestFrm.do")
+	public String carouselTestFrm() {
+		//유라: 캐러셀 테스트
+		
+		return "member/test";
+	}
+	@RequestMapping("/carouselTestFrm2.do")
+	public String carouselTestFrm2() {
+		//유라: 캐러셀 테스트2
+		
+		return "member/test2";
 	}
 	
 

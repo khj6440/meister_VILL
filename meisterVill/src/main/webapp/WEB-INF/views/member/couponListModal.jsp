@@ -6,25 +6,13 @@
 <head>
     <title>couponListModal</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-    <link type="text/css" href="/resources/yr/css/couponListModal_css.css" rel="stylesheet">
+
+    <link type="text/css" href="/resources/yr/css/couponListModal_css.css?after" rel="stylesheet">
 </head>
 
 <body>
-    
-    <jsp:include page="/WEB-INF/views/common/header.jsp" />
-    <div class="content-box-yr">
-        <div class="container">
-            <h2>Large Modal</h2>
-            <!-- Button to Open the Modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#couponListModal">
-                Open modal
-            </button>
+
 
             <!-- The Modal -->
             <div class="modal fade" id="couponListModal">
@@ -40,29 +28,41 @@
                         <!-- Modal body -->
                         <div class="modal-body">
                             <div class="modal-wrapper">
-                                <div class="content-box">
+                                <div class="content-box-m">
                                     <div class="page-title">적용 가능한 쿠폰</div>
                                     <div class="coupon-list">
                                         <div class="one-coupon">
 
                                             <label>
-                                                <input type="radio" value="none" name="one-coupon" id="none">
+                                                <input type="checkbox" class="a-coupon" value="0" name="none-coupon" id="none" checked>
                                                 <i class="fa fa-check-circle-o chk-circle" aria-hidden="true"></i>
-                                                사용 안함</label>
+                                                <span>사용안함</span>
+                                            </label>
                                         </div>
-                                        <div class="one-coupon">
+                                        <div class="one-coupon coupons">
                                             <label>
-                                                <input type="radio" value="none" name="one-coupon">
+                                                <input type="checkbox" class="a-coupon" value="100">
                                                 <i class="fa fa-check-circle-o chk-circle" aria-hidden="true"></i>
-                                                쿠폰이름</label>
+                                                <span>쿠폰이름1</span>
+                                            </label>
                                             <div class="coupon-content">1000원이상 구매시 어쩌구저쩌구</div>
                                             <div class="coupon-period">20일 남음</div>
                                         </div>
-                                        <div class="one-coupon">
+                                        <div class="one-coupon coupons">
                                             <label>
-                                                <input type="radio" value="none" name="one-coupon">
+                                                <input type="checkbox" class="a-coupon" value="1000">
                                                 <i class="fa fa-check-circle-o chk-circle" aria-hidden="true"></i>
-                                                쿠폰이름</label>
+                                                <span>쿠폰이름2</span>
+                                            </label>
+                                            <div class="coupon-content">1000원이상 구매시 어쩌구저쩌구</div>
+                                            <div class="coupon-period">20일 남음</div>
+                                        </div>
+                                        <div class="one-coupon coupons">
+                                            <label>
+                                                <input type="checkbox" class="a-coupon" value="500">
+                                                <i class="fa fa-check-circle-o chk-circle" aria-hidden="true"></i>
+                                                <span>쿠폰이름3</span>
+                                            </label>
                                             <div class="coupon-content">1000원이상 구매시 어쩌구저쩌구</div>
                                             <div class="coupon-period">20일 남음</div>
                                         </div>
@@ -83,26 +83,87 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-    
-    
+
+
     <script>
-        $(function(){
-            var index = $("input[type=radio]").last().index();
-            $("#none").change(function(){
-                if($("#none:checked")){
-                    for(var i=1; i<=index;i++){
-                        $("input[type=checkbox]").eq(i).prop("type", "radio");
-                    }
-                }else{
-                    for(var i=1; i<=index;i++){
-                        $("input[type=checkbox]").eq(i).prop("type", "radio");
-                    }
+        $(function() {
+            $("#none").change(function() {
+                if ($("#none:checked")) {
+                    $(".coupons").children("label").children("input").prop("checked", false);
                 }
             });
+            $(".coupons").children("label").children("input").change(function() {
+                $("#none").prop("checked", false);
+            });
+
+            $("input[type=checkbox]").change(function() {
+                if ($(this).is(":checked")) {
+                    $(this).next().next().addClass("chk");
+                }else{
+                    $(this).next().next().removeClass("chk");
+                }
+            });
+
+
+            //쿠폰 금액 합산
+            var totalDiscount = 0;
+            $(".a-coupon").change(function() {
+                console.log("시작");
+                var index = $(".a-coupon").index($(this));
+                console.log(index);
+                if ($(this).is(":checked")) {
+                    console.log("dd");
+                    //체크
+                    if (index == 0) {
+                        console.log("0");
+                        totalDiscount = 0;
+                    } else {
+                        console.log("0아님");
+                        totalDiscount += Number($(this).val());
+                    }
+                } else {
+                    totalDiscount -= Number($(this).val());
+                }
+                console.log(totalDiscount);
+                $(".discount-div").children().eq(1).html("");
+                $(".discount-div").children().eq(1).html(totalDiscount + "원");
+            });
+
+            $("#discBtn").click(function() {
+                var arrCouponName = $(".chk");
+                for(var i=0;i<arrCouponName.length;i++){
+                    console.log("**" + arrCouponName.eq(i).html());
+                }
+                var arrCouponPrice = $(".chk").siblings("input");
+                for(var i=0;i<arrCouponPrice.length;i++){
+                    console.log("##"+arrCouponPrice.eq(i).val());
+                }
+                $.ajax({
+                	url: "/meister/member/couponApply.do",
+                	data: {arrCouponName:arrCouponName, arrCouponPrice:arrCouponPrice, totalDiscount:totalDiscount},
+                	type: "post",
+                	success: function(data){
+                		var html= "";
+                		console.log("success");
+                		console.log(data.totalDiscount);
+                		$("#couponListModal").modal("hide");
+                		for(var i=0; i<data.arrCouponName.length;i++){
+	                		html +="<tr><td>"+data.arrCouponName[i]+"</td>";
+	                        html +="<td>"+data.arrCouponPrice[i]+"</td></tr>";          			
+                		}
+                		$(".ct2").children("tbody").append(html);
+                        $(".coupon-price").children().eq(1).html(data.totalDiscount);
+                	},
+                	error: function(){
+                		console.log("ajax 통신 실패");
+                	}
+                });
+            });
         });
+
     </script>
+    
+    
 
 
 </body>

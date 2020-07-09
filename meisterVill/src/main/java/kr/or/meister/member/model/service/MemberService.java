@@ -18,6 +18,7 @@ import kr.or.meister.member.model.vo.MemberDataVO;
 import kr.or.meister.member.model.vo.MemberCookieVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
+import kr.or.meister.sell.model.vo.SellJoinOthersVO;
 
 @Service("memberService")
 public class MemberService {
@@ -116,9 +117,14 @@ public class MemberService {
 	public int welcomeCoupon(int memberNo) {
 		return dao.welcomeCoupon(memberNo);
 	}
-
-	public ArrayList<CouponJoinCouponIssuedVO> selectAllCoupon(int memberNo) {
+	public ArrayList<CouponJoinCouponIssuedVO> selectAllCoupon(int memberNo) {	
 		return (ArrayList<CouponJoinCouponIssuedVO>)dao.couponMoalOpen(memberNo);
 	}
+
+	public ArrayList<CouponJoinCouponIssuedVO> selectAllCoupon(SellJoinOthersVO sjo) {
+		return (ArrayList<CouponJoinCouponIssuedVO>)dao.selectAllCoupon(sjo);
+	}
+
+
 
 }

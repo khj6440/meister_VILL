@@ -36,7 +36,7 @@
                             </c:if>
                         </div>
                         <div>${sell.sellWriter }</div>
-                        <
+                        
                     </div>
                 </div>
             </div>
@@ -92,8 +92,8 @@
                 <div class="ct-calculate">
                     <div class="ct1">
                         <div class="available-coupon">사용가능한 쿠폰</div>
-                        <div class="coupon-cnt">(0)</div>
-                        <button type="button" id="couponModalBtn" class="btn btn-yr-normal-gray">쿠폰선택</button>
+                        <div class="coupon-cnt">(${couponCnt })</div>
+                        <button type="button" id="couponModalBtn" class="btn btn-yr-normal-gray" data-toggle="modal" data-target="#couponListModal">쿠폰선택</button>
                     </div>
                     <div class="ct2">
                         <table id="coupon-table">
@@ -111,7 +111,7 @@
                 <div class="ct-price">
                     <div class="total-price">
                         <div>총 서비스 금액</div>
-                        <div>1,000원</div>
+                        <div>$</div>
                     </div>
 
                     <div class="coupon-price">
@@ -147,7 +147,7 @@
     <script>
     	$(function(){
             $("#couponModalBtn").click(function(){
-                var memberEmail = ${sessionScope.member.memberNo};
+                var memberEmail = "${sessionScope.member.memberNo}";
                 $.ajax({
                 	url:"/meister/member/couponMoalOpen.do",
                 	data: {memberNo:memberNo},
@@ -169,6 +169,7 @@
 
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/views/member/couponListModal.jsp"/>
 
 </body>
 

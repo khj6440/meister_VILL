@@ -140,9 +140,33 @@
             coupon_status as couponStatus,
             coupon_end as couponEnd,
             coupon_content as couponContent,
-            coupon_img as couponImg
+            coupon_img as couponImg,
+            coupon_limit_money as couponLimitMoney
 		from coupon_issued
         left join coupon on (coupon_issued_coupon_no=coupon_no)
-		where coupon_issued_member_no=#{memberNo} and coupon_issued_check=0 and (to_date(coupon_issued_end)-sysdate)>0;
+		where coupon_issued_member_no=#{memberNo} and coupon_issued_check=0 and (to_date(coupon_issued_end)-sysdate)>0 and #{sellPrice}>coupon_limit_money;
 	</select>
+	
+	<select id="selectAvailableCoupon" parameterType="sjo" resultType="couponJoinCouponIssued">
+		select
+			coupon_issued_no as couponIssouedNo,
+			coupon_issued_member_no as couponIssuedMemberNo,
+			coupon_issued_coupon_no as couponIssuedCouponNo,
+			coupon_issued_check as couponIssuedCheck,
+			coupon_issued_start as couponIssuedStart,
+			coupon_issued_end as couponIssuedEnd,
+            coupon_name as couponName,
+            coupon_time_limit as couponTimeLimit,
+            coupon_money as couponMoney,
+            coupon_status as couponStatus,
+            coupon_end as couponEnd,
+            coupon_content as couponContent,
+            coupon_img as couponImg,
+            coupon_limit_money as couponLimitMoney
+		from coupon_issued
+        left join coupon on (coupon_issued_coupon_no=coupon_no)
+		where coupon_issued_member_no=#{memberNo} and coupon_issued_check=0 and (to_date(coupon_issued_end)-sysdate)>0 and #{sellPrice}>coupon_limit_money;
+	</select>
+	
+	
 </mapper>

@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.meister.chat.model.vo.ChatVO;
+import kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO;
 import kr.or.meister.coupon.model.vo.CouponVO;
 import kr.or.meister.member.model.vo.MemberCookieVO;
 import kr.or.meister.member.model.vo.MemberDataVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
+import kr.or.meister.sell.model.vo.SellJoinOthersVO;
 
 @Repository("memberDao")
 public class MemberDao {
@@ -114,6 +116,9 @@ public class MemberDao {
 	public List couponMoalOpen(int memberNo) {
 		return sqlSession.selectList("member.couponList", memberNo);
 				
+	}
+	public List selectAllCoupon(SellJoinOthersVO sjo) {
+		return sqlSession.selectList("member.selectAvailableCoupon",sjo);
 	}
 
 }
