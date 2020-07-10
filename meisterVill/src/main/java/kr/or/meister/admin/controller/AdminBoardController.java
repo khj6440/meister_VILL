@@ -1,5 +1,6 @@
 package kr.or.meister.admin.controller;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -112,8 +113,9 @@ public class AdminBoardController {
 	@ResponseBody
 	@RequestMapping(value="/sellAllView.do", produces="application/json; charset=utf-8;")
 	public String sellAllView(int reqPage, int memberNo) {
-					
+
 		selectAllSellPageVO srp = service.sellAllView(reqPage, memberNo);
+		
 		
         return new Gson().toJson(srp); 
 	}

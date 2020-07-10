@@ -2,6 +2,7 @@ package kr.or.meister.admin.controller;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -196,6 +197,7 @@ public class AdminController {
 		
 	@RequestMapping(value="/memberOneViewFrm.do")
 	public String memberOneViewFrm(HttpServletRequest request, int memberNo) {
+		NumberFormat df = NumberFormat.getNumberInstance();
 		MemberJoinVO member = new MemberJoinVO();
 		System.out.println("회원번호 : "+memberNo);
 		member = service.memberOneView(memberNo);
@@ -222,9 +224,9 @@ public class AdminController {
 
 		}
 	
-		request.setAttribute("listNum", listNum);
-		request.setAttribute("price", sellHigh);
-		request.setAttribute("sum", sum);
+		request.setAttribute("listNum", df.format(listNum));
+		request.setAttribute("price", df.format(sellHigh));
+		request.setAttribute("sum", df.format(sum));
 		request.setAttribute("so", sellOrderList);
 		request.setAttribute("m", member);
 		request.setAttribute("s", sellList);
@@ -293,67 +295,27 @@ public class AdminController {
 				request.setAttribute("totalCnt", totalCnt);
 				return "admin/memberDeletionView.jsp?"+reqPage;
 			}
-	
+			
 	
 	@RequestMapping(value="/adminIndexFrm.do")
 	public String adminIndexFrm(HttpServletRequest request) {
-		
-		/*
-		 * ArrayList<Integer> member = new ArrayList<Integer>(); ArrayList<Integer>
-		 * price = new ArrayList<Integer>();
-		 */
-		DecimalFormat df = new DecimalFormat("#,###");
+
+
+		NumberFormat df = NumberFormat.getNumberInstance();
 		MemberStatsVO ms = service.memberStats();
 		SellStatsVO ss = service.sellStats();
 		SellAndRequestVO saq = service.sellAndRequest();
 		SellAndRequestVO oneMemberSaq = service.oneMemberSellAndRequest();
-		
+		int allSum = 0;
+		int allMember = 0;
+		int sellSum = 0;
+		int sellMember = 0;
+		int requestSum = 0;
+		int requestMember = 0;
 		int sellRequestSum = 0;
-		int requestSum = oneMemberSaq.getRs().get(0).getRequestPrice();
-		int requestMember =  Integer.parseInt(oneMemberSaq.getRs().get(0).getRequestResMembers());
-		
-		
-/*-----------------------------------------sell최대 가격 구하기-------------------------------------------------------------*/
-		
-	
-		for(int i=0; i<oneMemberSaq.getSs().size(); i++) {
-			oneMemberSaq.getSs().get(i).setSellPrice
-				(oneMemberSaq.getSs().get(i).getSellPrice()+
-					oneMemberSaq.getSs().get(i).getOptionPrice()); 			
-		}
-		
-		int sellSum = oneMemberSaq.getSs().get(0).getSellPrice();
-		int sellMember = oneMemberSaq.getSs().get(0).getSellWriter();
-		
-/*-----------------------------------------request최대 가격 구하기-------------------------------------------------------------*/
-
-		 
-		/*
-		 * for(int i=0; i<oneMemberSaq.getRs().size(); i++) { for(int j=0;
-		 * j<oneMemberSaq.getSs().size(); j++) { if(
-		 * Integer.parseInt(oneMemberSaq.getRs().get(i).getRequestResMembers()) ==
-		 * oneMemberSaq.getSs().get(j).getSellWriter()) {
-		 * oneMemberSaq.getSs().get(i).setSellPrice(oneMemberSaq.getSs().get(i).
-		 * getSellPrice() + oneMemberSaq.getRs().get(j).getRequestPrice());
-		 * member.add(oneMemberSaq.getSs().get(i).getSellWriter());
-		 * price.add(oneMemberSaq.getSs().get(i).getSellPrice()); } }
-		 * member.add(Integer.parseInt(oneMemberSaq.getRs().get(i).getRequestResMembers(
-		 * ))); price.add(oneMemberSaq.getRs().get(i).getRequestPrice());
-		 * 
-		 * }
-		 */
-		
-/*------------------------------------------------------------------------------------------------------------------------*/
-		
-		
-		for(int i=0; i<oneMemberSaq.getSs().size(); i++) {
-			if(sellSum < oneMemberSaq.getSs().get(i).getSellPrice()) {
-				sellSum = oneMemberSaq.getSs().get(i).getSellPrice();
-				sellMember = oneMemberSaq.getSs().get(i).getSellWriter();
-			}
-		}
-		
-/*------------------------------------------------------------------------------------------------------------------------*/		
+		if(oneMemberSaq.getRs().size() != 0) {
+		requestSum = oneMemberSaq.getRs().get(0).getRequestPrice();
+		requestMember =  Integer.parseInt(oneMemberSaq.getRs().get(0).getRequestResMembers());
 		
 		for(int i=0; i<oneMemberSaq.getRs().size(); i++) {
 			if(requestSum < oneMemberSaq.getRs().get(i).getRequestPrice()) {
@@ -362,12 +324,48 @@ public class AdminController {
 			}
 		}
 		
+		}
+		
+		if(oneMemberSaq.getRs().size() == 0) {
+			requestSum = 0;
+			requestMember = 0;
+		}
+		
+		
+/*-----------------------------------------sell최대 가격 구하기-------------------------------------------------------------*/
+		
+		if(oneMemberSaq.getSs().size() != 0) {
+		for(int i=0; i<oneMemberSaq.getSs().size(); i++) {
+			oneMemberSaq.getSs().get(i).setSellPrice
+				(oneMemberSaq.getSs().get(i).getSellPrice()+
+					oneMemberSaq.getSs().get(i).getOptionPrice()); 			
+		}
+		
+		sellSum = oneMemberSaq.getSs().get(0).getSellPrice();
+		sellMember = oneMemberSaq.getSs().get(0).getSellWriter();
+		
+		
+		for(int i=0; i<oneMemberSaq.getSs().size(); i++) {
+			if(sellSum < oneMemberSaq.getSs().get(i).getSellPrice()) {
+				sellSum = oneMemberSaq.getSs().get(i).getSellPrice();
+				sellMember = oneMemberSaq.getSs().get(i).getSellWriter();
+			}
+		}
+	}
+
+		if(oneMemberSaq.getSs().size() == 0){
+			sellSum = 0;
+			sellMember = 0;
+		}
+		
+/*------------------------------------------------------------------------------------------------------------------------*/
+		
+
+		
 		System.out.println("셀 최고 가격 : "+sellSum+"맴버 넘버 : "+sellMember);
 		System.out.println("리퀘스트 최고 가격 : "+requestSum+"맴버 넘버 : "+requestMember);
 		
-		int allSum = 0;
-		int allMember = 0;
-		
+
 		if(sellSum > requestSum) {
 			allSum = sellSum;
 			allMember = sellMember;
@@ -389,21 +387,10 @@ public class AdminController {
 		for(int i=0; i<saq.getSs().size(); i++) {
 			sellRequestSum += saq.getSs().get(i).getSellPrice();
 			sellRequestSum += saq.getSs().get(i).getOptionPrice();
-			
-			/*
-			 * System.out.println("셀 가격 : "+saq.getSs().get(i).getSellPrice());
-			 * System.out.println("셀 옵션 가격 : "+saq.getSs().get(i).getOptionPrice());
-			 * System.out.println("총 가격 : "+sellRequestSum); System.out.println();
-			 */
 		}
 		
 		for(int i=0; i<saq.getRs().size(); i++) {
 			sellRequestSum += saq.getRs().get(i).getRequestPrice();
-			
-			/*
-			 * System.out.println("리퀘스트 가격 : "+saq.getRs().get(i).getRequestPrice());
-			 * System.out.println("총 가격 : "+sellRequestSum);
-			 */
 		}
 		 
 		

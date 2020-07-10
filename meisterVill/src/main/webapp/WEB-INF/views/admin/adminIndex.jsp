@@ -105,7 +105,7 @@
                         color: "#A593E0"
                       },
                       {
-                          value: ${sEmploy},
+                          value: ${sEmploy},  
                           color: "#f68275"
                         }
                     ];
@@ -114,17 +114,23 @@
                   <footer> 
 					<div>
                      <div style="border: 1px solid #1c9ca7; width: 10px; height: 10px; display: inline-block; background-color: #1c9ca7;"></div>
-                     <div style="display: inline-block;">판매 게시물 : ${sSellCnt}개</div>
+                     <div style="display: inline-block;">
+                     		판매 게시물 : ${sSellCnt}개
+                     </div>
                      <div style=" display: inline-block; float:right; margin-right:15%; color: #1c9ca7;">${sSell}%</div>
                      <br> 
                      
                      <div style="border: 1px solid #A593E0; width: 10px; height: 10px; display: inline-block; background-color: #A593E0;"></div>
-                     <div style="display: inline-block;">견적요청 게시물 : ${sRequestCnt}개</div>
+                     <div style="display: inline-block;">
+                     		  견적요청 게시물 : ${sRequestCnt}개
+                     </div>
                      <div style=" display: inline-block; float:right; margin-right:15%; color: #A593E0;">${sRequest}%</div>
                      <br> 
                      
                      <div style="border: 1px solid #f68275; width: 10px; height: 10px; display: inline-block; background-color: #f68275;"></div>
-                     <div style="display: inline-block;">프로젝트 게시물 : ${sEmployCnt}개</div>
+                     <div style="display: inline-block;">
+                     		  프로젝트 게시물 : ${sEmployCnt}개
+                     </div>
                      <div style=" display: inline-block; float:right; margin-right:15%; color: #f68275;">${sEmploy}%</div>
                       
                     </div>
@@ -140,7 +146,12 @@
                   <div class="chart mt">
                     <!-- <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div> -->
                   </div>
-                  <p class="mt"><b style="font-size: xx-large;">${sellRequestSum } ￦</b><p>총 누적 판매금액</p></p>
+                  <p class="mt"><b style="font-size: xx-large;">
+                  
+                  <c:if test="${sellRequestSum != null }">${sellRequestSum } ￦</c:if>
+                  <c:if test="${sellRequestSum == null }">0 ￦</c:if>
+                  </b><p>총 누적 판매금액</p></p>
+                  
                 </div>
               </div>
               <!-- /col-md-4 -->
@@ -154,16 +165,52 @@
                   <div class="white-header">
                     <h5>SELL PRICE TOP USER</h5>
                   </div>
-                  <p><img src="/resources/upload/memberImg/${sm.memberImg }" class="img-circle" width="50"></p>
-                  <p><b>${sm.memberName }</b></p>
+                  <p>
+                  
+                  <c:if test="${sm.memberImg != null}">
+                  <img src="/resources/upload/memberImg/${sm.memberImg }" class="img-circle" width="50">
+                  </c:if>
+                  
+                  <c:if test="${sm.memberImg == null}">
+                  <img src="/resources/upload/memberImg/unnamed.png" class="img-circle" width="50">
+                  </c:if>
+                  
+                  </p>
+                  <p><b>
+                  <c:if test="${sm.memberName != null}">
+                  ${sm.memberName }
+                  </c:if>
+                  
+                  <c:if test="${sm.memberName == null}">
+                  		없음
+                  </c:if>
+                  
+                  </b></p>
                   <div class="row">
                     <div class="col-md-6">
                       <p class="small mt">닉네임</p>
-                      <p>${sm.memberNickname }</p>
+                      <p>
+                      <c:if test="${sm.memberNickname != null}">
+                      ${sm.memberNickname }
+                      </c:if>
+                      
+                      <c:if test="${sm.memberNickname == null}">
+                       		없음
+                      </c:if>
+                      </p>
                     </div>
                     <div class="col-md-6">
                       <p class="small mt">총 수익</p>
-                      <p>${sellSum } ￦</p>
+                      <p>
+                      <c:if test="${sellSum != null}">
+                      ${sellSum } ￦
+                      </c:if>
+                      
+                      <c:if test="${sellSum == null}">
+                       0 ￦
+                      </c:if>
+                      
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -175,37 +222,106 @@
                   <div class="white-header">
                     <h5>ALL PRICE TOP USER</h5>
                   </div>
-                  <p><img src="/resources/upload/memberImg/${am.memberImg }" class="img-circle" width="50"></p>
-                  <p><b>${am.memberName }</b></p>
+                  <p>
+                  
+                  <c:if test="${am.memberImg != null}">
+                  <img src="/resources/upload/memberImg/${am.memberImg }" class="img-circle" width="50">
+                  </c:if>
+                  
+                  <c:if test="${am.memberImg == null}">
+                  <img src="/resources/upload/memberImg/unnamed.png" class="img-circle" width="50">
+                  </c:if>
+                  
+                  </p>
+                  <p><b>
+                  <c:if test="${am.memberName != null}">
+                  ${am.memberName }
+                  </c:if>
+                  
+                  <c:if test="${am.memberName == null}">
+                  		없음
+                  </c:if>
+                  
+                  </b></p>
                   <div class="row">
                     <div class="col-md-6">
                       <p class="small mt">닉네임</p>
-                      <p>${am.memberNickname }</p>
+                      <p>
+                      <c:if test="${am.memberNickname != null}">
+                      ${am.memberNickname }
+                      </c:if>
+                      
+                      <c:if test="${am.memberNickname == null}">
+                       		없음
+                      </c:if>
+                      </p>
                     </div>
                     <div class="col-md-6">
                       <p class="small mt">총 수익</p>
-                      <p>${allSum } ￦</p>
+                      <p>
+                      <c:if test="${allSum != null}">
+                      ${allSum } ￦
+                      </c:if>
+                      
+                      <c:if test="${allSum == null}">
+                       0 ￦
+                      </c:if>
+                      
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
               <!-- /col-md-4 -->
-             <div class="col-md-4 mb">
+              <div class="col-md-4 mb">
                 <!-- WHITE PANEL - TOP USER -->
                 <div class="white-panel pn">
                   <div class="white-header">
                     <h5>REQUEST PRICE TOP USER</h5>
                   </div>
-                  <p><img src="/resources/upload/memberImg/${rm.memberImg }" class="img-circle" width="50"></p>
-                  <p><b>${rm.memberName }</b></p>
+                  <p>
+                  
+                  <c:if test="${rm.memberImg != null}">
+                  <img src="/resources/upload/memberImg/${rm.memberImg }" class="img-circle" width="50">
+                  </c:if>
+                  
+                  <c:if test="${rm.memberImg == null}">
+                  <img src="/resources/upload/memberImg/unnamed.png" class="img-circle" width="50">
+                  </c:if>
+                  
+                  </p>
+                  <p><b>
+                  <c:if test="${rm.memberName != null}">
+                  ${rm.memberName }
+                  </c:if>
+                  
+                  <c:if test="${rm.memberName == null}">
+                  		없음
+                  </c:if>
+                  
+                  </b></p>
                   <div class="row">
                     <div class="col-md-6">
                       <p class="small mt">닉네임</p>
-                      <p>${rm.memberNickname }</p>
+                      <p>
+                      <c:if test="${rm.memberNickname != null}">
+                      ${rm.memberNickname }
+                      </c:if>
+                      
+                      <c:if test="${rm.memberNickname == null}">
+                       		없음
+                      </c:if>
+                      </p>
                     </div>
                     <div class="col-md-6">
                       <p class="small mt">총 수익</p>
-                      <p>${requestSum } ￦</p>
+                      <p>
+                      <c:if test="${requestSum != null}">${requestSum } ￦</c:if>
+                      
+                      <c:if test="${requestSum == null}">
+                       0 ￦
+                      </c:if>
+                      </p>
                     </div>
                   </div>
                 </div>
