@@ -98,7 +98,7 @@
 	   if($("#cate1").val() == "design") {
 		  $("input[name=sellCategory2]").val($("#desingCate2").val());
 	   } else {
-		   $("input[name=sellCategory2]").val(("#itCate2").val());
+		   $("input[name=sellCategory2]").val($("#itCate2").val());
 	   }
 	   for(var i=0; i < valueSkill.length; i++) {
 			if(i == valueSkill.length-1) {
@@ -240,8 +240,8 @@
   	html4 += "<span class='close' onclick='closeOpt(this);' style='position: relative; right: 20px;'>&times;</span>";
   	html4 += "</div></div>";
   	html4 += "<div class='row'><div class='col-xs-2 opt-cation'>설명</div><div class='col-xs-10'><input type='text' name='optionContent' class='input-boxs option-box option-content' placeholder='옵션에 대한 설명을 써주세요.'></div></div>";
-  	html4 += "<div class='row'><div class='col-xs-2 opt-cation'>추가금액</div><div class='col-xs-4'><input type='text' name='optionPrice' class='input-boxs option-box opt-price-box option-price' style='width:150px; position:absolute;' placeholder='최소 1000원'><span style='left: 130px; bottom: 6px;' class='input-span'>원</span></div>";
-  	html4 += "<div class='col-xs-2' style='font-size:13px; font-weight:bold; padding-left:10px;'>추가작업일</div><div class='col-xs-4'><input type='text' name='optionPlusDate' class='input-boxs option-box option-period' style='width:150px; position:absolute;'><span style='left: 130px; bottom: 6px;' class='input-span'>일</span></div></div>";
+  	html4 += "<div class='row'><div class='col-xs-2 opt-cation'>추가금액</div><div class='col-xs-4'><input type='text' name='optionPrice' class='input-boxs option-box opt-price-box option-price' style='width:150px; position:absolute;' placeholder='최소 1000원'><span style='left: 130px; bottom: 5px; font-size:14px' class='input-span'>원</span></div>";
+  	html4 += "<div class='col-xs-2' style='font-size:13px; font-weight:bold; padding-left:10px;'>추가작업일</div><div class='col-xs-4'><input type='text' name='optionPlusDate' class='input-boxs option-box option-period' style='width:150px; position:absolute;'><span style='left: 130px; bottom: 5px; font-size:14px' class='input-span'>일</span></div></div>";
   	html4 += "</div></div></li>";
   	$("#more-option-area").append(html4);
   }

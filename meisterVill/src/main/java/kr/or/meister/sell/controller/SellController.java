@@ -66,7 +66,7 @@ public class SellController {
 	public String deletePick(int no, MemberVO m) {
 		int result = service.deletePick(no, m.getMemberNo());
 		System.out.println(result);
-		System.out.println("?�원번호" + m.getMemberNo());
+		System.out.println("?�원번호" + m.getMemberNo());
 		if (result == 1) {
 			 return "1";
 		} 
@@ -110,10 +110,8 @@ public class SellController {
 	@ResponseBody
 	@RequestMapping(value="/canclePickingSell.do")
 	public String canclePickList(int memberNo, int sellNo) {
-		System.out.println("?�되??);
 		int result = service.deletePick(sellNo, 2);
 		if (result == 1) {
-			System.out.println("?�처리됐??);
 			return "1";
 		} 
 		return "0";
@@ -156,32 +154,41 @@ public class SellController {
 				mul.setFilename(filename);
 				mul.setFilepath("null");
 				int result = service.insertMulImg(mul);
-				System.out.println("?�록?�료" + result);
 			}
 		}
+		System.out.println(sell.getSellOpt1());
 		String filename = setImg(sellImgFile, request);
 		if(sell.getSellOpt1() == null) {
 			sell.setSellOpt1("0");
-		} else if(sell.getSellOpt2() == null) {
-			sell.setSellOpt2("0");
-		} else if(sell.getSellOpt3() == null) {
-			sell.setSellOpt3("0");
+		} else {
+			sell.setSellOpt1("상업적 이용");
 		}
+		if(sell.getSellOpt2() == null) {
+			sell.setSellOpt2("0");
+		} else {
+			sell.setSellOpt1("소스코드 제공");
+		}
+		if(sell.getSellOpt3() == null) {
+			sell.setSellOpt3("0");
+		} else {
+			sell.setSellOpt1("맞춤 디자인 제공");
+		}
+		int reqPage = 1;
 		sell.setSellAppro(0);
 		sell.setSellImg(filename);
 		int result = service.updateSellList(sell);
 		System.out.println("결과" + result);
-		return "sell/sellList?reqPage=1";
+		return "redirect:/meister/sell/sellList.do?reqPage="+reqPage;
 	}
 	
 	public String setImg(MultipartFile files, HttpServletRequest request) {
 		String filename = "";
 		try {
-		String originalFilename = files.getOriginalFilename(); // upload???�일???�제 ?�일�?
-		String onlyFilename = originalFilename.substring(0,originalFilename.lastIndexOf(".")); //?�장?��? ?�외???�일�?
-		String extension = originalFilename.substring(originalFilename.lastIndexOf(".")); // ?�장??
+		String originalFilename = files.getOriginalFilename(); // upload???�일???�제 ?�일�?
+		String onlyFilename = originalFilename.substring(0,originalFilename.lastIndexOf(".")); //?�장?��? ?�외???�일�?
+		String extension = originalFilename.substring(originalFilename.lastIndexOf(".")); // ?�장??
 		filename = onlyFilename+"_"+getCurrentTime()+extension;
-		String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/multiImg/"); //?�?�할 경로
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/multiImg/"); //?�?�할 경로
 		String fullpath = savePath+filename;
 		byte[] bytes = files.getBytes();
 		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));
