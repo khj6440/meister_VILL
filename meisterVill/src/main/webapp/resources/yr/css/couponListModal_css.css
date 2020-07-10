@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+   
+         .modal-title {
+            font-weight: 900;
+        }
+
+        .modal-wrapper {
+            padding: 50px;
+        }
+
+        .page-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffbc42;
+            margin-bottom: 30px;
+        }
+
+        .coupon-list {
+            width: 100%;
+            height: 300px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .one-coupon {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .one-coupon>label {
+            font-weight: 900;
+        }
+
+        .one-coupon>div {
+            margin-left: 25px;
+            font-size: 13px;
+        }
+
+        .one-coupon>label>input[type=checkbox] {
+            display: none;
+
+        }
+
+        .chk-circle {
+            color: #4d4d4d;
+        }
+
+        .one-coupon>label>input[type=checkbox]:checked+.chk-circle,
+        .one-coupon>label>input[type=checkbox]:checked+.chk-circle+label {
+            color: #ffbc42;
+        }
+
+
+        .discount-div {
+            float: left;
+            margin-left: 10px;
+        }
+
+        .modal-bottom {
+            margin-top: 30px;
+        }
+
+        .discount-div>div:first-child {
+            font-size: 17px;
+            font-weight: 900;
+        }
+
+        .discount-div>div:last-child {
+            font-size: 23px;
+            text-align: right;
+            font-weight: 900;
+            color: #ffbc42;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        .discount-btn {
+            margin-left: 210px;
+
+        }
+
+        #discBtn {
+            width: 140px;
+            height: 45px;
+            margin-top: 30px;
+        }
+ 

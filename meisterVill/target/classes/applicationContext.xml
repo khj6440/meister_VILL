@@ -54,6 +54,7 @@
  <websocket:handlers>
  	<websocket:mapping handler="chatHandler" path="/chat.do"/>
  	<websocket:mapping handler="msgHandler" path="/message.do"/>
+ 	<websocket:mapping handler="projectChatHandler" path="/projectChat.do"/>
  	<websocket:handshake-interceptors>
  		<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
  	</websocket:handshake-interceptors>

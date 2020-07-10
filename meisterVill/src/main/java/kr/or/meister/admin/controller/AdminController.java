@@ -2,11 +2,15 @@ package kr.or.meister.admin.controller;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,27 +28,46 @@ import com.google.gson.Gson;
 
 import kr.or.meister.admin.model.service.AdminService;
 import kr.or.meister.admin.model.vo.AdminMemberJoinSellJoinOrdersVO;
+import kr.or.meister.admin.model.vo.MemberInformVO;
 import kr.or.meister.admin.model.vo.MemberJoinReportVO;
 import kr.or.meister.admin.model.vo.MemberJoinVO;
+import kr.or.meister.admin.model.vo.MemberMaxMoneyVO;
 import kr.or.meister.admin.model.vo.MemberStatsVO;
 import kr.or.meister.admin.model.vo.SelectAllMemberPageVO;
+import kr.or.meister.admin.model.vo.SelectAllRequestPageVO;
 import kr.or.meister.admin.model.vo.SellAndRequestVO;
 import kr.or.meister.admin.model.vo.SellSellVO;
 import kr.or.meister.admin.model.vo.SellJoinOrdersJoinOptionVO;
 import kr.or.meister.admin.model.vo.SellStatsVO;
 import kr.or.meister.admin.model.vo.selectAllSellPageVO;
 import kr.or.meister.member.model.vo.MemberVO;
+import kr.or.meister.sell.model.service.SellService;
+import kr.or.meister.sell.model.vo.SellJoinOthersVO;
 
 @Controller
 @RequestMapping(value="/meister/admin")
 public class AdminController {
 	
 
-	
 	@Autowired
 	@Qualifier("adminService")
 	private AdminService service;
 	
+	@Autowired
+	@Qualifier("sellService")
+	private SellService sellService;
+	
+	@RequestMapping(value="approval.do")
+	public String approval(int sellNo, HttpServletRequest request) {
+		
+		int result = service.approval(sellNo);
+		
+		if(result>0) {
+			return "redirect:/meister/admin/sellApprovalFrm.do?reqPage=1";
+		}else {
+			return "redirect:/meister/admin/sellApprovalFrm.do?reqPage=1";
+		}	
+	}
 
 
 	@RequestMapping(value="/memberHalt.do")
@@ -58,6 +82,30 @@ public class AdminController {
        }
 	}
 	
+	@RequestMapping(value="requestApprovalFrm.do")
+	public String requestApproval(HttpSession session, HttpServletRequest request, int reqPage) {
+		
+		SelectAllRequestPageVO srp = service.requestApprovalFrm(reqPage);
+		int totalCnt = service.requestApprovalCnt();
+		request.setAttribute("list", srp.getList());
+		request.setAttribute("pageNavi", srp.getPageNavi());
+		request.setAttribute("reqPage", reqPage);
+		request.setAttribute("totalCnt", totalCnt);
+		return "admin/requestApproval.jsp?"+reqPage;
+	}
+	
+	@RequestMapping(value="sellApprovalFrm.do")
+	public String sellApproval(HttpSession session, HttpServletRequest request, int reqPage) {
+		
+		selectAllSellPageVO sap = service.sellApproval(reqPage);
+		int totalCnt = service.sellApprovalCnt();
+		request.setAttribute("list", sap.getList());
+		request.setAttribute("pageNavi", sap.getPageNavi());
+		request.setAttribute("reqPage", reqPage);
+		request.setAttribute("totalCnt", totalCnt);
+		return "admin/sellApproval.jsp?"+reqPage;
+	}
+	
 	
 	@RequestMapping(value="sellListFrm.do")
 	public String sellList(HttpSession session, HttpServletRequest request, int reqPage) {
@@ -67,6 +115,16 @@ public class AdminController {
 		request.setAttribute("list", sap.getList());
 		request.setAttribute("pageNavi", sap.getPageNavi());
 		return "admin/sellList.jsp?"+reqPage;
+	}
+	
+	@RequestMapping(value="requestListFrm.do")
+	public String requestListFrm(HttpServletRequest request, int reqPage) {
+		
+		SelectAllRequestPageVO srp = service.requestListFrm(reqPage);
+		
+		request.setAttribute("list", srp.getList());
+		request.setAttribute("pageNavi", srp.getPageNavi());
+		return "admin/requestList.jsp?"+reqPage;
 	}
 	
 	
@@ -128,21 +186,26 @@ public class AdminController {
 	public String memberAllViewFrm(HttpSession session, HttpServletRequest request, int reqPage) {
 		
 		SelectAllMemberPageVO sap = service.memberAllViewPage(reqPage);
-		
+		int totalCnt = service.totalCount();
 		request.setAttribute("list", sap.getList());
 		request.setAttribute("pageNavi", sap.getPageNavi());
+		request.setAttribute("reqPage", reqPage);
+		request.setAttribute("totalCnt", totalCnt);
 		return "admin/memberAllView.jsp?"+reqPage;
 	}
 	
 		
 	@RequestMapping(value="/memberOneViewFrm.do")
 	public String memberOneViewFrm(HttpServletRequest request, int memberNo) {
+		NumberFormat df = NumberFormat.getNumberInstance();
 		MemberJoinVO member = new MemberJoinVO();
 		System.out.println("회원번호 : "+memberNo);
 		member = service.memberOneView(memberNo);
 		List<AdminMemberJoinSellJoinOrdersVO> sellList = service.memberSell(memberNo);
 		List<SellJoinOrdersJoinOptionVO> sellOrderList =service.memberOrder(memberNo);
-
+		List<MemberInformVO> career = service.memberCareer(memberNo);
+		List<MemberInformVO> license = service.memberLicense(memberNo);
+		List<AdminMemberJoinSellJoinOrdersVO> pick = service.memberPick(memberNo);
 		int sum = 0;
 		int listNum = 0;
 		int sellHigh = 0;
@@ -161,12 +224,16 @@ public class AdminController {
 
 		}
 	
-		request.setAttribute("listNum", listNum);
-		request.setAttribute("price", sellHigh);
-		request.setAttribute("sum", sum);
+		request.setAttribute("listNum", df.format(listNum));
+		request.setAttribute("price", df.format(sellHigh));
+		request.setAttribute("sum", df.format(sum));
 		request.setAttribute("so", sellOrderList);
 		request.setAttribute("m", member);
 		request.setAttribute("s", sellList);
+		request.setAttribute("career", career);
+		request.setAttribute("license", license);
+		request.setAttribute("pick", pick);
+
 		return "admin/memberOneView.jsp?"+memberNo;
 	}
 	
@@ -189,27 +256,16 @@ public class AdminController {
 	 * }
 	 */
 	
-	
-	@RequestMapping(value="/adminLogin.do")
-	public String memberLogin(HttpSession session, String memberEmail,String memberPw ) {
-		MemberVO member = new MemberVO();
 
-		System.out.println("회원이메일 : "+memberEmail);
-		System.out.println("회원비번 : "+memberPw);
-		member = service.memberLogin(memberEmail,memberPw);
-		if(member != null) {
-			session.setAttribute("member", member);
-			return "redirect:/meister/admin/adminIndexFrm.do";
-		}else {
-			return "redirect:/index.jsp";
-		}
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/index.jsp";
 	}
 	
-	
-
-		@RequestMapping(value="/loginFrm.do")
-	public String loginFrm() {
-		return "admin/loginPage";
+	@RequestMapping("/indexFrm.do")
+	public String indexFrm(HttpSession session) {
+		return "redirect:/index.jsp";
 	}
 		
 			
@@ -217,12 +273,13 @@ public class AdminController {
 		public String memberHaltFrm(HttpSession session, HttpServletRequest request, int reqPage) {
 			
 			SelectAllMemberPageVO sap = service.memberHaltPage(reqPage);
-			
+			int totalCnt = service.totalHaltCount();
 			if(sap.getList() != null) {
 			request.setAttribute("list", sap.getList());
 			}
 			request.setAttribute("pageNavi", sap.getPageNavi());
-
+			request.setAttribute("reqPage", reqPage);
+			request.setAttribute("totalCnt", totalCnt);
 			return "admin/memberHaltView.jsp?"+reqPage;
 		}
 		
@@ -231,37 +288,109 @@ public class AdminController {
 			public String memberDeletionFrm(HttpSession session, HttpServletRequest request, int reqPage) {
 				
 				SelectAllMemberPageVO sap = service.memberDeletion(reqPage);
-				
+				int totalCnt = service.totalDeletionCount();
 				request.setAttribute("list", sap.getList());
 				request.setAttribute("pageNavi", sap.getPageNavi());
-
+				request.setAttribute("reqPage", reqPage);
+				request.setAttribute("totalCnt", totalCnt);
 				return "admin/memberDeletionView.jsp?"+reqPage;
 			}
-	
+			
 	
 	@RequestMapping(value="/adminIndexFrm.do")
 	public String adminIndexFrm(HttpServletRequest request) {
-		DecimalFormat df = new DecimalFormat("#,###");
+
+
+		NumberFormat df = NumberFormat.getNumberInstance();
 		MemberStatsVO ms = service.memberStats();
 		SellStatsVO ss = service.sellStats();
 		SellAndRequestVO saq = service.sellAndRequest();
+		SellAndRequestVO oneMemberSaq = service.oneMemberSellAndRequest();
+		int allSum = 0;
+		int allMember = 0;
+		int sellSum = 0;
+		int sellMember = 0;
+		int requestSum = 0;
+		int requestMember = 0;
 		int sellRequestSum = 0;
+		if(oneMemberSaq.getRs().size() != 0) {
+		requestSum = oneMemberSaq.getRs().get(0).getRequestPrice();
+		requestMember =  Integer.parseInt(oneMemberSaq.getRs().get(0).getRequestResMembers());
+		
+		for(int i=0; i<oneMemberSaq.getRs().size(); i++) {
+			if(requestSum < oneMemberSaq.getRs().get(i).getRequestPrice()) {
+				requestSum = oneMemberSaq.getRs().get(i).getRequestPrice();
+				requestMember = Integer.parseInt(oneMemberSaq.getRs().get(i).getRequestResMembers());
+			}
+		}
+		
+		}
+		
+		if(oneMemberSaq.getRs().size() == 0) {
+			requestSum = 0;
+			requestMember = 0;
+		}
+		
+		
+/*-----------------------------------------sell최대 가격 구하기-------------------------------------------------------------*/
+		
+		if(oneMemberSaq.getSs().size() != 0) {
+		for(int i=0; i<oneMemberSaq.getSs().size(); i++) {
+			oneMemberSaq.getSs().get(i).setSellPrice
+				(oneMemberSaq.getSs().get(i).getSellPrice()+
+					oneMemberSaq.getSs().get(i).getOptionPrice()); 			
+		}
+		
+		sellSum = oneMemberSaq.getSs().get(0).getSellPrice();
+		sellMember = oneMemberSaq.getSs().get(0).getSellWriter();
+		
+		
+		for(int i=0; i<oneMemberSaq.getSs().size(); i++) {
+			if(sellSum < oneMemberSaq.getSs().get(i).getSellPrice()) {
+				sellSum = oneMemberSaq.getSs().get(i).getSellPrice();
+				sellMember = oneMemberSaq.getSs().get(i).getSellWriter();
+			}
+		}
+	}
+
+		if(oneMemberSaq.getSs().size() == 0){
+			sellSum = 0;
+			sellMember = 0;
+		}
+		
+/*------------------------------------------------------------------------------------------------------------------------*/
+		
+
+		
+		System.out.println("셀 최고 가격 : "+sellSum+"맴버 넘버 : "+sellMember);
+		System.out.println("리퀘스트 최고 가격 : "+requestSum+"맴버 넘버 : "+requestMember);
+		
+
+		if(sellSum > requestSum) {
+			allSum = sellSum;
+			allMember = sellMember;
+		}else {
+			allSum = requestSum;
+			allMember = requestMember;
+		}
+
+		System.out.println("최고 가격 : "+allSum+"맴버 넘버 : "+allMember);
+		MemberJoinVO sm = new MemberJoinVO();
+		MemberJoinVO rm = new MemberJoinVO();
+		MemberJoinVO am = new MemberJoinVO();
+		sm = service.memberOneView(sellMember);
+		rm = service.memberOneView(requestMember);
+		am = service.memberOneView(allMember);
+
+/*----------------------------------------------------------------------------------------------------------------------*/		
 		
 		for(int i=0; i<saq.getSs().size(); i++) {
 			sellRequestSum += saq.getSs().get(i).getSellPrice();
 			sellRequestSum += saq.getSs().get(i).getOptionPrice();
-			
-			System.out.println("셀 가격 : "+saq.getSs().get(i).getSellPrice());
-			System.out.println("셀 옵션 가격 : "+saq.getSs().get(i).getOptionPrice());
-			System.out.println("총 가격 : "+sellRequestSum);
-			System.out.println();
 		}
 		
 		for(int i=0; i<saq.getRs().size(); i++) {
 			sellRequestSum += saq.getRs().get(i).getRequestPrice();
-			
-			System.out.println("리퀘스트 가격 : "+saq.getRs().get(i).getRequestPrice());
-			System.out.println("총 가격 : "+sellRequestSum);
 		}
 		 
 		
@@ -296,9 +425,18 @@ public class AdminController {
 		request.setAttribute("sRequest", sRequest);
 		request.setAttribute("sEmploy", sEmploy);
 		
+		request.setAttribute("sm", sm);
+		request.setAttribute("sellSum", df.format(sellSum));
+		request.setAttribute("rm", rm);
+		request.setAttribute("requestSum", df.format(requestSum));
+		request.setAttribute("am", am);
+		request.setAttribute("allSum", df.format(allSum));
+		
 		request.setAttribute("sellRequestSum", df.format(sellRequestSum));
 		
 		return "admin/adminIndex";
 	}
+	
+	
 }
 

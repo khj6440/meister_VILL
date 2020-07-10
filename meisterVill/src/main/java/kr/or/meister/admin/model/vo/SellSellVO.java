@@ -8,5 +8,6 @@ public class SellSellVO {
 	private int sellPrice;
 	private String optionTitle;
 	private int optionPrice;
+	private int sellWriter;
 	
 }

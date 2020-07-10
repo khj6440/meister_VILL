@@ -4,47 +4,6 @@
 
   
   <select id="memberOneView" parameterType="int"  resultType="memberJoin">
-<!--            select
-  			member_no as memberNo,
-  			member_email as memberEmail,
-  			member_pw as memberPw,
-  			member_name as memberName,
-  			member_hbd as memberHbd,
-  			member_nickname as memberNickname,
-  			member_phone as memberPhone,
-  			member_img as memberImg,
-  			member_bank as memberBank,
-  			member_account as memberAccount,
-  			member_time as memberTime,
-  			member_level as memberLevel,
-  			member_status as memberStatus,
-  			member_intro as memberIntro,
-  			member_field as memberField,
-  			member_skill as memberSkill,
-  			member_school as memberSchool,
-  			member_major as memberMajor,
-  			member_grade as memberGrade,
-  			member_date as memberDate,
-  			report_no as reportNo,
-  			report_member_nickname as reportMemberNickname,
-  			report_board_type as reportBoardType,
-  			report_board_no as reportBoardNo,
-  			order_no as orderNo,
-  			order_member_no as orderMemberNo,
-  			order_board_no as orderBoardNo,
-  			order_date as orderDate,
-  			order_board_type as orderBoardType,
-  			review_no as reviewNo,
-  			sell_no as sellNo,
-  			review_writer as reviewWriter,
-  			review_content as reviewContent,
-  			review_point as reviewPoint,
-  			review_date as reviewDate,
-  			review_writer_img as reviewWriterImg
-  			from member  LEFT JOIN REPORT ON (member_nickname = report_member_nickname)
-              			  LEFT JOIN orders on (member_no = order_member_no)
-  			 				LEFT JOIN review on (member_nickname = review_writer)
-  			 				where member_no = #{memberNo}	 -->
   			 				
   			        select
   			member_no as memberNo,

@@ -1,5 +1,6 @@
 package kr.or.meister.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,55 +9,59 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.or.meister.chat.model.vo.ChatVO;
+import kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO;
+import kr.or.meister.coupon.model.vo.CouponVO;
 import kr.or.meister.member.model.vo.MemberCookieVO;
 import kr.or.meister.member.model.vo.MemberDataVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
+import kr.or.meister.sell.model.vo.SellJoinOthersVO;
 
 @Repository("memberDao")
 public class MemberDao {
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
 	public MemberVO selectOneMember(MemberVO m) {
 		// hyeokjin
-		MemberVO lm= sqlSession.selectOne("member.selectOneMember",m);
+		MemberVO lm = sqlSession.selectOne("member.selectOneMember", m);
 		return lm;
 	}
 
 	public List selectAllChat(MemberVO m) {
 		// hyeokjin
-		return sqlSession.selectList("chat.selectAllChat",m);
+		return sqlSession.selectList("chat.selectAllChat", m);
 	}
 
 	public List showChat(HashMap<String, String> map) {
 		// hyeokjin
-		return sqlSession.selectList("chat.showChat",map);
+		return sqlSession.selectList("chat.showChat", map);
 	}
 
 	public int insertChat(ChatVO newChat) {
 		// hyeokjin
-		return sqlSession.insert("chat.insertChat",newChat);
+		return sqlSession.insert("chat.insertChat", newChat);
 	}
 
 	public List getMessage(String memberNickname) {
 		// hyeokjin
-		return sqlSession.selectList("message.getMessage",memberNickname);
+		return sqlSession.selectList("message.getMessage", memberNickname);
 	}
 
 	public int insertMessage(MessageVO newMsg) {
 		// hyeokJin
-		return sqlSession.insert("message.insertMessage",newMsg);
+		return sqlSession.insert("message.insertMessage", newMsg);
 	}
 
 	public int selectUnreadCnt(String target) {
 		// hyeokjin
-		return sqlSession.selectOne("message.selectUnreadCnt",target);
+		return sqlSession.selectOne("message.selectUnreadCnt", target);
 	}
+
 	public MemberVO selectOneMember3(MemberVO m) {
 		// TODO Auto-generated method stub
-		MemberVO lm= sqlSession.selectOne("member.selectOneMember3",m);
+		MemberVO lm = sqlSession.selectOne("member.selectOneMember3", m);
 		return lm;
 	}
 
@@ -65,36 +70,83 @@ public class MemberDao {
 	}
 
 	public int updateMemberLevel(MemberVO member) {
-		return sqlSession.update("member.updateMemberLevel",member);
+		return sqlSession.update("member.updateMemberLevel", member);
 	}
 
 	public int updateMemberLevel2(MemberVO member) {
-		return sqlSession.update("member.updateMemberLevel2",member);
+		return sqlSession.update("member.updateMemberLevel2", member);
 	}
 
 	public MemberVO selectOneMember4(MemberVO member) {
-		return sqlSession.selectOne("member.selectOneMember4",member);
+		return sqlSession.selectOne("member.selectOneMember4", member);
 	}
+
 	public MemberVO selectLoginMember(MemberVO m) {
-		MemberVO lm= sqlSession.selectOne("member.selectLoginMember",m);
+		MemberVO lm = sqlSession.selectOne("member.selectLoginMember", m);
 		return lm;
 	}
 
 	public String findEmail(MemberVO m) {
-		String memberEmail = sqlSession.selectOne("member.findEmail",m);
+		String memberEmail = sqlSession.selectOne("member.findEmail", m);
 		return memberEmail;
 	}
 
 	public MemberVO checkLoginEmail(String memberEmail) {
-		return sqlSession.selectOne("member.checkLoginEmail",memberEmail);
+		return sqlSession.selectOne("member.checkLoginEmail", memberEmail);
 	}
 
 	public int loginMaintain(MemberCookieVO mcookie) {
-		return sqlSession.insert("member.loginMaintain",mcookie);
+		return sqlSession.insert("member.loginMaintain", mcookie);
 	}
 
 	public MemberVO checkNickname(String memberNickname) {
-		return sqlSession.selectOne("member.checkNickname",memberNickname);
+		return sqlSession.selectOne("member.checkNickname", memberNickname);
+	}
+
+	public List selectAllEmploy(HashMap<String, Integer> map) {
+		return sqlSession.selectList("employ.selectAllEmploy", map);
+	}
+
+	public int totalCount(int memberNo) {
+		return sqlSession.selectOne("employ.selectTotal", memberNo);
+	}
+
+	public int totalCountRequest(String memberNickname) {
+		return sqlSession.selectOne("request.totalCountRequest", memberNickname);
+	}
+
+	public List selectAllRequest(HashMap<String, Integer> map) {
+		return sqlSession.selectList("request.selectAllRequest", map);
+	}
+
+	public int insertChatFile(HashMap<String, String> map) {
+		//hyeokjin
+		return sqlSession.insert("chat.insertChatFile",map);
+	}
+
+	public int readMsg(int msgNo) {
+		//hyeokjin
+		return sqlSession.update("message.readMsg",msgNo);
+	}
+
+	public int joinMember(MemberVO m) {
+		return sqlSession.insert("member.joinMember",m);
+	}
+
+	public int changeForgottenPw(MemberVO m) {
+		return sqlSession.update("member.changeForgottenPw",m);
+	}
+
+	public int welcomeCoupon(int memberNo) {
+		return sqlSession.insert("member.welcomeCoupon",memberNo);
+	}
+
+	public List couponMoalOpen(int memberNo) {
+		return sqlSession.selectList("member.couponList", memberNo);
+				
+	}
+	public List selectAllCoupon(SellJoinOthersVO sjo) {
+		return sqlSession.selectList("member.selectAvailableCoupon",sjo);
 	}
 
 }

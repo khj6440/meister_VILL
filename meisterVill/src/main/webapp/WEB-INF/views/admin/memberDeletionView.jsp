@@ -48,10 +48,10 @@
                 <hr>
                 <thead>
                   <tr>
-                    <th><i class="fa fa-bullhorn"></i>유저 이메일</th>
-                    <th class="hidden-phone"><i class="fa fa-question-circle"></i>유저 이름</th>
-                    <th><i class="fa fa-question-circle"></i>유저 닉네임 </th>
-                    <th><i class="fa fa-question-circle"></i>유저 레벨 </th>
+                    <th><i class="fa fa-envelope"></i>유저 이메일</th>
+                    <th class="hidden-phone"><i class="fa fa-user"></i>유저 이름</th>
+                    <th><i class="fa fa-smile-o"></i>유저 닉네임 </th>
+                    <th><i class="fa fa-key"></i>유저 레벨 </th>
                     <!-- <i class="fa fa-bookmark"> -->
                     <!-- <i class=" fa fa-edit"> -->
                     <th><i class="fa fa-bookmark"></i>유저 가입일</th>
@@ -76,20 +76,15 @@
                     <td class="hidden-phone">
 
                     <c:if test="${m.memberImg != null }">
-                        <c:if test="${m.memberLevel == 2}">
-                    		<img src="/upload/common/adminImg.jpg" style="width: 20px; height: 18px;"> 
-                    	</c:if>
-                    	<c:if test="${m.memberLevel != 2}">
-                    		<img src="/upload/memberImg/${m.memberImg}" style="width: 20px; height: 18px;"> 
-                    	</c:if>
+                    		<img src="/resources/upload/memberImg/${m.memberImg}" style="width: 20px; height: 18px;"> 
                     </c:if>
                     
                     <c:if test="${m.memberImg == null }">
                     	<c:if test="${m.memberLevel == 2}">
-                    		<img src="/upload/common/adminImg.jpg" style="width: 20px; height: 18px;"> 
+                    		<img src="/resources/upload/common/adminImg.jpg" style="width: 20px; height: 18px;"> 
                     	</c:if>
                     	<c:if test="${m.memberLevel != 2}">
-                    		<img src="/upload/memberImg/unnamed.png" style="width: 20px; height: 18px;"> 
+                    		<img src="/resources/upload/memberImg/unnamed.png" style="width: 20px; height: 18px;"> 
                     	</c:if>
                     </c:if>
                     
@@ -201,7 +196,9 @@
 	  
 	  $(".modalDeleteRollback").click(function() {
 		  $("#exampleModal").modal("show");  
-		  var memberNo = $(this).val(); 
+		  var memberNo = $(this).val();
+		  var reqPage = ${reqPage};
+		  var totalCnt = ${totalCnt}-1;
 		  $(".modal-title").html("탈퇴 복구");
 		  $(".modal-header").css("background-color","#6c757d");
 		  $(".memberValue").css("background-color","#6c757d");
@@ -221,6 +218,10 @@
 	    	$("#exampleModal2").modal("show");
 	    	setTimeout(function() {
 	    		location.reload();
+	    		if(totalCnt%6 == 0){
+	    			reqPage=reqPage-1;
+	    		window.location.href="memberDeletionFrm.do?reqPage="+reqPage;
+	    		}
 	    		}, 1000);		
 	    }
 	    

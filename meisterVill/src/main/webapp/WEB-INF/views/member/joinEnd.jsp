@@ -6,12 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" type="image⁄x-icon" href="/resources/yr/imgs/logo.png">
+    <link rel="stylesheet" href="/resources/yr/css/joinSuccessModal_css.css" type="text/css">
     <link rel="stylesheet" href="/resources/yr/css/joinEnd_css.css" type="text/css">
     <title>Join End</title>
 </head>
 
 <body>
-    <jsp:include page="/WEB-INF/views/common/header2.jsp" />
+    <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 
     <div class="content-box-yr">
@@ -26,12 +27,11 @@
             <div class="join-content-box">
 
 
-                <form action="/meister/member/joinInput.do" method="post">
 
                     <div class="jcb-title">
                         이메일
                     </div>
-                    <input type="text" class="input-yr-normal jcb-mail" name="memberEmail" placeholder="이메일을 입력해주세요.">
+                    <input type="text" class="input-yr-normal jcb-mail jm-email" name="memberEmail" placeholder="이메일을 입력해주세요.">
                     <button type="button" id="btnEmail" class="btn btn-yr-normal-gray btn-mail-confirm cursor-not" disabled>이메일 인증</button><br>
 
                     <input type="text" class="input-yr-normal jcb-mail cursor-not" name="confirm-code" placeholder="인증번호를 입력해주세요." disabled>
@@ -44,7 +44,7 @@
                         비밀번호
                     </div>
 
-                    <input type="password" name="memberPw" class="input-yr-normal jcb-pw-input" placeholder="비밀번호를 입력해주세요.">
+                    <input type="password" name="memberPw" class="input-yr-normal jcb-pw-input jm-pw" placeholder="비밀번호를 입력해주세요.">
                     <input type="password" class="input-yr-normal cursor-not jcb-pw-input" placeholder="한 번 더 입력해주세요." disabled>
                     <div class="wrong-msg jcb-pw-msg"></div>
                     <div class="jcb-title jcbt">
@@ -72,15 +72,53 @@
 
                     <input type="text" name="memberPhone" class="input-yr-normal jcb-phone-input" placeholder="'-'를 제외한 숫자만 입력하세요.">
 
-                    <button type="submit" class="btn btn-yr-normal btn-join-next btn-join-finish">회원가입 완료</button>
-                </form>
+                    <button type="button" id="btn-join-cl" class="btn btn-yr-normal btn-join-next btn-join-finish cursor-not" disabled>회원가입 완료</button>
+
             </div>
         </div>
     </div>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    
+
+<!-- The Modal -->
+            <div class="modal fade" id="joinResultModal">
+                <div class="modal-dialog modal-m">
+                    <div class="modal-content jrm-modal-content">
+
+                        <!-- Modal body -->
+                        <div class="modal-body jrm-body">
+                            <div class="jrm-content-box">
+                                <div class="modal-btn-top">
+                                    <button type="button" class="close" onclick="location.href='/meister/member/goMain.do'" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="pcn-result-logo">
+                                    <img src="/resources/yr/imgs/meistervill_01.png" width="40%">
+                                </div>
+
+                                <div class="pcn-result">
+                                    <p>회원가입 완료!</p>
+                                </div>
+                                <div class="pcn-result-msg">
+                                    <p>1만원 웰컴 쿠폰이 발급되었습니다.</p>
+                                    <p>로그인 후 마이페이지에서 확인하세요!</p>
+                                </div>
+
+                                <div class="pcn-result-btn">
+                                    <a href="/" class="btn btn-yr-normal pcn-btn">메인화면 이동</a>
+                                    <a href="/" class="btn btn-yr-normal pcn-btn" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">로그인</a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
     <script>
         $(function() {
+        	var emailCode;
+
             var emailConfirm = 0;
             var pwConfirm = 0;
             var pwSame = 0;
@@ -88,6 +126,46 @@
             var hbd = 0;
             var nick = 0;
             var phone = 0;
+
+            $("#btn-join-cl").click(function(){
+            	//회원가입 버튼 클릭
+            	var memberEmail = $(".jm-email").val();
+            	var memberPw = $(".jm-pw").val();
+            	var memberName = $("input[name=memberHbd]").val();
+            	var memberNickname= $("input[name=memberNickname]").val();
+            	var memberHbd = $("input[name=memberHbd]").val();
+            	var memberPhone = $("input[name=memberPhone]").val();
+            	$.ajax({
+            		url: "/meister/member/joinMember.do",
+            		data: {memberEmail: memberEmail, memberPw: memberPw, memberName: memberName, memberHbd: memberHbd, memberNickname:memberNickname, memberPhone:memberPhone},
+            		type: "post",
+            		success: function(data){
+            			console.log(data);
+            			if(data=="1"){
+            				console.log("회원가입완료");
+            				$("#joinResultModal").modal("show");
+            			}else{
+            				console.log("로그인 실패해서 메인으로 ㄱㄱ");
+            				location.href("/");
+            			}
+            		},
+            		error: function(){
+            			console.log("ajax실패");
+            		}
+            		
+            	});
+            });
+            
+            $("body").mouseover(function(){
+	            if(emailConfirm==1 && pwConfirm==1 && pwSame==1 && name==1 && hbd==1 && nick==1 && phone==1){
+	            	$(".btn-join-finish").removeClass("cursor-not");
+	            	$(".btn-join-finish").prop("disabled",false);
+	            }else{
+	            	$(".btn-join-finish").addClass("cursor-not");
+	            	$(".btn-join-finish").prop("disabled",true);
+	            }
+            
+            });
 
             //비밀번호
             $(".jcb-pw-input").eq(0).keyup(function() {
@@ -301,12 +379,13 @@
                         $(".jcb-phone-input").addClass("invalid-input");
                         phone = 0;
                     } else {
-                        $(".jcb-phone-msg").html(".");
+                        $(".jcb-phone-msg").html("");
                         $(".jcb-phone-input").removeClass("invalid-input");
                         phone = 1;
+
                     }
                 } else {
-                    $(".jcb-phone-msg").html(".");
+                    $(".jcb-phone-msg").html("");
                     $(".jcb-phone-input").removeClass("invalid-input");
                     phone = 0;
                 }
@@ -328,6 +407,7 @@
                     },
                     type: "post",
                     success: function(data) {
+                    	emailCode = data;
                         $("#btnEmail").prop("disabled",true);
                     	$(".check-msg-box").html("인증메일이 발송되었습니다.");
                     	$("input[name=confirm-code]").prop("disabled", false);
@@ -338,6 +418,11 @@
                         intervalId = window.setInterval(function() {
 
                             $(".time-limit").html(min + " : " + sec);
+                            if(emailConfirm==1){
+                            	clearInterval(intervalId);
+                            	$(".time-limit").html("");
+                            }else{
+                            	
                             if (min >= 0) {
                                 if (sec > 0) {
                                     sec--;
@@ -349,7 +434,7 @@
                                         $("input[name=confirm-code]").prop("disabled", true);
                                         $("input[name=confirm-code]").addClass("cursor-not");
                                         $("#btnConfirm").prop("disabled", true);
-                                        clearInterval(interval);
+                                        clearInterval(intervalId);
                                 		}
                                     }else{
                                     sec = 59;
@@ -361,8 +446,11 @@
                                 $("input[name=confirm-code]").prop("disabled", "true");
                                 $("input[name=confirm-code]").addClass("cursor-not");
                                 $("#btnConfirm").prop("disabled", "true");
-                                clearInterval(interval);
+                                clearInterval(intervalId);
+
                             }
+                            }
+             
                         }, 1000);
                     },
                     error: function() {
@@ -370,8 +458,26 @@
                     }
                 });
             });
-
+            
+            //이메일 인증 버튼
+            $("#btnConfirm").click(function(){
+            	if(emailCode==$("input[name=confirm-code]").val()){
+            		$("input[name=confirm-code]").prop("disabled", "true");
+                    $("input[name=confirm-code]").addClass("cursor-not");
+                    $("#btnConfirm").prop("disabled", "true");
+                    $(".check-msg-box").html("인증완료");
+                    emailConfirm = 1;
+            	}else{
+            		$(".check-msg-box").html("인증번호를 확인해주세요.");
+            		emailConfirm = 0;
+            	}
+            });
+            
         });
+        
+        function joinModalOpen(){
+        	$("#joinResultModal").show();
+        }
 
     </script>
 </body>

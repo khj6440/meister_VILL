@@ -33,7 +33,7 @@
                     <div class="modal-body pcsm-body">
                         <div class="modal-bg">
                             <div class="modal-btn-top">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <button type="button" class="close" data-dismiss="modal" onclick="location.href='/meister/member/goMain.do'">&times;</button>
                             </div>
 
                             <div class="pcn-result-logo">
