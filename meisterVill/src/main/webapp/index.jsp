@@ -40,7 +40,15 @@
                         <div class="content-boxx-yr">
                             <div class="main-wrapper">
 
+
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">맞춤견적</a>
+                <a class="navbar-brand" href="#">커뮤니티</a>
+                <a class="navbar-brand" href="#">마이스터</a>
+                <a class="navbar-brand" href="/meister/employ/showList.do">프로젝트</a>
                                 <div class="slide-wrapper">
+
 
                                     <div class="bigbox">
 
@@ -132,6 +140,37 @@
 
 
                     </div>
+
+            </div>
+            <div class="hd-category">
+                <ul>
+                    <li><a href="/meister/sell/sellList.do?reqPage=1">IT/Programming</a></li>
+                    <li><a href="/">Design</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="header-scr">
+        <!-- Navigation -->
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">맞춤견적</a>
+                <a class="navbar-brand" href="#">커뮤니티</a>
+                <a class="navbar-brand" href="#">마이스터</a>
+                <a class="navbar-brand" href="#">프로젝트</a>
+
+            </div>
+        </nav>
+
+        <!-- Masthead -->
+        <header class="masthead text-center pic-header">
+                <div class="member-top-line">
+                    <a class="member-top-menu" href="#">마이스터 등록</a>
+                    <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
+                    <a class="btn btn-insert" href="/meister/member/join.do">무료 회원가입</a>
 
                 </div>
                 <div class="design-list">
@@ -324,7 +363,47 @@
                     </div>
 
 
+        <a href="/meister/member/changePw.do">비밀번호 변경</a><br>
+        <a href="/meister/member/pwChangeSuccessModalTest.do">비밀번호변경완료 모달테스트</a><br>
+        <a href="/meister/member/joinSuccessModalTest.do">회원가입완료 모달테스트</a><br>
+        <a href="/meister/member/loginModalTest.do">로그인 모달테스트</a><br>
+        <a href="/meister/member/forgetIdPwTest.do">아이디.비번찾기테스트</a><br>
+        <a href="/meister/member/joinEnd.do">회원가입 정보입력</a><br>
+        <a href="/meister/member/coupon.do">쿠폰</a><br>
+        <a class="navbar-brand" href="/meister/employ/showList.do?reqPage=1">프로젝트</a>
+        <a href="/meister/employ/makeEmploy.do">모집글 작성하기</a><br>
+        <a href="/meister/sell/makeSell.do?sellWriter=${sessionScope.member.memberNo }">파내글 작성하기</a><br>
+     
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+
+        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+    </div>
+
                 </div>
+
 
             </div>
 

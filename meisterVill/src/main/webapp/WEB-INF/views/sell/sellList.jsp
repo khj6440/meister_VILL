@@ -7,49 +7,12 @@
 <meta charset="UTF-8">
 <title> 판매글 리스트</title>
   <!-- Bootstrap core CSS -->
-  <link href="/resources/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
+  <link href="/resources/bh/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="/resources/sell-css/css/heroic-features.css?after" rel="stylesheet">
+  <link href="/resources/bh/sell-css/css/heroic-features.css?after" rel="stylesheet">
+   <link href="/resources/bh/common-css/common.css" rel="stylesheet">
+   <link href="/resources/bh/sell-css/sellList.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<style>
- 		.pick_button {
- 			position: absolute;
- 			right: 5px;
- 			top: 5px;
- 			height: 25px;
- 		}
- 		.btn {
- 			border: 1px solid #eeeeee;
- 		}
- 		.btn:hover {
- 			color : #7DC947;
- 		}
- 		.selectPage {
- 			border: 1px solid #eeeeee;
- 			font-weight : bold;
- 			padding : 12px;
- 			padding-top : 6px;
- 			padding-botton : 6px;
- 		}
- 		.card-img-top{
- 			transform: scale(1);
-			-webkit-transform: scale(1);
-			-moz-transform: scale(1);
-			-ms-transform: scale(1);
-			-o-transform: scale(1);
-			transition: all 0.3s ease-in-out; 
-		}
-		.card-img-top:hover {
-			transform: scale(1.2);
-			-webkit-transform: scale(1.2);
-			-moz-transform: scale(1.2);
-			-ms-transform: scale(1.2);
-			-o-transform: scale(1.2);
-		}
-		a {
-			color:black;
-		}
-</style>
   <script>
   	$(function() {
   		var reqPage = ${reqPage};
@@ -99,7 +62,7 @@
     <header class="jumbotron my-4" style="width:1100px">
     </header>
     <div class="sell-content" style="display:flex; width:1100px">
-    <nav class="sell_side_list" style="width:20%; padding-right:15px;">
+    <nav class="sell_side_list" style="width:20%; padding-right:25px;">
     <div class="side_list_header" style="border-bottom:2px solid #FFBC42;">
     <h5>디자인</h5>
     </div>
@@ -140,21 +103,21 @@
     <!-- Page Features -->	
      <div class="sellList-content" style="width:80%" >
        
-    <div class="row text-center" id="sell">
-      
+    <div class="row text-center card-shadow" id="sell">
+      <br><br><br><br><br><br><br>
        </div>
        <div class="sellList-pageNavi" style="margin: 0 auto; width: 300px; text-align:center; padding-top:100px;">
     
     	</div>
     </div>
-   
     <!-- /.row -->
+    
 	</div>
   </div>
   <!-- /.container -->
     <!-- Bootstrap core JavaScript -->
-  <script src="/resources/sell-css/vendor/jquery/jquery.min.js"></script>
-  <script src="/resources/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
+  <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
     function pick(get,no) {
         if ($(get).attr("src") == "/upload/homeImg/heart.png") {
@@ -180,7 +143,7 @@
         }
     }
     function showList(sellNo) {
-    	location.href="/meister/sell/showList.do?sellNo=" + sellNo +"&memberNo=1";
+    	location.href="/meister/sell/showList.do?sellNo=" + sellNo + "&memberNo=1";
     }
     </script>
 </body>

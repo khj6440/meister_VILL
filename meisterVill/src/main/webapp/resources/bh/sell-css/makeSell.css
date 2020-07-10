@@ -2,27 +2,6 @@
 div {
 display: block;
 }
-.col-xs-10 {
-width : 83.33%;
-}
-.col-xs-9 {
-width : 75%;
-}
-.col-xs-8 {
-width : 66.67%;
-}
-.col-xs-6 {
-width : 50%;
-}
-.col-xs-4 {
-width : 33.33%;
-}
-.col-xs-3 {
-width : 25%;
-}
-.col-xs-2 {
-width : 16.67%;
-}
 .panel {
 border-color: #e6e6e6 !important;
 border: 1px solid transparent;
@@ -75,7 +54,7 @@ font-size:12px;
 }
 .input-span {
 color:#4D4D4D; 
-font-size: 13px; 
+font-size: 16px; 
 position:relative; 
 right:30px;
 }
@@ -138,16 +117,112 @@ width:1100px;
 .main-img {
 	width:100%;
 }
+.main-img:hover {
+	cursor:pointer;
+}
 .plus-img {
 	width:30%;
 }
-#plusImgArea {
-	display: flex;
+.plus-img:hover {
+	cursor:pointer;
 }
 .plus-img-area {
-	width:33%;
+	width:32%;
+	position: relative;
+	padding: 5px;
+	border: 1px solid #dedede;
+	margin: 3px 1%;
 }
 .plus-img-area>img {
 	width:100%;
-	margin-right:10px;
+	height:100%;
+}
+.cate-img {
+	width:50%; 
+}
+.cate-img-div {
+	width:250px;
+	padding:24px 0;
+	border: 1px solid #dedede;
+	margin: 0 auto;
+	text-align:center;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size:0px;
+}
+.cate-img-div:hover {
+	border: 1px solid #FFBC42;
+}
+.cate-detail-area>div {
+	display:none;
+}
+.meta:hover {
+	background-color: #FFBC41;
+	cursor: pointer;
+}
+.form-input-content {
+width: 736px;
+min-width: 100%;
+max-width: 100%;
+margin: 0px;
+height: 408px;
+font-size: 14px;
+line-height: 24px;
+padding:10px;
+}
+.form-input-content:hover {
+	border: 1px solid #FFBC42;
+}
+.skill-input:hover {
+	border: 1px solid #FFBC42;
+}
+.skill-input {
+    min-width: 180px;
+    width: 100%;
+    border: 1px solid #dedede;
+    font-size: 0.875rem;
+    line-height: 2rem;
+    color: #4D4D4D;
+    padding:5px;
+}
+.meta-skill {
+	background: #f2f3f7;
+	border-radius: 14px;
+	margin-right: 5px;
+	padding: 5px 10px;
+	font-size: 15px;
+	line-height: 30px;
+	margin-top: 10px;
+}
+.meta-skill:hover {
+	background-color: #6c757d;
+	cursor: pointer;
+}
+.input-skill-area span{
+float:left;
+display:block;
+}
+.input-price, .input-date {
+	border-radius: 4px;
+    display: block;
+    margin: 10px 0;
+    box-sizing: border-box;
+    width: 250px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    padding:3px 30px;
+    text-align:right;
+    font-size:20px;
+}
+.input-price:hover {
+border: 1px solid #FFBC42;
+}
+.input-date:hover {
+border: 1px solid #FFBC42;
+}
+.input-won{
+font-size: 20px;
+position: absolute;
+left: 220px;
+top: 14px;
 }

@@ -28,7 +28,6 @@ import kr.or.meister.sell.model.service.SellService;
 @RequestMapping(value="/meister/adminBoard")
 public class AdminBoardController {
 
-	
 	@Autowired
 	@Qualifier("adminBoardService")
 	private AdminBoardService boardService;

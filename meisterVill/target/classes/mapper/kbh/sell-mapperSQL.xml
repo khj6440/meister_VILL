@@ -1,53 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="sell">
-<resultMap id="sjm" type="sjm">
- 	<association property="sellvo" javaType="sell">
-	    <id property="sellNo" column="sell_no" />
-	    <result property="sellTitle" column="sell_title" />
-	    <result property="sellWriter" column="sell_writer" />
-	    <result property="sellPrice" column="sell_price" />
-	    <result property="sellCategory1" column="sell_category1" />
-	    <result property="sellCategory2" column="sell_category2" />
-	    <result property="sellSkill" column="sell_skill" />
-	    <result property="sellDate" column="sell_date" />
-	    <result property="sellAppro" column="sell_appro" />
-	    <result property="sellStatus" column="sell_status" />
-	    <result property="sellOpt1" column="sell_opt1" />
-	    <result property="sellOpt2" column="sell_opt2" />
-	    <result property="sellOpt3" column="sell_opt3" />
-	  	<result property="sellOptFix" column="sell_opt_fix" />
-	  	<result property="sellPeriod" column="sell_period" />
-	  	<result property="sellContent" column="sell_content" />
-	  	<result property="sellFix" column="sell_fix" />
-	  	<result property="sellImg" column="sell_img" />
-	</association>
-<!-- javaType : "객체를 속성으로 가지고있는 해당 객체의 CamelCase명 또는, @Alias("키값")" -->
-<!-- property : "객체참조변수명" -->
-<!-- id : "PK" -->
-    <association property="membervo" javaType="member">
-         <id property="memberNo" column="member_no" />
-         <result property="memberEmail" column="member_email" />
-         <result property="memberPw" column="member_pw" />
-         <result property="memberName" column="member_name" />
-         <result property="memberHbd" column="member_hbd" />
-         <result property="memberNickname" column="member_nickname" />
-         <result property="memberPhone" column="member_phone" />
-         <result property="memberImg" column="member_img" />
-         <result property="memberBank" column="member_bank" />
-         <result property="memberAccount" column="member_account" />
-         <result property="memberTime" column="member_time" />
-         <result property="memberLevel" column="member_level" />
-         <result property="memberStatus" column="member_status" />
-         <result property="memberIntro" column="member_intro" />
-         <result property="memberField" column="member_field" />
-         <result property="memberSkill" column="member_skill" />
-         <result property="memberSchool" column="member_school" />
-         <result property="memberMajor" column="member_major" />
-         <result property="memberGrade" column="member_grade" />
-         <result property="memberDate" column="member_date" />
-    </association>
-</resultMap>
 <resultMap id="sellMap" type="sell">
 	    <id property="sellNo" column="sell_no" />
 	    <result property="sellTitle" column="sell_title" />
@@ -68,30 +21,28 @@
 	  	<result property="sellFix" column="sell_fix" />
 	  	<result property="sellImg" column="sell_img" />
 </resultMap>
-
-<resultMap id="sjo" type="sjo">
- 	<association property="sellvo" javaType="sell">
-	    <id property="sellNo" column="sell_no" />
-	    <result property="sellTitle" column="sell_title" />
-	    <result property="sellWriter" column="sell_writer" />
-	    <result property="sellPrice" column="sell_price" />
-	    <result property="sellCategory1" column="sell_category1" />
-	    <result property="sellCategory2" column="sell_category2" />
-	    <result property="sellSkill" column="sell_skill" />
-	    <result property="sellDate" column="sell_date" />
-	    <result property="sellAppro" column="sell_appro" />
-	    <result property="sellStatus" column="sell_status" />
-	    <result property="sellOpt1" column="sell_opt1" />
-	    <result property="sellOpt2" column="sell_opt2" />
-	    <result property="sellOpt3" column="sell_opt3" />
-	  	<result property="sellOptFix" column="sell_opt_fix" />
-	  	<result property="sellPeriod" column="sell_period" />
-	  	<result property="sellContent" column="sell_content" />
-	  	<result property="sellFix" column="sell_fix" />
-	  	<result property="sellImg" column="sell_img" />
-	</association>
-    <association property="membervo" javaType="member">
-         <id property="memberNo" column="member_no" />
+<resultMap type="multiImg" id="multiMap">
+	    <id property="imgNo" column="img_no" />
+	    <result property="multiBoardNo" column="multi_board_no" />
+	    <result property="multiBoardType" column="multi_board_type" />
+	    <result property="filename" column="filename" />
+	    <result property="filepath" column="filepath" />
+</resultMap>
+<resultMap type="options" id="optionsMap">
+		<id property="optionNo" column="option_no" />
+	    <result property="sellNo" column="sell_no" />
+	    <result property="optionTitle" column="option_title" />
+	    <result property="optionContent" column="option_content" />
+	    <result property="optionPrice" column="option_price" />
+	    <result property="optionPlusDate" column="option_plus_date" />
+</resultMap>
+<resultMap type="pick" id="pickMap">
+		<id property="pickNo" column="pick_no" />	
+	    <result property="sellNo" column="sell_no" />
+	    <result property="memberNo" column="member_no" />
+</resultMap>
+<resultMap type="member" id="memberMap">
+ 		<id property="memberNo" column="member_no" />
          <result property="memberEmail" column="member_email" />
          <result property="memberPw" column="member_pw" />
          <result property="memberName" column="member_name" />
@@ -111,26 +62,24 @@
          <result property="memberMajor" column="member_major" />
          <result property="memberGrade" column="member_grade" />
          <result property="memberDate" column="member_date" />
+</resultMap>
+
+<resultMap id="sjo" type="sjo">
+ 	<association property="sellvo" resultMap="sellMap">
+	</association>
+    <association property="membervo" resultMap="memberMap">
     </association>
-    <association property="multiimgvo" javaType="multiImg">
-	    <id property="imgNo" column="img_no" />
-	    <result property="multiBoardNo" column="multi_board_no" />
-	    <result property="multiBoardType" column="multi_board_type" />
-	    <result property="filename" column="filename" />
-	    <result property="filepath" column="filepath" />
-    </association>
-    <association property="optionsvo" javaType="options">
-    	<id property="optionNo" column="option_no" />
-	    <result property="sellNo" column="sell_no" />
-	    <result property="optionTitle" column="option_title" />
-	    <result property="optionContent" column="option_content" />
-	    <result property="optionPrice" column="option_price" />
-	    <result property="optionPlusDate" column="option_plus_date" />
-    </association>
-    <association property="pickvo" javaType="pick">
-		<id property="pickNo" column="pick_no" />
-	    <result property="sellNo" column="sell_no" />
-	    <result property="memberNo" column="member_no" />
+	<association property="multiimgvo" resultMap="multiMap">
+	</association>
+	<association property="optionsvo" resultMap="optionsMap">
+	</association>
+	<association property="pickvo" resultMap="pickMap">
+	</association>
+</resultMap>
+<resultMap id="sjm" type="sjm">
+ 	<association property="sellvo" resultMap="sellMap">
+	</association>
+    <association property="membervo" resultMap="memberMap">
     </association>
 </resultMap>
 
@@ -153,10 +102,10 @@
 </select>
 <select id="selectOne" parameterType="map" resultMap="sjo">
 	select * from sell
-		inner join member on (member.member_no = sell.sell_writer)
-		left join multi_img on (multi_img.multi_board_no = sell.sell_no)
-		left join options on (options.sell_no = sell.sell_no)
-		left join pick on (pick.sell_no = sell.sell_no and pick.member_no = #{memberNo})
+		full outer join member on (sell.sell_writer=member.member_no)
+		left join multi_img on (sell.sell_no = multi_img.multi_board_no)
+		left join options on (sell.sell_no = options.sell_no)
+		left join pick on (sell.sell_no = pick.sell_no and pick.member_no = #{memberNo})
 	where sell.sell_no = #{sellNo}
 </select>
 <insert id="insertSell" parameterType="sell" useGeneratedKeys="true" keyColumn="sell_no" keyProperty="sellNo">
@@ -165,4 +114,28 @@
 <insert id="insertOpt" parameterType="options">
 	insert into options values(options_seq.nextval,#{sellNo},#{optionTitle},#{optionContent},#{optionPrice},#{optionPlusDate})
 </insert>
+<insert id="insertMulImg" parameterType="multiImg">
+	insert into multi_img values(multi_img_seq.nextval,#{multiBoardNo},#{multiBoardType},#{filename},#{filepath})
+</insert>
+<update id="updateSellList" parameterType="sell">
+	update sell set 
+		sell_title = #{sellTitle},
+		sell_writer = #{sellWriter},
+		sell_price = #{sellPrice},
+		sell_category1 = #{sellCategory1},
+		sell_category2 = #{sellCategory2},
+		sell_skill = #{sellSkill},
+		sell_date = sysdate,
+		sell_appro = #{sellAppro},
+		sell_status = #{sellStatus},
+		sell_opt1 = #{sellOpt1},
+		sell_opt2 = #{sellOpt2},
+		sell_opt3 = #{sellOpt3},
+		sell_opt_fix = #{sellOptFix},
+		sell_period = #{sellPeriod},
+		sell_content = #{sellContent},
+		sell_fix = #{sellFix},
+		sell_img = #{sellImg}
+	where sell_no = #{sellNo}
+</update>
 </mapper>
