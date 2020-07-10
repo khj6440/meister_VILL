@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+#loginResultModal {
+                    top: 50%;
+                    margin-top: -200px;
+                }
+
+
+                .modal-content {
+                    border-radius: 15px;
+                }
+
+                .jrm-body {
+                   
+                    background-color: white;
+                    padding: 10%;
+                    border-radius: 15px;
+                    height: 400px;
+                    position: relative;
+                }
+
+                .modal-btn-top {
+                    margin-top: -7%;
+                    margin-left: 83%;
+                    float: right;
+                    position: absolute;
+
+                }
+
+                .pcn-result {
+                    text-align: center;
+                    margin-bottom: 1%;
+                    font-size: 26px;
+                    font-weight: 900;
+                    font-family: 'Noto Sans KR', sans-serif;
+                    color: #4d4d4d;
+                }
+
+                .pcn-result-msg {
+                    text-align: center;
+                    margin-bottom: 10%;
+                    font-size: 16px;
+                    font-weight: 900;
+                    font-family: 'Noto Sans KR', sans-serif;
+                    color: #c5c6b6;
+                }
+
+                .pcn-result-msg>p:first-child {
+                    margin-bottom: 0;
+                }
+
+                .pcn-result-logo {
+                    text-align: center;
+                    margin-bottom: 10%;
+                }
+
+                .pcn-result-btn {
+                    text-align: center;
+                    width: 100%;
+                }
+
+                .pcn-btn {
+                    width: 35%;
+                    height: 45px;
+                    margin: 1%;
+                    line-height: 35px;
+                    font-size: 15px;
+                }

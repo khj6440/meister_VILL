@@ -26,7 +26,7 @@
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
 
 
@@ -92,12 +92,6 @@
                         });
                     }
 
-
-            var didScroll;
-            var lastScrollTop = 0;
-            var delta = 5;
-            var navHeight = $(".normal-header").outerHeight();
-
                 });
 
 
@@ -109,11 +103,6 @@
                     $(this).css("box-shadow", "none");
                     $(this).css("border-color", "#ced4da");
                 });
-
-            var didScroll;
-            var lastScrollTop = 0;
-            var delta = 5;
-            var navHeight = $(".normal-header").outerHeight();
 
 
 
@@ -183,7 +172,7 @@
                 <div class="container">
                     <a class="navbar-brand" href="#">맞춤견적</a>
                     <a class="navbar-brand" href="#">커뮤니티</a>
-                    <a class="navbar-brand" href="#">마이스터</a>
+                    <a class="navbar-brand" href="/meister/member/meisterList.do">마이스터</a>
                     <a class="navbar-brand" href="#">프로젝트</a>
 
                 </div>
@@ -317,7 +306,7 @@
                                     LOGIN
                                 </div>
                                 <div class="login-input-dv">
-                                    <form action="#" method="post">
+                                    <form action="/meister/member/loginMember.do" method="post">
                                         <input type="text" name="memberEmail" class="login-input" placeholder="이메일을 입력하세요"><br>
                                         <input type="password" name="memberPw" class="login-input" placeholder="비밀번호를 입력하세요"><br>
                                         <div class="login-msg-box">msg</div>

@@ -15,519 +15,870 @@
 
     <title>MEISTER VILL</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/resources/yr/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
-    <!-- Custom fonts for this template -->
-    <link href="/resources/yr/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="/resources/yr/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <!--slick-slider-->
+    <link rel="stylesheet" type="text/css" href="/resources/yr/slick/slick.css" />
 
-    <!-- Custom styles for this template -->
-    <link href="/resources/yr/css/landing-page.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/resources/yr/slick/slick-theme.css" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
-    <!--내css-->
-
-    <link rel="stylesheet" href="/resources/yr/css/header_css.css" type="text/css">
-    <link rel="stylesheet" href="/resources/yr/css/login_modal_css.css" type="text/css">
-    <link rel="stylesheet" href="/resources/yr/css/main_header_css.css" type="text/css">
-    <link rel="stylesheet" href="/resources/yr/css/login_header_css.css" type="text/css">
 
 </head>
 
 <body>
 
+    <jsp:include page="/WEB-INF/views/common/main_header.jsp"></jsp:include>
 
-    <!--헤더-->
-
-    <div class="normal-header">
-        <!-- Navigation -->
-
-        <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-                <a class="navbar-brand" href="#">맞춤견적</a>
-                <a class="navbar-brand" href="#">커뮤니티</a>
-                <a class="navbar-brand" href="#">마이스터</a>
-                <a class="navbar-brand" href="#">프로젝트</a>
-
-            </div>
-        </nav>
-
-        <!-- Masthead -->
-
-        <div class="n-header">
-            <div class="hd-menu">
-                <div class="hd hd-logo">
-                    <a href="/">
-                        <img src="/resources/yr/imgs/meistervill_01.png">
-                    </a>
-                </div>
-                <div class="hd hd-search">
-                    <div class="hdsc">
-                        <span class="hdsc-icon"><a href="#"><i class="fa fa-search"></i></a></span>
-                        <input type="text" name="keyword" class="form-control form-control-sm" placeholder="Search..." />
+    <div>
+        <div class="main-cont">
+            <div class="sell-list">
+                <div class="it-list">
+                    <div class="list-title">
+                        IT/Programming
                     </div>
-                </div>
+                    <div class="list-slide">
+
+                        <div class="content-boxx-yr">
+                            <div class="main-wrapper">
+
+                                <div class="slide-wrapper">
+
+                                    <div class="bigbox">
+
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item2">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item2">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item2">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item2">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
 
 
-                <c:if test="${empty sessionScope.member }">
-                    <div class="hd hd-member">
-                        <a class="member-top-menu" href="#">마이스터 등록</a>
-                        <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
-                        <a class="btn btn-insert" href="/meister/member/join.do">무료 회원가입</a>
-                    </div>
-                </c:if>
-                <c:if test="${not empty sessionScope.member }">
+                                </div>
+                            </div>
+                        </div>
 
 
-                    <div class="member-top-menu hd-hver1 normal-hd-list">
 
-                        <ul class="hd-profile-boundary1">
-                            <li class="hd-profile-img1">
-                                <a href="#">
-                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%">
-                                </a>
 
-                                <ul class="hd-profile-menu1">
-                                    <li id="none" name="hd-menu1"><a href="#">프로필 관리</a></li>
+                       <ul class="hd-profile-menu1">
+                                    <li id="none" name="hd-menu1"><a href="/meister/member/myprofile.do">프로필 관리</a></li>
                                     <li name="hd-menu1"><a href="#">마이스터 등록</a></li>
                                     <li name="hd-menu1"><a href="#">찜한 서비스</a></li>
                                     <li name="hd-menu1"><a href="#">쿠폰</a></li>
                                     <li name="hd-menu1"><a href="/meister/member/logout.do">로그아웃</a></li>
 
-                                </ul>
-                            </li>
-                        </ul>
 
                     </div>
-                    <div class="member-top-line1 normal-mtl">
-                        <a class="member-top-menu" href="#">마이페이지</a>
-                        <a class="member-top-menu" href="#">메세지</a>
+
+                </div>
+                <div class="design-list">
+                    <div class="list-title">
+                        Design
+
                     </div>
+                    <div class="list-slide">
+          <div class="content-boxx-yr">
+                            <div class="main-wrapper">
+
+                                <div class="slide-wrapper">
 
 
-                </c:if>
+                                    <div class="bigbox">
 
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item2">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item2">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item2">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item2">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
 
+                                    </div>
 
-
-            </div>
-            <div class="hd-category">
-                <ul>
-                    <li><a href="/meister/sell/sellList.do?reqPage=1">IT/Programming</a></li>
-                    <li><a href="#">Design</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="header-scr">
-        <!-- Navigation -->
-        <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-                <a class="navbar-brand" href="#">맞춤견적</a>
-                <a class="navbar-brand" href="#">커뮤니티</a>
-                <a class="navbar-brand" href="#">마이스터</a>
-                <a class="navbar-brand" href="#">프로젝트</a>
-
-            </div>
-        </nav>
-
-        <!-- Masthead -->
-        <header class="masthead text-center pic-header">
-            <c:if test="${empty sessionScope.member }">
-                <div class="member-top-line">
-                    <a class="member-top-menu" href="#">마이스터 등록</a>
-                    <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
-                    <a class="btn btn-insert" href="/meister/member/join.do">무료 회원가입</a>
-                </div>
-            </c:if>
-            <c:if test="${not empty sessionScope.member }">
-                <div class="member-top-menu hd-hver1" href="#">
-
-                    <ul class="hd-profile-boundary1">
-                        <li class="hd-profile-img1">
-                            <c:if test="${sessionScope.member.memberImg eq null }">
-                                <a href="#">
-                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%">
-                                </a>
-                            </c:if>
-                            <c:if test="${sesssionScope.member.memberImg ne null }">
-                                <a href="#">
-                                    <img src="/upload/member/${sessionScope.member.memberImg })" width="100%">
-                                </a>
-                            </c:if>
-
-                            <ul class="hd-profile-menu1">
-                                <li id="none" name="hd-menu1"><a href="#">프로필 관리</a></li>
-                                <li name="hd-menu1"><a href="#">마이스터 등록</a></li>
-                                <li name="hd-menu1"><a href="#">찜한 서비스</a></li>
-                                <li name="hd-menu1"><a href="#">쿠폰</a></li>
-                                <li name="hd-menu1"><a href="/meister/member/logout.do">로그아웃</a></li>
-
-                            </ul>
-                        </li>
-                    </ul>
-
-                </div>
-                <div class="member-top-line1">
-                    <a class="member-top-menu" href="#">마이페이지</a>
-                    <a class="member-top-menu" href="#">메세지</a>
-                </div>
-
-            </c:if>
-
-
-            <!--    <div class="overlay"></div>-->
-            <div class="container">
-
-                <div class="row">
-
-                    <div class="col-xl-9 mx-auto header-logo-p m-img">
-                        <a href="/"><img class="logo-p" src="/resources/yr/img/meistervill_01.png" width="63%"></a>
-                    </div>
-                    <div class="col-md-10 col-lg-8 col-xl-7 mx-auto m-img2">
-                        <form>
-                            <div class="form-row">
-                                <div class="col-12 col-md-9 mb-2 mb-md-0 header-input-pa header-search">
-                                    <div class="btn-h-search">
-                                        <input type="text" class="form-control form-control-lg header-l-search-input" name="keyword" placeholder="Search..."></div>
-                                    <span class="btn-h-search">
-                                        <a href="#"><i class="fa fa-2x fa-search"></i></a>
-                                    </span>
                                 </div>
-
                             </div>
-                        </form>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="coupon-ev-ad">
+                <a href="/meister/member/join.do">
+                    <img src="/resources/yr/imgs/ad3.png">
+                    <div class="bbtn">쿠폰 받기</div>
+                </a>
+
+            </div>
+
+
+
+            <div class="review-list">
+
+                <div class="rl-title">
+                    서비스 평가
+                </div>
+                <div class="rl-info">
+                    의뢰인들의 실제 마이스터빌 후기
+                </div>
+                <div class="vertical-slider">
+
+                    <div class="review-slider">
+                        <div>
+                            <div class="category-sl">카테고리</div>
+                            <div class="nick-sl">닉네임</div>
+                            <div class="star-sl">별점</div>
+                        </div>
+                        <div>
+                            후기후기후기후기후기후기후기후기후기후기후기후기
+                        </div>
+                    </div>
+                    <div class="review-slider">
+                        <div>
+                            <div class="category-sl">카테고리</div>
+                            <div class="nick-sl">닉네임</div>
+                            <div class="star-sl">별점</div>
+                        </div>
+                        <div>
+                            후기후기후기후기후기후기후기후기후기후기후기후기
+                        </div>
+                    </div>
+                    <div class="review-slider">
+                        <div>
+                            <div class="category-sl">카테고리</div>
+                            <div class="nick-sl">닉네임</div>
+                            <div class="star-sl">별점</div>
+                        </div>
+                        <div>
+                            후기후기후기후기후기후기후기후기후기후기후기후기
+                        </div>
+                    </div>
+                    <div class="review-slider">
+                        <div>
+                            <div class="category-sl">카테고리</div>
+                            <div class="nick-sl">닉네임</div>
+                            <div class="star-sl">별점</div>
+                        </div>
+                        <div>
+                            후기후기후기후기후기후기후기후기후기후기후기후기
+                        </div>
+                    </div>
+                    <div class="review-slider">
+                        <div>
+                            <div class="category-sl">카테고리</div>
+                            <div class="nick-sl">닉네임</div>
+                            <div class="star-sl">별점</div>
+                        </div>
+                        <div>
+                            후기후기후기후기후기후기후기후기후기후기후기후기
+                        </div>
+                    </div>
+                    <div class="review-slider">
+                        <div>
+                            <div class="category-sl">카테고리</div>
+                            <div class="nick-sl">닉네임</div>
+                            <div class="star-sl">별점</div>
+                        </div>
+                        <div>
+                            후기후기후기후기후기후기후기후기후기후기후기후기
+                        </div>
+                    </div>
+                    <div class="review-slider">
+                        <div>
+                            <div class="category-sl">카테고리</div>
+                            <div class="nick-sl">닉네임</div>
+                            <div class="star-sl">별점</div>
+                        </div>
+                        <div>
+                            후기후기후기후기후기후기후기후기후기후기후기후기
+                        </div>
                     </div>
 
 
                 </div>
 
             </div>
-            <div class="header-nav-menu">
-                <ul class="main-navi">
-                    <li>
-                        <a href="/meister/sell/sellList.do?reqPage=1">
-                            <div class="nav-icon">
-                                <i class="fa fa-2x fa-desktop" aria-hidden="true"></i>
+
+
+            <div class="v-line"></div>
+
+            <div class="ranking-list">
+                <div class="rank-category">판매랭킹</div>
+                <div class="rl-info">
+                    마이스터빌에서 가장 많이 판매한 인기 전문가 랭킹입니다.
+                </div>
+                <div>
+                    <div class="it-ranking">
+                        <div class="rank-box">
+
+                            <div class="rank-top">
+
+                                <div class="gray-box">
+                                    <div class="category-title">IT/Programming</div>
+                                    <div class="top-box">
+                                        <div class="trophy">
+                                            <img src="/resources/yr/imgs/trophy.png" width="100%">
+                                        </div>
+                                        <div class="top-content">
+                                            <div class="rTop-user">
+                                                <div>000</div>
+                                                <div>상세기술</div>
+                                            </div>
+                                            <div class="rTop-money">
+                                                <div>총 판매 금액</div>
+                                                <div>1,000원</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
-                            <div class="nav-text">
-                                IT/Programming
+
+
+                            <div class="rank-one">
+                                <div class="rank-num">2</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
                             </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                            <div class="nav-icon">
-
-                                <i class="fa fa-2x fa-paint-brush" aria-hidden="true"></i>
-
+                            <div class="rank-one">
+                                <div class="rank-num">3</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
                             </div>
-
-                            <div class="nav-text">
-                                Design
-
+                            <div class="rank-one">
+                                <div class="rank-num">4</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
                             </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                            <div class="rank-one">
+                                <div class="rank-num">5</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
+                            </div>
+                        </div>
 
-
-        </header>
-    </div>
-
-    <div class="side-info-menu sim-close">
-
-        <div class="sim-div">
-            <div class="sim-notice-div">
-                <a href="#">
-                    <div class="sim-icon">
-                        <i class="fa fa-2x fa-sticky-note" aria-hidden="true"></i>
                     </div>
-                    <div class="sim-text">Notice</div>
-                </a>
-            </div>
-            <div class="sim-qna-div">
-                <a href="#">
-                    <div class="sim-icon">
-                        <i class="fa fa-2x fa-question-circle" aria-hidden="true"></i>
+                    <div class="design-ranking">
+
+                        <div class="rank-box">
+                            
+                            <div class="rank-top">
+
+                                <div class="gray-box">
+                                    <div class="category-title">Design</div>
+                                    <div class="top-box">
+                                        <div class="trophy">
+                                            <img src="/resources/yr/imgs/trophy.png" width="100%">
+                                        </div>
+                                        <div class="top-content">
+                                            <div class="rTop-user">
+                                                <div>000</div>
+                                                <div>상세기술</div>
+                                            </div>
+                                            <div class="rTop-money">
+                                                <div>총 판매 금액</div>
+                                                <div>1,000원</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="rank-one">
+                                <div class="rank-num">2</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
+                            </div>
+                            <div class="rank-one">
+                                <div class="rank-num">3</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
+                            </div>
+                            <div class="rank-one">
+                                <div class="rank-num">4</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
+                            </div>
+                            <div class="rank-one">
+                                <div class="rank-num">5</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
-                    <div class="sim-text">QnA</div>
-                </a>
+                </div>
             </div>
-            <div class="sim-ask-div">
-                <a href="#">
-                    <div class="sim-icon">
-                        <i class="fa fa-2x fa-commenting" aria-hidden="true"></i>
-                    </div>
-                    <div class="sim-text">Ask</div>
-                </a>
-            </div>
+
         </div>
-        <div class="sim-btn">
-            <a href="javascript:void(0);"><i class="fa fa-4x fa-caret-right" aria-hidden="true"></i></a>
-        </div>
-
-    </div>
-    <div>
-
 
         <a href="/meister/member/changePw.do">비밀번호 변경</a><br>
         <a href="/meister/member/pwChangeSuccessModalTest.do">비밀번호변경완료 모달테스트</a><br>
         <a href="/meister/member/joinSuccessModalTest.do">회원가입완료 모달테스트</a><br>
-        <a href="/meister/member/loginModalTest.do">로그인 모달테스트</a><br>
         <a href="/meister/member/forgetIdPwTest.do">아이디.비번찾기테스트</a><br>
-        <a href="/meister/member/joinEnd.do">회원가입 정보입력</a><br>
+        <a href="/meister/member/joinEmail.do">이메일 인증페이지</a><br>
         <a href="/meister/member/coupon.do">쿠폰</a><br>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+        <a href="/meister/member/order.do">결제페이지</a><br>
+        <a href="/meister/member/changePwLink.do">비번 변경 링크 이메일</a><br>
+        <a href="/meister/member/purchaseSuccess.do">결제완료 페이지</a><br>
+        <a href="/meister/member/couponListModal.do">쿠폰리스트 모달 테스트</a><br>
+        <a href="/meister/member/couponWriteFrm.do">쿠폰이벤트 작성페이지</a><br>
+        <a href="/meister/member/carouselTestFrm.do">캐러셀테스트</a><br>
+        <a href="/meister/member/carouselTestFrm2.do">캐러셀테스트2</a><br>
 
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
     </div>
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
-    <!-- The Modal -->
-    <div class="modal fade" id="loginModal">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
 
-                <!-- Modal Header -->
-
-                <div class="modal-header">
-                    <img src="resources/yr/imgs/meistervill_01.png" width="20%">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+    <style>
+        /*랭킹*/
 
 
-                <!-- Modal body -->
-                <div class="modal-body">
+        .gray-box {
+            width: 100%;
+            height: 200px;
+            background-color: #eeeeee;
+            border-top-right-radius: 8px;
+            border-top-left-radius: 8px;
+            text-align: center;
 
-                    <div class="login-pic-div">
-                        <div class="login-input-box">
-                            <div class="login-title-dv">
-                                LOGIN
-                            </div>
-                            <div class="login-input-dv">
-                                <form action="/meister/member/loginMember.do" id="loginFrm" method="post">
-                                    <input type="text" name="memberEmail" class="login-input" placeholder="이메일을 입력하세요"><br>
-                                    <input type="password" name="memberPw" class="login-input" placeholder="비밀번호를 입력하세요"><br>
-                                    <div class="login-msg-box"></div>
-                                    <input type="button" class="btn btn-insert btn-in-modal" value="로그인">
-                                    <div class="login-chk-dv">
-                                        <div>
+        }
 
-                                            <input type="checkbox" name="loginMaintain" value="true" id="login-maintain">
-                                            <span>
-                                                <label class="lm-la" for="login-maintain">
-                                                    <img src="/resources/yr/imgs/chkbox.png" id="checked-yellow" width="20px" height="20px">
-                                                    <img src="/resources/yr/imgs/chkbox_none2.png" id="checked-none" width="20px" height="20px">
-                                                    로그인 유지</label>
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <a href="/meister/member/forgetIdPw.do">아이디·비밀번호 찾기</a></div>
-                                    </div>
+        .category-title {
+            font-size: 20px;
+            font-weight: 700px;
+            color: #4d4d4d;
+            font-family: 'Noto Sans KR', sans-serif;
+            padding-top: 20px;
+        }
 
-                                </form>
-                            </div>
+        .top-box {
+            width: 80%;
+            margin: 30px auto;
+            height: 60%;
+            background-color: white;
+            border-top-right-radius: 8px;
+            border-top-left-radius: 8px;
+            box-shadow: 0px -1px 1px #eeeeee;
+            padding: 10px;
+            padding-top: 20px;
+        }
+
+        .trophy {
+            width: 80px;
+            position: absolute;
+            margin-left: -30px;
+            margin-top: 30px;
+
+        }
+
+        .rTop-user>div {
+            float: left;
+        }
+
+        .rTop-user>div:first-child {
+            margin-right: 20px;
+            font-size: 23px;
+            font-weight: 700;
+            color: #ffbc42;
+            margin-left: 100px;
+
+        }
+
+        .rTop-user>div:last-child {
+            font-size: 13px;
+            font-weight: 400;
+            color: #4d4d4d;
+            line-height: 40px;
+        }
+
+        .rTop-money {
+            clear: left;
+            margin-top: 30px;
+        }
+
+        .rTop-money>div:first-child {
+            font-size: 15px;
+            font-weight: 400;
+            color: #6c757d;
+        }
+
+        .rTop-money>div:last-child {
+            font-size: 27px;
+            font-weight: 700;
+            color: #ffbc42;
+        }
 
 
-                            <div class="login-line"></div>
-                            <div class="login-msg">
-                                <h6>지금 회원가입시</h6>
-                                <h6>1만원 할인 쿠폰 지급!</h6>
+        .it-ranking {
+            margin-right: 50px;
+        }
+
+        .it-ranking,
+        .design-ranking,
+        .rank-top {
+            width: 350px;
+        }
+
+        .ranking-list {
+            overflow: hidden;
+        }
+
+        .rank-one {
+            width: 100%;
+            height: 70px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .rank-one>div {
+            float: left;
+        }
+
+        .ranking-list>div:last-child>div {
+            float: left;
+        }
+
+        .r-user>div {
+            float: left;
+            margin-right: 20px;
+        }
+
+        .r-user>div:first-child {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .r-user>div:last-child {
+            line-height: 30px;
+        }
+
+        .r-money {
+            clear: left;
+            color: #ffbc42;
+        }
+
+        .rank-img {
+            width: 60px;
+            margin-right: 20px;
+
+        }
+
+        .rank-num {
+            clear: left;
+            width: 60px;
+            height: 60px;
+            background-color: #eeeeee;
+            font-size: 28px;
+            line-height: 60px;
+            font-weight: 900;
+            text-align: center;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .rank-category {
+            font-size: 24px;
+            font-weight: 600px;
+            color: #4d4d4d;
+            font-family: 'Noto Sans KR', sans-serif;
+            margin-bottom: 30px;
+
+        }
+
+
+        .v-line {
+            float: left;
+            border-left: 1px solid #dbdbdb;
+            width: 10px;
+            height: 700px;
+            margin-right: 90px;
+        }
+
+        /*리뷰*/
+        .vertical-slider {
+            width: 550px;
+            height: auto;
+
+        }
+
+        .review-slider {
+            width: 400px;
+            height: 300px;
+            padding: 30px;
+            background-color: #eeeeee;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .review-slider>div:first-child>div {
+            float: left;
+            margin-left: 10px;
+
+        }
+
+        .review-slider>div:last-child {
+            clear: left;
+            margin-top: 45px;
+        }
+
+        .review-list {
+            margin-left: 100px;
+            float: left;
+            margin-right: 100px;
+
+        }
+
+        .rl-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4d4d4d;
+            margin-bottom: 10px;
+
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .rl-info {
+            font-size: 17px;
+            color: #4d4d4d;
+            margin-bottom: 30px;
+
+            font-weight: 600;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
 
 
 
-                                <a href="#" class="btn btn-insert btn-log-ins">회원가입</a>
-                               
+        /*쿠폰이벤트*/
+        .coupon-ev-ad {
+            width: 1500px;
+            margin: 100px auto;
+        }
 
-                            </div>
-                        </div>
+        .bbtn {
+            position: absolute;
+            width: 250px;
+            height: 55px;
+            border-radius: 4px;
+            line-height: 55px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffbc42;
+            background-color: white;
+            text-align: center;
+            font-family: 'Noto Sans KR', sans-serif;
+            box-shadow: 0px 0px 10px #B38300;
+            margin-top: -135px;
+            margin-left: 600px;
+        }
 
-                        <div class="login-input-div">
+        .main-cont {
+            width: 1700px;
+            margin: 0 auto;
+            height: auto;
+            overflow: hidden;
+            padding-bottom: 100px;
 
-                        </div>
-                        <img src="/resources/yr/imgs/background-balance-business-commerce-583846.jpg" width="100%">
+        }
 
-                    </div>
+        .list-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4d4d4d;
+            margin-top: 70px;
+            margin-bottom: 30px;
+            font-family: 'Noto Sans KR', sans-serif;
+            margin-left: 100px;
+        }
 
-                </div>
-            </div>
-        </div>
-    </div>
+        .content-box-yr {
+            width: 100%;
+            height: auto;
+
+        }
+
+        .main-wrapper {
+            width: 1700px;
+            margin: 0 auto;
+
+        }
+
+        .slide-wrapper {
+            width: 100%;
+            text-align: center;
+        }
+
+        .bigbox {
+            margin: 0 auto;
+            height: 300px;
+            width: 1500px;
+        }
+
+        .minibox {
+            padding: 10px;
+        }
+
+        .item1 {
+            width: 200px;
+            height: 300px;
+        }
+
+        .item2 {
+            width: 200px;
+            height: 300px;
+        }
+
+        .slide-msg {
+            margin-top: 20px;
+        }
+
+    </style>
 
 
-
-    <script>
-        $(function() {
-            $(".btn-in-modal").click(function() {
-
-                var memberEmail = $("input[name=memberEmail]").val();
-                var memberPw = $("input[name=memberPw]").val();
-                var loginMaintain = $("input[type=checkbox]").val();
-                if (memberEmail == "" || memberPw == "") {
-                    $(".login-msg-box").html("이메일과 패스워드를 입력해주세요.");
-                } else {
-                    $.ajax({
-                        url: "/meister/member/checkLogin.do",
-                        data: {
-                            memberEmail: memberEmail,
-                            memberPw: memberPw,
-                            loginMaintain: loginMaintain
-                        },
-                        type: "post",
-                        success: function(data) {
-                            console.log("success");
-                            console.log("성공:"+data.memberEmail);
-                            var ajaxEmail = data.memberEmail;
-                            var ajaxPw = data.memberPw;
-
-                            if (data == null) {
-                                $(".login-msg-box").html("해당하는 계정이 없습니다.");
-                            } else {
-                                if (memberPw != ajaxPw) {
-                                    $(".login-msg-box").html("패스워드가 맞지 않습니다.");
-                                } else {
-
-                                    $("#loginFrm").submit();
-                                }
-                            }
-                        },
-                        error: function() {
-                            console.log("ajax통신 실패");
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.bigbox').slick({
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                responsive: [{
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
                         }
-                    });
-                }
-
-            });
-
-            $("input[type=text]").focusin(function() {
-                $(this).css("box-shadow", "0px 0px 3px #FFBC42");
-                $(this).css("border-color", "#FFBC42");
-            });
-            $("input[type=text]").blur(function() {
-                $(this).css("box-shadow", "none");
-                $(this).css("border-color", "#ced4da");
-            });
-
-            $("input[type=password]").focusin(function() {
-                $(this).css("box-shadow", "0px 0px 3px #FFBC42");
-                $(this).css("border-color", "#FFBC42");
-            });
-            $("input[type=password]").blur(function() {
-                $(this).css("box-shadow", "none");
-                $(this).css("border-color", "#ced4da");
-            });
-
-
-
-
-
-            $(".fa-caret-right").click(function() {
-                if ($(".side-info-menu").hasClass("sim-open")) {
-                    $(".side-info-menu").removeClass("sim-open");
-                    $(".side-info-menu").addClass("sim-close");
-                } else {
-                    $(".side-info-menu").removeClass("sim-close");
-                    $(".side-info-menu").addClass("sim-open");
-                }
-
-            });
-
-
-
-
-            var didScroll; //스크롤이 작동했는지 여부
-            var lastScrollTop = 0;
-            var delta = 5; //동작 구현이 시작되는 위치
-            var navHeight = $(".pic-header").outerHeight(); //네비 높이
-            console.log(navHeight);
-
-            $(window).scroll(function(event) { //스크롤이 작동하면 이벤트 시작
-                didScroll = true; //스크롤 작동 true
-                console.log("scrolled");
-            });
-            setInterval(function() { //반복해서 검사함
-                console.log("didscroll" + didScroll);
-                if (didScroll) {
-                    hasScrolled();
-                    didScroll = false;
-
-                }
-            }, 250);
-
-
-            function hasScrolled() {
-                var st = $(this).scrollTop(); //현재 스크롤 위치
-                console.log("st" + st);
-                console.log("last=" + lastScrollTop);
-                //                if (Math.abs(lastScrollTop - st) <= delta) {//동작 구현 시작되는 위치보다 스크롤 위치가 작을 때
-                //                    console.log("!");
-                //                   return;
-                //                }
-                if (lastScrollTop < st && st > navHeight) {
-                    //                    $(".pic-header").css("display", "none");
-                    $(".normal-header").css("display", "block");
-                } else {
-                    if (st < navHeight) {
-                        //                        $(".pic-header").css("display", "block");
-                        $(".normal-header").css("display", "none");
-                    } else {
-                        return;
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
                     }
-                }
-                //                lastScrollTop = st;
+                ]
+            });
 
-            }
-
-
-
+            $(".vertical-slider").slick({
+                vertical: true,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: false,
+                verticalSwiping: true
+            });
         });
 
     </script>
-    <!-- Bootstrap core JavaScript -->
-    <script src="/resources/yr/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="/resources/yr/slick/slick.min.js"></script>
 
 </body>
 

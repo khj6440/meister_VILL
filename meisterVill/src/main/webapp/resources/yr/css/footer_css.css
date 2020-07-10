@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+.footer{
+    bottom: 0;
+}
 footer.footer {
     padding-bottom: 0px;
 }

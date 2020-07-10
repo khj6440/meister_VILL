@@ -14,89 +14,16 @@
 </head>
 
 <body>
-    <jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
-    <div class="content-box-yr">
+    
         <div class="container">
-            <h2>Extra Large Modal</h2>
+            <!-- <h2>Extra Large Modal</h2> -->
             <!-- Button to Open the Modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginResultModal">
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginResultModal">
                 Open modal
-            </button>
-            <style>
-                #loginResultModal {
-                    top: 50%;
-                    margin-top: -200px;
-                }
-
-
-                .modal-content {
-                    border-radius: 15px;
-                }
-
-                .jrm-body {
-                    /*background-image: url(/resources/yr/imgs/bg-5gray.png);
-            background-position: bottom center;
-            background-repeat: no-repeat;
-            background-size: 100%;*/
-                    background-color: white;
-                    padding: 10%;
-                    border-radius: 15px;
-                    height: 400px;
-                    position: relative;
-                }
-
-                .modal-btn-top {
-                    margin-top: -7%;
-                    margin-left: 83%;
-                    float: right;
-                    position: absolute;
-
-                }
-
-                .pcn-result {
-                    text-align: center;
-                    margin-bottom: 1%;
-                    font-size: 26px;
-                    font-weight: 900;
-                    font-family: 'Noto Sans KR', sans-serif;
-                    color: #4d4d4d;
-                }
-
-                .pcn-result-msg {
-                    text-align: center;
-                    margin-bottom: 10%;
-                    font-size: 16px;
-                    font-weight: 900;
-                    font-family: 'Noto Sans KR', sans-serif;
-                    color: #c5c6b6;
-                }
-
-                .pcn-result-msg>p:first-child {
-                    margin-bottom: 0;
-                }
-
-                .pcn-result-logo {
-                    text-align: center;
-                    margin-bottom: 10%;
-                }
-
-                .pcn-result-btn {
-                    text-align: center;
-                    width: 100%;
-                }
-
-                .pcn-btn {
-                    width: 35%;
-                    height: 45px;
-                    margin: 1%;
-                    line-height: 35px;
-                    font-size: 15px;
-                }
-
-            </style>
+          
 
             <!-- The Modal -->
-            <div class="modal fade" id="loginResultModal">
+            <div class="modal fade" id="joinResultModal">
                 <div class="modal-dialog modal-m">
                     <div class="modal-content jrm-modal-content">
 
@@ -130,7 +57,7 @@
                 </div>
             </div>
         </div>
-    </div>
+  
 </body>
 
 </html>

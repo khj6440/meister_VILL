@@ -41,9 +41,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
     <!--내 css-->
-    <link rel="stylesheet" type="text/css" href="/resources/yr/css/header2_css.css">
+    
     <link rel="stylesheet" href="/resources/yr/css/login_modal_css.css" type="text/css">
     <link rel="stylesheet" href="/resources/yr/css/login_header_css.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/resources/yr/css/header2_css.css">
 </head>
 
 
@@ -139,7 +140,7 @@
                 <div class="container">
                     <a class="navbar-brand" href="#">맞춤견적</a>
                     <a class="navbar-brand" href="#">커뮤니티</a>
-                    <a class="navbar-brand" href="#">마이스터</a>
+                    <a class="navbar-brand" href="/meister/member/meisterList.do">마이스터</a>
                     <a class="navbar-brand" href="#">프로젝트</a>
 
                 </div>
