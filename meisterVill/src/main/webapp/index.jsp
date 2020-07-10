@@ -40,15 +40,7 @@
                         <div class="content-boxx-yr">
                             <div class="main-wrapper">
 
-
-        <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-                <a class="navbar-brand" href="#">맞춤견적</a>
-                <a class="navbar-brand" href="#">커뮤니티</a>
-                <a class="navbar-brand" href="#">마이스터</a>
-                <a class="navbar-brand" href="/meister/employ/showList.do">프로젝트</a>
                                 <div class="slide-wrapper">
-
 
                                     <div class="bigbox">
 
@@ -120,10 +112,7 @@
                                                 <div>제목</div>
                                             </div>
                                         </div>
-
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
@@ -137,40 +126,9 @@
                                     <li name="hd-menu1"><a href="#">찜한 서비스</a></li>
                                     <li name="hd-menu1"><a href="#">쿠폰</a></li>
                                     <li name="hd-menu1"><a href="/meister/member/logout.do">로그아웃</a></li>
-
+						</ul>
 
                     </div>
-
-            </div>
-            <div class="hd-category">
-                <ul>
-                    <li><a href="/meister/sell/sellList.do?reqPage=1">IT/Programming</a></li>
-                    <li><a href="/">Design</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="header-scr">
-        <!-- Navigation -->
-        <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-                <a class="navbar-brand" href="#">맞춤견적</a>
-                <a class="navbar-brand" href="#">커뮤니티</a>
-                <a class="navbar-brand" href="#">마이스터</a>
-                <a class="navbar-brand" href="#">프로젝트</a>
-
-            </div>
-        </nav>
-
-        <!-- Masthead -->
-        <header class="masthead text-center pic-header">
-                <div class="member-top-line">
-                    <a class="member-top-menu" href="#">마이스터 등록</a>
-                    <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
-                    <a class="btn btn-insert" href="/meister/member/join.do">무료 회원가입</a>
 
                 </div>
                 <div class="design-list">
@@ -363,47 +321,7 @@
                     </div>
 
 
-        <a href="/meister/member/changePw.do">비밀번호 변경</a><br>
-        <a href="/meister/member/pwChangeSuccessModalTest.do">비밀번호변경완료 모달테스트</a><br>
-        <a href="/meister/member/joinSuccessModalTest.do">회원가입완료 모달테스트</a><br>
-        <a href="/meister/member/loginModalTest.do">로그인 모달테스트</a><br>
-        <a href="/meister/member/forgetIdPwTest.do">아이디.비번찾기테스트</a><br>
-        <a href="/meister/member/joinEnd.do">회원가입 정보입력</a><br>
-        <a href="/meister/member/coupon.do">쿠폰</a><br>
-        <a class="navbar-brand" href="/meister/employ/showList.do?reqPage=1">프로젝트</a>
-        <a href="/meister/employ/makeEmploy.do">모집글 작성하기</a><br>
-        <a href="/meister/sell/makeSell.do?sellWriter=${sessionScope.member.memberNo }">파내글 작성하기</a><br>
-     
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-
-        <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
-    </div>
-
                 </div>
-
 
             </div>
 
@@ -421,33 +339,6 @@
 
                             <div class="rank-top">
 
-<<<<<<< HEAD
-                <!-- Modal body -->
-                <div class="modal-body">
-
-                    <div class="login-pic-div">
-                        <div class="login-input-box">
-                            <div class="login-title-dv">
-                                LOGIN
-                            </div>
-                            <div class="login-input-dv">
-
-                                <form action="/meister/member/loginMember.do" id="loginFrm" method="post">
-                                    <input type="text" name="memberEmail" class="login-input" placeholder="이메일을 입력하세요"><br>
-                                    <input type="password" name="memberPw" class="login-input" placeholder="비밀번호를 입력하세요"><br>
-                                    <div class="login-msg-box"></div>
-                                    <input type="button" class="btn btn-insert btn-in-modal" value="로그인">
-                                    <div class="login-chk-dv">
-                                        <div>
-
-                                            <input type="checkbox" name="loginMaintain" value="true" id="login-maintain">
-                                            <span>
-                                                <label class="lm-la" for="login-maintain">
-                                                    <img src="/resources/yr/imgs/chkbox.png" id="checked-yellow" width="20px" height="20px">
-                                                    <img src="/resources/yr/imgs/chkbox_none2.png" id="checked-none" width="20px" height="20px">
-                                                    로그인 유지</label>
-                                            </span>
-=======
                                 <div class="gray-box">
                                     <div class="category-title">IT/Programming</div>
                                     <div class="top-box">
@@ -463,7 +354,6 @@
                                                 <div>총 판매 금액</div>
                                                 <div>1,000원</div>
                                             </div>
->>>>>>> 061eeb34d271c96a210bffb19b034e1282612d62
                                         </div>
 
                                     </div>
@@ -627,7 +517,11 @@
         <a href="/meister/member/couponListModal.do">쿠폰리스트 모달 테스트</a><br>
         <a href="/meister/member/couponWriteFrm.do">쿠폰이벤트 작성페이지</a><br>
         <a href="/meister/member/carouselTestFrm.do">캐러셀테스트</a><br>
-        <a href="/meister/member/carouselTestFrm2.do">캐러셀테스트2</a><br>
+        <a href="/meister/member/carouselTestFrm2.do">캐러셀테스트2</a><br>  
+        <a class="navbar-brand" href="/meister/employ/showList.do?reqPage=1">프로젝트</a>
+        <a href="/meister/employ/makeEmploy.do">모집글 작성하기</a><br>
+        <a href="/meister/sell/makeSell.do?sellWriter=${sessionScope.member.memberNo }">파내글 작성하기</a><br>
+        <a href="/meister/sell/sellList.do?reqPage=1">파내글 보기</a><br>
 
     </div>
 
