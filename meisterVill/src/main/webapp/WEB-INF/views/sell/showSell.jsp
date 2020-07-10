@@ -206,12 +206,12 @@ function goLocation(where) {
         <div class="card my-4 card-shadow" style="border: 0px;">
         <div class="card-body">
         <div id="pickArea">
-        <c:if test="${sessionScope.member.memberNo != sell.pickvo.memberNo}">
+       <%--  <c:if test="${sessionScope.member.memberNo != sell.pickvo.memberNo}">
        	<p style="font-size:14px; text-align:right; cursor:pointer;" class="picking"><img src="/resources/upload/homeImg/heart.png" style="width:15px;"> 찜하기</p>
         </c:if>
         <c:if test="${sessionScope.member.memberNo == sell.pickvo.memberNo}">
        	<p style="font-size:14px; text-align:right; cursor:pointer;" class="picking"><img src="/resources/upload/homeImg/InHeart.png" style="width:15px;"> 찜하기</p>
-        </c:if>
+        </c:if> --%>
         </div>
           <h4>${sell.sellvo.sellTitle }</h4><br>
           <h5 style="text-align:right">${sell.sellvo.sellPrice }원 </h5>

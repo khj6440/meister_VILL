@@ -16,6 +16,20 @@
   <script>
   	$(function() {
   		var reqPage = ${reqPage};
+  		var memberNo = "${sessionScope.member.memberNo}";
+  		var sellNo = new Array();
+  		if(memberNo != "") {
+	  		$.ajax({
+				url : "/meister/sell/getPick.do",
+				type : "get",
+				data : {memberNo : memberNo},
+				success : function(data) {
+					for(var i = 0; i < data.length; i++) {
+						sellNo[i] = data[i];
+					}
+				}
+			});
+  		}
   		$.ajax({
   			url : "/meister/sell/getSellList.do?reqPage="+reqPage,
 			data : "json",
@@ -24,29 +38,34 @@
 				html = "";
 				page = "";
 				for (var i = 0; i < number; i++) {
-  				html += "<div class='col-lg-3 col-md-6 mb-4'>";
-  				html += "<div class='card' style='height: 400px; cursor:pointer;' onclick='showList("+data["sell"+i].sellNo+");'>";
-  				html += "<div class='imgbox' style='overflow:hidden;'>";
-  				html += "<img class='card-img-top' src='/resources/upload/sellImg/"+data["sell"+i].sellImg+"'>";
-  				html += "</div>";
-  				html += "<c:if test='${not empty sessionScope.member.memberNo}'>";
-  				html += "<img class='pick_button' id='pick' src='/resources/upload/homeImg/heart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
-  				html += "<div class='card-body'>";
-  				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
-  				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
-  				html += "</div>";
-  				html += "</div>";
-  				html += "</div>";
-  				html += "</c:if>";
-  				html += "<c:if test='${empty sessionScope.member.memberNo}'>";
-  				html += "<div class='card-body'>";
-  				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
-  				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
-  				html += "</div>";
-  				html += "</div>";
-  				html += "</div>";
-  				html += "</c:if>";
-			}
+					html += "<div class='col-lg-3 col-md-6 mb-4'>";
+	  				html += "<div class='card' style='height: 400px; cursor:pointer;' onclick='showList("+data["sell"+i].sellNo+");'>";
+	  				html += "<div class='imgbox' style='overflow:hidden;'>";
+	  				html += "<img class='card-img-top' src='/resources/upload/sellImg/"+data["sell"+i].sellImg+"'>";
+	  				html += "</div>";
+	  				html += "<c:if test='${not empty sessionScope.member.memberNo}'>";
+	  				for (var j = 0; j < sellNo.length; j++) {
+	  					if(sellNo[j] == data["sell"+i].sellNo) {
+	 						html += "<img class='pick_button' id='pick' src='/resources/upload/homeImg/InHeart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
+	  					}
+	  				}
+	  				html += "<img class='pick_button' id='pick' src='/resources/upload/homeImg/heart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
+	 				html += "<div class='card-body'>";
+	 				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
+	 				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
+	 				html += "</div>";
+	 				html += "</div>";
+	 				html += "</div>";
+	  				html += "</c:if>";
+	  				html += "<c:if test='${empty sessionScope.member.memberNo}'>";
+	  				html += "<div class='card-body'>";
+	  				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
+	  				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
+	  				html += "</div>";
+	  				html += "</div>";
+	  				html += "</div>";
+	  				html += "</c:if>";
+				}
 			page += "<div class='pageNavi'>"+data["pageNavi"]+"</div>";
 			$("#sell").append(html);
 			$(".sellList-pageNavi").append(page);
@@ -119,13 +138,14 @@
   <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
-    function pick(get,no) {
+    function pick(get,no,event) {
+    	event.stopPropagation();
         if ($(get).attr("src") == "/resources/upload/homeImg/heart.png") {
             $(get).attr("src","/resources/upload/homeImg/InHeart.png");
             $(function() {
 		        $.ajax({
 			    url : "/meister/sell/pickList.do",
-                data : {no : no},
+                data : {no : memberNo},
                 success : function(data) {
                 }
                });
@@ -134,7 +154,7 @@
             $(get).attr("src","/resources/upload/homeImg/heart.png");
             $(function() {
 		        $.ajax({
-			    url : "/meister/sell/deletePickList.do",
+			    url : "/meister/sell/canclePickList.do",
                 data : {no : no},
                 success : function(data) {
                 }
@@ -143,7 +163,8 @@
         }
     }
     function showList(sellNo) {
-    	location.href="/meister/sell/showList.do?sellNo=" + sellNo + "&memberNo=1";
+    	console.log(sellNo);
+    	location.href="/meister/sell/showList.do?sellNo=" + sellNo;
     }
     </script>
 </body>

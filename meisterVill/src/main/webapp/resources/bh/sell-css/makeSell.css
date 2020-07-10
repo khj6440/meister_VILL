@@ -226,3 +226,36 @@ position: absolute;
 left: 220px;
 top: 14px;
 }
+.bubble_box {
+	position: relative;
+	background: #fffdec;;
+	border: 2px solid #fae57c;
+	padding:20px;
+	margin:10px;
+}
+.bubble_box:after, .bubble_box:before {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.bubble_box:after {
+	border-color: rgba(0, 0, 0, 0);
+	border-right-color: #fffdec;;
+	border-width: 5px;
+	margin-top: -5px;
+}
+.bubble_box:before {
+	border-color: rgba(0, 0, 0, 0);
+	border-right-color: #fae57c;;
+	border-width: 11px;
+	margin-top: -11px;
+}
+.gig-form-tooltip-text {
+	padding-left:30px;
+}
