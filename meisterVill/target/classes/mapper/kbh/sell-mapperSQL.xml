@@ -73,8 +73,6 @@
 	</association>
 	<association property="optionsvo" resultMap="optionsMap">
 	</association>
-	<association property="pickvo" resultMap="pickMap">
-	</association>
 </resultMap>
 <resultMap id="sjm" type="sjm">
  	<association property="sellvo" resultMap="sellMap">
@@ -100,13 +98,12 @@
 <select id="selectTotal" resultType="_int">
 	select count(*) as cnt from sell
 </select>
-<select id="selectOne" parameterType="map" resultMap="sjo">
+<select id="selectOne" parameterType="_int" resultMap="sjo">
 	select * from sell
 		full outer join member on (sell.sell_writer=member.member_no)
 		left join multi_img on (sell.sell_no = multi_img.multi_board_no)
 		left join options on (sell.sell_no = options.sell_no)
-		left join pick on (sell.sell_no = pick.sell_no and pick.member_no = #{memberNo})
-	where sell.sell_no = #{sellNo}
+	where sell.sell_no = #{parameter}
 </select>
 <insert id="insertSell" parameterType="sell" useGeneratedKeys="true" keyColumn="sell_no" keyProperty="sellNo">
 	insert into sell values(sell_seq.nextval,'0',#{sellWriter},'0','0','0','0','0','0','0','0','0','0','0','0','0','0','0') 
@@ -138,4 +135,7 @@
 		sell_img = #{sellImg}
 	where sell_no = #{sellNo}
 </update>
+<select id="selectPick" parameterType="_int" resultMap="pickMap">
+	select * from pick where member_no = #{parameter}
+</select>
 </mapper>

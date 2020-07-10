@@ -1,5 +1,6 @@
 package kr.or.meister.sell.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import kr.or.meister.etc.model.vo.MultiImgVO;
+import kr.or.meister.etc.model.vo.PickVO;
 import kr.or.meister.options.model.vo.OptionsVO;
 import kr.or.meister.sell.model.dao.SellDao;
 import kr.or.meister.sell.model.vo.SellJoinMemberVO;
@@ -20,9 +22,6 @@ public class SellService {
 	@Autowired
 	@Qualifier("sellDao")
 	private SellDao dao;
-
-
-
 
 	public HashMap<String, Object> selectAllList(int reqPage) {
 		int numPerPage = 12;
@@ -89,11 +88,8 @@ public class SellService {
 		return result;
 	}
 
-	public SellJoinOthersVO selectOneList(int sellNo, int memberNo) {
-		HashMap<String, Integer> number = new HashMap<String, Integer>();
-		number.put("sellNo", sellNo);
-		number.put("memberNo", memberNo);
-		SellJoinOthersVO sjo = dao.selectOneList(number);
+	public SellJoinOthersVO selectOneList(int sellNo) {
+		SellJoinOthersVO sjo = dao.selectOneList(sellNo);
 		return sjo;
 	}
 
@@ -115,5 +111,10 @@ public class SellService {
 	public int updateSellList(SellVO sell) {
 		int result = dao.updateSellList(sell);
 		return result;
+	}
+
+	public ArrayList<PickVO> selectPickList(int memberNo) {
+		List list = dao.selecctPicList(memberNo);
+		return (ArrayList<PickVO>)list;
 	}
 }

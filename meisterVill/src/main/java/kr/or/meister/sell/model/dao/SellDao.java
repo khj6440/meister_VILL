@@ -1,5 +1,6 @@
 package kr.or.meister.sell.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,8 +33,8 @@ public class SellDao {
 	public int totalCount() {
 		return sqlSession.selectOne("sell.selectTotal");
 	}
-	public SellJoinOthersVO selectOneList(HashMap<String, Integer> number) {
-		return sqlSession.selectOne("sell.selectOne",number);
+	public SellJoinOthersVO selectOneList(int sellNo) {
+		return sqlSession.selectOne("sell.selectOne",sellNo);
 	}
 	public int insertPick(HashMap<String, Integer> pick) {
 		return sqlSession.insert("pick.insertPick",pick);
@@ -55,5 +56,9 @@ public class SellDao {
 
 	public int updateSellList(SellVO sell) {
 		return sqlSession.update("sell.updateSellList",sell);
+	}
+
+	public List selecctPicList(int memberNo) {
+		return sqlSession.selectList("sell.selectPick", memberNo);
 	}
 }

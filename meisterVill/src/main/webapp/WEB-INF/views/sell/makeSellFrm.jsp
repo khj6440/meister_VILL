@@ -405,6 +405,9 @@
 				}
 			}
 		});
+		$(".title-row").mouseover(function() {
+			$(".bubble_box_title").css("display","none");
+		});
  });
 
   </script>
@@ -420,7 +423,7 @@
 <div class="panel">
 <ul class="list-style">
 <li>
-<div class="row" style="padding:10px;">
+<div class="row title-row" style="padding:10px;">
 <div class="col-xs-3">
 <p class="fo-we-bo">서비스 제목</p>
 </div>
@@ -620,7 +623,16 @@
 </div>
 </div>
 </div>
-<div class="col-xs-3"></div>
+<div class="col-xs-3">
+<div class="bubble_box_title">
+<h5>서비스 제목</h5>
+<ul class="gig-form-tooltip-text">
+<li>서비스 제목은 자동으로 삽입되는 문구 ‘드립니다’와 어울리도록 작성해주세요.</li>
+<li>［ ］&lt; &gt; / 와 같은 특수 문자와 가격 정보는 사용 불가합니다.</li>
+<li>최초, 유일, 무한, 1위, 수익 금액 등은 인증 자료 제출 후에만 사용할 수 있습니다.</li>
+</ul>
+
+</div>
 </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/sellFinishModal.jsp"/>

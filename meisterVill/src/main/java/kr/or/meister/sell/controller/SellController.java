@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -21,15 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 
 import com.google.gson.Gson;
 
 import kr.or.meister.etc.model.vo.MultiImgVO;
+import kr.or.meister.etc.model.vo.PickVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.options.model.vo.OptionsVO;
 import kr.or.meister.sell.model.service.SellService;
-import kr.or.meister.sell.model.vo.SellJoinMemberVO;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
 import kr.or.meister.sell.model.vo.SellVO;
 
@@ -47,6 +45,16 @@ public class SellController {
 		HashMap<String, Object> list = service.selectAllList(reqPage);
 		return new Gson().toJson(list);
 	}
+	@ResponseBody
+	@RequestMapping(value="/getPick.do", produces = "application/json;charset=utf-8")
+	public String getPlick(int memberNo) {
+		ArrayList<PickVO> list = service.selectPickList(memberNo);
+		ArrayList<Integer> sellNo = new ArrayList<Integer>(); 
+		for(int i = 0; i < list.size(); i++) {
+			sellNo.add(list.get(i).getSellNo());
+		}
+		return new Gson().toJson(sellNo);
+	}
 	@RequestMapping(value="/sellList.do")
 	public String sellList(int reqPage, Model m) {
 		m.addAttribute("reqPage", reqPage);
@@ -55,6 +63,8 @@ public class SellController {
 	@ResponseBody
 	@RequestMapping(value="/pickList.do")
 	public String insertPick(int no, MemberVO m) {
+		System.out.println("게시물번호" + no);
+		System.out.println("사람번호" + m.getMemberNo());
 		int result = service.insertPick(no, m.getMemberNo());
 		if (result == 0) {
 			 return "0";
@@ -66,7 +76,6 @@ public class SellController {
 	public String deletePick(int no, MemberVO m) {
 		int result = service.deletePick(no, m.getMemberNo());
 		System.out.println(result);
-		System.out.println("?�원번호" + m.getMemberNo());
 		if (result == 1) {
 			 return "1";
 		} 
@@ -74,19 +83,21 @@ public class SellController {
 	}
 	
 	@RequestMapping(value = "/showList.do", produces = "application/json;charset=utf-8")
-	public String showList(int sellNo, Model m, int memberNo) {
-		SellJoinOthersVO list = service.selectOneList(sellNo, memberNo);
+	public String showList(int sellNo, Model m) {
+		System.out.println("셀넘버" + sellNo);
+		SellJoinOthersVO list = service.selectOneList(sellNo);
+		System.out.println("리스트~~~" + list);
 		ArrayList<String> mul = new ArrayList<String>();
 		ArrayList<String> skill = new ArrayList<String>();
 
-		if (list != null) {
+		if (list.getMultiimgvo() != null) {
 			StringTokenizer st1 = new StringTokenizer(list.getMultiimgvo().getFilename(), "/");
 			while (st1.hasMoreTokens()) {
 				mul.add(st1.nextToken());
 				m.addAttribute("multiImg", mul);
 			}
 		}
-		if (list != null) {
+		if (list.getSellvo().getSellSkill() != null) {
 			StringTokenizer st2 = new StringTokenizer(list.getSellvo().getSellSkill(), "/");
 			while (st2.hasMoreTokens()) {
 				skill.add(st2.nextToken());
@@ -100,7 +111,7 @@ public class SellController {
 	@ResponseBody
 	@RequestMapping(value="/pickingSell.do")
 	public String pickList(int memberNo, int sellNo) {
-		int result = service.insertPick(sellNo, 2);
+		int result = service.insertPick(sellNo, memberNo);
 		if (result == 1) {
 			return "1";
 		} 
@@ -110,7 +121,7 @@ public class SellController {
 	@ResponseBody
 	@RequestMapping(value="/canclePickingSell.do")
 	public String canclePickList(int memberNo, int sellNo) {
-		int result = service.deletePick(sellNo, 2);
+		int result = service.deletePick(sellNo, memberNo);
 		if (result == 1) {
 			return "1";
 		} 
