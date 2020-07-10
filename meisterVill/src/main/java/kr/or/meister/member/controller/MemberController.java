@@ -351,7 +351,8 @@ public class MemberController {
 	@RequestMapping("/meisterList.do")
 	public String meisterList(Model model) {
 		//유라: 마이스터 찾기 페이지 이동
-		
+		ArrayList<MemberJoinSellReviewVO> meisters = service.allMeister();
+		model.addAttribute("meisters",meisters);
 		return "member/meisterList";
 	}
 

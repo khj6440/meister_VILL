@@ -172,13 +172,19 @@
 		select count(*) from member where member_level=1 and member_status=0
 	</select>
 	<select id="allMeister" resultType="meisters">
-		select distinct
-    m.member_name,m.member_intro,(select avg(review_point) from review  where review_writer = m.member_nickname group by sell_no) as sellPoint,    
+		select g.* from
+(select rownum as rnum, f.* from
+(select distinct
+	m.member_img as memberImg,
+    m.member_nickname as memberNickname,
+    m.member_intro as memberIntro,
+    (select round(avg(review_point),1) from review  where review_writer = m.member_nickname group by sell_no) as reviewPoint,    
     (select review_content from review where review_no=(select max(review_no) from review where review_writer = (select member_nickname from member m1 where m1.member_no=m.member_no))) as reviewContent,
     (select review_no from review where review_no=(select max(review_no) from review where review_writer = (select member_nickname from member m1 where m1.member_no=m.member_no))) as reviewNo
 from member m  
 left join sell s on (m.member_no = s.sell_writer)
-where member_level=1;
+where member_level=1)f)g
+where rnum between 1 and 10;
 	</select>
 	
 </mapper>
