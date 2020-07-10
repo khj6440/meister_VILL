@@ -16,6 +16,7 @@
 	</properties>
 	<dependencies>
 	
+	
 	<!-- 이메일 인증-->
 	<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>

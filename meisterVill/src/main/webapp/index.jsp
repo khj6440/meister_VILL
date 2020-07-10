@@ -342,6 +342,33 @@
 
                             <div class="rank-top">
 
+<<<<<<< HEAD
+                <!-- Modal body -->
+                <div class="modal-body">
+
+                    <div class="login-pic-div">
+                        <div class="login-input-box">
+                            <div class="login-title-dv">
+                                LOGIN
+                            </div>
+                            <div class="login-input-dv">
+
+                                <form action="/meister/member/loginMember.do" id="loginFrm" method="post">
+                                    <input type="text" name="memberEmail" class="login-input" placeholder="이메일을 입력하세요"><br>
+                                    <input type="password" name="memberPw" class="login-input" placeholder="비밀번호를 입력하세요"><br>
+                                    <div class="login-msg-box"></div>
+                                    <input type="button" class="btn btn-insert btn-in-modal" value="로그인">
+                                    <div class="login-chk-dv">
+                                        <div>
+
+                                            <input type="checkbox" name="loginMaintain" value="true" id="login-maintain">
+                                            <span>
+                                                <label class="lm-la" for="login-maintain">
+                                                    <img src="/resources/yr/imgs/chkbox.png" id="checked-yellow" width="20px" height="20px">
+                                                    <img src="/resources/yr/imgs/chkbox_none2.png" id="checked-none" width="20px" height="20px">
+                                                    로그인 유지</label>
+                                            </span>
+=======
                                 <div class="gray-box">
                                     <div class="category-title">IT/Programming</div>
                                     <div class="top-box">
@@ -357,6 +384,7 @@
                                                 <div>총 판매 금액</div>
                                                 <div>1,000원</div>
                                             </div>
+>>>>>>> 061eeb34d271c96a210bffb19b034e1282612d62
                                         </div>
 
                                     </div>

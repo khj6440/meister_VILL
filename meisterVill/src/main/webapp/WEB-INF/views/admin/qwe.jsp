@@ -12,7 +12,8 @@
   <link href="/resources/sell-css/css/heroic-features.css?after" rel="stylesheet">
   <link href="/resources/showSell-css/showSell.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script>
+
+<!-- <script>
 function goLocation(where) {
 	switch(where.text) {
 	case  "이미지" :
@@ -126,7 +127,7 @@ function goLocation(where) {
 	});
 	
 	 
-</script>
+</script> -->
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
@@ -170,16 +171,9 @@ function goLocation(where) {
         <div class="multiImg-box">
         <h4 style="font-weight:bold;">사용 기술</h4>
         <div style="display:flex;">
-        
-        <c:if test="${empty skill }">
-        	<h4>기술없음</h4>
-        </c:if>
-        
-        <c:if test="${!empty skill }">
 		 <c:forEach items="${skill }" var="s">
 		 	<div class="meta">${s }</div>
 		 </c:forEach>
-		 </c:if>
 		 </div>
         </div>
         <br><hr>
@@ -277,4 +271,5 @@ function goLocation(where) {
   <script src="/resources/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
