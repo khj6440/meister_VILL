@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import kr.or.meister.etc.model.vo.MultiImgVO;
 import kr.or.meister.options.model.vo.OptionsVO;
 import kr.or.meister.sell.model.dao.SellDao;
 import kr.or.meister.sell.model.vo.SellJoinMemberVO;
@@ -23,8 +25,6 @@ public class SellService {
 
 
 	public HashMap<String, Object> selectAllList(int reqPage) {
-
-
 		int numPerPage = 12;
 		int totalCount = dao.totalCount();
 		int totalPage = 0;
@@ -104,6 +104,16 @@ public class SellService {
 
 	public int insertOpt(OptionsVO opt) {
 		int result = dao.insertOpt(opt);
+		return result;
+	}
+
+	public int insertMulImg(MultiImgVO mul) {
+		int result = dao.insertMulImg(mul);
+		return result;
+	}
+
+	public int updateSellList(SellVO sell) {
+		int result = dao.updateSellList(sell);
 		return result;
 	}
 }

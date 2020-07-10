@@ -58,7 +58,7 @@
                 <a class="navbar-brand" href="#">맞춤견적</a>
                 <a class="navbar-brand" href="#">커뮤니티</a>
                 <a class="navbar-brand" href="#">마이스터</a>
-                <a class="navbar-brand" href="#">프로젝트</a>
+                <a class="navbar-brand" href="/meister/employ/showList.do">프로젝트</a>
 
             </div>
         </nav>
@@ -125,7 +125,7 @@
             <div class="hd-category">
                 <ul>
                     <li><a href="/meister/sell/sellList.do?reqPage=1">IT/Programming</a></li>
-                    <li><a href="#">Design</a></li>
+                    <li><a href="/">Design</a></li>
                 </ul>
             </div>
         </div>
@@ -294,6 +294,10 @@
         <a href="/meister/member/forgetIdPwTest.do">아이디.비번찾기테스트</a><br>
         <a href="/meister/member/joinEnd.do">회원가입 정보입력</a><br>
         <a href="/meister/member/coupon.do">쿠폰</a><br>
+        <a class="navbar-brand" href="/meister/employ/showList.do?reqPage=1">프로젝트</a>
+        <a href="/meister/employ/makeEmploy.do">모집글 작성하기</a><br>
+        <a href="/meister/sell/makeSell.do?sellWriter=${sessionScope.member.memberNo }">파내글 작성하기</a><br>
+     
         <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
         <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
         <p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>

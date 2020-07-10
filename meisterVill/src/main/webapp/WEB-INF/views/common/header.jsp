@@ -250,7 +250,7 @@
                 <div class="hd-category">
                     <ul>
                         <li><a href="/meister/sell/sellList.do">IT/Programming</a></li>
-                        <li><a href="#">Design</a></li>
+                        <li><a href="">Design</a></li><!-- sessionMember로 교체 -->
                     </ul>
                 </div>
 

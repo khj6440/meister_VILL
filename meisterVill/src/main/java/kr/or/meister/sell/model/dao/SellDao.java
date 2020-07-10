@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.or.meister.etc.model.vo.MultiImgVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.options.model.vo.OptionsVO;
 import kr.or.meister.sell.model.vo.SellJoinMemberVO;
@@ -46,5 +47,13 @@ public class SellDao {
 	}
 	public int insertOpt(OptionsVO opt) {
 		return sqlSession.insert("sell.insertOpt", opt);
+	}
+
+	public int insertMulImg(MultiImgVO mul) {
+		return sqlSession.insert("sell.insertMulImg", mul);
+	}
+
+	public int updateSellList(SellVO sell) {
+		return sqlSession.update("sell.updateSellList",sell);
 	}
 }
