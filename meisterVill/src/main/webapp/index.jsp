@@ -48,15 +48,9 @@
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
                                             </div>
-                                        </div>
-                                        <div class="minibox slider item2">
-                                            <div class="slide-img">
-                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
-                                            </div>
-                                        </div>
-                                        <div class="minibox slider item1">
-                                            <div class="slide-img">
-                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
                                             </div>
                                         </div>
                                         <div class="minibox slider item2">
@@ -68,20 +62,54 @@
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
                                             </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
                                         </div>
                                         <div class="minibox slider item2">
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
                                             </div>
                                         </div>
                                         <div class="minibox slider item1">
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
                                             </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
                                         </div>
                                         <div class="minibox slider item2">
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item2">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
                                             </div>
                                         </div>
 
@@ -116,40 +144,72 @@
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
                                             </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
                                         </div>
                                         <div class="minibox slider item2">
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
                                             </div>
                                         </div>
                                         <div class="minibox slider item1">
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
                                             </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
                                         </div>
                                         <div class="minibox slider item2">
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
                                             </div>
                                         </div>
                                         <div class="minibox slider item1">
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
                                             </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
                                         </div>
                                         <div class="minibox slider item2">
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
                                             </div>
                                         </div>
                                         <div class="minibox slider item1">
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
                                             </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
                                         </div>
                                         <div class="minibox slider item2">
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
                                             </div>
                                         </div>
 
@@ -256,155 +316,183 @@
 
                 </div>
 
-
-
             </div>
+
+
+            <div class="v-line"></div>
+
             <div class="ranking-list">
-                <div class="it-ranking">
-                
-                    <div class="rank-category">IT/Programming 판매랭킹</div>
-                    <div class="rank-box">
-                        <div class="rank-one">
-                            <div class="rank-num">1</div>
-                            <div class="rank-img">
-                                <img src="/resources/yr/imgs/profile_img2.png">
-                            </div>
-                            <div class="rank-info">
-                                <div class="r-user">
-                                    <div>000</div>
-                                    <div>상세기술</div>
-                                </div>
-                                <div class="r-money">1,000원</div>
-                            </div>
-                        </div>
-                        <div class="rank-one">
-                            <div class="rank-num">2</div>
-                            <div class="rank-img">
-                                <img src="/resources/yr/imgs/profile_img2.png">
-                            </div>
-                            <div class="rank-info">
-                                <div class="r-user">
-                                    <div>000</div>
-                                    <div>상세기술</div>
-                                </div>
-                                <div class="r-money">1,000원</div>
-                            </div>
-                        </div>
-                        <div class="rank-one">
-                            <div class="rank-num">3</div>
-                            <div class="rank-img">
-                                <img src="/resources/yr/imgs/profile_img2.png">
-                            </div>
-                            <div class="rank-info">
-                                <div class="r-user">
-                                    <div>000</div>
-                                    <div>상세기술</div>
-                                </div>
-                                <div class="r-money">1,000원</div>
-                            </div>
-                        </div>
-                        <div class="rank-one">
-                            <div class="rank-num">4</div>
-                            <div class="rank-img">
-                                <img src="/resources/yr/imgs/profile_img2.png">
-                            </div>
-                            <div class="rank-info">
-                                <div class="r-user">
-                                    <div>000</div>
-                                    <div>상세기술</div>
-                                </div>
-                                <div class="r-money">1,000원</div>
-                            </div>
-                        </div>
-                        <div class="rank-one">
-                            <div class="rank-num">5</div>
-                            <div class="rank-img">
-                                <img src="/resources/yr/imgs/profile_img2.png">
-                            </div>
-                            <div class="rank-info">
-                                <div class="r-user">
-                                    <div>000</div>
-                                    <div>상세기술</div>
-                                </div>
-                                <div class="r-money">1,000원</div>
-                            </div>
-                        </div>
-                    </div>
-                    
+                <div class="rank-category">판매랭킹</div>
+                <div class="rl-info">
+                    마이스터빌에서 가장 많이 판매한 인기 전문가 랭킹입니다.
                 </div>
-                <div class="design-ranking">
-                
-                
-                    <div class="rank-category">Design 판매랭킹</div>
-                    <div class="rank-box">
-                        <div class="rank-one">
-                            <div class="rank-num">1</div>
-                            <div class="rank-img">
-                                <img src="/resources/yr/imgs/profile_img2.png">
-                            </div>
-                            <div class="rank-info">
-                                <div class="r-user">
-                                    <div>000</div>
-                                    <div>상세기술</div>
+                <div>
+                    <div class="it-ranking">
+                        <div class="rank-box">
+
+                            <div class="rank-top">
+
+                                <div class="gray-box">
+                                    <div class="category-title">IT/Programming</div>
+                                    <div class="top-box">
+                                        <div class="trophy">
+                                            <img src="/resources/yr/imgs/trophy.png" width="100%">
+                                        </div>
+                                        <div class="top-content">
+                                            <div class="rTop-user">
+                                                <div>000</div>
+                                                <div>상세기술</div>
+                                            </div>
+                                            <div class="rTop-money">
+                                                <div>총 판매 금액</div>
+                                                <div>1,000원</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div class="r-money">1,000원</div>
+                            </div>
+
+
+                            <div class="rank-one">
+                                <div class="rank-num">2</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
+                            </div>
+                            <div class="rank-one">
+                                <div class="rank-num">3</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
+                            </div>
+                            <div class="rank-one">
+                                <div class="rank-num">4</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
+                            </div>
+                            <div class="rank-one">
+                                <div class="rank-num">5</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="rank-one">
-                            <div class="rank-num">2</div>
-                            <div class="rank-img">
-                                <img src="/resources/yr/imgs/profile_img2.png">
-                            </div>
-                            <div class="rank-info">
-                                <div class="r-user">
-                                    <div>000</div>
-                                    <div>상세기술</div>
-                                </div>
-                                <div class="r-money">1,000원</div>
-                            </div>
-                        </div>
-                        <div class="rank-one">
-                            <div class="rank-num">3</div>
-                            <div class="rank-img">
-                                <img src="/resources/yr/imgs/profile_img2.png">
-                            </div>
-                            <div class="rank-info">
-                                <div class="r-user">
-                                    <div>000</div>
-                                    <div>상세기술</div>
-                                </div>
-                                <div class="r-money">1,000원</div>
-                            </div>
-                        </div>
-                        <div class="rank-one">
-                            <div class="rank-num">4</div>
-                            <div class="rank-img">
-                                <img src="/resources/yr/imgs/profile_img2.png">
-                            </div>
-                            <div class="rank-info">
-                                <div class="r-user">
-                                    <div>000</div>
-                                    <div>상세기술</div>
-                                </div>
-                                <div class="r-money">1,000원</div>
-                            </div>
-                        </div>
-                        <div class="rank-one">
-                            <div class="rank-num">5</div>
-                            <div class="rank-img">
-                                <img src="/resources/yr/imgs/profile_img2.png">
-                            </div>
-                            <div class="rank-info">
-                                <div class="r-user">
-                                    <div>000</div>
-                                    <div>상세기술</div>
-                                </div>
-                                <div class="r-money">1,000원</div>
-                            </div>
-                        </div>
+
                     </div>
-                    
-                
+                    <div class="design-ranking">
+
+                        <div class="rank-box">
+                            
+                            <div class="rank-top">
+
+                                <div class="gray-box">
+                                    <div class="category-title">Design</div>
+                                    <div class="top-box">
+                                        <div class="trophy">
+                                            <img src="/resources/yr/imgs/trophy.png" width="100%">
+                                        </div>
+                                        <div class="top-content">
+                                            <div class="rTop-user">
+                                                <div>000</div>
+                                                <div>상세기술</div>
+                                            </div>
+                                            <div class="rTop-money">
+                                                <div>총 판매 금액</div>
+                                                <div>1,000원</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="rank-one">
+                                <div class="rank-num">2</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
+                            </div>
+                            <div class="rank-one">
+                                <div class="rank-num">3</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
+                            </div>
+                            <div class="rank-one">
+                                <div class="rank-num">4</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
+                            </div>
+                            <div class="rank-one">
+                                <div class="rank-num">5</div>
+                                <div class="rank-img">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%;">
+                                </div>
+                                <div class="rank-info">
+                                    <div class="r-user">
+                                        <div>000</div>
+                                        <div>상세기술</div>
+                                    </div>
+                                    <div class="r-money">1,000원</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
 
@@ -430,48 +518,225 @@
 
 
     <style>
-        .vertical-slider{
-            width: 550px;
-            padding: 10px;
-            height: auto;
-            
+        /*랭킹*/
+
+
+        .gray-box {
+            width: 100%;
+            height: 200px;
+            background-color: #eeeeee;
+            border-top-right-radius: 8px;
+            border-top-left-radius: 8px;
+            text-align: center;
+
         }
-        .review-slider{
-            width: 500px;
+
+        .category-title {
+            font-size: 20px;
+            font-weight: 700px;
+            color: #4d4d4d;
+            font-family: 'Noto Sans KR', sans-serif;
+            padding-top: 20px;
+        }
+
+        .top-box {
+            width: 80%;
+            margin: 30px auto;
+            height: 60%;
+            background-color: white;
+            border-top-right-radius: 8px;
+            border-top-left-radius: 8px;
+            box-shadow: 0px -1px 1px #eeeeee;
+            padding: 10px;
+            padding-top: 20px;
+        }
+
+        .trophy {
+            width: 80px;
+            position: absolute;
+            margin-left: -30px;
+            margin-top: 30px;
+
+        }
+
+        .rTop-user>div {
+            float: left;
+        }
+
+        .rTop-user>div:first-child {
+            margin-right: 20px;
+            font-size: 23px;
+            font-weight: 700;
+            color: #ffbc42;
+            margin-left: 100px;
+
+        }
+
+        .rTop-user>div:last-child {
+            font-size: 13px;
+            font-weight: 400;
+            color: #4d4d4d;
+            line-height: 40px;
+        }
+
+        .rTop-money {
+            clear: left;
+            margin-top: 30px;
+        }
+
+        .rTop-money>div:first-child {
+            font-size: 15px;
+            font-weight: 400;
+            color: #6c757d;
+        }
+
+        .rTop-money>div:last-child {
+            font-size: 27px;
+            font-weight: 700;
+            color: #ffbc42;
+        }
+
+
+        .it-ranking {
+            margin-right: 50px;
+        }
+
+        .it-ranking,
+        .design-ranking,
+        .rank-top {
+            width: 350px;
+        }
+
+        .ranking-list {
+            overflow: hidden;
+        }
+
+        .rank-one {
+            width: 100%;
+            height: 70px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .rank-one>div {
+            float: left;
+        }
+
+        .ranking-list>div:last-child>div {
+            float: left;
+        }
+
+        .r-user>div {
+            float: left;
+            margin-right: 20px;
+        }
+
+        .r-user>div:first-child {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .r-user>div:last-child {
+            line-height: 30px;
+        }
+
+        .r-money {
+            clear: left;
+            color: #ffbc42;
+        }
+
+        .rank-img {
+            width: 60px;
+            margin-right: 20px;
+
+        }
+
+        .rank-num {
+            clear: left;
+            width: 60px;
+            height: 60px;
+            background-color: #eeeeee;
+            font-size: 28px;
+            line-height: 60px;
+            font-weight: 900;
+            text-align: center;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .rank-category {
+            font-size: 24px;
+            font-weight: 600px;
+            color: #4d4d4d;
+            font-family: 'Noto Sans KR', sans-serif;
+            margin-bottom: 30px;
+
+        }
+
+
+        .v-line {
+            float: left;
+            border-left: 1px solid #dbdbdb;
+            width: 10px;
+            height: 700px;
+            margin-right: 90px;
+        }
+
+        /*리뷰*/
+        .vertical-slider {
+            width: 550px;
+            height: auto;
+
+        }
+
+        .review-slider {
+            width: 400px;
             height: 300px;
             padding: 30px;
             background-color: #eeeeee;
             margin-bottom: 20px;
             border-radius: 5px;
         }
-        .review-slider>div:first-child>div{
+
+        .review-slider>div:first-child>div {
             float: left;
             margin-left: 10px;
-            
+
         }
-        .review-slider>div:last-child{
+
+        .review-slider>div:last-child {
             clear: left;
             margin-top: 45px;
         }
-        .review-list{
+
+        .review-list {
             margin-left: 100px;
+            float: left;
+            margin-right: 100px;
+
         }
-        .rl-title{
+
+        .rl-title {
             font-size: 24px;
             font-weight: 700;
             color: #4d4d4d;
             margin-bottom: 10px;
-           
+
             font-family: 'Noto Sans KR', sans-serif;
         }
-        .rl-info{
+
+        .rl-info {
             font-size: 17px;
             color: #4d4d4d;
             margin-bottom: 30px;
-            
+
             font-weight: 600;
             font-family: 'Noto Sans KR', sans-serif;
         }
+
+
+
+        /*쿠폰이벤트*/
         .coupon-ev-ad {
             width: 1500px;
             margin: 100px auto;
@@ -481,16 +746,15 @@
             position: absolute;
             width: 250px;
             height: 55px;
-            border-radius: 8px;
+            border-radius: 4px;
             line-height: 55px;
             font-size: 18px;
             font-weight: 600;
-            color: #4d4d4d;
-            background-color: #eeeeee;
+            color: #ffbc42;
+            background-color: white;
             text-align: center;
             font-family: 'Noto Sans KR', sans-serif;
-
-            box-shadow: 0px 0px 4px black;
+            box-shadow: 0px 0px 10px #B38300;
             margin-top: -135px;
             margin-left: 600px;
         }
@@ -498,8 +762,10 @@
         .main-cont {
             width: 1700px;
             margin: 0 auto;
+            height: auto;
+            overflow: hidden;
+            padding-bottom: 100px;
 
-            border: 1px solid green;
         }
 
         .list-title {
@@ -522,7 +788,6 @@
             width: 1700px;
             margin: 0 auto;
 
-            border: 1px solid blue;
         }
 
         .slide-wrapper {
@@ -532,9 +797,8 @@
 
         .bigbox {
             margin: 0 auto;
-            height: 220px;
+            height: 300px;
             width: 1500px;
-            border: 1px solid green;
         }
 
         .minibox {
@@ -543,14 +807,16 @@
 
         .item1 {
             width: 200px;
-            height: 220px;
-            border: 1px solid #dbdbdb;
+            height: 300px;
         }
 
         .item2 {
             width: 200px;
-            height: 220px;
-            border: 1px solid #ffbc42;
+            height: 300px;
+        }
+
+        .slide-msg {
+            margin-top: 20px;
         }
 
     </style>
@@ -589,7 +855,7 @@
 
             $(".vertical-slider").slick({
                 vertical: true,
-                slidesToShow: 5,
+                slidesToShow: 4,
                 slidesToScroll: 1,
                 autoplay: true,
                 autoplaySpeed: 3000,
