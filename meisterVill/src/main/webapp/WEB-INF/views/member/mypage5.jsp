@@ -199,6 +199,14 @@ box-shadow : 1px 1px 1px lightgray;
 	color : white;
 	font-weight: bold;
 }
+.null_img{
+	margin-top : 30px;
+	width : 70px;
+	height : 70px;
+	opacity: 0.8;
+	margin-bottom: -10px;
+	
+}
 </style>
 </head>
 <body>
@@ -344,7 +352,7 @@ box-shadow : 1px 1px 1px lightgray;
 					<div class="my_project">
 						<h5 style="margin-left : 40px;">보낸 견적</h5>
 						<div class="project_content">
-						<c:if test="${empty order.orderNo }">
+						<c:if test="${empty rq.requestNo }">
 							<div class="project_null">
 								<div class="project_margin">
 								<span>보낸 견적이 없습니다.</span><br>
@@ -354,8 +362,8 @@ box-shadow : 1px 1px 1px lightgray;
 								</div>
 							</div>
 						</c:if>
-						<c:if test="${not empty order.orderNo }">
-							내가 구매한 글 목록
+						<c:if test="${not empty rq.requestNo }">
+							내가 보낸 견적
 						</c:if>
 						</div>
 					</div>
@@ -367,6 +375,7 @@ box-shadow : 1px 1px 1px lightgray;
 						<c:if test="${empty order.orderNo }">
 							<div class="project_null">
 								<div class="project_margin">
+								<div><img class="null_img" src="/upload/common/warning.png"></div>
 								<span style="line-height : 10;">구매이력이 없습니다.</span><br>
 								
 								</div>

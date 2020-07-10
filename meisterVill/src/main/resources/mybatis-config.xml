@@ -34,7 +34,10 @@
 		<typeAlias type="kr.or.meister.admin.model.vo.SellStatsVO" alias="sellStats"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.RequestSellVO" alias="requestSell"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.SellSellVO" alias="sellSell"/>
-		
+		<typeAlias type="kr.or.meister.employ.model.vo.EmployVO" alias="employ"/>
+		<typeAlias type="kr.or.meister.employ.model.vo.EmployMemberVO" alias="employMember"/>
+		<typeAlias type="kr.or.meister.request.model.vo.RequestVO" alias="request"/>
+		<typeAlias type="kr.or.meister.request.model.vo.RequestMemberVO" alias="requestMember"/>
 	</typeAliases>
 	
 </configuration>
