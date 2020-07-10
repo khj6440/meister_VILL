@@ -63,8 +63,6 @@ public class SellController {
 	@ResponseBody
 	@RequestMapping(value="/pickList.do")
 	public String insertPick(int no, MemberVO m) {
-		System.out.println("게시물번호" + no);
-		System.out.println("사람번호" + m.getMemberNo());
 		int result = service.insertPick(no, m.getMemberNo());
 		if (result == 0) {
 			 return "0";
@@ -84,10 +82,8 @@ public class SellController {
 	
 	@RequestMapping(value = "/showList.do", produces = "application/json;charset=utf-8")
 	public String showList(int sellNo, Model m) {
-		System.out.println("셀넘버" + sellNo);
-		SellJoinOthersVO list = service.selectOneList(sellNo);
-		System.out.println("리스트~~~" + list);
-		ArrayList<String> mul = new ArrayList<String>();
+	SellJoinOthersVO list = service.selectOneList(sellNo);
+			ArrayList<String> mul = new ArrayList<String>();
 		ArrayList<String> skill = new ArrayList<String>();
 
 		if (list.getMultiimgvo() != null) {

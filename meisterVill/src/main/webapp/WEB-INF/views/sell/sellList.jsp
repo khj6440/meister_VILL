@@ -38,31 +38,6 @@
 				html = "";
 				page = "";
 				for (var i = 0; i < number; i++) {
-<<<<<<< HEAD
-  				html += "<div class='col-lg-3 col-md-6 mb-4'>";
-  				html += "<div class='card' style='height: 400px; cursor:pointer;' onclick='showList("+data["sell"+i].sellNo+");'>";
-  				html += "<div class='imgbox' style='overflow:hidden;'>";
-  				html += "<img class='card-img-top' src='/upload/sellImg/"+data["sell"+i].sellImg+"'>";
-  				html += "</div>";
-  				html += "<c:if test='${not empty sessionScope.member.memberNo}'>";
-  				html += "<img class='pick_button' id='pick' src='/upload/homeImg/heart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
-  				html += "<div class='card-body'>";
-  				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
-  				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
-  				html += "</div>";
-  				html += "</div>";
-  				html += "</div>";
-  				html += "</c:if>";
-  				html += "<c:if test='${empty sessionScope.member.memberNo}'>";
-  				html += "<div class='card-body'>";
-  				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
-  				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
-  				html += "</div>";
-  				html += "</div>";
-  				html += "</div>";
-  				html += "</c:if>";
-			}
-=======
 					html += "<div class='col-lg-3 col-md-6 mb-4'>";
 	  				html += "<div class='card' style='height: 400px; cursor:pointer;' onclick='showList("+data["sell"+i].sellNo+");'>";
 	  				html += "<div class='imgbox' style='overflow:hidden;'>";
@@ -91,7 +66,6 @@
 	  				html += "</div>";
 	  				html += "</c:if>";
 				}
->>>>>>> bh2
 			page += "<div class='pageNavi'>"+data["pageNavi"]+"</div>";
 			$("#sell").append(html);
 			$(".sellList-pageNavi").append(page);
@@ -164,16 +138,10 @@
   <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
-<<<<<<< HEAD
-    function pick(get,no) {
-        if ($(get).attr("src") == "/upload/homeImg/heart.png") {
-            $(get).attr("src","/upload/homeImg/InHeart.png");
-=======
     function pick(get,no,event) {
     	event.stopPropagation();
         if ($(get).attr("src") == "/resources/upload/homeImg/heart.png") {
             $(get).attr("src","/resources/upload/homeImg/InHeart.png");
->>>>>>> bh2
             $(function() {
 		        $.ajax({
 			    url : "/meister/sell/pickList.do",
