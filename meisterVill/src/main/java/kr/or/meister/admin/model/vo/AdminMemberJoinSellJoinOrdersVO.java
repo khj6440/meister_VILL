@@ -48,4 +48,5 @@ public class AdminMemberJoinSellJoinOrdersVO {
 	private int orderBoardNo;
 	private String orderDate;
 	private int orderBoardType;
+	private int pickNo;
 }

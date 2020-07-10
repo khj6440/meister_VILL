@@ -83,7 +83,8 @@
                 <c:if test="${empty sessionScope.member }">
                     <div class="hd hd-member">
                         <a class="member-top-menu" href="#">마이스터 등록</a>
-                        <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
+	                    <a class="member-top-menu" href="/meister/member/loginFrm.do">로그인</a>
+                      <!--   <a class="member-top-menu" href="/meister/project/login.do" data-toggle="modal" data-target="#loginModal">로그인</a> -->
                         <a class="btn btn-insert" href="/meister/member/join.do">무료 회원가입</a>
                     </div>
                 </c:if>
@@ -99,7 +100,7 @@
                                 </a>
 
                                 <ul class="hd-profile-menu1">
-                                    <li id="none" name="hd-menu1"><a href="#">프로필 관리</a></li>
+                                    <li id="none" name="hd-menu1"><a href="/meister/member/myprofile.do">프로필 관리</a></li>
                                     <li name="hd-menu1"><a href="#">마이스터 등록</a></li>
                                     <li name="hd-menu1"><a href="#">찜한 서비스</a></li>
                                     <li name="hd-menu1"><a href="#">쿠폰</a></li>
@@ -111,7 +112,7 @@
 
                     </div>
                     <div class="member-top-line1 normal-mtl">
-                        <a class="member-top-menu" href="#">마이페이지</a>
+                        <a class="member-top-menu" href="/meister/member/mypage.do?memberNo='${sessionScope.member.memberNo}&reqPage=1">마이페이지</a>
                         <a class="member-top-menu" href="#">메세지</a>
                     </div>
 
@@ -150,7 +151,8 @@
             <c:if test="${empty sessionScope.member }">
                 <div class="member-top-line">
                     <a class="member-top-menu" href="#">마이스터 등록</a>
-                    <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
+                    <a class="member-top-menu" href="/meister/member/loginFrm.do">로그인</a>
+                    <!-- <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a> -->
                     <a class="btn btn-insert" href="/meister/member/join.do">무료 회원가입</a>
                 </div>
             </c:if>
@@ -171,7 +173,7 @@
                             </c:if>
 
                             <ul class="hd-profile-menu1">
-                                <li id="none" name="hd-menu1"><a href="#">프로필 관리</a></li>
+                                <li id="none" name="hd-menu1"><a href="/meister/member/myprofile.do">프로필 관리</a></li>
                                 <li name="hd-menu1"><a href="#">마이스터 등록</a></li>
                                 <li name="hd-menu1"><a href="#">찜한 서비스</a></li>
                                 <li name="hd-menu1"><a href="#">쿠폰</a></li>
@@ -183,7 +185,7 @@
 
                 </div>
                 <div class="member-top-line1">
-                    <a class="member-top-menu" href="#">마이페이지</a>
+                    <a class="member-top-menu" href="/meister/member/mypage.do?memberNo='${sessionScope.member.memberNo}&reqPage=1">마이페이지</a>
                     <a class="member-top-menu" href="#">메세지</a>
                 </div>
 
@@ -525,7 +527,7 @@
 
     </script>
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/resources/yr/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 

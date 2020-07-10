@@ -28,6 +28,17 @@
 	</select>
 
 
+	<select id="noticeOneView" parameterType="_int" resultType="notice">
+				        select
+        notice_no as noticeNo,
+            notice_title as noticeTitle,
+            notice_writer as noticeWriter,
+            notice_content as noticeContent,
+            notice_date as noticeDate,
+            notice_view_count as noticeViewCount
+            from notice where notice_no = #{noticeNo}
+	</select>
+
 	<select id="selectList" parameterType="Map"  resultType="adminMember">
 		select *
 		 from(select rownum as rnum, n.* from
@@ -142,12 +153,23 @@
 		select count(*) as level1Cnt from member where member_level = 1
 	</select>
 	
+	<select id="adminNoticeCnt" resultType="_int">
+	<!-- 전문가 회원 총인원  -->
+		 select count(*) as adminNoticeCnt from notice
+	</select>
+	
 	<select id="level2Cnt" resultType="_int">
 	<!-- 관리자 회원 총인원  -->
 		select count(*) as level2Cnt from member where member_level = 2
 	</select>
 	
+	<select id="adminQnaCnt" resultType="_int">
+		select count(*) as adminQnaCnt from qna
+	</select>
 	
+	<insert id="newQna" parameterType="Map">
+		insert into qna values(qna_seq.nextval, #{qnaTitle}, #{qnaContent})
+	</insert>
 
 	<select id="sCnt" resultType="_int">
 		select count(*) as sCnt from sell
@@ -166,9 +188,34 @@
 		 select count(*) as sellCnt from sell
 	</select>
 	
+	<select id="sellListCnt" resultType="_int">
+	<!-- sell 총 게시물 수  -->
+		 select count(*) as sellListCnt from sell where sell_appro = 1
+	</select>
+	
+	<select id="memberOneViewSellCnt" resultType="_int">
+	<!-- sell 총 게시물 수  -->
+		 select count(*) as sellListCnt from sell where sell_writer = #{memberNo}
+	</select>
+	
+	<select id="memberOneViewPickCnt" resultType="_int">
+	<!-- sell 총 게시물 수  -->
+		 select count(*) as pickListCnt from pick where member_no = #{memberNo}
+	</select>
+	
+	<select id="sellApprovalCnt" resultType="_int">
+	<!-- sell 총 게시물 수  -->
+		select count(*) as sellApprovalCnt from sell where sell_appro = 0
+	</select>
+
+	<select id="requestApprovalCnt" resultType="_int">
+	<!-- sell 총 게시물 수  -->
+		select count(*) as requestApprovalCnt from request where request_appro = 0
+	</select>
+	
 	<select id="requestCnt" resultType="_int">
 	<!-- request 총 게시물 수  -->
-		select count(*) as requestCnt from REQUEST
+		select count(*) as requestCnt from request where request_appro = 1
 	</select>
 	
 	<select id="employCnt" resultType="_int">
@@ -207,12 +254,48 @@
 		UPDATE member SET member_status = 2 WHERE member_no = #{memberNo}
 	</update>
 	
+	<update id="viewCount" parameterType="_int">
+		UPDATE notice SET notice_view_count = notice_view_count+1 WHERE notice_no = #{noticeNo}
+	</update>
+	
+	<update id="sellHalt" parameterType="int">
+		UPDATE sell SET sell_status = 1 WHERE sell_no = #{sellNo}
+	</update>
+
+	<update id="requestApproval" parameterType="int">
+		UPDATE request SET request_appro = 1 WHERE request_no = #{requestNo}
+	</update>
+	
+	<update id="requestNoApproval" parameterType="int">
+		UPDATE request SET request_appro = 2 WHERE request_no = #{requestNo}
+	</update>
+	
+	<update id="requestEnd" parameterType="int">
+		UPDATE request SET request_status = 2 WHERE request_no = #{requestNo}
+	</update>
+	
+	<update id="requestRollback" parameterType="int">
+		UPDATE request SET request_status = 0 WHERE request_no = #{requestNo}
+	</update>
+	
+	<update id="boardRollback" parameterType="int">
+		UPDATE sell SET sell_status = 0 WHERE sell_no = #{sellNo}
+	</update>
+	
 	<update id="memberRollback" parameterType="int">
 		UPDATE member SET member_status = 0 WHERE member_no = #{memberNo}
 	</update>
 	
 	<update id="memberDelete" parameterType="int">
 		UPDATE member SET member_status = 1 WHERE member_no = #{memberNo}
+	</update>
+	
+	<update id="sellDelete" parameterType="int">
+		UPDATE sell SET sell_status = 2 WHERE sell_no = #{sellNo}
+	</update>
+	
+	<update id="approval" parameterType="int">
+		UPDATE sell SET sell_appro = 1 WHERE sell_no = #{sellNo}
 	</update>
 	
 	
@@ -227,11 +310,62 @@
   			 				where order_board_type = 0 order by sell_price desc
 	</select>
 	
+	<select id="oneMemberSellSell" resultType="sellSell">
+		        select sum(sellPrice) as sellPrice, sum(optionPrice) as optionPrice, sellWriter from 
+                     (select
+            sell_price as sellPrice,
+            option_title as optionTitle,
+            option_price as optionPrice,
+            sell_writer as sellWriter
+  			from sell LEFT JOIN orders ON (sell_no = order_board_no)
+                   LEFT JOIN order_option using (order_no)
+                  LEFT JOIN options using (option_no)
+  			 				where order_board_type = 0 order by sell_price desc)
+                            group by sellWriter
+	</select>
+	
+	
+	
+	
 	<select id="requestSell" resultType="requestSell">
 		select
             request_price as requestPrice
   			from request LEFT JOIN orders ON (request_no = order_board_no)
   			 				where order_board_type = 1 order by request_price desc
+	</select>
+	
+	
+	
+		<select id="oneMemberRequestSell" resultType="requestSell">
+		 	select sum(requestPrice) as requestPrice, requestResMembers from 
+        (select
+            request_price as requestPrice,
+            request_writer as requestWriter,
+            to_number(request_res_members) as requestResMembers,
+            request_no as requestNo
+  			from request LEFT JOIN orders ON (request_no = order_board_no)
+            where order_board_type = 1 and request_status =2 order by request_price desc)
+            group by requestResMembers    
+		</select>
+	
+	<delete id="noticeDelete" parameterType="_int">
+		delete notice where notice_no = #{noticeNo}
+	</delete>
+	
+	<insert id="adminNoticeInsert" parameterType="Map">
+		 insert into notice values(notice_seq.nextval,#{noticeTitle},#{memberNickname},#{noticeContent},sysdate,0)
+	
+	</insert>
+	
+	<select id="NoticeView" parameterType="_int" resultType="notice">
+		        select
+        notice_no as noticeNo,
+            notice_title as noticeTitle,
+            notice_writer as noticeWriter,
+            notice_content as noticeContent,
+            notice_date as noticeDate,
+            notice_view_count as noticeViewCount
+            from notice where notice_no = #{noticeNo}
 	</select>
 	
 

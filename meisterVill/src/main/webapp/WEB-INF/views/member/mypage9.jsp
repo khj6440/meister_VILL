@@ -204,7 +204,7 @@ box-shadow : 1px 1px 1px lightgray;
 	width : 70px;
 	height : 70px;
 	opacity: 0.8;
-	
+	margin-bottom: -10px;
 }
 </style>
 </head>
