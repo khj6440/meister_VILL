@@ -1,10 +1,21 @@
 package kr.or.meister.member.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 import java.util.Random;
+import java.util.Set;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -22,19 +33,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import kr.or.meister.chat.model.vo.ChatVO;
+
 import kr.or.meister.coupon.model.vo.CouponApplyVO;
 import kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO;
 import kr.or.meister.coupon.model.vo.CouponJoinMemberVO;
+
+import kr.or.meister.employ.model.vo.EmployVO;
+
 import kr.or.meister.member.model.service.MemberService;
+import kr.or.meister.member.model.vo.CareerVO;
+import kr.or.meister.member.model.vo.LicenseVO;
 import kr.or.meister.member.model.vo.MemberDataVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
@@ -49,15 +70,17 @@ public class MemberController {
 	private MemberService service;
 
 	@RequestMapping("/mypagego.do")
-	public String mypagego() {
+	public String mypagego(int reqPage, Model model) {
+		model.addAttribute("reqPage",reqPage);
 		return "member/mypage";
 	}
 
 	@RequestMapping("/mypage.do")
-	public String mypage(Model model, HttpSession session) {
+	public String mypage( Model model, HttpSession session) {
+		
 		MemberVO m2 = (MemberVO) session.getAttribute("member");
 		model.addAttribute("m", m2);
-
+	
 		return "member/mypage";
 	}
 	
@@ -83,12 +106,9 @@ public class MemberController {
 		}
 	}
 	@RequestMapping("/myprofile.do")
-	public String myprofile(HttpSession session, Model model, MemberDataVO mdv) {
-		MemberDataVO mdv2 = service.selectOneMember2(mdv);
+	public String myprofile(HttpSession session, Model model, CareerVO cr, LicenseVO ls) {
 		MemberVO m = (MemberVO) session.getAttribute("member");
 		model.addAttribute("m", m);
-		model.addAttribute("list", mdv2);
-		System.out.println(mdv2);
 		return "member/myprofile";
 	}
 
@@ -97,7 +117,19 @@ public class MemberController {
 		// hyeokjin
 		return "project/login";
 	}
+	@RequestMapping("/login2.do")
+	public String login2(HttpSession session, MemberVO m) {
+		MemberVO loginM = service.selectOneMember3(m);
 
+		if (loginM != null) {
+			session.setAttribute("member", loginM);
+			return "redirect:/meister/member/loginFrm.do";
+		} else {
+			return "redirect:/meister/member/loginFrm.do";
+		}
+	}
+	
+	
 	@RequestMapping("/login.do")
 	public String login(HttpSession session, MemberVO m) {
 		MemberVO loginM = service.selectOneMember3(m);
@@ -109,6 +141,49 @@ public class MemberController {
 			return "member/loginFail";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/selectAllEmploy.do", produces = "application/json;charset=utf-8")
+	public ModelAndView selectAllMember(int memberNo, int reqPage, String memberNickname, 
+			@RequestParam(defaultValue = "0") int employstatus, @RequestParam(defaultValue = "0") int employappro) {
+		System.out.println("memberNo :"+ memberNo);
+		System.out.println("reqPage : "+ reqPage);
+		System.out.println("employstatus="+employstatus);
+		System.out.println("employappro="+employappro);
+		HashMap<String, Object> list = service.selectAllEmploy(memberNo, reqPage, employstatus, employappro);
+		HashMap<String,Object> list2 = service.selectAllRequest(memberNo, reqPage, memberNickname);
+		System.out.println("controller list : "+list);
+		ModelAndView mo=new ModelAndView();
+		mo.addObject("reqPage", reqPage);
+		mo.addObject("list", new Gson().toJson(list));
+		mo.addObject("list2", new Gson().toJson(list2));
+		mo.setViewName("member/mypage");
+		return mo;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/selectAllRequest.do", produces = "application/json;charset=utf-8")
+	public ModelAndView selectAllMember2(int memberNo, int reqPage, String memberNickname,
+			@RequestParam(defaultValue = "0") int employstatus, @RequestParam(defaultValue = "0") int employappro) {
+		System.out.println("memberNo :"+ memberNo);
+		System.out.println("reqPage : "+ reqPage);
+		HashMap<String, Object> list = service.selectAllEmploy(memberNo, reqPage, employstatus, employappro);
+		HashMap<String,Object> list2 = service.selectAllRequest(memberNo, reqPage, memberNickname);
+		System.out.println("controller list2 : "+list2);
+		ModelAndView mo=new ModelAndView();
+		mo.addObject("list", new Gson().toJson(list));
+		mo.addObject("reqPage", reqPage);
+		mo.addObject("list2", new Gson().toJson(list2));
+		mo.setViewName("member/mypage");
+		return mo;
+	}
+	
+	@RequestMapping(value="/employList.do")
+	   public String employList(int reqPage, Model m) {
+	      m.addAttribute("reqPage", reqPage);
+	      return "member/mypage";
+	   }
+	
+	
 
 	@RequestMapping("/mypage5.do")
 	public String mypage5(HttpSession session, Model model) {
@@ -116,17 +191,23 @@ public class MemberController {
 		model.addAttribute("m", m2);
 		return "member/mypage5";
 	}
+	@RequestMapping("/mypage13.do")
+	public String mypage13(HttpSession session, Model model) {
+		MemberVO m2 = (MemberVO) session.getAttribute("member");
+		model.addAttribute("m", m2);
+		return "member/mypage13";
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "/transformMember.do", produces = "text/html;charset=utf-8")
-	public String transformMember(String Nickname, int level, HttpSession session) {
+	public String transformMember(String Nickname, int level, HttpSession session, int reqPage) {
 
 		MemberVO member = new MemberVO();
 		member.setMemberNickname(Nickname);
 		member.setMemberLevel(level);
 
 		MemberVO member2 = new MemberVO();
-
+		String num="0";
 		if (member.getMemberLevel() == 1) {
 
 			int result = service.updateMemberLevel(member);
@@ -135,7 +216,6 @@ public class MemberController {
 				member2 = service.selectOneMember4(member);
 				session.setAttribute("member", member2);
 			}
-			return "0";
 
 		} else if (member.getMemberLevel() == 0) {
 
@@ -147,8 +227,9 @@ public class MemberController {
 
 			}
 
+			num="1";
 		}
-		return "1";
+		return num;
 	}
 
 	@RequestMapping("/mypage9.do")
@@ -176,6 +257,11 @@ public class MemberController {
 		System.out.println("로그인 : " + m.getMemberEmail());
 		MemberVO member = service.selectLoginMember(m);
 		if (member != null) {
+			
+			if(member.getMemberLevel() == 2) {
+				session.setAttribute("member", member);
+				return "redirect:/meister/admin/adminIndexFrm.do";
+			}
 			session.setAttribute("member", member);
 			System.out.println(m.getMemberEmail());
 			System.out.println("로그인성공");
@@ -286,12 +372,6 @@ public class MemberController {
 		return gson.toJson(list);
 	}
 
-	@RequestMapping(value = "/goProject.do")
-	public String project() {
-		// hyeokjin
-		return "project/pHome";
-	}
-
 	@RequestMapping(value = "/message.do")
 	public String message() {
 		// hyeokjin
@@ -313,18 +393,90 @@ public class MemberController {
 		int unReadMsgCnt = service.getUnreadMsgCnt(memberNickname);
 		return unReadMsgCnt;
 	}
-
+	
 	@ResponseBody
-	@RequestMapping(value = "/uploadChatFile.do")
-	public String uploadChatFile(HttpServletRequest request, MultipartFile file) {
-		// hyeokjin
-		System.out.println("test");
-		System.out.println(file);
-
-		return "test";
+	@RequestMapping(value="/readMsg.do")
+	public void readMsg(int msgNo) {
+		// heokjin
+		int result = service.readMsg(msgNo);
 	}
 	
 
+	@ResponseBody
+	@RequestMapping(value = "/uploadChatFile.do", produces = "text/html;charset=utf-8")
+	public String uploadChatFile2(HttpServletRequest request, MultipartHttpServletRequest mtfRequest) {
+		// hyeokjin
+		List<MultipartFile> fileList = mtfRequest.getFiles("file");
+		ArrayList<String> resultList = new ArrayList<String>();
+		if (!fileList.isEmpty()) {
+			for (MultipartFile file : fileList) {
+				String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/chat/");
+				// 업로드한 파일의 실제 파일명
+				String originalFilename = file.getOriginalFilename();
+				// 확장자를 제외한 파일명 ->text
+				String onlyFilename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
+				// 확장자 ->.txt
+				String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+				String filepath = onlyFilename + "_" + Calendar.getInstance().getTimeInMillis() + extension;
+				String fullpath = savePath + filepath;
+
+				resultList.add(originalFilename + ":" + filepath);
+
+				try {
+					byte[] bytes = file.getBytes();
+					BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));
+					bos.write(bytes);
+					bos.close();
+					System.out.println("파일 업로드 완료");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return new Gson().toJson(resultList);
+	}
+	
+
+	@RequestMapping(value = "/chatFileDownload.do", produces = "application/octet-stream;charset=utf-8")
+	public void chatFileDownload(String filename, String filepath, HttpServletRequest request,
+			HttpServletResponse response) {
+		//hyeokjin
+		String resFilename=null;
+		try {
+			resFilename = new String(filename.getBytes("UTF-8"),"ISO-8859-1");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		response.setHeader("Content-Disposition", "attachment;filename=" + resFilename);
+		String saveDir = request.getSession().getServletContext().getRealPath("/resources/upload/chat/");
+
+		BufferedInputStream bis = null;
+		BufferedOutputStream bos = null;
+		try {
+			bis = new BufferedInputStream(new FileInputStream(saveDir + filepath));
+			bos = new BufferedOutputStream(response.getOutputStream());
+			int read = -1;
+			while ((read = bis.read()) != -1) {
+				bos.write(read);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				bos.close();
+				bis.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/mailSendLink.do", method = RequestMethod.POST)
 	public String mailSendLink(String memberEmail, Model model, HttpServletRequest request) {

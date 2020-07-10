@@ -115,6 +115,7 @@
 
                                     </div>
 
+
                                 </div>
                             </div>
                         </div>
@@ -122,21 +123,28 @@
 
 
 
+                       <ul class="hd-profile-menu1">
+                                    <li id="none" name="hd-menu1"><a href="/meister/member/myprofile.do">프로필 관리</a></li>
+                                    <li name="hd-menu1"><a href="#">마이스터 등록</a></li>
+                                    <li name="hd-menu1"><a href="#">찜한 서비스</a></li>
+                                    <li name="hd-menu1"><a href="#">쿠폰</a></li>
+                                    <li name="hd-menu1"><a href="/meister/member/logout.do">로그아웃</a></li>
 
 
                     </div>
+
                 </div>
                 <div class="design-list">
                     <div class="list-title">
                         Design
+
                     </div>
                     <div class="list-slide">
-
-
-                        <div class="content-boxx-yr">
+          <div class="content-boxx-yr">
                             <div class="main-wrapper">
 
                                 <div class="slide-wrapper">
+
 
                                     <div class="bigbox">
 
@@ -223,11 +231,13 @@
                     </div>
                 </div>
             </div>
+
             <div class="coupon-ev-ad">
                 <a href="/meister/member/join.do">
                     <img src="/resources/yr/imgs/ad3.png">
                     <div class="bbtn">쿠폰 받기</div>
                 </a>
+
             </div>
 
 

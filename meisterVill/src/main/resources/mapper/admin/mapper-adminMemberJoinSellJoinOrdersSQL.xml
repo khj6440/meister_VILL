@@ -47,6 +47,142 @@
   	</select>
   	
   	
+  	
+  	
+  	<select id="adminNoticeList" parameterType="Map"  resultType="notice">
+  	
+  			   			                  		select *
+		 from(select rownum as rnum, n.* from
+		(select 
+            notice_no as noticeNo,
+            notice_title as noticeTitle,
+            notice_writer as noticeWriter,
+            notice_content as noticeContent,
+            notice_date as noticeDate,
+            notice_view_count as noticeViewCount
+		from notice order by notice_no desc)n)
+		where rnum between #{start} and #{end}
+  	</select>
+  	
+  	<select id="memberCareer" parameterType="int"  resultType="memberInform">
+  	
+  		   select
+            career_no as careerNo,
+            type_free as typeFree,
+            company_name as companyName,
+            company_department as companyDepartment,
+            company_job_title as companyJobTitle,
+            company_job_mon as companyJobMon
+            from career where member_no = #{memberNo}
+  	
+  	</select>
+  	
+  	  	<select id="memberLicense" parameterType="int"  resultType="memberInform">
+  	
+            select             
+            license_no as licenseNo,
+            license_name as licenseName,
+            license_date as licenseDate,
+            license_agency as licenseAgency
+            from license where member_no = #{memberNo}
+  	
+  	</select>
+  	
+  	<select id="memberPick" parameterType="int"  resultType="joinSellJoinOrders">
+  		        select
+            member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate,
+            sell_no as sellNo,
+            sell_title as sellTitle,
+            sell_writer as sellWriter,
+            sell_price as sellPrice,
+            sell_category1 as sellCategory1,
+            sell_category2 as sellCategory2,
+            sell_skill as sellSkill,
+            sell_date as sellDate,
+            sell_appro as sellAppro,
+            sell_status as sellStatus,
+            sell_opt1 as sellOpt1,
+            sell_opt2 as sellOpt2,
+            sell_opt3 as sellOpt3,
+            sell_opt_fix as sellOptFix,
+            sell_period as sellPeriod,
+            sell_content as sellContent,
+            sell_fix as sellFix,
+            sell_img as sellImg,
+            pick_no as pickNo
+  			from pick LEFT JOIN member using (member_no)
+                        LEFT JOIN sell using(sell_no)
+  			 				where member_no = #{memberNo}
+  	</select>
+  	
+ 
+  	
+  	<select id="sellApproval" parameterType="Map"  resultType="joinSellJoinOrders">	
+  			                  		select *
+		 from(select rownum as rnum, n.* from
+		(select 
+            sell_no as sellNo,
+            sell_title as sellTitle,
+            sell_writer as sellWriter,
+            sell_price as sellPrice,
+            sell_category1 as sellCategory1,
+            sell_category2 as sellCategory2,
+            sell_skill as sellSkill,
+            sell_date as sellDate,
+            sell_appro as sellAppro,
+            sell_status as sellStatus,
+            sell_opt1 as sellOpt1,
+            sell_opt2 as sellOpt2,
+            sell_opt3 as sellOpt3,
+            sell_opt_fix as sellOptFix,
+            sell_period as sellPeriod,
+            sell_content as sellContent,
+            sell_fix as sellFix,
+            sell_img as sellImg,
+			member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate
+		from sell JOIN member ON (member_no = sell_writer) where sell_appro=0 order by sell_no desc)n)
+		where rnum between #{start} and #{end}
+  	
+  	</select>
+  	
   <select id="sellList" parameterType="Map"  resultType="joinSellJoinOrders">	
 		        		select *
 		 from(select rownum as rnum, n.* from
@@ -89,9 +225,216 @@
   			member_major as memberMajor,
   			member_grade as memberGrade,
   			member_date as memberDate
-		from sell JOIN member ON (member_no = sell_writer) order by sell_no desc)n)
+		from sell JOIN member ON (member_no = sell_writer) where sell_appro = 1 order by sell_no desc)n)
 		where rnum between #{start} and #{end}
 		
+  </select>
+  
+  
+    <select id="sellAllViewSellList" parameterType="Map"  resultType="joinSellJoinOrders">	
+		        		select *
+		 from(select rownum as rnum, n.* from
+		(select 
+            sell_no as sellNo,
+            sell_title as sellTitle,
+            sell_writer as sellWriter,
+            sell_price as sellPrice,
+            sell_category1 as sellCategory1,
+            sell_category2 as sellCategory2,
+            sell_skill as sellSkill,
+            sell_date as sellDate,
+            sell_appro as sellAppro,
+            sell_status as sellStatus,
+            sell_opt1 as sellOpt1,
+            sell_opt2 as sellOpt2,
+            sell_opt3 as sellOpt3,
+            sell_opt_fix as sellOptFix,
+            sell_period as sellPeriod,
+            sell_content as sellContent,
+            sell_fix as sellFix,
+            sell_img as sellImg,
+			member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate
+		from sell JOIN member ON (member_no = sell_writer) where sell_writer = #{memberNo} order by sell_no desc)n)
+		where rnum between #{start} and #{end}
+		
+  </select>
+  
+  
+  
+  
+  <select id="sellAllViewPickList" parameterType="Map"  resultType="joinSellJoinOrders">	
+  
+  			select*
+from(select rownum as rnum, n.* from
+		(select 
+            sell_no as sellNo,
+            sell_title as sellTitle,
+            sell_writer as sellWriter,
+            sell_price as sellPrice,
+            sell_category1 as sellCategory1,
+            sell_category2 as sellCategory2,
+            sell_skill as sellSkill,
+            sell_date as sellDate,
+            sell_appro as sellAppro,
+            sell_status as sellStatus,
+            sell_opt1 as sellOpt1,
+            sell_opt2 as sellOpt2,
+            sell_opt3 as sellOpt3,
+            sell_opt_fix as sellOptFix,
+            sell_period as sellPeriod,
+            sell_content as sellContent,
+            sell_fix as sellFix,
+            sell_img as sellImg,
+			member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate,
+            pick_no as pickNo
+		from pick JOIN member using(member_no) JOIN sell using (sell_no) where member_no = #{memberNo} order by pick_no desc)n)
+		where rnum between #{start} and #{end}
+  
+  </select>
+  
+  
+    <select id="requestListFrm" parameterType="Map"  resultType="requestList">	
+		
+		                    select *
+        		 from(select rownum as rnum, n.* from
+		(select 
+            request_no as requestNo,
+            request_category1 as requestCategory1,
+            request_category2 as requestCategory2,
+            request_title as requestTitle,
+            request_writer as requestWriter,
+            request_writer_img as requestWriterImg,
+            request_now as requestNow,
+            request_wantform as requestWantform,
+            request_wantskill as requestWantskill,
+            request_content as requestContent,
+            request_price as requestPrice,
+            request_board_end as requestBoardEnd,
+            request_project_end as requestProjectEnd,
+            request_appro as requestAppro,
+            request_status as requestStatus,
+            request_date as requestDate,
+            request_res_members as requestResMembers,
+			member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate
+		from request JOIN member ON (member_nickname = request_writer) order by request_no desc)n)
+		where rnum between #{start} and #{end}
+		
+  </select>
+  
+  <select id="requestApprovalFrm" parameterType="Map"  resultType="requestList">	
+
+        		            select *
+        		 from(select rownum as rnum, n.* from
+		(select 
+            request_no as requestNo,
+            request_category1 as requestCategory1,
+            request_category2 as requestCategory2,
+            request_title as requestTitle,
+            request_writer as requestWriter,
+            request_writer_img as requestWriterImg,
+            request_now as requestNow,
+            request_wantform as requestWantform,
+            request_wantskill as requestWantskill,
+            request_content as requestContent,
+            request_price as requestPrice,
+            request_board_end as requestBoardEnd,
+            request_project_end as requestProjectEnd,
+            request_appro as requestAppro,
+            request_status as requestStatus,
+            request_date as requestDate,
+            request_res_members as requestResMembers,
+			member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate
+		from request JOIN member ON (member_nickname = request_writer) where request_appro = 0 order by request_no desc)n)
+		where rnum between #{start} and #{end}
+	
+  </select>
+  
+  
+  <select id="adminQnaList" parameterType="Map"  resultType="qna">
+  		        		            select *
+        		 from(select rownum as rnum, n.* from
+		(select 
+        qna_no as qnaNo,
+        qna_title as qnaTitle,
+        qna_content as qnaContent
+		from qna order by qna_no desc)n)
+		where rnum between #{start} and #{end}
   </select>
   			 				
 </mapper>

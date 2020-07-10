@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -15,6 +17,8 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
 </head>
+
+
 
 <body>
   <section id="container">
@@ -41,46 +45,37 @@
         <div class="row mt">
           <div class="col-lg-12">
             <div class="row content-panel">
-              <div class="col-md-4 profile-text mt mb centered">
-                <div class="right-divider hidden-sm hidden-xs">
-                  <h4>1922</h4>
-                  <h6>FOLLOWERS</h6>
-                  <h4>290</h4>
-                  <h6>FOLLOWING</h6>
-                  <h4>$ 13,980</h4>
-                  <h6>MONTHLY EARNINGS</h6>
-                </div>
-              </div>
+
               <!-- /col-md-4 -->
-              <div class="col-md-4 profile-text">
+              <div class="col-md-4 profile-text" style="margin-left: 4%; ">
                 <h3>실명 : ${m.memberName }</h3>
                 <h5>닉네임 : ${m.memberNickname }</h5>
                 <p>${m.memberIntro}</p>
                 <br>
-                <p><button class="btn btn-theme"><i class="fa fa-envelope"></i> Send Message</button></p>
+                <p><button class="btn btn-theme"><i class="fa fa-envelope">&nbsp&nbsp</i>메세지 보내기</button></p>
               </div>
               <!-- /col-md-4 -->
-              <div class="col-md-4 centered">
+              <div class="col-md-4 centered" style="float: right;">
                 <div class="profile-pic">
                   <p>
                   <c:if test="${m.memberImg != null}">
                   
                   	<c:if test="${m.memberLevel == 2 }">
-                  		<img src="/upload/memberImg/${m.memberImg}" class="img-circle">
+                  		<img src="/resources/upload/memberImg/${m.memberImg}" class="img-circle">
                   	</c:if>
                   	
                   	<c:if test="${m.memberLevel != 2 }">
-                  		<img src="/upload/memberImg/${m.memberImg}" class="img-circle">
+                  		<img src="/resources/upload/memberImg/${m.memberImg}" class="img-circle">
                   	</c:if>
                   	
                   </c:if>
                   <c:if test="${m.memberImg == null}">
                  	<c:if test="${m.memberLevel == 2 }">
-                  		<img src="/upload/common/adminImg.jpg" class="img-circle">
+                  		<img src="/resources/upload/common/adminImg.jpg" class="img-circle">
                   	</c:if>
                   	
                   	<c:if test="${m.memberLevel != 2 }">
-                  		<img src="/upload/memberImg/unnamed.png" class="img-circle">
+                  		<img src="/resources/upload/memberImg/unnamed.png" class="img-circle">
                   	</c:if>
                   </c:if>
                   </p>
@@ -92,7 +87,7 @@
                   <c:if test="${m.memberStatus != 1 }">
                     <button value="${m.memberNo }" class="btn btn-theme02 modalDelete" style="background-color: #F16B6F; border-color: #F16B6F;">회원 탈퇴</button>
                   </c:if>
-                  <c:if test="${m.memberStatus != 2 }">
+                  <c:if test="${m.memberStatus != 2 && m.memberStatus == 0}">
                     <button value="${m.memberNo }" class="btn btn-theme02 modalHalt" style="background-color: #6c757d;">회원 정지</button>
                   </c:if>
                   <c:if test="${m.memberStatus == 2 }">
@@ -124,33 +119,72 @@
                   <div id="overview" class="tab-pane active">
                     <div class="row">
                       <div class="col-md-6">
-                        <textarea rows="3" class="form-control" placeholder="Whats on your mind?"></textarea>
-                        <div class="grey-style">
-                          <div class="pull-left">
-                            <button class="btn btn-sm btn-theme"><i class="fa fa-camera"></i></button>
-                            <button class="btn btn-sm btn-theme"><i class="fa fa-map-marker"></i></button>
-                          </div>
-                          <div class="pull-right">
-                            <button class="btn btn-sm btn-theme03">POST</button>
-                          </div>
-                        </div>
-                        <div class="detailed mt">
-                          <h4>Recent Activity</h4>
+                        <div class="detailed mt" style="margin: 0 auto;">
+                          <h4>정보</h4>
                           <div class="recent-activity">
-                            <div class="activity-icon bg-theme"><i class="fa fa-check"></i></div>
+                            <div class="activity-icon bg-theme"><i class="fa fa-heart"></i></div>
                             <div class="activity-panel">
-                              <h5>1 HOUR AGO</h5>
-                              <p>Purchased: Dashio Admin Panel & Front-end theme.</p>
+                              <h5>찜목록</h5>
+                              <c:if test="${empty pick}">
+                             	찜한 게시물 없음
+                             </c:if>
+                              
+                             <c:forEach items="${pick}" var="pick">
+                              <c:if test="${!empty pick}">
+                              <div style="display: inline-block;">
+                              <img class="img-circle" width="35" height="35" src="/resources/upload/sellImg/${pick.sellImg}">
+                              <br>
+                              <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 70px; height: 15px; display:inline-block;">
+                              ${pick.sellTitle}
+                              </div>
+                              </div> 
+                              </c:if>
+                             </c:forEach>
+                              <div class="row mt">
+                            <div class="col-md-4 col-md-offset-4">
+                              <button id="pickAllView" value="${m.memberNo }" style="border-style: none; color: #2b90d9;"><h6>VIEW ALL</h6></button>
                             </div>
-                            <div class="activity-icon bg-theme02"><i class="fa fa-trophy"></i></div>
-                            <div class="activity-panel">
-                              <h5>5 HOURS AGO</h5>
-                              <p>Task Completed. Resolved issue with Disk Space.</p>
+                          </div>
                             </div>
-                            <div class="activity-icon bg-theme04"><i class="fa fa-rocket"></i></div>
+                            <div class="activity-icon bg-theme02"><i class="fa fa-briefcase"></i></div>
                             <div class="activity-panel">
-                              <h5>3 DAYS AGO</h5>
-                              <p>Launched a new product: Flat Pack Heritage.</p>
+                              <h5>경력사항</h5>
+                              
+                             <c:if test="${empty career}">
+                             	경력없음
+                             </c:if>
+                             
+                            <c:forEach items="${career}" var="career">
+                             <c:if test="${!empty career}">
+                              <c:if test="${career.typeFree == 1}">
+                              	[프리랜서]
+                              </c:if>
+                              ${career.companyName}
+                              ${career.companyDepartment}
+                              ${career.companyJobTitle}
+                              ${career.companyJobMon}개월 <br>
+                               </c:if>
+                              </c:forEach>
+                             
+
+                            </div>
+                            <div class="activity-icon bg-theme04"><i class="fa fa-credit-card"></i></div>
+                            <div class="activity-panel">
+                              <h5>자격증 현황</h5>
+                              
+                              <c:if test="${empty license}">
+                             	자격증없음
+                             </c:if>
+                             
+                            <c:forEach items="${license}" var="license">
+                             <c:if test="${!empty license}">   
+                              ${license.licenseName}
+                              ${license.licenseDate}
+                              ${license.licenseAgency}<br>
+                              </c:if>
+                              </c:forEach>
+                              
+                              
                             </div>
                           </div>
                           <!-- /recent-activity -->
@@ -158,6 +192,7 @@
                         <!-- /detailed -->
                       </div>
                       <!-- /col-md-6 -->
+                      
                       <div class="col-md-6 detailed">
                         <h4>회원 판매정보</h4>
                         <div class="row centered mt mb">
@@ -196,7 +231,7 @@
                            <c:forEach items="${s}" var="sell" begin="0" end="6" step="1" varStatus="i">
                        		<c:if test="${sell.sellImg !=null }">
                               <div style="display: inline-block;">
-                              <img class="img-circle" width="35" height="35" src="/upload/sellImg/${sell.sellImg}">
+                              <img class="img-circle" width="35" height="35" src="/resources/upload/sellImg/${sell.sellImg}">
                               <br>
                               <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 70px; height: 15px; display:inline-block;">
                               ${sell.sellTitle}
@@ -211,41 +246,61 @@
                           
                           <div class="row mt">
                             <div class="col-md-4 col-md-offset-4">
-                              <h6><a href="#">VIEW ALL</a></h6>
+                               <button id="sellAllView" value="${m.memberNo }" style="border-style: none; background-color: white; color: #2b90d9;"><h6>VIEW ALL</h6></button>
                             </div>
                           </div>
                         </div>
                         <!-- /row -->
-                        <h4>Pending Tasks</h4>
-                        <div class="row centered">
-                          <div class="col-md-8 col-md-offset-2">
-                            <h5>Dashboard Update (40%)</h5>
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                <span class="sr-only">40% Complete (success)</span>
-                              </div>
+                        <h4>학력 & 보유기술</h4>
+                            <div class="recent-activity">
+                         <div class="activity-icon bg-theme04" style="background-color: #5CAB7D;"><i class="fa fa-user"></i></div>
+                            <div class="activity-panel">
+                              <h5>학력정보</h5>
+                              
+                             <c:if test="${m.memberSchool != null}">
+                              	    ${m.memberSchool}
+                              	    /
+                              	    ${m.memberMajor}
+                              	    /
+                              	    ${m.memberGrade}
+                              	    </c:if>
+                              	    
+                              <c:if test="${m.memberSchool == null}">
+                              		학력정보 없음
+                              </c:if>
+                              	 
+
+                             
+
                             </div>
-                            <h5>Unanswered Messages (80%)</h5>
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                <span class="sr-only">80% Complete (success)</span>
-                              </div>
+                           
+                            <div class="activity-icon bg-theme04" style="background-color: #30A9DE;"><i class="fa fa-gavel"></i></div>
+                            <div class="activity-panel">
+                              <h5>기술 정보</h5>
+
+                             <c:if test="${m.memberSkill != null}">
+                   				보유기술 : ${m.memberSkill}<br>
+                   			 </c:if>
+                   			 
+                   			 <c:if test="${m.memberSkill == null}">
+                   			 	보유기술 : 없음<br>
+                   			 </c:if>
+                   			 
+                   			 <c:if test="${m.memberField != null}">
+                              		상세분야 : ${m.memberField}<br>
+                             </c:if>
+                             
+                             <c:if test="${m.memberField == null}">
+                             		상세분야 : 없음
+                             </c:if>
+                             
+
                             </div>
-                            <h5>Product Review (60%)</h5>
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                <span class="sr-only">60% Complete (success)</span>
-                              </div>
                             </div>
-                            <h5>Friend Requests (90%)</h5>
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
-                                <span class="sr-only">90% Complete (success)</span>
-                              </div>
-                            </div>
-                          </div>
+
+                    
                           <!-- /col-md-8 -->
-                        </div>
+                        
                         <!-- /row -->
                       </div>
                       <!-- /col-md-6 -->
@@ -276,95 +331,6 @@
                    	정지</div>
                </c:if>
 
-                  </div>
-                  <!-- /tab-pane -->
-                  <div id="edit" class="tab-pane">
-                    <div class="row">
-                      <div class="col-lg-8 col-lg-offset-2 detailed">
-                        <h4 class="mb">Personal Information</h4>
-                        <form role="form" class="form-horizontal">
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label"> Avatar</label>
-                            <div class="col-lg-6">
-                              <input type="file" id="exampleInputFile" class="file-pos">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Company</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " id="c-name" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Lives In</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " id="lives-in" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Country</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " id="country" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Description</label>
-                            <div class="col-lg-10">
-                              <textarea rows="10" cols="30" class="form-control" id="" name=""></textarea>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                      <div class="col-lg-8 col-lg-offset-2 detailed mt">
-                        <h4 class="mb">Contact Information</h4>
-                        <form role="form" class="form-horizontal">
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Address 1</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " id="addr1" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Address 2</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " id="addr2" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Phone</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " id="phone" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Cell</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " id="cell" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Email</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " id="email" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Skype</label>
-                            <div class="col-lg-6">
-                              <input type="text" placeholder=" " id="skype" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <div class="col-lg-offset-2 col-lg-10">
-                              <button class="btn btn-theme" type="submit">Save</button>
-                              <button class="btn btn-theme04" type="button">Cancel</button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                      <!-- /col-lg-8 -->
-                    </div>
-                    <!-- /row -->
                   </div>
                   <!-- /tab-pane -->
                 </div>
@@ -407,19 +373,41 @@
   
   
     <!-- --------------------------------Modal----------------------------------------------------- -->
-    <div style="padding-top: 10%;" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div style="width: 600px; height: 600px;" class="modal-dialog" role="document">
+    <div style="padding-top: 5%;" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="width: 60%; height: 600px;" class="modal-dialog" role="document">
             <div  class="modal-content">
                 <div style="border-top-left-radius: 4px; border-top-right-radius: 4px; background-color: #6c757d;"class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">회원 정지</h5>
                 </div>
                 <div class="modal-body">
-                   		 정말로 정지하시겠습니까?
+                   		 
+
+			 <table class="table table-striped table-advance table-hover">
+                <h4><i class="fa fa-angle-right"></i>판매 리스트</h4>
+                <hr>
+                <thead>
+                  <tr>
+                    <th><i class="fa fa-align-left"></i>제목</th>
+                    <th class="hidden-phone"><i class="fa fa-tags"></i>카테고리</th>
+                    <th><i class="fa fa-money"></i>가격</th>
+                    <th><i class="fa fa-question-circle"></i>상태</th>
+                    <!-- <i class="fa fa-bookmark"> -->
+                    <!-- <i class=" fa fa-edit"> -->
+                    <th><i class="fa fa-bookmark"></i>작성일</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="dynamicTbody">
+
+
+                </tbody>
+              </table>
+                       
+                   		 
+                   		 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button style="background-color: #6c757d;" type="button" class="btn btn-primary memberValue">회원 정지</button>
-                    
                 </div>
             </div>
         </div>
@@ -562,6 +550,126 @@
 			    
 			  		});
 				});
+			});
+			  
+			  
+
+			   $("#sellAllView").click(function() { 
+
+				  $("#exampleModal").modal("show"); 
+	
+				  var memberNo = $(this).val(); 
+				  var html ="";
+				  $.ajax({
+					    url: "/meister/adminBoard/sellAllView.do?reqPage="+1+"&memberNo="+memberNo,
+					    data: "json",
+					    success: function(data){
+					    	console.log(data);
+							console.log(Object.keys(data.list).length);
+							
+							if(Object.keys(data.list).length === 0){
+								html += '<tr>';
+								html += '<td>'+"목록없음"+'</td>';
+								html += '</tr>';
+							}
+							
+							if(Object.keys(data.list).length > 0){
+							for(var i=0; Object.keys(data.list).length > i; i++){
+							html += '<tr>';
+							html += '<td>'
+							+'<img src="/resources/upload/sellImg/'+data.list[i].sellImg+'" style="width: 30px; height: 30px; border-radius: 25px;">'+'</img>'+'<div style=" display: inline-block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 270px; font-size: 15px;">'+data.list[i].sellTitle+'</div>'+'</td>';
+							
+							
+							
+							html += '<td>'+data.list[i].sellCategory1+'</td>';
+							html += '<td>'+data.list[i].sellPrice+'</td>';
+
+ 					    	if(data.list[i].sellStatus === 0){
+ 					    		html += '<td>'+"정상"+'</td>';
+					    	}
+							
+							if(data.list[i].sellStatus === 1){
+								html += '<td>'+"비활성화"+'</td>';
+								}
+							
+							if(data.list[i].sellStatus === 2){
+								html += '<td>'+"삭제됨"+'</td>';
+								} 
+							
+							html += '<td>'+data.list[i].sellDate+'</td>';
+							
+							html += '<td>'+'<a href="/meister/adminSellView/showList.do?sellNo='+data.list[i].sellNo+'&memberNo='+data.list[i].sellWriter+'" style=" background-color: #6c757d;" type="button" class="btn btn-primary memberValue">'+"게시글 조회"+'</a>'+'</td>';
+						
+							html += '</tr>';
+							
+							$("#dynamicTbody").empty();
+							$("#dynamicTbody").append(html);
+
+							
+							}
+							}
+
+					    }
+			  });
+		});
+			   
+			   
+			   
+		
+			   $("#pickAllView").click(function() { 
+
+					  $("#exampleModal").modal("show"); 
+		
+					  var memberNo = $(this).val(); 
+					  var html ="";
+					  $.ajax({
+						    url: "/meister/adminBoard/pickAllView.do?reqPage="+1+"&memberNo="+memberNo,
+						    data: "json",
+						    success: function(data){
+						    	
+							    console.log(data);
+						    	if(data === 1){
+						    	 html += '<td>'+"목록없음"+'</td>';	
+						    	}
+
+								
+								if(Object.keys(data.list).length !== null){
+								for(var i=0; Object.keys(data.list).length > i; i++){
+								html += '<tr>';
+								html += '<td>'
+									+'<img src="/resources/upload/sellImg/'+data.list[i].sellImg+'" style="width: 30px; height: 30px; border-radius: 25px;">'+'</img>'+'<div style="display: inline-block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 270px; font-size: 15px;">'+data.list[i].sellTitle+'</div>'+'</td>';
+									
+								html += '<td>'+data.list[i].sellCategory1+'</td>';
+								html += '<td>'+data.list[i].sellPrice+'</td>';
+
+	 					    	if(data.list[i].sellStatus === 0){
+	 					    		html += '<td>'+"정상"+'</td>';
+						    	}
+								
+								if(data.list[i].sellStatus === 1){
+									html += '<td>'+"비활성화"+'</td>';
+									}
+								
+								if(data.list[i].sellStatus === 2){
+									html += '<td>'+"삭제됨"+'</td>';
+									} 
+								
+								html += '<td>'+data.list[i].sellDate+'</td>';
+								
+								html += '<td>'+'<a href="/meister/adminSellView/showList.do?sellNo='+data.list[i].sellNo+'&memberNo='+data.list[i].sellWriter+'" style="background-color: #6c757d;" type="button" class="btn btn-primary memberValue">'+"게시글 조회"+'</a>'+'</td>';
+							
+								html += '</tr>';
+								
+								$("#dynamicTbody").empty();
+								$("#dynamicTbody").append(html);
+
+								
+								}
+
+						    }
+						    }
+
+				  });
 			});
 
 

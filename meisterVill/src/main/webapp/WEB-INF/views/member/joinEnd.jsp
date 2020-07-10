@@ -25,7 +25,9 @@
                 <i class="fa fa-circle" aria-hidden="true"></i>
             </div>
             <div class="join-content-box">
-				
+
+
+
                     <div class="jcb-title">
                         이메일
                     </div>
@@ -69,8 +71,9 @@
                     </div>
 
                     <input type="text" name="memberPhone" class="input-yr-normal jcb-phone-input" placeholder="'-'를 제외한 숫자만 입력하세요.">
+
                     <button type="button" id="btn-join-cl" class="btn btn-yr-normal btn-join-next btn-join-finish cursor-not" disabled>회원가입 완료</button>
-             
+
             </div>
         </div>
     </div>
@@ -115,7 +118,7 @@
     <script>
         $(function() {
         	var emailCode;
-        	
+
             var emailConfirm = 0;
             var pwConfirm = 0;
             var pwSame = 0;
@@ -123,8 +126,7 @@
             var hbd = 0;
             var nick = 0;
             var phone = 0;
-			
-            
+
             $("#btn-join-cl").click(function(){
             	//회원가입 버튼 클릭
             	var memberEmail = $(".jm-email").val();
@@ -164,6 +166,7 @@
 	            }
             
             });
+
             //비밀번호
             $(".jcb-pw-input").eq(0).keyup(function() {
                 var pw = $(".jcb-pw-input").eq(0).val();
@@ -379,13 +382,7 @@
                         $(".jcb-phone-msg").html("");
                         $(".jcb-phone-input").removeClass("invalid-input");
                         phone = 1;
-                        console.log("이메일:" +emailConfirm);
-                        console.log("비번:"+pwConfirm);
-                        console.log("비확"+pwSame);
-                        console.log("이름"+name);
-                        console.log("닉넴"+nick);
-                        console.log("생일"+hbd);
-                        console.log("폰"+phone);
+
                     }
                 } else {
                     $(".jcb-phone-msg").html("");
@@ -450,9 +447,10 @@
                                 $("input[name=confirm-code]").addClass("cursor-not");
                                 $("#btnConfirm").prop("disabled", "true");
                                 clearInterval(intervalId);
+
                             }
                             }
-                            
+             
                         }, 1000);
                     },
                     error: function() {

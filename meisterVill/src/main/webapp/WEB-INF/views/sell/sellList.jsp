@@ -180,7 +180,7 @@
         }
     }
     function showList(sellNo) {
-    	location.href="/meister/sell/showList.do?sellNo=" + sellNo;
+    	location.href="/meister/sell/showList.do?sellNo=" + sellNo +"&memberNo=1";
     }
     </script>
 </body>
