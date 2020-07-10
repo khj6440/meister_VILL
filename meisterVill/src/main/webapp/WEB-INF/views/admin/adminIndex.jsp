@@ -149,10 +149,23 @@
             <div class="row">
               <!-- TWITTER PANEL -->
               <div class="col-md-4 mb">
-                <div class="twitter-panel pn">
-                  <i class="fa fa-twitter fa-4x"></i>
-                  <p>Dashio is here! Take a look and enjoy this new Bootstrap Dashboard theme.</p>
-                  <p class="user">@Alvrz_is</p>
+                <!-- WHITE PANEL - TOP USER -->
+                <div class="white-panel pn">
+                  <div class="white-header">
+                    <h5>SELL PRICE TOP USER</h5>
+                  </div>
+                  <p><img src="/resources/upload/memberImg/${sm.memberImg }" class="img-circle" width="50"></p>
+                  <p><b>${sm.memberName }</b></p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="small mt">닉네임</p>
+                      <p>${sm.memberNickname }</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="small mt">총 수익</p>
+                      <p>${sellSum } ￦</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- /col-md-4 -->
@@ -160,30 +173,41 @@
                 <!-- WHITE PANEL - TOP USER -->
                 <div class="white-panel pn">
                   <div class="white-header">
-                    <h5>TOP USER</h5>
+                    <h5>ALL PRICE TOP USER</h5>
                   </div>
-                  <p><img src="resources/adminCss/img/ui-zac.jpg" class="img-circle" width="50"></p>
-                  <p><b>Zac Snider</b></p>
+                  <p><img src="/resources/upload/memberImg/${am.memberImg }" class="img-circle" width="50"></p>
+                  <p><b>${am.memberName }</b></p>
                   <div class="row">
                     <div class="col-md-6">
-                      <p class="small mt">MEMBER SINCE</p>
-                      <p>2012</p>
+                      <p class="small mt">닉네임</p>
+                      <p>${am.memberNickname }</p>
                     </div>
                     <div class="col-md-6">
-                      <p class="small mt">TOTAL SPEND</p>
-                      <p>$ 47,60</p>
+                      <p class="small mt">총 수익</p>
+                      <p>${allSum } ￦</p>
                     </div>
                   </div>
                 </div>
               </div>
               <!-- /col-md-4 -->
-              <div class="col-md-4 mb">
-                <!-- INSTAGRAM PANEL -->
-                <div class="instagram-panel pn">
-                  <i class="fa fa-instagram fa-4x"></i>
-                  <p>@THISISYOU<br/> 5 min. ago
-                  </p>
-                  <p><i class="fa fa-comment"></i> 18 | <i class="fa fa-heart"></i> 49</p>
+             <div class="col-md-4 mb">
+                <!-- WHITE PANEL - TOP USER -->
+                <div class="white-panel pn">
+                  <div class="white-header">
+                    <h5>REQUEST PRICE TOP USER</h5>
+                  </div>
+                  <p><img src="/resources/upload/memberImg/${rm.memberImg }" class="img-circle" width="50"></p>
+                  <p><b>${rm.memberName }</b></p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="small mt">닉네임</p>
+                      <p>${rm.memberNickname }</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="small mt">총 수익</p>
+                      <p>${requestSum } ￦</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- /col-md-4 -->
@@ -424,7 +448,7 @@
         // (string | mandatory) the text inside the notification
         text: '페이지 테스트 중!',
         // (string | optional) the image to display on the left
-        image: '/upload/common/adminImg.jpg',
+        image: '/resources/upload/common/adminImg.jpg',
         // (bool | optional) if you want it to fade out on its own or just sit there
         sticky: false,
         // (int | optional) the time you want it to be alive for before fading out
