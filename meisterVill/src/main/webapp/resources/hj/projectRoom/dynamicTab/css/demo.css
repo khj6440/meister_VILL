@@ -18,7 +18,6 @@ a {
 }
 
 a:hover, a:focus {
-	color: #e86a32;
 	outline: none;
 }
 
@@ -140,7 +139,6 @@ a:hover, a:focus {
 button {
 	border: none;
 	padding: 0.6em 1.2em;
-	background: #a9a9a9;
 	color: #fff;
 	font-family: 'Lato', Calibri, Arial, sans-serif;
 	font-size: 1em;
@@ -162,12 +160,10 @@ button {
 
 button {
 	font-size: 75%;
-	background: #ed8151;
 }
 
 button:hover,
 button:active {
-	background: #e86a32;
 }
 
 .related {

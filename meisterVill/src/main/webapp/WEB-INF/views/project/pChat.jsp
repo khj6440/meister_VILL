@@ -11,10 +11,11 @@
 	href="/resources/hj/projectRoom/dynamicTab/css/demo.css" />
 <link rel="stylesheet" type="text/css"
 	href="/resources/hj/projectRoom/dynamicTab/css/component.css" />
-<link rel="stylesheet" href="/resources/hj/projectRoom/tab/demo.css">
-<link rel="stylesheet" href="/resources/hj/projectRoom/tab/tabs.css">
+<link rel="stylesheet" href="/resources/hj/projectRoom/tab/css/demo.css">
+<link rel="stylesheet" href="/resources/hj/projectRoom/tab/css/tabs.css">
+<link rel="stylesheet" type="text/css" href="/resources/hj/projectRoom/tab/css/normalize.css" />
 <link rel="stylesheet"
-	href="/resources/hj/projectRoom/tab/tabstyles.css">
+	href="/resources/hj/projectRoom/tab/css/tabstyles.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <script
@@ -63,25 +64,28 @@ html, body {
 	width: 300px;
 	margin-left: 17%;
 }
+#showMenu:hover {
+    right: 0px;
+    transition: 0.3s;
+}
 </style>
 </head>
 <body>
-
+	<jsp:include page="/WEB-INF/views/common/message.jsp"/>
 	<div id="perspective" class="perspective effect-moveleft">
 		<div class="side-container">
 			<div class="side-wrapper">
 				<p style="margin: 0;">
 					<button id="showMenu"
-						style="z-index: 1; position: fixed; bottom: 150px; right: 0;">Show
-						Menu</button>
+						><i class="fas fa-bars"></i></button>
 				</p>
 			</div>
-			<div class="project-header">
+			<!-- <div class="project-header">
 				<div>PROJECT ROOM</div>
-			</div>
-			<div class="nav-container">
-				<section>
-					<div id="top-tabs" class="tabs tabs-style-bar">
+			</div> -->
+			<div class="nav-container" style="background-color: black;">
+			<%-- 	<section>
+					<div id="top-tabs" class="tabs tabs tabs-style-iconfall">
 						<nav>
 							<ul>
 								<li><a href="/meister/project/home.do?projectNo=${projectNo }"><i
@@ -99,6 +103,19 @@ html, body {
 							</ul>
 						</nav>
 					</div>
+				</section> --%>
+				<section>
+				<div class="tabs tabs-style-linemove" >
+					<nav style="background-color: black;">
+						<ul>
+							<li class="tab-current"><a href="#section-linemove-1"><span>Home</span></a></li>
+							<li><a href="/meister/project/chat.do?projectNo=${projectNo }" ><span>Archive</span></a></li>
+							<li><a href="#section-linemove-3" ><span>Analytics</span></a></li>
+							<li><a href="#section-linemove-4" ><span>Upload</span></a></li>
+							<li><a href="#section-linemove-5" ><span>Settings</span></a></li>
+						</ul>
+					</nav>
+				</div><!-- /tabs -->
 				</section>
 			</div>
 

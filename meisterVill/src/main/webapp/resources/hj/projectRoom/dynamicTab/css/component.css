@@ -231,7 +231,7 @@ html, body, .perspective {
 
 /* Effect Move Left */
 .effect-moveleft {
-	background: #f4f3f1;
+	background:#e3e3e3;
 }
 
 .effect-moveleft .side-container {
@@ -255,7 +255,7 @@ html, body, .perspective {
 }
 
 .effect-moveleft .outer-nav a {
-	color: #e86a32;
+	color: black;
 	opacity: 0;
 	-webkit-transform: translateX(100px) translateZ(-1000px);
 	transform: translateX(100px) translateZ(-1000px);
@@ -264,7 +264,8 @@ html, body, .perspective {
 }
 
 .effect-moveleft .outer-nav a:hover {
-	color: #333;
+	color: #FFBC42;
+	text-decoration: none;
 }
 
 .effect-moveleft.animate .outer-nav a {
@@ -651,4 +652,24 @@ html, body, .perspective {
 	.outer-nav a {
 		margin-bottom: 20px;
 	}
+}
+
+#showMenu {
+	position: fixed;
+	bottom: 50vh;
+	right: -20px;
+	background-color: #FFBC42;
+	border-top-left-radius: 50%;
+	border-bottom-left-radius: 50%;
+	height: 100px;
+	outline: none;
+	width: 100px;
+	z-index: 100;
+}
+#showMenu>i{
+	font-size: 50px;
+}
+#showMenu:hover {
+	right: 0px;
+	transition: 0.3s;
 }

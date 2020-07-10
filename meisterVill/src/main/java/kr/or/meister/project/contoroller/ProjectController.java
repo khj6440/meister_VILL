@@ -45,7 +45,9 @@ public class ProjectController {
 	@RequestMapping(value = "/home.do")
 	public String home(Model model, int projectNo) {
 		EmployVO e = service.getProjectIntro(projectNo);
+		ArrayList<MemberVO> members = service.seletProjectMember(e.getProjectMembers());
 		model.addAttribute("project", e);
+		model.addAttribute("members", members);
 		return "project/pIntro";
 	}
 
@@ -60,7 +62,12 @@ public class ProjectController {
 		model.addAttribute("members", members);
 		return "project/pChat";
 	}
-
+	
+	@RequestMapping(value = "/test.do")
+	public String test1() {
+		return "project/test";
+	}
+	
 	@RequestMapping(value = "/todo.do")
 	public String todo() {
 		return "project/pTodo";

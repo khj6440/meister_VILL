@@ -76,21 +76,19 @@ html, body {
 </style>
 </head>
 <body>
-
+	<jsp:include page="/WEB-INF/views/common/message.jsp"/>
 	<div id="perspective" class="perspective effect-moveleft">
 		<div class="side-container">
 			<div class="side-wrapper">
 				<p style="margin: 0;">
-					<button id="showMenu"
-						style="position: fixed; bottom: 150px; right: 0; z-index: 1">Show
-						Menu</button>
+					<button id="showMenu"><i class="fas fa-bars"></i></button>
 				</p>
 			</div>
 			<div class="project-header">
 				<div>PROJECT ROOM</div>
 			</div>
 			<div class="nav-container">
-				<section>
+				<%-- <section>
 					<div id="top-tabs" class="tabs tabs-style-bar">
 						<nav>
 							<ul>
@@ -114,7 +112,7 @@ html, body {
 							</ul>
 						</nav>
 					</div>
-				</section>
+				</section> --%>
 			</div>
 
 
@@ -292,7 +290,7 @@ html, body {
 		
 		$(window).scroll(function(){ 
 		    var height = $(document).scrollTop(); 
-		    if(height > 200){ 
+		    if(height > 300){ 
 		    	$('.page-body').eq(0).css({"position":"fixed","top":"0","z-index":"1000","right":"0"}); 
 				    
 		    }else{ 

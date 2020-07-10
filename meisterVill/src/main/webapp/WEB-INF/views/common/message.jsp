@@ -322,7 +322,7 @@
 	height: 100%;
 	width: 0px;
 	position: fixed;
-	z-index: 1000;
+	z-index: 3001;
 	top: 0;
 	right: 0;
 	background-color: white;
@@ -373,7 +373,7 @@
 .openbtn {
 	font-size: 13px;
 	cursor: pointer;
-	z-index: 300;
+	z-index: 3000;
 	color: #4D4D4D;
 	padding: 5px 10px;
 	border-radius: 10px;
@@ -414,7 +414,7 @@
 	position: fixed;
 	bottom: 130px;
 	right: 100px;
-	z-index: 5;
+	z-index: 3000;
 }
 
 .get-message {
@@ -448,7 +448,7 @@
 					</div>
 				</div>
 				<div class="au-chat">
-					<button class="toList" style="background: none; border: none;"
+					<button class="toList" style="outline:none;background: none; border: none;"
 						onclick="backBox()">
 						<i aria-hidden="true" class="fa fa-arrow-left"></i> 목록으로 돌아가기
 					</button>
@@ -467,7 +467,7 @@
 
 <div id="main">
 	<button class="openbtn" onclick="openNav()"
-		style="border: 1px solid #eeeeee; outline: none; position: relative;">
+		style="border: 1px solid #eeeeee; outline: none;">
 		<i class="far fa-bell" style="font-size: 30px; color: #FFBC42"></i>
 		<div class="unreadCnt"></div>
 		<br>
