@@ -12,7 +12,7 @@
 	
 <!-- ******************************************************************************** -->
 
-<title>탈퇴 회원 관리</title>
+<title>전체 회원 관리</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
@@ -44,88 +44,65 @@
           <div class="col-md-12">
             <div class="content-panel">
               <table class="table table-striped table-advance table-hover">
-                <h4><i class="fa fa-angle-right"></i>탈퇴 회원 관리</h4>
+                <h4><i class="fa fa-angle-right"></i>공지사항</h4>
                 <hr>
                 <thead>
                   <tr>
-                    <th><i class="fa fa-envelope"></i>유저 이메일</th>
-                    <th class="hidden-phone"><i class="fa fa-user"></i>유저 이름</th>
-                    <th><i class="fa fa-smile-o"></i>유저 닉네임 </th>
-                    <th><i class="fa fa-key"></i>유저 레벨 </th>
-                    <!-- <i class="fa fa-bookmark"> -->
-                    <!-- <i class=" fa fa-edit"> -->
-                    <th><i class="fa fa-bookmark"></i>유저 가입일</th>
+                  <th></th>
+                  	<th class="hidden-phone"><i class="fa fa-user"></i>작성자</th>
+                    <th><i class="fa fa-align-left"></i>제목</th>
+                    <th><i class="fa fa-bookmark"></i>작성일</th>
+                    <th><i class="fa fa-check-square-o"></i>조회수</th>
                     <th></th>
                   </tr>
                 </thead>
-                
-                <tr id="total">
-                 	<td colspan="6" style="font-size: 20px; text-align: center;">목록없음</td>
-                </tr>
-                
-                 <c:forEach items="${list}" var="m">
-                 	<c:if test="${m.memberStatus == 1 }">
-                 	<script>
-                 			$("#total").css("display","none");
-                 	</script>
                 <tbody>
+                <c:forEach items="${list}" var="n" varStatus="i">
                   <tr>
-                    <td>
-                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}">${m.memberEmail }</a>
-                      </td>
-                    <td class="hidden-phone">
+                  <td></td>
+                  
+                  	<td class="hidden-phone">
 
                     <c:if test="${m.memberImg != null }">
-                    		<img src="/resources/upload/memberImg/${m.memberImg}" style="width: 20px; height: 18px;"> 
+                    		<img src="/resources/upload/memberImg/${m.memberImg}" style="width: 20px; height: 20px;"> 
                     </c:if>
                     
                     <c:if test="${m.memberImg == null }">
                     	<c:if test="${m.memberLevel == 2}">
-                    		<img src="/resources/upload/common/adminImg.jpg" style="width: 20px; height: 18px;"> 
+                    		<img src="/resources/upload/common/adminImg.jpg" style="width: 20px; height: 20px;"> 
                     	</c:if>
                     	<c:if test="${m.memberLevel != 2}">
-                    		<img src="/resources/upload/memberImg/unnamed.png" style="width: 20px; height: 18px;"> 
+                    		<img src="/resources/upload/memberImg/unnamed.png" style="width: 20px; height: 20px;"> 
                     	</c:if>
                     </c:if>
                     
-                    ${m.memberName }</td>
-                    
-                    
-                    <td>${m.memberNickname } </td>
+                    ${n.noticeWriter }</td>
+                  
                     <td>
-                    <c:if test="${m.memberLevel == 0}">
-                    <span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 12px;">
-                   	일반회원
-                    </span>
-                    </c:if>
+                      <a href="/meister/adminBoard/noticeView.do?noticeNo=${n.noticeNo }"><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 250px;">${n.noticeTitle}</div></a>
+                      </td>
+
                     
-                    <c:if test="${m.memberLevel == 1}">
-                    <span class="label label-info label-mini" style="font-size: 12px;">
-                   	마이스터
-                    </span>
-                    </c:if>
                     
-                    <c:if test="${m.memberLevel == 2}">
-                    <span class="label label-info label-mini" style="background-color: #A593E0; font-size: 12px;">
-                   	관리자
-                    </span>
-                    </c:if>
+                    <td>${n.noticeDate}</td>
+                    <td>${n.noticeViewCount} </td>
                     
-                    </td>
-                    <td>${m.memberDate } </td>
                     <td>
-                      <!-- <span class="label label-info label-mini" style="background-color: red">신고 접수</span> -->
-                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}" class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42; text-decoration: none; color: white;"><i class="fa fa-check"></i>회원정보 보기</a>
-                      <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
-                      <button value="${m.memberNo}" class="btn btn-danger btn-xs modalDeleteRollback" style="background-color: #6c757d; border-color: #6c757d;"><i class="fa fa-trash-o" ></i>회원 복구</button>
+                     <a href="/meister/adminBoard/noticeView.do?noticeNo=${n.noticeNo }" class="btn btn-danger btn-xs modalDelete" style="background-color: #FFBC42; border-color: #FFBC42; color: white;"><i class="fa fa-check" ></i>글보기</a>
+                     <button value="${n.noticeNo }" class="btn btn-danger btn-xs noticeDelete" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>삭제</button>
+                     <button value="${n.noticeNo }" class="btn btn-danger btn-xs noticeModify" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-scissors" ></i>수정</button>
                     </td>
+                    
                   </tr> 
+
+                  </c:forEach>
                 </tbody>
-                </c:if>
-                </c:forEach>
-              </table>
+              </table> 	
             </div>
             
+
+            	<a href="/meister/adminBoard/adminNoticeWrite.do" class="btn btn-danger btn-xs" style="margin-top: 2%; margin-right: 3%; width:100px; height: 40px; line-height: 40px; float:right; background-color: #6c757d; border-color: #6c757d; color: white;"><i class="fa fa-pencil"></i> 글쓰기</a>
+
             <div id="pageNavi" style="margin-top: 3%; text-align: center;">${pageNavi }</div>
             <!-- /content-panel -->
           </div>
@@ -154,11 +131,10 @@
   <!--common script for all pages-->
   <script src="/resources/adminCss/lib/common-scripts.js"></script>
   <!--script for this page-->
-  
-  
-  
-  
-    <!-- --------------------------------Modal----------------------------------------------------- -->
+     
+
+<!-- --------------------------------sellViewModal----------------------------------------------------- -->
+
     <div style="padding-top: 10%;" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div style="width: 600px; height: 600px;" class="modal-dialog" role="document">
             <div  class="modal-content">
@@ -177,6 +153,7 @@
         </div>
     </div>
     
+    
 <!-- --------------------------------Modal-mini----------------------------------------------------- -->  
     
         <div style="padding-top: 10%;" class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -189,40 +166,50 @@
             </div>
         </div>
     </div>
+    
+    
               
   
       <script>
   $(function(){
 	  
-	  $(".modalDeleteRollback").click(function() {
+	  $(".noticeDelete").click(function() {
 		  $("#exampleModal").modal("show");  
-		  var memberNo = $(this).val();
+		  var noticeNo = $(this).val();
 		  var reqPage = ${reqPage};
 		  var totalCnt = ${totalCnt}-1;
-		  $(".modal-title").html("탈퇴 복구");
+		  
+		  console.log("알이큐페이지"+reqPage);
+		  console.log(""+totalCnt);
+		  $(".modal-title").html("공지 삭제");
 		  $(".modal-header").css("background-color","#6c757d");
 		  $(".memberValue").css("background-color","#6c757d");
 		  $(".memberValue").css("border-color","#6c757d");
-		  $(".memberValue").html("탈퇴 복구");
-		  $(".modal-body").html("정말로 회원을 복구시키시겠습니까?");
+		  $(".memberValue").html("삭제");
+		  $(".modal-body").html("정말로 글을 삭제시키시겠습니까?");
 	  $(".memberValue").click(function() {		
   $.ajax({
-	    url: "/meister/admin/memberDeleteRollback.do?memberNo="+memberNo,
-	    
-	    
+	    url: "/meister/adminBoard/noticeDelete.do?noticeNo="+noticeNo,
 
 	    success: function(){
 	    	$("#exampleModal").modal("hide");
-	    	$(".modal2text").html("회원이 복구되었습니다.");
+	    	$(".modal2text").html("삭제되었습니다.");
 	    	$(".modal-content2").css("background-color","#6c757d");
 	    	$("#exampleModal2").modal("show");
 	    	setTimeout(function() {
 	    		location.reload();
-	    		if(totalCnt%6 == 0){
+	    		if(totalCnt%12 == 0){
 	    			reqPage=reqPage-1;
-	    		window.location.href="memberDeletionFrm.do?reqPage="+reqPage;
+	    			if(reqPage == 1){
+	    				reqPage = reqPage+0;
+	    			}
+	    			
+	    		window.location.href="adminNotice.do?reqPage="+reqPage;
 	    		}
-	    		}, 1000);		
+	    		}, 1000);
+	    	
+
+	    			
 	    }
 	    
 	    
@@ -230,18 +217,83 @@
 		});
 	});
 
+/*--------------------------------------------------------------------------------------------- */	  
+
+
+	  $(".noticeModify").click(function() {
+		  $("#exampleModal").modal("show");  
+		  var memberNo = $(this).val();
+		  $(".modal-title").html("정지 취소");
+		  $(".modal-header").css("background-color","#30A9DE");
+		  $(".memberValue").css("background-color","#30A9DE");
+		  $(".memberValue").css("border-color","#30A9DE");
+		  $(".memberValue").html("정지 취소");
+		  $(".modal-body").html("정말로 정지를 취소하시겠습니까?");
+	  $(".memberValue").click(function() {		
+  $.ajax({
+	    url: "/meister/admin/memberRollback.do?memberNo="+memberNo,
+	    		
+	    
+
+	    success: function(){	
+	    	$("#exampleModal").modal("hide");
+	    	$(".modal2text").html("정지가 취소되었습니다.");
+	    	$(".modal-content2").css("background-color","#30A9DE");
+	    	$("#exampleModal2").modal("show");
+	    	setTimeout(function() {
+	    		location.reload();
+	    		}, 1000);
+	    }
+	    
+			});
+		});
+	});
+
+	  
+/*--------------------------------------------------------------------------------------------- */	 
+	  
+	  
+	  
+	  $(".modalDelete").click(function() {
+		  $("#exampleModal").modal("show");  
+		  var memberNo = $(this).val(); 
+		  var reqPage = ${reqPage};
+		  var totalCnt = ${totalCnt}-1;
+		  $(".modal-header").css("background-color","#F16B6F");
+		  $(".modal-title").html("회원 탈퇴");
+		  $(".memberValue").html("회원 탈퇴");
+		  $(".modal-body").html("정말로 회원를 탈퇴시키시겠습니까?<br>※ 회원을 탈퇴할 경우, 회원정보가 손실될 수 있습니다. ※");
+		  $(".memberValue").css("background-color","#F16B6F");
+		  $(".memberValue").css("border-color","#F16B6F");
+	  $(".memberValue").click(function() {		
+  $.ajax({
+	    url: "/meister/admin/memberDeletion.do?memberNo="+memberNo,
+
+	    success: function(){	
+	    	$("#exampleModal").modal("hide");
+	    	$(".modal2text").html("탈퇴되었습니다.");
+	    	$(".modal-content2").css("background-color","#F16B6F");
+	    	$("#exampleModal2").modal("show");
+	    	setTimeout(function() {
+	    		location.reload();
+	    		if(totalCnt%6 == 0){
+	    			reqPage=reqPage-1;
+	    		window.location.href="memberAllViewFrm.do?reqPage="+reqPage;
+	    		}
+	    		}, 1000);
+	    }
+	    
+			});
+		});
+	});
+	  
+	  
 
 	  $("#close_modal").click(function() {
           $("#exampleModal").modal("hide");
       });
   });
   </script>
-  
-  
-  
-  
-  
-  
   
   
 </body>

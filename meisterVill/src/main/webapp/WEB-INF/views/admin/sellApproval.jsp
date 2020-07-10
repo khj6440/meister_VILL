@@ -12,7 +12,7 @@
 	
 <!-- ******************************************************************************** -->
 
-<title>탈퇴 회원 관리</title>
+<title>판매글 승인</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
@@ -43,89 +43,73 @@
         <div class="row mt">
           <div class="col-md-12">
             <div class="content-panel">
-              <table class="table table-striped table-advance table-hover">
-                <h4><i class="fa fa-angle-right"></i>탈퇴 회원 관리</h4>
+              <table class="table table-striped">
+                <h4><i class="fa fa-angle-right"></i>판매글 승인</h4>
                 <hr>
-                <thead>
-                  <tr>
-                    <th><i class="fa fa-envelope"></i>유저 이메일</th>
-                    <th class="hidden-phone"><i class="fa fa-user"></i>유저 이름</th>
-                    <th><i class="fa fa-smile-o"></i>유저 닉네임 </th>
-                    <th><i class="fa fa-key"></i>유저 레벨 </th>
-                    <!-- <i class="fa fa-bookmark"> -->
-                    <!-- <i class=" fa fa-edit"> -->
-                    <th><i class="fa fa-bookmark"></i>유저 가입일</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                
-                <tr id="total">
-                 	<td colspan="6" style="font-size: 20px; text-align: center;">목록없음</td>
-                </tr>
-                
-                 <c:forEach items="${list}" var="m">
-                 	<c:if test="${m.memberStatus == 1 }">
-                 	<script>
+					
+               <tbody style="text-align: center;">
+               		<tr id="total">
+                 		<td colspan="6" style="font-size: 20px; text-align: center;">목록없음</td>
+                	</tr>
+                <tr>
+                <c:forEach items="${list}" var="s" varStatus="i">
+                		<script>
                  			$("#total").css("display","none");
                  	</script>
-                <tbody>
-                  <tr>
-                    <td>
-                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}">${m.memberEmail }</a>
-                      </td>
-                    <td class="hidden-phone">
+                    <td style=" margin-left: 5%; margin-bottom: 5%; margin-top:5%; display: inline-block; border-top-style: none;">
+                     <div onClick="location.href='/meister/adminSellView/showList.do?sellNo='+${s.sellNo}+'&memberNo='+${s.memberNo}" class="sellView"><img src="/resources/upload/sellImg/${s.sellImg}" style="width: 450px; height: 400px;"></div> 
+                     
+                    <div style="margin: 0 auto;">
+                    <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 440px; font-size: 17px;">${s.sellTitle}</div>
+				
+				<div>
+                    <c:if test="${s.memberImg != null }">
+                    		<div><img src="/resources/upload/memberImg/${s.memberImg}" style="width: 25px; height: 25px;"> 
+                    		 ${s.memberName }</div>
+                    </c:if>
+                    
+                    <c:if test="${s.memberImg == null }">
+                    	<c:if test="${s.memberLevel == 2}">
+                    		<img src="/resources/upload/common/adminImg.jpg" style="width: 25px; height: 25px;"> 
+                    		 ${s.memberName }
+                    	</c:if>
+                    	<c:if test="${s.memberLevel != 2}">
+                    		<img src="/resources/upload/memberImg/unnamed.png" style="width: 25px; height: 25px;"> 
+                    		 ${s.memberName }
+                    	</c:if>
+                    </c:if>
 
-                    <c:if test="${m.memberImg != null }">
-                    		<img src="/resources/upload/memberImg/${m.memberImg}" style="width: 20px; height: 18px;"> 
-                    </c:if>
+                   </div>
+                   
                     
-                    <c:if test="${m.memberImg == null }">
-                    	<c:if test="${m.memberLevel == 2}">
-                    		<img src="/resources/upload/common/adminImg.jpg" style="width: 20px; height: 18px;"> 
-                    	</c:if>
-                    	<c:if test="${m.memberLevel != 2}">
-                    		<img src="/resources/upload/memberImg/unnamed.png" style="width: 20px; height: 18px;"> 
-                    	</c:if>
-                    </c:if>
+                    <div>카테고리 : ${s.sellCategory1 } </div>
                     
-                    ${m.memberName }</td>
+                    <div>(소)카테고리 : ${s.sellCategory2 } </div>
+
+                    <div>
+                    ${s.sellPrice} ￦ 
+                    </div>
                     
                     
-                    <td>${m.memberNickname } </td>
-                    <td>
-                    <c:if test="${m.memberLevel == 0}">
-                    <span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 12px;">
-                   	일반회원
-                    </span>
-                    </c:if>
+                    <div>작성일 : ${s.sellDate }</div>
                     
-                    <c:if test="${m.memberLevel == 1}">
-                    <span class="label label-info label-mini" style="font-size: 12px;">
-                   	마이스터
-                    </span>
-                    </c:if>
-                    
-                    <c:if test="${m.memberLevel == 2}">
-                    <span class="label label-info label-mini" style="background-color: #A593E0; font-size: 12px;">
-                   	관리자
-                    </span>
-                    </c:if>
-                    
-                    </td>
-                    <td>${m.memberDate } </td>
-                    <td>
+
+					<div>
                       <!-- <span class="label label-info label-mini" style="background-color: red">신고 접수</span> -->
-                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}" class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42; text-decoration: none; color: white;"><i class="fa fa-check"></i>회원정보 보기</a>
+                      <button onClick="location.href='/meister/adminSellView/showList.do?sellNo='+${s.sellNo}+'&memberNo='+${s.memberNo}" class="btn btn-success btn-xs sellView" style="background-color: #FFBC42; border-color: #FFBC42; color: white;"><i class="fa fa-check"></i>상세보기</button>
                       <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
-                      <button value="${m.memberNo}" class="btn btn-danger btn-xs modalDeleteRollback" style="background-color: #6c757d; border-color: #6c757d;"><i class="fa fa-trash-o" ></i>회원 복구</button>
-                    </td>
+
+                      <button value="${s.sellNo }" class="btn btn-danger btn-xs modalApproval" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-bell" ></i> 승인</button>
+            
+                    </div>
+					</div>
+					</td>
+                  </c:forEach>
                   </tr> 
-                </tbody>
-                </c:if>
-                </c:forEach>
+              	</tbody>
               </table>
             </div>
-            
+
             <div id="pageNavi" style="margin-top: 3%; text-align: center;">${pageNavi }</div>
             <!-- /content-panel -->
           </div>
@@ -154,11 +138,32 @@
   <!--common script for all pages-->
   <script src="/resources/adminCss/lib/common-scripts.js"></script>
   <!--script for this page-->
-  
-  
-  
-  
-    <!-- --------------------------------Modal----------------------------------------------------- -->
+     
+
+     
+     
+<!-- --------------------------------Modal----------------------------------------------------- -->
+<!--     <div style="padding-top: 10%;" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="width: 600px; height: 600px;" class="modal-dialog" role="document">
+            <div  class="modal-content">
+                <div style="border-top-left-radius: 4px; border-top-right-radius: 4px; background-color: #6c757d;"class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">회원 정지</h5>
+                </div>
+                <div class="modal-body">
+                   		내용
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    <button style="background-color: #6c757d;" type="button" class="btn btn-primary memberValue">회원 정지</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div> -->
+    
+    
+<!-- --------------------------------sellViewModal----------------------------------------------------- -->
+
     <div style="padding-top: 10%;" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div style="width: 600px; height: 600px;" class="modal-dialog" role="document">
             <div  class="modal-content">
@@ -189,56 +194,49 @@
             </div>
         </div>
     </div>
-              
-  
-      <script>
-  $(function(){
+
+<script>
+$(function(){
 	  
-	  $(".modalDeleteRollback").click(function() {
+	  $(".modalApproval").click(function() {
 		  $("#exampleModal").modal("show");  
-		  var memberNo = $(this).val();
+		  var sellNo = $(this).val(); 
 		  var reqPage = ${reqPage};
 		  var totalCnt = ${totalCnt}-1;
-		  $(".modal-title").html("탈퇴 복구");
+		  $(".modal-title").html("게시물 승인");
 		  $(".modal-header").css("background-color","#6c757d");
 		  $(".memberValue").css("background-color","#6c757d");
 		  $(".memberValue").css("border-color","#6c757d");
-		  $(".memberValue").html("탈퇴 복구");
-		  $(".modal-body").html("정말로 회원을 복구시키시겠습니까?");
+		  $(".memberValue").html("게시물 승인");
+		  $(".modal-body").html("정말로 게시물을 승인하시겠습니까?");
 	  $(".memberValue").click(function() {		
   $.ajax({
-	    url: "/meister/admin/memberDeleteRollback.do?memberNo="+memberNo,
-	    
-	    
+	    url: "/meister/admin/approval.do?sellNo="+sellNo,
 
 	    success: function(){
 	    	$("#exampleModal").modal("hide");
-	    	$(".modal2text").html("회원이 복구되었습니다.");
+	    	$(".modal2text").html("승인되었습니다.");
 	    	$(".modal-content2").css("background-color","#6c757d");
 	    	$("#exampleModal2").modal("show");
 	    	setTimeout(function() {
 	    		location.reload();
 	    		if(totalCnt%6 == 0){
 	    			reqPage=reqPage-1;
-	    		window.location.href="memberDeletionFrm.do?reqPage="+reqPage;
+	    		window.location.href="sellApprovalFrm.do?reqPage="+reqPage;
 	    		}
 	    		}, 1000);		
 	    }
-	    
-	    
+
 	  		});
 		});
 	});
+});
+</script>
 
 
-	  $("#close_modal").click(function() {
-          $("#exampleModal").modal("hide");
-      });
-  });
-  </script>
-  
-  
-  
+
+
+
   
   
   

@@ -1,17 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
+
 <meta charset="UTF-8">
-<title>마이스터 판매글</title>
+
+
   <!-- Bootstrap core CSS -->
   <link href="/resources/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="/resources/sell-css/css/heroic-features.css?after" rel="stylesheet">
   <link href="/resources/showSell-css/showSell.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+
+
+
+
+
+<!-- header -->
+
+
+<div class="modal-header">
+    <!-- 닫기(x) 버튼 -->
+  <button type="button" class="close" data-dismiss="modal" onclick="location.href='javascript:history.back();'">돌아가기</button>
+  <!-- header title -->
+</div>
+<!-- body -->
+<div class="modal-body">
+
+
+
+
 <script>
 function goLocation(where) {
 	switch(where.text) {
@@ -31,9 +52,8 @@ function goLocation(where) {
 
 	$(function() {
 		var sellNo = ${sell.sellvo.sellNo};
-		var memberNo = 2;
 		$.ajax({
-			url : "/meister/review/selectReview.do?sellNo="+sellNo,
+			url : "/meister/adminSellView/selectReview.do?sellNo="+sellNo,
 			data : "json",
 			success : function(data) {
 				html="";
@@ -97,9 +117,9 @@ function goLocation(where) {
 				$("#pointView").append(html2);
 			}
 		});
-		$(".picking").click(function() {
+ 		$(".picking").click(function() {
 			$.ajax({
-				url : "/meister/sell/pickingSell.do",
+				url : "/meister/adminSellView/pickingSell.do",
 				type : "get",
 				data : {memberNo : memberNo, sellNo : sellNo},
 				success : function(data) {
@@ -112,11 +132,11 @@ function goLocation(where) {
 					$("#pickArea").html(html3);
 				}
 			});
-		});
+		}); 
 		$("#canclePicking2").click(function() {
 			console.log("why");
 			$.ajax({
-				url : "/meister/sell/canclePickingSell.do",
+				url : "/meister/adminSellView/canclePickingSell.do",
 				type : "get",
 				data : {memberNo : memberNo, sellNo : sellNo},
 				success : function(data) {
@@ -127,9 +147,8 @@ function goLocation(where) {
 	
 	 
 </script>
-</head>
-<body>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
+
  <div class="container">
     <div class="row" style="width:1200px;">
       <!-- Post Content Column -->
@@ -205,14 +224,14 @@ function goLocation(where) {
 		
         <!-- Search Widget -->
         <div class="card my-4" style="border: 0px;">
-        <div id="pickArea">
+<%--         <div id="pickArea">
         <c:if test="${sessionScope.member.memberNo != sell.pickvo.memberNo}">
        	<p style="font-size:14px; text-align:right; cursor:pointer;" class="picking"><img src="/resources/upload/homeImg/heart.png" style="width:15px;"> 찜하기</p>
         </c:if>
         <c:if test="${sessionScope.member.memberNo == sell.pickvo.memberNo}">
        	<p style="font-size:14px; text-align:right; cursor:pointer;" class="picking"><img src="/resources/upload/homeImg/InHeart.png" style="width:15px;"> 찜하기</p>
         </c:if>
-        </div>
+        </div> --%>
         <div class="card-body">
           <h4>${sell.sellvo.sellTitle }</h4><br>
           <h5 style="text-align:right">${sell.sellvo.sellPrice }원 </h5>
@@ -230,7 +249,7 @@ function goLocation(where) {
                <span><img src="/resources/upload/homeImg/check.png" style="width:11px;"> ${sell.sellvo.sellOpt3 }</span><br><br>
                <span><img src="/resources/upload/homeImg/calendar.png" style="width:15px;"> 작업 소요일 : ${sell.sellvo.sellPeriod }일 &nbsp;&nbsp;&nbsp;<img src="/resources/upload/homeImg/settings.png" style="width:16px;"> 수정 횟수 : ${sell.sellvo.sellOptFix }회</span>
                <br><br>
-           		<button class="btn fo-si14" style="width:100%; height:50px; background-color:#FFBC42; font-weight:bold;">구매하기</button>
+           		<!-- <button class="btn fo-si14" style="width:100%; height:50px; background-color:#FFBC42; font-weight:bold;">구매하기</button> -->
             </div>
           </div>
         </div>
@@ -273,9 +292,18 @@ function goLocation(where) {
   <!-- /.container -->
 	</div>
 
+
+</div>
+<div class="modal-footer">
+
+</div>
+
+
+
+
+
+
+
   <!-- Bootstrap core JavaScript -->
   <script src="/resources/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
