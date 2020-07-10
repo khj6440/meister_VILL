@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -44,6 +45,7 @@
                     <option value="recent">최근 활동순</option>
                 </select>
             </div>
+            <%-- <c:forEach items="${meister }" var="m"> --%>
             <div class="meisters-box">
                 <table>
                     <tr>
@@ -52,8 +54,8 @@
                                 <img src="/resources/yr/imgs/profile_img2.png" width="100px">
                             </div>
                             <div class="m-info">
-                                <div class="m-name">000</div>
-                                <div class="m-introduce">자기소개~ 설명~</div>
+                                <div class="m-name">ddd</div>
+                                <div class="m-introduce">ddd</div>
                                 <div class="m-star">
                                     <img src="/resources/yr/imgs/star_full.png" width="2%">
                                     <img src="/resources/yr/imgs/star_full.png" width="2%">
@@ -66,14 +68,15 @@
                                     <div class="mre-icon">
                                         <img src="/resources/yr/imgs/review.png" width="25px;">
                                     </div>
-                                    <div class="mre-writer">000</div>
-                                    <div class="mre-review">후기 내용~~~</div>
+                                    <div class="mre-writer">ddd</div>
+                                    <div class="mre-review">ddd</div>
                                 </div>
                             </div>
                         </td>
                     </tr>
                 </table>
             </div>
+           <%--  </c:forEach> --%>
             <div class="m-btn-more">
                 <button type="button" class="btn btn-yr-normal-gray" id="btn-more">더보기</button>
             </div>
@@ -81,6 +84,12 @@
     </div>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 
+
+	<script>
+		$(document).ready(function(){
+			
+		});
+	</script>
     
 </body>
 

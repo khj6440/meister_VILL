@@ -20,7 +20,7 @@ import kr.or.meister.employ.model.vo.EmployVO;
 import kr.or.meister.member.model.dao.MemberDao;
 
 import kr.or.meister.member.model.vo.MemberDataVO;
-
+import kr.or.meister.member.model.vo.MemberJoinSellReviewVO;
 import kr.or.meister.member.model.vo.MemberCookieVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
@@ -238,6 +238,15 @@ public class MemberService {
 		//hyeokjin
 		return dao.readMsg(msgNo);
 	}
+
+	public ArrayList<MemberJoinSellReviewVO> allMeister() {
+		return (ArrayList<MemberJoinSellReviewVO>)dao.allMeistser();
+	}
+
+	public int totalCountMeister() {
+		return dao.totalCountMeister();
+	}
+
 
 
 

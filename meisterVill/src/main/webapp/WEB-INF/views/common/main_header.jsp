@@ -47,6 +47,16 @@
 
 <body>
 
+<style>
+        .pf-img {
+    width: 63.51px;
+    height: 63.51px;
+
+    border-radius: 50%;
+    border: 1px solid blue;
+}
+    </style>
+
 
     <!--헤더-->
 
@@ -94,9 +104,18 @@
 
                         <ul class="hd-profile-boundary1">
                             <li class="hd-profile-img1">
+                            <div class="pf-img">
+                                <c:if test="${sessionScope.member.memberImg eq null }">
                                 <a href="#">
                                     <img src="/resources/yr/imgs/profile_img2.png" width="100%">
                                 </a>
+                            </c:if>
+                            <c:if test="${sesssionScope.member.memberImg ne null }">
+                                <a href="#">
+                                    <img src="/resources/upload/memberImg/${sessionScope.member.memberImg }" width="100%">
+                                </a>
+                            </c:if>
+                            </div>
 
                                 <ul class="hd-profile-menu1">
                                     <li id="none" name="hd-menu1"><a href="#">프로필 관리</a></li>
@@ -118,9 +137,6 @@
 
                 </c:if>
 
-
-
-
             </div>
             <div class="hd-category">
                 <ul>
@@ -141,7 +157,6 @@
                 <a class="navbar-brand" href="#">커뮤니티</a>
                 <a class="navbar-brand" href="/meister/member/meisterList.do">마이스터</a>
                 <a class="navbar-brand" href="#">프로젝트</a>
-
             </div>
         </nav>
 
@@ -159,6 +174,7 @@
 
                     <ul class="hd-profile-boundary1">
                         <li class="hd-profile-img1">
+                        <div class="pf-img">
                             <c:if test="${sessionScope.member.memberImg eq null }">
                                 <a href="#">
                                     <img src="/resources/yr/imgs/profile_img2.png" width="100%">
@@ -166,9 +182,10 @@
                             </c:if>
                             <c:if test="${sesssionScope.member.memberImg ne null }">
                                 <a href="#">
-                                    <img src="/upload/member/${sessionScope.member.memberImg })" width="100%">
+                                    <img src="/resources/upload/memberImg/${sessionScope.member.memberImg }" width="100%">
                                 </a>
                             </c:if>
+                            </div>
 
                             <ul class="hd-profile-menu1">
                                 <li id="none" name="hd-menu1"><a href="#">프로필 관리</a></li>

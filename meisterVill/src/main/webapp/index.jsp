@@ -112,10 +112,7 @@
                                                 <div>제목</div>
                                             </div>
                                         </div>
-
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
@@ -129,7 +126,7 @@
                                     <li name="hd-menu1"><a href="#">찜한 서비스</a></li>
                                     <li name="hd-menu1"><a href="#">쿠폰</a></li>
                                     <li name="hd-menu1"><a href="/meister/member/logout.do">로그아웃</a></li>
-
+						</ul>
 
                     </div>
 
