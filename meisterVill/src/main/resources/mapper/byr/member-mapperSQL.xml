@@ -58,10 +58,10 @@
 		where member_email=#{memberEmail} and member_status=0
 		
 	</select>
-	<insert id="loginMaintain">
+	<!-- <insert id="loginMaintain">
 		insert cookie set sessionkey=#{sessionId}, sessionlimit=#{next}
 		where member_no=#{memberNo}
-	</insert>
+	</insert> -->
 	<select id="checkNickname" parameterType="string" resultType="member">
 		select
 			member_no as memberNo,
@@ -126,7 +126,7 @@
 			sysdate+30
 		)
 	</insert>
-	<select id="couponList" parameterType="_int" resultType="couponJoinCouponIssued">
+	<!-- <select id="couponList" parameterType="_int" resultType="couponJoinCouponIssued">
 		select
 			coupon_issued_no as couponIssouedNo,
 			coupon_issued_member_no as couponIssuedMemberNo,
@@ -167,6 +167,6 @@
         left join coupon on (coupon_issued_coupon_no=coupon_no)
 		where coupon_issued_member_no=#{memberNo} and coupon_issued_check=0 and (to_date(coupon_issued_end)-sysdate)>0 and #{sellPrice}>coupon_limit_money;
 	</select>
-	
+	 -->
 	
 </mapper>
