@@ -115,5 +115,14 @@ public class MemberDao {
 		return sqlSession.selectList("request.selectAllRequest", map);
 	}
 
+	public int insertChatFile(HashMap<String, String> map) {
+		//hyeokjin
+		return sqlSession.insert("chat.insertChatFile",map);
+	}
+
+	public int readMsg(int msgNo) {
+		//hyeokjin
+		return sqlSession.update("message.readMsg",msgNo);
+	}
 
 }

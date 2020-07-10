@@ -83,7 +83,8 @@
                 <c:if test="${empty sessionScope.member }">
                     <div class="hd hd-member">
                         <a class="member-top-menu" href="#">마이스터 등록</a>
-                        <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
+	                    <a class="member-top-menu" href="/meister/member/loginFrm.do">로그인</a>
+                      <!--   <a class="member-top-menu" href="/meister/project/login.do" data-toggle="modal" data-target="#loginModal">로그인</a> -->
                         <a class="btn btn-insert" href="/meister/member/join.do">무료 회원가입</a>
                     </div>
                 </c:if>
@@ -124,7 +125,7 @@
             </div>
             <div class="hd-category">
                 <ul>
-                    <li><a href="#">IT/Programming</a></li>
+                    <li><a href="/meister/sell/sellList.do?reqPage=1">IT/Programming</a></li>
                     <li><a href="#">Design</a></li>
                 </ul>
             </div>
@@ -150,7 +151,8 @@
             <c:if test="${empty sessionScope.member }">
                 <div class="member-top-line">
                     <a class="member-top-menu" href="#">마이스터 등록</a>
-                    <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
+                    <a class="member-top-menu" href="/meister/member/loginFrm.do">로그인</a>
+                    <!-- <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a> -->
                     <a class="btn btn-insert" href="/meister/member/join.do">무료 회원가입</a>
                 </div>
             </c:if>
@@ -220,7 +222,7 @@
             <div class="header-nav-menu">
                 <ul class="main-navi">
                     <li>
-                        <a href="#">
+                        <a href="/meister/sell/sellList.do?reqPage=1">
                             <div class="nav-icon">
                                 <i class="fa fa-2x fa-desktop" aria-hidden="true"></i>
                             </div>
@@ -525,7 +527,7 @@
 
     </script>
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/resources/yr/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 

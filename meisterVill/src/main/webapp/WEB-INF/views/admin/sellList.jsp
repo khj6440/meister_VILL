@@ -49,26 +49,27 @@
 
                <tbody style="text-align: center;">
                 <tr>
+                
                 <c:forEach items="${list}" var="s" varStatus="i">
                     <td style=" margin-left: 5%; margin-bottom: 5%; margin-top:5%; display: inline-block; border-top-style: none;">
-                     <div><img src="/upload/sellImg/${s.sellImg}" style="width: 450px; height: 450px;"></div> 
+                     <div onClick="location.href='/meister/adminSellView/showList.do?sellNo='+${s.sellNo}+'&memberNo='+${s.memberNo}" class="sellView"><img src="/resources/upload/sellImg/${s.sellImg}" style="width: 450px; height: 400px;"></div> 
                      
                     <div style="margin: 0 auto;">
-                    <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 440px;"><a href="/meister/admin/memberOneViewFrm.do?memberNo=${s.sellTitle}">${s.sellTitle}</a></div>
+                    <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 440px; font-size: 17px;">${s.sellTitle}</div>
 				
 				<div>
                     <c:if test="${s.memberImg != null }">
-                    		<div><img src="/upload/memberImg/${s.memberImg}" style="width: 25px; height: 25px;"> 
+                    		<div><img src="/resources/upload/memberImg/${s.memberImg}" style="width: 25px; height: 25px;"> 
                     		 ${s.memberName }</div>
                     </c:if>
                     
                     <c:if test="${s.memberImg == null }">
                     	<c:if test="${s.memberLevel == 2}">
-                    		<img src="/upload/common/adminImg.jpg" style="width: 25px; height: 25px;"> 
+                    		<img src="/resources/upload/common/adminImg.jpg" style="width: 25px; height: 25px;"> 
                     		 ${s.memberName }
                     	</c:if>
                     	<c:if test="${s.memberLevel != 2}">
-                    		<img src="/upload/memberImg/unnamed.png" style="width: 25px; height: 25px;"> 
+                    		<img src="/resources/upload/memberImg/unnamed.png" style="width: 25px; height: 25px;"> 
                     		 ${s.memberName }
                     	</c:if>
                     </c:if>
@@ -82,22 +83,24 @@
 
                     <div>
                     ${s.sellPrice} ￦ 
+                    </div>
                     
+                    <div>
                      <c:if test="${s.sellStatus == 0 }">
                      <span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 12px;">
-                   	상태[정상]
+                   	상태&nbsp[정상]
                     </span>
                     </c:if>
                     
                     <c:if test="${s.sellStatus == 1 }">
-                     <span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 12px;">
-                   	상태[비활성화]
+                     <span class="label label-info label-mini"style="background-color: #6c757d; font-size: 12px;">
+                   	상태&nbsp[비활성화]
                     </span>
                     </c:if>
                     
                     <c:if test="${s.sellStatus == 2 }">
-                     <span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 12px;">
-                   	상태[삭제됨]
+                     <span class="label label-info label-mini"style="background-color: #F16B6F; font-size: 12px;">
+                   	상태&nbsp[삭제됨]
                     </span>
                     </c:if>
                     </div>
@@ -107,18 +110,22 @@
 
 					<div>
                       <!-- <span class="label label-info label-mini" style="background-color: red">신고 접수</span> -->
-                      <button value="${s.sellNo }" class="btn btn-success btn-xs sellView" style="background-color: #FFBC42; border-color: #FFBC42; color: white;"><i class="fa fa-check"></i>상세보기</button>
+                      <button onClick="location.href='/meister/adminSellView/showList.do?sellNo='+${s.sellNo}+'&memberNo='+${s.memberNo}" class="btn btn-success btn-xs sellView" style="background-color: #FFBC42; border-color: #FFBC42; color: white;"><i class="fa fa-check"></i>상세보기</button>
                       <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
-                    <c:if test="${s.sellStatus != 1 }">
-                      <button value="${s.sellNo }" class="btn btn-danger btn-xs modalHalt" style="background-color: #6c757d; border-color: #6c757d; color: white;"><i class="fa fa-trash-o"></i>비활성하기</button>
+                    <c:if test="${s.sellStatus != 1 && s.sellStatus != 2}">
+                      <button value="${s.sellNo }" class="btn btn-danger btn-xs sellHalt" style="background-color: #6c757d; border-color: #6c757d; color: white;"><i class="fa fa-trash-o"></i>비활성하기</button>
                     </c:if>
                     
-                    <c:if test="${s.sellStatus == 1 }">
-                    	<button value="${s.sellNo }" class="btn btn-danger btn-xs modalHaltRollback" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-trash-o" ></i>활성화하기</button>
+                    <c:if test="${s.sellStatus == 1 && s.sellStatus != 2}">
+                    	<button value="${s.sellNo }" class="btn btn-danger btn-xs boardRollback" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-trash-o" ></i>활성화하기</button>
                     </c:if>
                     
                     <c:if test="${s.sellStatus != 2 }">
-                      <button value="${s.sellNo }" class="btn btn-danger btn-xs modalDelete" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>게시글 삭제</button>
+                      <button value="${s.sellNo }" class="btn btn-danger btn-xs sellDelete" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>게시글 삭제</button>
+                    </c:if>
+                    
+                    <c:if test="${s.sellStatus == 2 }">
+                      <button value="${s.sellNo }" class="btn btn-danger btn-xs boardRollback" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>게시글 복구</button>
                     </c:if>
                     </div>
 					</div>
@@ -159,9 +166,10 @@
   <!--script for this page-->
      
 
-     
-     
-<!-- --------------------------------Modal----------------------------------------------------- -->
+
+
+<!-- --------------------------------sellViewModal----------------------------------------------------- -->
+
     <div style="padding-top: 10%;" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div style="width: 600px; height: 600px;" class="modal-dialog" role="document">
             <div  class="modal-content">
@@ -169,30 +177,12 @@
                     <h5 class="modal-title" id="exampleModalLabel">회원 정지</h5>
                 </div>
                 <div class="modal-body">
-                   		 내용
+                   		 정말로 정지하시겠습니까?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
                     <button style="background-color: #6c757d;" type="button" class="btn btn-primary memberValue">회원 정지</button>
                     
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    
-<!-- --------------------------------sellViewModal----------------------------------------------------- -->
-    <div style="padding-top: 10%;" class="modal fade" id="sellExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div style="width: 70%;" class="modal-dialog" role="document">
-            <div  class="modal-content">
-                <div style="border-top-left-radius: 4px; border-top-right-radius: 4px; background-color: #6c757d;"class="sell-modal-header modal-header">
-                    <h5 class="modal-title sell-modal-title" id="exampleModalLabel">상세 내용</h5>
-                </div>
-                <div class="sell-modal-body modal-body">
-                   		 내용
-                </div>
-                <div class="sell-modal-footer modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>       
                 </div>
             </div>
         </div>
@@ -210,41 +200,111 @@
             </div>
         </div>
     </div>
-              
+
+<script>
+$(function(){
+	  
+	  $(".sellHalt").click(function() {
+		  $("#exampleModal").modal("show");  
+		  var sellNo = $(this).val(); 
+		  $(".modal-title").html("게시물 비활성화");
+		  $(".modal-header").css("background-color","#6c757d");
+		  $(".memberValue").css("background-color","#6c757d");
+		  $(".memberValue").css("border-color","#6c757d");
+		  $(".memberValue").html("비활성화");
+		  $(".modal-body").html("정말로 게시물을 비활성화하시겠습니까?");
+	  $(".memberValue").click(function() {		
+  $.ajax({
+	    url: "/meister/adminBoard/sellHalt.do?sellNo="+sellNo,
+
+	    success: function(){
+	    	$("#exampleModal").modal("hide");
+	    	$(".modal2text").html("비활성화되었습니다.");
+	    	$(".modal-content2").css("background-color","#6c757d");
+	    	$("#exampleModal2").modal("show");
+	    	setTimeout(function() {
+	    		location.reload();
+	    		}, 1000);
+			
+	    }
+	    
+	    
+	  		});
+		});
+	});
+});
+
+	  
+	  $(".boardRollback").click(function() {
+		  $("#exampleModal").modal("show");  
+		  var sellNo = $(this).val(); 
+		  $(".modal-title").html("게시물 활성화");
+		  $(".modal-header").css("background-color","#6c757d");
+		  $(".memberValue").css("background-color","#6c757d");
+		  $(".memberValue").css("border-color","#6c757d");
+		  $(".memberValue").html("활성화");
+		  $(".modal-body").html("정말로 게시물을 활성화하시겠습니까?");
+	  $(".memberValue").click(function() {		
+$.ajax({
+	    url: "/meister/adminBoard/boardRollback.do?sellNo="+sellNo,
+
+	    success: function(){
+	    	$("#exampleModal").modal("hide");
+	    	$(".modal2text").html("활성화되었습니다.");
+	    	$(".modal-content2").css("background-color","#6c757d");
+	    	$("#exampleModal2").modal("show");
+	    	setTimeout(function() {
+	    		location.reload();
+	    		}, 1000);
+			
+	    }
+	    
+	    
+	  		});
+		});
+	});
+	  
+	  
+	  
+	  $(".sellDelete").click(function() {
+		  $("#exampleModal").modal("show");  
+		  var sellNo = $(this).val(); 
+		  $(".modal-title").html("게시물 삭제");
+		  $(".modal-header").css("background-color","#6c757d");
+		  $(".memberValue").css("background-color","#6c757d");
+		  $(".memberValue").css("border-color","#6c757d");
+		  $(".memberValue").html("삭제");
+		  $(".modal-body").html("정말로 게시물을 삭제하시겠습니까?");
+	  $(".memberValue").click(function() {		
+$.ajax({
+	    url: "/meister/adminBoard/sellDelete.do?sellNo="+sellNo,
+
+	    success: function(){
+	    	$("#exampleModal").modal("hide");
+	    	$(".modal2text").html("삭제되었습니다.");
+	    	$(".modal-content2").css("background-color","#6c757d");
+	    	$("#exampleModal2").modal("show");
+	    	setTimeout(function() {
+	    		location.reload();
+	    		}, 1000);	
+	    }
+
+	  		});
+		});
+	});
+
+
+
+
+
+</script>
+
+
+
+
   
-      <script>
-      
-      $(function(){
-    	  
-    	  $(".sellView").click(function() {
-    		  $("#sellExampleModal").modal("show");  
-    		  var sellNo = $(this).val(); 
-    		  $(".sell-modal-title").html("상세 내용");
-    		  $(".sell-modal-header").css("background-color","#6c757d");
-    		  $(".sell-modal-body").html("내용<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>넣는 칸");
-    	  $(".memberValue").click(function() {		
-      $.ajax({
-    	    url: "/meister/admin/memberOneViewFrm.do?sellNo="+sellNo,
-    	         
-    	    success: function(){
-    	    	$("#exampleModal").modal("hide");
-    	    	$(".modal2text").html("정지되었습니다.");
-    	    	$(".modal-content2").css("background-color","#6c757d");
-    	    	$("#exampleModal2").modal("show");
-    	    	setTimeout(function() {
-    	    		location.reload();
-    	    		}, 1000);			
-    	    } 
-    	  		});
-    		});
-    	});
-
-
-	  $("#close_modal").click(function() {
-          $("#exampleModal").modal("hide");
-      });
-  });
-  </script>
+  
+  
   
   
 </body>

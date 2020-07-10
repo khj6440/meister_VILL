@@ -1,0 +1,92 @@
+==================================윈도우설정(WorkSpace 생성 시 )==================================
+ 
+//Config 파일
+1. Window - preperence - XML - XML Catalog - User Specified Entries - Add버튼
+	Location에 http://mybatis.org/dtd/mybatis-3-config.dtd
+	Key에 -//mybatis.org//DTD Config 3.0//EN
+
+//Mapper 파일
+2. Window - preperence - XML - XML Catalog - User Specified Entries - Add버튼
+	Location에 http://mybatis.org/dtd/mybatis-3-mapper.dtd
+	Key에 -//mybatis.org//DTD Mapper 3.0//EN
+
+
+==================================기본 설정(프로젝트 생성 시 )==================================
+
+3. 프로젝트 마우스 오른쪽 - new - other - source 폴터 생성 - 폴더명 : resource
+
+4. resource 폴더에 - new - other - XML File 생성 - 파일명 : mybatis-config.xml - next버튼 - 제일 위에 라디오 버튼 선택 - next버튼 - 두번째 라디오 버튼 - 2번에서 만든 Config 선택 후 next- finish
+
+5. 4번에서 만든 xml파일 내용은 아래와 같음
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/><!-- NULL값을 공백이 아닌 null로 인식하게 하기 위함 -->
+	</settings>
+	<environments default="development">
+		<environment id="development"> <!-- 위에 default와 매칭 -->
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+				<property name="username" value="mybatis"/>
+				<property name="password" value="1234"/>
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- mapper xml 파일과 연동-->
+	<mappers>
+		<mapper resource="mapper/member-mapper.xml"/>
+	</mappers>
+</configuration>
+
+6. resource 폴더밑에 일반 폴더 생성 - 폴더명 : mapper
+
+7. mapper 폴더에 - new - other - XML File 생성 - 파일명 : member-mapper.xml - next버튼 - 제일 위에 라디오 버튼 선택 - next버튼 - 두번째 라디오 버튼 - 2번에서 만든 Mapper선택 후 next- finish
+
+8. mybatis-config.xml 파일에 코드 추가
+
+<mappers>
+	<mapper resource="mapper/member-mapper.xml"/>
+</mappers>
+
+9. src 밑에 common 패키지 추가하고 SqlSessionTemplate 클래스 생성 후 코드 추가
+
+package common;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+public class SqlSessionTemplate {
+	public static SqlSession getSqlSession() {
+		SqlSession session = null;
+		String resource = "mybatis-config.xml"; //config 파일 설정
+		
+		try {
+			//해당 리소스 경로(xml 파일)을 바탕으로 input stream 생성(config.xml파일의 값들을 읽어오기 위함)
+			InputStream is = Resources.getResourceAsStream(resource);
+			
+			//SqlSessionFactory를 만들 수 있는 팩토리 빌더 생성() : 
+			SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+			
+			//팩토리 빌더를 통해서 실제 사용할 SqlSessionFactory 생성
+			SqlSessionFactory factory = builder.build(is); //Connection을 is 정보로 만들 수 있도록 설정
+			
+			session = factory.openSession(false); //false는 autoCommit을 하지 않는다라는 의미
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		return session;
+	}
+}
+
+

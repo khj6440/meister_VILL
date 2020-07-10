@@ -38,6 +38,13 @@
 		<typeAlias type="kr.or.meister.employ.model.vo.EmployMemberVO" alias="employMember"/>
 		<typeAlias type="kr.or.meister.request.model.vo.RequestVO" alias="request"/>
 		<typeAlias type="kr.or.meister.request.model.vo.RequestMemberVO" alias="requestMember"/>
+		<typeAlias type="kr.or.meister.employ.model.vo.EmployVO" alias="project"/>
+		<typeAlias type="kr.or.meister.project.model.vo.ProjectChatVO" alias="pChat"/>
+		<typeAlias type="kr.or.meister.project.model.vo.ProjectFileVO" alias="pFile"/>
+		<typeAlias type="kr.or.meister.admin.model.vo.MemberInformVO" alias="memberInform"/>
+		<typeAlias type="kr.or.meister.admin.model.vo.RequestListVO" alias="requestList"/>
+		<typeAlias type="kr.or.meister.notice.model.vo.NoticeVO" alias="notice"/>
+		<typeAlias type="kr.or.meister.notice.model.vo.QnAVO" alias="qna"/>
 	</typeAliases>
 	
 </configuration>

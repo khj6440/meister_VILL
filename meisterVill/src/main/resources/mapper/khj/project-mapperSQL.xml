@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="project">
+
+<resultMap id="employMap" type="project">
+       <id property="employNo" column="employ_no" />
+       <result property="employTitle" column="employ_title" />
+       <result property="employCategory1" column="employ_category1" />
+       <result property="employCategory2" column="employ_category2" />
+       <result property="employContent" column="employ_content" />
+       <result property="employSkill" column="employ_skill" />
+       <result property="employPrice" column="employ_price" />
+       <result property="employEnrollDate" column="employ_enroll_date" />
+       <result property="employStartDate" column="employ_start_date" />
+       <result property="employPeriod" column="employ_period" />
+       <result property="employBoardEnd" column="employ_board_end" />
+       <result property="employAppro" column="employ_appro" />
+       <result property="employStatus" column="employ_status" />
+        <result property="employWriter" column="employ_writer" />
+        <result property="projectMembers" column="project_members" />
+        <result property="projectStart" column="project_start" />
+</resultMap>
+
+	<select id="getProjectIntro" parameterType="int" resultMap="employMap">
+		select 
+			*
+		from employ
+		where employ_no =#{_parameter}
+	</select>
+	<select id="selectProjectChat" parameterType="int" resultType="pChat">
+		select 
+			p_chat_no as pChatNo,
+			project_no as projectNo,
+			p_chat_sender as pChatSender,
+			p_chat_content as pChatContent,
+			p_chat_time as pChatTime,
+			p_chat_img as pChatImg
+		from 
+			project_chat
+		where
+			project_no=#{_parameter}
+	</select>
+	<select id="selectProjectMember" parameterType="list" resultType="member">
+		select 
+			member_no as memberNo,
+			member_email as memberEmail,
+			member_pw as memberPw,
+			member_name as memberName,
+			member_hbd as memberHbd,
+			member_nickname as memberNickname,
+			member_phone as memberPhone,
+			member_img as memberImg,
+			member_bank as memberBank,
+			member_account as memberAccount,
+			member_time as memberTime,
+			member_level as memberLevel,
+			member_status as memerStatus,
+			member_intro as memberIntro,
+			member_field as memberField,
+			member_skill as memberSkill,
+			member_school as memberSchool,
+			member_major as memberMajor,
+			member_grade as memberGrade,
+			member_date as memberDate
+		from member
+		where member_no in 
+		<foreach collection="list" item="no"  open="(" close=")" separator=",">#{no}</foreach>
+	</select>
+	
+	<insert id="insertProjectChat" parameterType="pChat">
+		insert into project_chat values
+		(project_chat_seq.nextval,#{projectNo},#{pChatSender},#{pChatContent},#{pChatTime},#{pChatImg})
+	</insert>
+	
+	<insert id="insertProjectFile" parameterType="pFile">
+		insert into project_file values
+		(project_file_seq.nextval,#{projectNo},#{pFileWriter},#{pFilename},#{pFilepath},to_char(SYSDATE,'YYYY-MM-DD/HH24:mi:ss'))
+	</insert>
+	
+	<select id="selectProjectFile" parameterType="int" resultType="pFile">
+		select
+			p_file_no as pFileNo,
+			project_no as projectNo,
+			p_file_writer as pFileWriter,
+			p_filename as pFilename,
+			p_filepath as pFilepath,
+			p_file_time as pFileTime
+		from 
+			project_file
+		where 
+			project_no =#{_parameter}		
+	</select>
+	
+</mapper>

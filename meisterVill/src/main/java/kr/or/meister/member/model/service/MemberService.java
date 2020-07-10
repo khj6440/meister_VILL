@@ -3,6 +3,7 @@ package kr.or.meister.member.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -201,5 +202,11 @@ public class MemberService {
 	      requestMember.put("pageNavi", pageNavi);
 	      return requestMember;
 	}
+
+	public int readMsg(int msgNo) {
+		//hyeokjin
+		return dao.readMsg(msgNo);
+	}
+
 
 }
