@@ -49,7 +49,7 @@ public class CkeditorController {
             
             //이미지 경로 생성
 
-            String path = request.getSession().getServletContext().getRealPath("/upload/");
+            String path = request.getSession().getServletContext().getRealPath("/upload/adminNoticeImg/");
             String ckUploadPath = path + uid + "_" + fileName;
             File folder = new File(path);
             
@@ -95,7 +95,7 @@ public class CkeditorController {
 	 throws ServletException, IOException{
 	        
 	        //서버에 저장된 이미지 경로
-		 	String path = request.getSession().getServletContext().getRealPath("/upload/");
+		 	String path = request.getSession().getServletContext().getRealPath("/upload/adminNoticeImg/");
 	    
 	        String sDirPath = path + uid + "_" + fileName;
 	    
