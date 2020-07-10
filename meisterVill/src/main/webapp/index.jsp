@@ -141,13 +141,6 @@
 
                     </div>
 
-
-
-                </c:if>
-
-
-
-
             </div>
             <div class="hd-category">
                 <ul>
@@ -174,7 +167,6 @@
 
         <!-- Masthead -->
         <header class="masthead text-center pic-header">
-            <c:if test="${empty sessionScope.member }">
                 <div class="member-top-line">
                     <a class="member-top-menu" href="#">마이스터 등록</a>
                     <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
