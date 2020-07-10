@@ -29,6 +29,7 @@ import com.google.gson.Gson;
 import kr.or.meister.admin.model.service.AdminService;
 import kr.or.meister.admin.model.vo.AdminMemberJoinSellJoinOrdersVO;
 import kr.or.meister.admin.model.vo.MemberInformVO;
+import kr.or.meister.admin.model.vo.MemberJoinEmployVO;
 import kr.or.meister.admin.model.vo.MemberJoinReportVO;
 import kr.or.meister.admin.model.vo.MemberJoinVO;
 import kr.or.meister.admin.model.vo.MemberMaxMoneyVO;
@@ -43,6 +44,7 @@ import kr.or.meister.admin.model.vo.selectAllSellPageVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.sell.model.service.SellService;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
+import kr.or.meister.sell.model.vo.SellVO;
 
 @Controller
 @RequestMapping(value="/meister/admin")
@@ -296,11 +298,15 @@ public class AdminController {
 				return "admin/memberDeletionView.jsp?"+reqPage;
 			}
 			
-	
+			
+
+/*------------------------------------메인페이지 Frm------------------------------------------------------------*/
+			
 	@RequestMapping(value="/adminIndexFrm.do")
 	public String adminIndexFrm(HttpServletRequest request) {
 
-
+		List<AdminMemberJoinSellJoinOrdersVO> mainSell = service.adminMainSellList();
+		List<MemberJoinEmployVO> mainEmploy = service.adminMainEmployList();
 		NumberFormat df = NumberFormat.getNumberInstance();
 		MemberStatsVO ms = service.memberStats();
 		SellStatsVO ss = service.sellStats();
@@ -434,6 +440,8 @@ public class AdminController {
 		
 		request.setAttribute("sellRequestSum", df.format(sellRequestSum));
 		
+		request.setAttribute("mainSell", mainSell);
+		request.setAttribute("mainEmploy", mainEmploy);
 		return "admin/adminIndex";
 	}
 	

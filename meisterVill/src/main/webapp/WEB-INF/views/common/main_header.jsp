@@ -111,7 +111,12 @@
 
                     </div>
                     <div class="member-top-line1 normal-mtl">
+                    <c:if test="${sessionScope.member.memberLevel != 2 }">
                         <a class="member-top-menu" href="#">마이페이지</a>
+                    </c:if> 
+                        <c:if test="${sessionScope.member.memberLevel == 2 }">
+                        <a class="member-top-menu" href="/meister/admin/adminIndexFrm.do">관리자페이지</a>
+                        </c:if>
                         <a class="member-top-menu" href="#">메세지</a>
                     </div>
 
@@ -183,7 +188,12 @@
 
                 </div>
                 <div class="member-top-line1">
-                    <a class="member-top-menu" href="#">마이페이지</a>
+                    <c:if test="${sessionScope.member.memberLevel != 2 }">
+                        <a class="member-top-menu" href="#">마이페이지</a>
+                    </c:if> 
+                        <c:if test="${sessionScope.member.memberLevel == 2 }">
+                        <a class="member-top-menu" href="/meister/admin/adminIndexFrm.do">관리자페이지</a>
+                        </c:if>
                     <a class="member-top-menu" href="#">메세지</a>
                 </div>
 

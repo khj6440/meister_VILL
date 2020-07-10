@@ -68,6 +68,94 @@
 	
 	</select>
 	
+	
+	
+	
+	<select id="adminMainEmployList" resultType="memberJoinEmploy">
+			                       select
+            member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate,
+            employ_no as employNo,
+            employ_title as employTitle,
+            employ_category1 as employCategory1,
+            employ_category2 as employCategory2,
+            employ_content as employContent,
+            employ_skill as employSkill,
+            employ_price as employPrice,
+            employ_enroll_date as employEnrollDate,
+            employ_start_date as employStartDate,
+            employ_period as employPeriod,
+            employ_board_end as employBoradEnd,
+            employ_appro as employAppro,
+            employ_status as employStatus,
+            employ_writer as employWriter,
+            project_members as projectMembers,
+            project_start as projectStart
+  			from employ LEFT JOIN member ON (member_no = employ_no) where employ_status = 1 order by employ_no desc
+	</select>
+	
+	
+	<select id="adminMainSellList" resultType="joinSellJoinOrders">
+		                   select
+            member_no as memberNo,
+  			member_email as memberEmail,
+  			member_pw as memberPw,
+  			member_name as memberName,
+  			member_hbd as memberHbd,
+  			member_nickname as memberNickname,
+  			member_phone as memberPhone,
+  			member_img as memberImg,
+  			member_bank as memberBank,
+  			member_account as memberAccount,
+  			member_time as memberTime,
+  			member_level as memberLevel,
+  			member_status as memberStatus,
+  			member_intro as memberIntro,
+  			member_field as memberField,
+  			member_skill as memberSkill,
+  			member_school as memberSchool,
+  			member_major as memberMajor,
+  			member_grade as memberGrade,
+  			member_date as memberDate,
+            sell_no as sellNo,
+            sell_title as sellTitle,
+            sell_writer as sellWriter,
+            sell_price as sellPrice,
+            sell_category1 as sellCategory1,
+            sell_category2 as sellCategory2,
+            sell_skill as sellSkill,
+            sell_date as sellDate,
+            sell_appro as sellAppro,
+            sell_status as sellStatus,
+            sell_opt1 as sellOpt1,
+            sell_opt2 as sellOpt2,
+            sell_opt3 as sellOpt3,
+            sell_opt_fix as sellOptFix,
+            sell_period as sellPeriod,
+            sell_content as sellContent,
+            sell_fix as sellFix,
+            sell_img as sellImg
+  			from sell LEFT JOIN member ON (member_no = sell_writer)
+	</select>
+	
 
 	<select id="selectHaltList" parameterType="Map"  resultType="adminMember">
 		select *
