@@ -24,13 +24,13 @@
 			member_grade as memberGrade,
 			member_date as memberDate
 		from member
-		where member_email=#{memberEmail} and member_pw=#{memberPw}
+		where member_email=#{memberEmail} and member_pw=#{memberPw} and member_status=0
 	</select>
 	<select id="findEmail" parameterType="member" resultType="string">
 		select
 			member_email as memberEmail
 		from member
-		where member_name=#{memberName} and member_phone=#{memberPhone}
+		where member_name=#{memberName} and member_phone=#{memberPhone} and member_status=0
 	</select>
 	<select id="checkLoginEmail" parameterType="string" resultType="member">
 		select
@@ -55,7 +55,7 @@
 			member_grade as memberGrade,
 			member_date as memberDate
 		from member
-		where member_email=#{memberEmail}
+		where member_email=#{memberEmail} and member_status=0
 		
 	</select>
 	<insert id="loginMaintain">
@@ -85,6 +85,88 @@
 			member_grade as memberGrade,
 			member_date as memberDate
 		from member
-		where member_nickname=#{memberNickname}
+		where member_nickname=#{memberNickname} and member_status=0
 	</select>
+	<insert id="joinMember" parameterType="member">
+		insert into member values(
+			member_seq.nextval,
+			#{memberEmail},
+			#{memberPw},
+			#{memberName},
+			#{memberHbd},
+			#{memberNickname},
+			#{memberPhone},
+			null,
+			null,
+			null,
+			null,
+			0,
+			0,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			to_char(SYSDATE,'YYYY/MM/DD')
+		)
+		
+	</insert>
+	
+	<update id="changeForgottenPw" parameterType="member">
+		update member set member_pw=#{memberPw} where member_email=#{memberEmail} and member_status=0
+	</update>
+	<insert id="welcomeCoupon" parameterType="_int">
+		insert into coupon_issued values(
+			coupon_issued_seq.nextval,
+			#{memberNo},
+			1,
+			0,
+			sysdate,
+			sysdate+30
+		)
+	</insert>
+	<select id="couponList" parameterType="_int" resultType="couponJoinCouponIssued">
+		select
+			coupon_issued_no as couponIssouedNo,
+			coupon_issued_member_no as couponIssuedMemberNo,
+			coupon_issued_coupon_no as couponIssuedCouponNo,
+			coupon_issued_check as couponIssuedCheck,
+			coupon_issued_start as couponIssuedStart,
+			coupon_issued_end as couponIssuedEnd,
+            coupon_name as couponName,
+            coupon_time_limit as couponTimeLimit,
+            coupon_money as couponMoney,
+            coupon_status as couponStatus,
+            coupon_end as couponEnd,
+            coupon_content as couponContent,
+            coupon_img as couponImg,
+            coupon_limit_money as couponLimitMoney
+		from coupon_issued
+        left join coupon on (coupon_issued_coupon_no=coupon_no)
+		where coupon_issued_member_no=#{memberNo} and coupon_issued_check=0 and (to_date(coupon_issued_end)-sysdate)>0 and #{sellPrice}>coupon_limit_money;
+	</select>
+	
+	<select id="selectAvailableCoupon" parameterType="sjo" resultType="couponJoinCouponIssued">
+		select
+			coupon_issued_no as couponIssouedNo,
+			coupon_issued_member_no as couponIssuedMemberNo,
+			coupon_issued_coupon_no as couponIssuedCouponNo,
+			coupon_issued_check as couponIssuedCheck,
+			coupon_issued_start as couponIssuedStart,
+			coupon_issued_end as couponIssuedEnd,
+            coupon_name as couponName,
+            coupon_time_limit as couponTimeLimit,
+            coupon_money as couponMoney,
+            coupon_status as couponStatus,
+            coupon_end as couponEnd,
+            coupon_content as couponContent,
+            coupon_img as couponImg,
+            coupon_limit_money as couponLimitMoney
+		from coupon_issued
+        left join coupon on (coupon_issued_coupon_no=coupon_no)
+		where coupon_issued_member_no=#{memberNo} and coupon_issued_check=0 and (to_date(coupon_issued_end)-sysdate)>0 and #{sellPrice}>coupon_limit_money;
+	</select>
+	
+	
 </mapper>

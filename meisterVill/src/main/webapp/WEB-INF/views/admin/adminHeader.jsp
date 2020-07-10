@@ -12,14 +12,14 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="/meister/admin/adminIndexFrm.do" class="logo" style="color: black;"><b>Meister<span style="color: #A593E0;">Vill</span></b></a>
+      <a href="/meister/admin/adminIndexFrm.do" class="logo" style="color: black;"><b>Meister<span style="color: #5CAB7D;">Vill</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
         <ul class="nav top-menu">
           <!-- settings start -->
           <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
               <i class="fa fa-tasks"></i>
               <span class="badge bg-theme">4</span>
               </a>
@@ -201,7 +201,8 @@
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <a href="/meister/admin/indexFrm.do" class="btn btn-theme02 modalDelete" style="background-color: #FFBC42; border-color: #FFBC42; padding: 5px 15px; margin-right: 15px; margin-top: 15px;">메인페이지</a>
+          <a href="/meister/admin/logout.do" class="btn btn-theme02 modalDelete" style="background-color: #F16B6F; border-color: #F16B6F; padding: 5px 15px; margin-right: 15px; margin-top: 15px;">로그아웃</a>
         </ul>
       </div>
     </header>

@@ -170,9 +170,16 @@ function goLocation(where) {
         <div class="multiImg-box">
         <h4 style="font-weight:bold;">사용 기술</h4>
         <div style="display:flex;">
+        
+        <c:if test="${empty skill }">
+        	<h4>기술없음</h4>
+        </c:if>
+        
+        <c:if test="${!empty skill }">
 		 <c:forEach items="${skill }" var="s">
 		 	<div class="meta">${s }</div>
 		 </c:forEach>
+		 </c:if>
 		 </div>
         </div>
         <br><hr>

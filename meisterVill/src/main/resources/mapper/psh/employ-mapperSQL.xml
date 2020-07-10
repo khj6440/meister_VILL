@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="employ">
+<resultMap id="em" type="employMember">
+<association property="employvo" javaType="employ">
+	    <id property="employNo" column="employ_no" />
+	    <result property="employTitle" column="employ_title" />
+	    <result property="employCategory1" column="employ_category1" />
+	    <result property="employCategory2" column="employ_category2" />
+	    <result property="employContent" column="employ_content" />
+	    <result property="employSkill" column="employ_skill" />
+	    <result property="employPrice" column="employ_price" />
+	    <result property="employEnrollDate" column="employ_enroll_date" />
+	    <result property="employStartDate" column="employ_start_date" />
+	    <result property="employPeriod" column="employ_period" />
+	    <result property="employBoardEnd" column="employ_board_end" />
+	    <result property="employAppro" column="employ_appro" />
+	    <result property="employStatus" column="employ_status" />
+	    <result property="employWriter" column="employ_writer" />
+	    <result property="employMembers" column="employ_members" />
+	    <result property="employStart" column="employ_start" />
+	</association>
+	<association property="membervo" javaType="member">
+         <id property="memberNo" column="member_no" />
+         <result property="memberEmail" column="member_email" />
+         <result property="memberPw" column="member_pw" />
+         <result property="memberName" column="member_name" />
+         <result property="memberHbd" column="member_hbd" />
+         <result property="memberNickname" column="member_nickname" />
+         <result property="memberPhone" column="member_phone" />
+         <result property="memberImg" column="member_img" />
+         <result property="memberBank" column="member_bank" />
+         <result property="memberAccount" column="member_account" />
+         <result property="memberTime" column="member_time" />
+         <result property="memberLevel" column="member_level" />
+         <result property="memberStatus" column="member_status" />
+         <result property="memberIntro" column="member_intro" />
+         <result property="memberField" column="member_field" />
+         <result property="memberSkill" column="member_skill" />
+         <result property="memberSchool" column="member_school" />
+         <result property="memberMajor" column="member_major" />
+         <result property="memberGrade" column="member_grade" />
+         <result property="memberDate" column="member_date" />
+    </association>
+</resultMap>
+
+<select id="selectTotal" resultType="_int" parameterType="_int">
+	select count(*) as cnt from employ where employ_writer = #{_parameter}
+</select>
+<select id="selectAllEmploy" resultMap="em" parameterType="map">
+	select * from
+		(select rownum as rnum, n.* from
+			(select 
+				*
+			from employ
+			join member
+			on (employ_writer = member_no)
+		order by 1 desc)n
+		)
+	where rnum between #{start} and #{end} 
+	<if test="employstatus!=3">
+		and employ_status=#{employstatus}
+	</if>
+	<if test="employappro!=3">
+		and employ_appro=#{employappro}
+	</if>
+</select>
+
+</mapper>

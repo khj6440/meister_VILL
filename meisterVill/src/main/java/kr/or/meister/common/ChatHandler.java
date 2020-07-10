@@ -17,7 +17,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.sun.javafx.scene.paint.GradientUtils.Parser;
+/*import com.sun.javafx.scene.paint.GradientUtils.Parser;*/
 
 import kr.or.meister.chat.model.vo.ChatVO;
 import kr.or.meister.member.model.dao.MemberDao;

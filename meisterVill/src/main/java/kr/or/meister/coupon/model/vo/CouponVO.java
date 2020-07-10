@@ -12,5 +12,5 @@ public class CouponVO {
 	private String couponEnd;
 	private String couponContent;
 	private String couponImg;
-	
+	private int couponLessMoney;
 }

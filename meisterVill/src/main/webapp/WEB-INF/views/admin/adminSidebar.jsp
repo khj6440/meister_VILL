@@ -16,11 +16,11 @@
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="/meister/admin/memberOneViewFrm.do?memberNo=${member.memberNo}">
           <c:if test="${member.memberImg != null }">
-          <img src="/upload/memberImg/${member.memberImg}" class="img-circle" width="90px;" height="80px;">
+          <img src="/resources/upload/memberImg/${member.memberImg}" class="img-circle" width="90px;" height="80px;">
           </c:if>
           
           <c:if test="${member.memberImg == null }">
-          <img src="/upload/common/adminImg.jpg" class="img-circle" width="90px;" height="80px;">
+          <img src="/resources/upload/common/adminImg.jpg" class="img-circle" width="90px;" height="80px;">
           </c:if>
           </a></p>
           <h5 class="centered">${member.memberName}</h5>
@@ -44,30 +44,37 @@
           <li class="sub-menu">
             <a href="javascript:;" style="background-color: #4D4D4D;">
               <i class="fa fa-cogs"></i>
+              <span>게시물 승인</span>
+              <!-- <span class="label label-theme pull-right mail-info">2</span> -->
+              </a>
+            <ul class="sub">
+            
+              <li><a href="/meister/admin/sellApprovalFrm.do?reqPage=1">마이스터 판매글 승인</a></li>
+              <li><a href="/meister/admin/requestApprovalFrm.do?reqPage=1">견적요청글 승인</a></li>
+              <li><a href="gallery.html">프로젝트글 승인</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;" style="background-color: #4D4D4D;">
+              <i class="fa fa-cogs"></i>
               <span>거래글 관리</span>
               </a>
             <ul class="sub">
             
               <li><a href="/meister/admin/sellListFrm.do?reqPage=1">마이스터 판매글 관리</a></li>
-              <li><a href="calendar.html">견적요청글 관리</a></li>
+              <li><a href="/meister/admin/requestListFrm.do?reqPage=1">견적요청글 관리</a></li>
               <li><a href="gallery.html">프로젝트글 관리</a></li>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;" style="background-color: #4D4D4D;">
               <i class="fa fa-book"></i>
-              <span>견적요청</span>
+              <span>공지 & QnA</span>
               </a>
             <ul class="sub">
-              <li><a href="blank.html">Blank Page</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="lock_screen.html">Lock Screen</a></li>
-              <li><a href="profile.html">Profile</a></li>
-              <li><a href="invoice.html">Invoice</a></li>
-              <li><a href="pricing_table.html">Pricing Table</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="404.html">404 Error</a></li>
-              <li><a href="500.html">500 Error</a></li>
+              <li><a href="/meister/adminBoard/adminNotice.do?reqPage=1">공지사항</a></li>
+              <li><a href="/meister/adminBoard/adminQnA.do?reqPage=1">QnA</a></li>
+
             </ul>
           </li>
           <li class="sub-menu">
@@ -92,13 +99,6 @@
               <li><a href="responsive_table.html">Responsive Table</a></li>
               <li><a href="advanced_table.html">Advanced Table</a></li>
             </ul>
-          </li>
-          <li>
-            <a href="inbox.html" style="background-color: #4D4D4D;">
-              <i class="fa fa-envelope"></i>
-              <span>Mail </span>
-              <span class="label label-theme pull-right mail-info">2</span>
-              </a>
           </li>
           <li class="sub-menu">
             <a href="javascript:;" style="background-color: #4D4D4D;">
