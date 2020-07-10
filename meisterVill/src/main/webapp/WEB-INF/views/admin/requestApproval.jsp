@@ -12,7 +12,7 @@
 	
 <!-- ******************************************************************************** -->
 
-<title>탈퇴 회원 관리</title>
+<title>판매글 리스트</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
@@ -43,89 +43,93 @@
         <div class="row mt">
           <div class="col-md-12">
             <div class="content-panel">
-              <table class="table table-striped table-advance table-hover">
-                <h4><i class="fa fa-angle-right"></i>탈퇴 회원 관리</h4>
+              <table class="table table-striped">
+                <h4><i class="fa fa-angle-right"></i>견적요청글 리스트</h4>
                 <hr>
-                <thead>
+					 <thead>
                   <tr>
-                    <th><i class="fa fa-envelope"></i>유저 이메일</th>
-                    <th class="hidden-phone"><i class="fa fa-user"></i>유저 이름</th>
-                    <th><i class="fa fa-smile-o"></i>유저 닉네임 </th>
-                    <th><i class="fa fa-key"></i>유저 레벨 </th>
+                    <th><i class="fa fa-align-left"></i>제목</th>
+                    <th class="hidden-phone"><i class="fa fa-user"></i>작성자</th>
+                    <th><i class="fa fa-tags"></i>카테고리</th>
+                    <th><i class="fa fa-money"></i>가격</th>
+                     <th><i class="fa fa-question-circle"></i>상태</th>
                     <!-- <i class="fa fa-bookmark"> -->
                     <!-- <i class=" fa fa-edit"> -->
-                    <th><i class="fa fa-bookmark"></i>유저 가입일</th>
+                    <th><i class="fa fa-bookmark"></i>작성일</th>
                     <th></th>
                   </tr>
-                </thead>
-                
-                <tr id="total">
+                  
+
+                  
+                   <tr id="total">
                  	<td colspan="6" style="font-size: 20px; text-align: center;">목록없음</td>
                 </tr>
+                </thead>
+					
+					
+               <tbody>
+                <tr>
                 
-                 <c:forEach items="${list}" var="m">
-                 	<c:if test="${m.memberStatus == 1 }">
-                 	<script>
+                <c:forEach items="${list}" var="r" varStatus="i">
+                	<c:if test="${r.requestAppro == 0 }">
+                	<script>
                  			$("#total").css("display","none");
                  	</script>
-                <tbody>
-                  <tr>
-                    <td>
-                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}">${m.memberEmail }</a>
-                      </td>
+                 	<tr>
+                 		<td>${r.requestTitle }</td>
+                    
+
                     <td class="hidden-phone">
 
-                    <c:if test="${m.memberImg != null }">
-                    		<img src="/resources/upload/memberImg/${m.memberImg}" style="width: 20px; height: 18px;"> 
-                    </c:if>
-                    
-                    <c:if test="${m.memberImg == null }">
-                    	<c:if test="${m.memberLevel == 2}">
-                    		<img src="/resources/upload/common/adminImg.jpg" style="width: 20px; height: 18px;"> 
+                    <c:if test="${r.memberImg != null }">
+                        <c:if test="${r.memberLevel == 2}">
+                    		<img src="/resources/upload/memberImg/${r.memberImg}" style="width: 20px; height: 20px;"> 
                     	</c:if>
-                    	<c:if test="${m.memberLevel != 2}">
-                    		<img src="/resources/upload/memberImg/unnamed.png" style="width: 20px; height: 18px;"> 
+                    	<c:if test="${r.memberLevel != 2}">
+                    		<img src="/resources/upload/memberImg/${r.memberImg}" style="width: 20px; height: 20px;"> 
                     	</c:if>
                     </c:if>
                     
-                    ${m.memberName }</td>
+                    <c:if test="${r.memberImg == null }">
+                    	<c:if test="${r.memberLevel == 2}">
+                    		<img src="/resources/upload/common/adminImg.jpg" style="width: 20px; height: 20px;"> 
+                    	</c:if>
+                    	<c:if test="${r.memberLevel != 2}">
+                    		<img src="/resources/upload/memberImg/unnamed.png" style="width: 20px; height: 20px;"> 
+                    	</c:if>
+                    </c:if>
+                     <a href="/meister/admin/memberOneViewFrm.do?memberNo=${r.memberNo}">${r.memberName }</a></td>
+                    
+                   <td> ${r.requestCategory1 }</td>
                     
                     
-                    <td>${m.memberNickname } </td>
+                    <td>${r.requestPrice}￦ </td>
+                    
                     <td>
-                    <c:if test="${m.memberLevel == 0}">
                     <span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 12px;">
-                   	일반회원
+                   	요청
                     </span>
-                    </c:if>
-                    
-                    <c:if test="${m.memberLevel == 1}">
-                    <span class="label label-info label-mini" style="font-size: 12px;">
-                   	마이스터
-                    </span>
-                    </c:if>
-                    
-                    <c:if test="${m.memberLevel == 2}">
-                    <span class="label label-info label-mini" style="background-color: #A593E0; font-size: 12px;">
-                   	관리자
-                    </span>
-                    </c:if>
-                    
                     </td>
-                    <td>${m.memberDate } </td>
+                    
+                    <td>${r.requestDate } </td>
                     <td>
                       <!-- <span class="label label-info label-mini" style="background-color: red">신고 접수</span> -->
-                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${m.memberNo}" class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42; text-decoration: none; color: white;"><i class="fa fa-check"></i>회원정보 보기</a>
+                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${r.memberNo}" class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42; text-decoration: none; color: white;"><i class="fa fa-check"></i>게시물 보기</a>
                       <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
-                      <button value="${m.memberNo}" class="btn btn-danger btn-xs modalDeleteRollback" style="background-color: #6c757d; border-color: #6c757d;"><i class="fa fa-trash-o" ></i>회원 복구</button>
+                    
+                    <c:if test="${r.requestAppro == 0 }">
+                    	<button value="${r.requestNo }" class="btn btn-danger btn-xs requestApproval" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-trash-o" ></i>승인</button>
+                        <button value="${r.requestNo }" class="btn btn-danger btn-xs requestNoApproval" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>비승인</button>
+				    </c:if>
                     </td>
                   </tr> 
-                </tbody>
-                </c:if>
-                </c:forEach>
+                  </c:if>
+                  </c:forEach>
+                  </tr> 
+              	</tbody>
               </table>
             </div>
-            
+
             <div id="pageNavi" style="margin-top: 3%; text-align: center;">${pageNavi }</div>
             <!-- /content-panel -->
           </div>
@@ -154,11 +158,11 @@
   <!--common script for all pages-->
   <script src="/resources/adminCss/lib/common-scripts.js"></script>
   <!--script for this page-->
-  
-  
-  
-  
-    <!-- --------------------------------Modal----------------------------------------------------- -->
+     
+
+     
+     
+<!-- --------------------------------Modal----------------------------------------------------- -->
     <div style="padding-top: 10%;" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div style="width: 600px; height: 600px;" class="modal-dialog" role="document">
             <div  class="modal-content">
@@ -166,7 +170,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">회원 정지</h5>
                 </div>
                 <div class="modal-body">
-                   		 정말로 정지하시겠습니까?
+                   		 내용
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -176,6 +180,7 @@
             </div>
         </div>
     </div>
+    
     
 <!-- --------------------------------Modal-mini----------------------------------------------------- -->  
     
@@ -192,43 +197,73 @@
               
   
       <script>
-  $(function(){
-	  
-	  $(".modalDeleteRollback").click(function() {
-		  $("#exampleModal").modal("show");  
-		  var memberNo = $(this).val();
-		  var reqPage = ${reqPage};
-		  var totalCnt = ${totalCnt}-1;
-		  $(".modal-title").html("탈퇴 복구");
-		  $(".modal-header").css("background-color","#6c757d");
-		  $(".memberValue").css("background-color","#6c757d");
-		  $(".memberValue").css("border-color","#6c757d");
-		  $(".memberValue").html("탈퇴 복구");
-		  $(".modal-body").html("정말로 회원을 복구시키시겠습니까?");
-	  $(".memberValue").click(function() {		
-  $.ajax({
-	    url: "/meister/admin/memberDeleteRollback.do?memberNo="+memberNo,
-	    
-	    
+      
+      $(function(){
+    	  
+    	  $(".requestApproval").click(function() {
+    		  $("#exampleModal").modal("show");  
+    		  var requestNo = $(this).val(); 
+    		  var reqPage = ${reqPage};
+    		  var totalCnt = ${totalCnt}-1;
+    		  console.log(pageNavi);
+    		  $(".modal-title").html("게시물 승인");
+    		  $(".modal-header").css("background-color","#6c757d");
+    		  $(".modal-body").html("게시물을 승인하시겠습니까?");
+    		  $(".memberValue").html("승인");
+    	  $(".memberValue").click(function() {		
+      $.ajax({
+    	    url: "/meister/adminBoard/requestApproval.do?requestNo="+requestNo,
+    	         
+    	    success: function(){
+    	    	$("#exampleModal").modal("hide");
+    	    	$(".modal2text").html("승인되었습니다.");
+    	    	$(".modal-content2").css("background-color","#6c757d");
+    	    	$("#exampleModal2").modal("show");
+    	    	setTimeout(function() {
+    	    		location.reload();
+    	    		if(totalCnt%6 == 0){
+    	    			reqPage=reqPage-1;
+    	    		window.location.href="requestApprovalFrm.do?reqPage="+reqPage;
+    	    		}
+    	    		}, 1000);			
+    	    } 
+    	  		});
+    		});
+    	});
+    	  
+    	  
+    	  
+    	  $(".requestNoApproval").click(function() {
+    		  $("#exampleModal").modal("show");  
+    		  var requestNo = $(this).val(); 
+    		  var reqPage = ${reqPage};
+    		  var totalCnt = ${totalCnt}-1;
+    		  $(".modal-title").html("게시물 비승인");
+    		  $(".modal-header").css("background-color","#6c757d");
+    		  $(".modal-body").html("게시물을 비승인하시겠습니까?");
+    		  $(".memberValue").html("비승인");
+    	  $(".memberValue").click(function() {		
+      $.ajax({
+    	    url: "/meister/adminBoard/requestNoApproval.do?requestNo="+requestNo,
+    	         
+    	    success: function(){
+    	    	$("#exampleModal").modal("hide");
+    	    	$(".modal2text").html("비승인되었습니다.");
+    	    	$(".modal-content2").css("background-color","#6c757d");
+    	    	$("#exampleModal2").modal("show");
+    	    	setTimeout(function() {
+    	    		location.reload();
+    	    		if(totalCnt%6 == 0){
+    	    			reqPage=reqPage-1;
+    	    		window.location.href="requestApprovalFrm.do?reqPage="+reqPage;
+    	    		}
+    	    		}, 1000);
+    	    	
+    	    } 
+    	  		});
+    		});
+    	});
 
-	    success: function(){
-	    	$("#exampleModal").modal("hide");
-	    	$(".modal2text").html("회원이 복구되었습니다.");
-	    	$(".modal-content2").css("background-color","#6c757d");
-	    	$("#exampleModal2").modal("show");
-	    	setTimeout(function() {
-	    		location.reload();
-	    		if(totalCnt%6 == 0){
-	    			reqPage=reqPage-1;
-	    		window.location.href="memberDeletionFrm.do?reqPage="+reqPage;
-	    		}
-	    		}, 1000);		
-	    }
-	    
-	    
-	  		});
-		});
-	});
 
 
 	  $("#close_modal").click(function() {
@@ -236,12 +271,6 @@
       });
   });
   </script>
-  
-  
-  
-  
-  
-  
   
   
 </body>

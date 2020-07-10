@@ -62,20 +62,29 @@ public class SellController {
 	}
 	
 	@RequestMapping(value="/showList.do", produces = "application/json;charset=utf-8")
-	public String showList(int sellNo, Model m, MemberVO member) {
-		SellJoinOthersVO list = service.selectOneList(sellNo, member.getMemberNo());
+	public String showList(int sellNo, Model m,int memberNo) {
+		SellJoinOthersVO list = service.selectOneList(sellNo, memberNo);
 		ArrayList<String> mul = new ArrayList<String>();
 		ArrayList<String> skill = new ArrayList<String>();
-		StringTokenizer st1 = new StringTokenizer(list.getMultiimgvo().getFilename(),"/");
-		StringTokenizer st2 = new StringTokenizer(list.getSellvo().getSellSkill(),"/");
-		while(st1.hasMoreTokens()) {
-			mul.add(st1.nextToken());
+		System.out.println(mul);
+		System.out.println(skill);
+		if(mul.size() > 0) {
+			StringTokenizer st1 = new StringTokenizer(list.getMultiimgvo().getFilename(),"/");
+			while(st1.hasMoreTokens()) {
+				mul.add(st1.nextToken());
+				m.addAttribute("multiImg", mul);
+			}
 		}
+		
+		
+		if(skill.size() > 0) {
+		StringTokenizer st2 = new StringTokenizer(list.getSellvo().getSellSkill(),"/");
 		while(st2.hasMoreTokens()) {
 			skill.add(st2.nextToken());
+			m.addAttribute("skill", skill);
+			}
 		}
-		m.addAttribute("multiImg", mul);
-		m.addAttribute("skill", skill);
+		
 		m.addAttribute("sell", list);
 		return "sell/showSell";
 	}

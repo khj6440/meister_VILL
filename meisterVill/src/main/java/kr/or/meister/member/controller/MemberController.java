@@ -171,6 +171,11 @@ public class MemberController {
 		System.out.println("로그인 : " + m.getMemberEmail());
 		MemberVO member = service.selectLoginMember(m);
 		if (member != null) {
+			
+			if(member.getMemberLevel() == 2) {
+				session.setAttribute("member", member);
+				return "redirect:/meister/admin/adminIndexFrm.do";
+			}
 			session.setAttribute("member", member);
 			System.out.println(m.getMemberEmail());
 			System.out.println("로그인성공");

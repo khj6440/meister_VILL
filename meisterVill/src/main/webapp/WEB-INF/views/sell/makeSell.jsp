@@ -9,7 +9,7 @@
   <link href="/resources/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="/resources/sell-css/css/heroic-features.css?after" rel="stylesheet">
-  <link href="/resources/makeSell-css/makeSell.css" rel="stylesheet">
+  <link href="/resources/makeSell-css/makeSell.css?after" rel="stylesheet">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script>
   /**
@@ -22,7 +22,8 @@
   var opt = true;
   var optCount = 0;
   $(function() {
-	  $("#uploadImg").on("change", handleImgFileSelect);
+	$("#uploadImg").on("change", handleImgFileSelect);
+	$("#uploadPlusImg").on("change", handleImgFileSelect2);
   	$("#cate1").change(function() {
   		if (this.value == "it") {
   			$("#itCate2").css("display","block");
@@ -201,9 +202,6 @@
     	$("#third").css("display","none");
     }
     
-    function uploadImg() {
-    	$("#uploadImg").trigger("click");
-    }
   function makeOpt() {
   	optCount += 1;
   	opt = false;
@@ -250,6 +248,12 @@
   		$(this).css("border","1px solid red");
   	}
   });
+  function uploadImg() {
+  	$("#uploadImg").trigger("click");
+  }
+  function uploadPlusImg() {
+  	$("#uploadPlusImg").trigger("click");
+  }
   function handleImgFileSelect(e) {
 	  var files = e.target.files;
 	  var filesArr = Array.prototype.slice.call(files);
@@ -275,17 +279,72 @@
 		      console.log(img);
 		      console.log(img.width);
 		      console.log(img.height);
-		      if(img.width > 560 || img.height > 560) {
-		          alert("이미지 가로 720px, 세로 270px로 맞춰서 올려주세요.");
+		      if(img.width > 652 || img.height > 488) {
+		          alert("이미지 가로 652px, 세로 488px로 맞춰서 올려주세요.");
 		          $("input[id=file1]").val("");
-		      } 
+		          return;
+		      }
+		      sel_file = f;
+			  var reader = new FileReader();
+			  reader.onload = function(e) {
+				  $(".main-img").attr("src", e.target.result);
+			  }
+			  reader.readAsDataURL(f);
 		  }
-		  sel_file = f;
-		  var reader = new FileReader();
-		  reader.onload = function(e) {
-			  $(".main-img").attr("src", e.target.result);
+	  });
+  }
+  var num = 0;
+  function handleImgFileSelect2(e) {
+	  var files = e.target.files;
+	  var filesArr = Array.prototype.slice.call(files);
+	  
+	  filesArr.forEach(function(f) {
+		  if(!f.type.match("image.*")) {
+			  alert("이미지 확장자만 가능합니다");
+			  return;
 		  }
-		  reader.readAsDataURL(f);
+		  var fileSize = files.size;
+		  var maxSize = 1024 * 1024;
+		  if(fileSize > maxSize) {
+		      alert("파일용량을 초과하였습니다.");
+		      return;
+		  }
+		    
+		  var file  = files[0];
+		  var _URL = window.URL || window.webkitURL;
+		  var img = new Image();
+		    
+		  img.src = _URL.createObjectURL(file);
+		  img.onload = function() {
+		      if(img.width > 652 || img.height > 488) {
+		          alert("이미지 가로 652px, 세로 488px로 맞춰서 올려주세요.");
+		          $("input[id=file1]").val("");
+		          return;
+		      }
+		      sel_file = f;
+			  var reader = new FileReader();
+			  reader.onload = function(e) {
+				  console.log(num);
+				  if(num == 0) {
+					  html5 = "";
+					  html5 += "<div class='plus-img-area'>";
+					  html5 += "<img class='plus-img"+num+"'>";
+					  html5 += "</div>";
+					  $("#plusImgArea").prepend(html5);
+					  $(".plus-img"+num+"").attr("src", e.target.result);
+					  num += 1;
+					  return;
+				  }
+				  html6 = $('.plus-img').prev();
+				  html5 += "<div class='plus-img-area'>";
+				  html5 += "<img class='plus-img"+num+"'>";
+				  html5 += "</div>";
+				  html6.append(html5);
+				  $(".plus-img"+num+"").attr("src", e.target.result);
+				  num += 1;
+			  }
+			  reader.readAsDataURL(f);
+		  }
 	  });
   }
 
@@ -454,24 +513,17 @@
 <div class="col-xs-3">메인 이미지 등록</div>
 <div class="col-xs-9">
 <div><img src="/resources/upload/homeImg/mainImg.png" class="main-img" onclick="uploadImg();">
-<input type="file" style="display:none;" id="uploadImg"></div>
+<input type="file" style="display:none;" name="sellImg" id="uploadImg"></div>
 </div>
 </li>
 
 <li>
 <div class="col-xs-3">상세 이미지 등록<p style="font-size:12px;">(선택)</div>
 <div class="col-xs-9">
-<div>
-<textarea id="inputRemake" rows="10" wrap="hard" class="text-area" placeholder="의뢰인은 가격정보란에 기재된 수정횟수를 기준으로 작업물 발송을 취소할 수 있습니다. 기본제공 횟수를 초과한 추가 수정에 따른 추가금이 발생하 경우, 이를 명시후 추가옵션을 설정해주세요."></textarea>
+<div id="plusImgArea">
+<img src="/resources/upload/homeImg/plusImg.png" class="plus-img" onclick="uploadPlusImg();">
+<input type="file" style="display:none;" name="sellImg" id="uploadPlusImg">
 </div>
-<div style="display:flex;">
-<div class="col-xs-9">
-<span id="checkRemake" style="color:red; font-size:12px;"><img class="reportImg" src="/resources/upload/homeImg/report.png">&nbsp;최소 20글자 이상 입력해주세요.</span>
-</div>
-<div class="col-xs-3 font-gray" >
-<span id="remakeCounter"></span>
-&nbsp;/&nbsp;최소 20글자
-</div></div>
 </div>
 </li>
 </ul>
