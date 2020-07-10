@@ -8,14 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="shortcut icon" href="../favicon.ico">
-<link rel="stylesheet" type="text/css"
-	href="/resources/hj/projectRoom/dynamicTab/css/demo.css" />
-<link rel="stylesheet" type="text/css"
-	href="/resources/hj/projectRoom/dynamicTab/css/component.css" />
-<link rel="stylesheet" href="/resources/hj/projectRoom/tab/demo.css">
-<link rel="stylesheet" href="/resources/hj/projectRoom/tab/tabs.css">
-<link rel="stylesheet"
-	href="/resources/hj/projectRoom/tab/tabstyles.css">
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- ----------------------------------------------------------------------------- -->
@@ -31,8 +24,7 @@
 	href="/resources/hj/projectRoom\files\icon\themify-icons\themify-icons.css">
 <link rel="stylesheet" type="text/css"
 	href="/resources/hj/projectRoom\files\css2\style.css">
-<script
-	src="/resources/hj/projectRoom/dynamicTab/js/modernizr.custom.25376.js"></script>
+
 <!-- ----------------------------------------------------------------------------- -->
 <link rel="stylesheet" type="text/css"
 	href="/resources/hj/projectRoom\files\css2\jquery.mCustomScrollbar.css">
@@ -76,44 +68,10 @@ html, body {
 </style>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/common/message.jsp"/>
 	<div id="perspective" class="perspective effect-moveleft">
 		<div class="side-container">
-			<div class="side-wrapper">
-				<p style="margin: 0;">
-					<button id="showMenu"><i class="fas fa-bars"></i></button>
-				</p>
-			</div>
-			<div class="project-header">
-				<div>PROJECT ROOM</div>
-			</div>
-			<div class="nav-container">
-				<%-- <section>
-					<div id="top-tabs" class="tabs tabs-style-bar">
-						<nav>
-							<ul>
-								<li><a
-									href="/meister/project/home.do?projectNo=${projectNo }"><i
-										style="margin-right: 15px" class="fas fa-home"></i><span>Home</span></a></li>
-								<li><a
-									href="/meister/project/chat.do?projectNo=${projectNo }"><i
-										style="margin-right: 15px;" class="far fa-comments"></i><span>Chat</span></a></li>
-								<li><a
-									href="/meister/project/todo.do?projectNo=${projectNo }"><i
-										style="margin-right: 15px;" class="fas fa-list-ul"></i><span>To
-											do</span></a></li>
-								<li><a
-									href="/meister/project/schedule.do?projectNo=${projectNo }"><i
-										style="margin-right: 15px;" class="far fa-calendar-alt"></i><span>Schedule</span></a></li>
-								<li><a
-									href="/meister/project/files.do?projectNo=${projectNo }"
-									style="background-color: #FFBC42; color: white;"><i
-										style="margin-right: 15px;" class="far fa-file"></i><span>Files</span></a></li>
-							</ul>
-						</nav>
-					</div>
-				</section> --%>
-			</div>
+
+			<div class="nav-container"></div>
 
 
 			<div class="project-content">
@@ -127,15 +85,14 @@ html, body {
 									<div class="pcoded-inner-content">
 										<!-- Main-body start -->
 										<div class="main-body">
-											<div class="page-wrapper"
-												style="padding-left: 18%; padding-right: 18%">
+											<div class="page-wrapper">
 												<!-- Page-header start -->
 												<div class="page-header">
 													<div class="row align-items-end">
 														<div class="col-lg-8">
 															<div class="page-header-title">
 																<div class="d-inline">
-																	<h4>Project File Upload</h4>
+																	<h2>PROJECT FILE UPLOAD</h2>
 																	<span>팀원들이 올린 파일이 공유됩니다.</span>
 																</div>
 															</div>
@@ -172,8 +129,7 @@ html, body {
 										</div>
 										<!-- Main-body end -->
 										<div class="main-body">
-											<div class="page-wrapper"
-												style="padding-left: 18%; padding-right: 18%; padding-top: 0px;">
+											<div class="page-wrapper" style="padding-top: 0px;">
 												<!-- Page-body start -->
 												<div class="page-body">
 													<div class="row">
@@ -203,7 +159,7 @@ html, body {
 																								style="border-radius: 10px; box-shadow: 2px 2px 2px gray;">
 																								<div class="p-20" style="cursor: pointer;"
 																									onclick="projectFileDownload('${f.PFilename}','${f.PFilepath }')">
-																									<h6 style="font-weight: bold;font-size: 13px;">${f.PFilename }</h6>
+																									<h6 style="font-weight: bold; font-size: 13px;">${f.PFilename }</h6>
 
 																									<img
 																										src="/resources/upload/project/file/${f.PFilepath}"
@@ -231,17 +187,18 @@ html, body {
 																									style="border-radius: 10px; cursor: pointer; box-shadow: 2px 2px 2px gray;"
 																									onclick="projectFileDownload('${f.PFilename}','${f.PFilepath }')">
 																									<div class="media-left media-middle col-xs-12">
-																											<div
-																												style="background: #fcefc7; border-radius: 10px; width: 50px; height: 50px; line-height: 50px; text-align: center;">
-																												<img class="media-object img-fluid"
-																													src="/resources/upload/common/fileImg.png"
-																													style="width: 50%; height: 50%;" alt="">
-																											</div>
+																										<div
+																											style="background: #fcefc7; border-radius: 10px; width: 50px; height: 50px; line-height: 50px; text-align: center;">
+																											<img class="media-object img-fluid"
+																												src="/resources/upload/common/fileImg.png"
+																												style="width: 50%; height: 50%;" alt="">
+																										</div>
 																									</div>
 																									<div class="media-body">
-																										<div class="f-15 f-bold m-b-5" style="font-weight: bold;font-size: 13px;">${f.PFilename }</div>
-																										<div class="f-13 text-muted" style="font-size: 12px;">Download
-																											File</div>
+																										<div class="f-15 f-bold m-b-5"
+																											style="font-weight: bold; font-size: 13px;">${f.PFilename }</div>
+																										<div class="f-13 text-muted"
+																											style="font-size: 12px;">Download File</div>
 																									</div>
 																								</div>
 																								<span class="cd-date">${f.PFileWriter }</span> <span
@@ -271,18 +228,6 @@ html, body {
 				</div>
 			</div>
 		</div>
-		<nav class="outer-nav right vertical">
-			<a href="/meister/project/home.do?projectNo=${projectNo }" class=""><i
-				style="margin-right: 15px;" class="fas fa-home"></i>Home</a> <a
-				href="/meister/project/chat.do?projectNo=${projectNo }" class=""><i
-				style="margin-right: 15px;" class="far fa-comments"></i>Chat</a> <a
-				href="/meister/project/todo.do?projectNo=${projectNo }" class=""><i
-				style="margin-right: 15px;" class="fas fa-list-ul"></i>To do</a> <a
-				href="/meister/project/schedule.do?projectNo=${projectNo }" class=""><i
-				style="margin-right: 15px;" class="far fa-calendar-alt"></i>Schedule</a>
-			<a href="/meister/project/files.do?projectNo=${projectNo }" class=""><i
-				style="margin-right: 15px;" class="far fa-file"></i>Files</a>
-		</nav>
 	</div>
 </body>
 <script type="text/javascript">
@@ -472,8 +417,7 @@ html, body {
 	
 	
 </script>
-<script src="/resources/hj/projectRoom/dynamicTab/js/classie.js"></script>
-<script src="/resources/hj/projectRoom/dynamicTab/js/menu.js"></script>
+
 <!-- --------------------------------------------------------- -->
 <script type="text/javascript"
 	src="/resources/hj/projectRoom\files\js2\jquery.min.js"></script>

@@ -22,7 +22,7 @@
 		<a href="/meister/project/home.do?projectNo=1">프로젝트 룸(1번프로젝트)</a><br>
 		<a href="/meister/project/home.do?projectNo=21">프로젝트 룸(21번프로젝)</a><br>
 		<a href="/meister/member/message.do">메세지</a><br>
-		<a href="/meister/project/test.do">test</a><br>
+		<a href="/meister/project/test.do?projectNo=1">test</a><br>
 		<a href="/meister/member/logout.do">로그아웃</a><br>
 		
 	</c:if>

@@ -6,20 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="shortcut icon" href="../favicon.ico">
-<link rel="stylesheet" type="text/css"
-	href="/resources/hj/projectRoom/dynamicTab/css/demo.css" />
-<link rel="stylesheet" type="text/css"
-	href="/resources/hj/projectRoom/dynamicTab/css/component.css" />
-<link rel="stylesheet" href="/resources/hj/projectRoom/tab/css/demo.css">
-<link rel="stylesheet" href="/resources/hj/projectRoom/tab/css/tabs.css">
-<link rel="stylesheet" type="text/css" href="/resources/hj/projectRoom/tab/css/normalize.css" />
-<link rel="stylesheet"
-	href="/resources/hj/projectRoom/tab/css/tabstyles.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<script
-	src="/resources/hj/projectRoom/dynamicTab/js/modernizr.custom.25376.js"></script>
 
 <!----------------------------------------------------->
 <link href="/resources/hj/chat/dist/css/style.min.css" rel="stylesheet">
@@ -64,62 +52,18 @@ html, body {
 	width: 300px;
 	margin-left: 17%;
 }
+
 #showMenu:hover {
-    right: 0px;
-    transition: 0.3s;
+	right: 0px;
+	transition: 0.3s;
 }
 </style>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/common/message.jsp"/>
+
 	<div id="perspective" class="perspective effect-moveleft">
 		<div class="side-container">
-			<div class="side-wrapper">
-				<p style="margin: 0;">
-					<button id="showMenu"
-						><i class="fas fa-bars"></i></button>
-				</p>
-			</div>
-			<!-- <div class="project-header">
-				<div>PROJECT ROOM</div>
-			</div> -->
-			<div class="nav-container" style="background-color: black;">
-			<%-- 	<section>
-					<div id="top-tabs" class="tabs tabs tabs-style-iconfall">
-						<nav>
-							<ul>
-								<li><a href="/meister/project/home.do?projectNo=${projectNo }"><i
-										style="margin-right: 15px" class="fas fa-home"></i><span>Home</span></a></li>
-								<li><a href="/meister/project/chat.do?projectNo=${projectNo }"
-									style="background-color: #FFBC42; color: white;"><i
-										style="margin-right: 15px;" class="far fa-comments"></i><span>Chat</span></a></li>
-								<li><a href="/meister/project/todo.do?projectNo=${projectNo }"><i
-										style="margin-right: 15px;" class="fas fa-list-ul"></i><span>To
-											do</span></a></li>
-								<li><a href="/meister/project/schedule.do?projectNo=${projectNo }"><i
-										style="margin-right: 15px;" class="far fa-calendar-alt"></i><span>Schedule</span></a></li>
-								<li><a href="/meister/project/files.do?projectNo=${projectNo }"><i
-										style="margin-right: 15px;" class="far fa-file"></i><span>Files</span></a></li>
-							</ul>
-						</nav>
-					</div>
-				</section> --%>
-				<section>
-				<div class="tabs tabs-style-linemove" >
-					<nav style="background-color: black;">
-						<ul>
-							<li class="tab-current"><a href="#section-linemove-1"><span>Home</span></a></li>
-							<li><a href="/meister/project/chat.do?projectNo=${projectNo }" ><span>Archive</span></a></li>
-							<li><a href="#section-linemove-3" ><span>Analytics</span></a></li>
-							<li><a href="#section-linemove-4" ><span>Upload</span></a></li>
-							<li><a href="#section-linemove-5" ><span>Settings</span></a></li>
-						</ul>
-					</nav>
-				</div><!-- /tabs -->
-				</section>
-			</div>
-
-
+			<div class="nav-container" style="background-color: black;"></div>
 			<div class="project-content">
 				<!-- ============================================================== -->
 				<!-- Preloader - style you can find in spinners.css -->
@@ -133,8 +77,6 @@ html, body {
 				<!-- ============================================================== -->
 				<!-- Main wrapper - style you can find in pages.scss -->
 				<!-- ============================================================== -->
-
-
 				<div id="main-wrapper" data-theme="light" data-layout="vertical"
 					data-navbarbg="skin6" data-sidebartype="full"
 					data-sidebar-position="fixed" data-header-position="fixed"
@@ -142,32 +84,24 @@ html, body {
 					<!-- ============================================================== -->
 					<!-- Page wrapper  -->
 					<!-- ============================================================== -->
-					<div class="page-wrapper"
-						style="padding-top: 0px; margin-left: 8%;margin-right:8%;">
-						<!-- ============================================================== -->
-						<!-- Bread crumb and right sidebar toggle -->
-						<!-- ============================================================== -->
-						<div class="page-breadcrumb"
-							style="margin: 0 auto; width: 80%; padding-left: 50px; padding-right: 50px;">
-							<div class="row">
-								<div class="col-7 align-self-center">
-									<h2
-										class="page-title text-truncate text-dark font-weight-medium mb-1"
-										style="font-family: 'Noto Sans KR', sans-serif; font-weight: bold; border-bottom: 4px solid #FFBC42;">그룹
-										채팅</h2>
-
-								</div>
-								<div class="col-5 align-self-center"></div>
-							</div>
-						</div>
-						<!-- ============================================================== -->
-						<!-- End Bread crumb and right sidebar toggle -->
-						<!-- ============================================================== -->
-						<!-- ============================================================== -->
-						<!-- Container fluid  -->
-						<!-- ============================================================== -->
+					<div class="page-wrapper" style="padding-top: 0px;">
 						<div class="container-fluid"
-							style="width: 80%; padding-left: 50px; padding-right: 50px;">
+							style="width: 100%; padding-left: 50px; padding-right: 50px;">
+
+
+							<div class="page-header" style="margin-bottom: 30px;">
+								<div class="row align-items-end">
+									<div class="col-lg-8">
+										<div class="page-header-title">
+											<div class="d-inline">
+												<h2  style="font-weight:500; font-size:2rem;color: black;">PROJECT CHAT</h2>
+												<span style="font-size: 13px;">팀원들과의 대화가 저장됩니다.</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4"></div>
+								</div>
+							</div>
 							<div class="row">
 								<div class="col-md-12">
 									<div class="card">
@@ -322,8 +256,8 @@ html, body {
 							</div>
 						</div>
 						<form id="uploadForm">
-							<input style="display: none;" id="myFile" type="file" name="file[]"
-								multiple="multiple">
+							<input style="display: none;" id="myFile" type="file"
+								name="file[]" multiple="multiple">
 						</form>
 						<!-- ============================================================== -->
 						<!-- End Container fluid  -->
@@ -334,20 +268,7 @@ html, body {
 					<!-- ============================================================== -->
 				</div>
 			</div>
-
 		</div>
-		<nav class="outer-nav right vertical">
-			<a href="/meister/project/home.do?projectNo=${projectNo }" class=""><i
-				style="margin-right: 15px;" class="fas fa-home"></i>Home</a> <a
-				href="/meister/project/chat.do?projectNo=${projectNo }" class=""><i
-				style="margin-right: 15px;" class="far fa-comments"></i>Chat</a> <a
-				href="/meister/project/todo.do?projectNo=${projectNo }" class=""><i
-				style="margin-right: 15px;" class="fas fa-list-ul"></i>To do</a> <a
-				href="/meister/project/schedule.do?projectNo=${projectNo }" class=""><i
-				style="margin-right: 15px;" class="far fa-calendar-alt"></i>Schedule</a>
-			<a href="/meister/project/files.do?projectNo=${projectNo }" class=""><i
-				style="margin-right: 15px;" class="far fa-file"></i>Files</a>
-		</nav>
 	</div>
 </body>
 <script type="text/javascript">
@@ -574,14 +495,9 @@ html, body {
 	$(function() {
 		connect();
 		/* transChat(); */
-
 		$(".jFiler-row").css("display","none");
 	});
 </script>
-
-<script src="/resources/hj/projectRoom/dynamicTab/js/classie.js"></script>
-<script src="/resources/hj/projectRoom/dynamicTab/js/menu.js"></script>
-
 <!-- --------------------------------------------- -->
 <script src="/resources/hj/chat/assets/libs/jquery/dist/jquery.min.js"></script>
 <script

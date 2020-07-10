@@ -64,7 +64,8 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value = "/test.do")
-	public String test1() {
+	public String test1(Model model, int projectNo) {
+		model.addAttribute("projectNo", projectNo);
 		return "project/test";
 	}
 	
