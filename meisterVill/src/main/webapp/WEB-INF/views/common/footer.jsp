@@ -26,8 +26,8 @@
                 <div class="ft-meister-notice">
                     <p>고객센터</p>
                     <div>
-                        <a href="#">공지사항</a><br>
-                        <a href="#">QnA</a><br>
+                        <a href="/meister/adminBoard/mainNotice.do?reqPage=1">공지사항</a><br>
+                        <a href="/meister/adminBoard/mainAdminQnA.do?reqPage=1">QnA</a><br>
                         <a href="#">1:1 문의</a><br>
                     </div>
                 </div>

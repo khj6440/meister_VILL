@@ -216,7 +216,7 @@
             <div class="sim-div">
 
                 <div class="sim-notice-div">
-                    <a href="#">
+                    <a href="/meister/adminBoard/mainNotice.do?reqPage=1">
                         <div class="sim-icon">
                             <i class="fa fa-2x fa-sticky-note" aria-hidden="true"></i>
                         </div>
@@ -224,7 +224,7 @@
                     </a>
                 </div>
                 <div class="sim-qna-div">
-                    <a href="#">
+                    <a href="/meister/adminBoard/mainAdminQnA.do?reqPage=1">
                         <div class="sim-icon">
                             <i class="fa fa-2x fa-question-circle" aria-hidden="true"></i>
                         </div>

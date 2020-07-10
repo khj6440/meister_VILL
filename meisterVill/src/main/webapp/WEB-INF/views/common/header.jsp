@@ -251,7 +251,7 @@
             <div class="sim-div">
 
                 <div class="sim-notice-div">
-                    <a href="#">
+                    <a href="/meister/adminBoard/mainNotice.do?reqPage=1">
                         <div class="sim-icon">
                             <i class="fa fa-2x fa-sticky-note" aria-hidden="true"></i>
                         </div>

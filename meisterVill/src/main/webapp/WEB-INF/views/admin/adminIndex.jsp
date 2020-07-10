@@ -396,6 +396,11 @@
             <!-- RECENT ACTIVITIES SECTION -->
             <h4 class="centered mt">최근 판매 리스트</h4>
             <!-- First Activity -->
+            <c:if test="${empty mainSell }">
+            	<div class="desc" style="text-align: center;">목록없음</div>
+            </c:if>
+            
+            <c:if test="${not empty mainSell }">
             <c:forEach items="${mainSell}" var="ms" varStatus="i" begin="0" end="3">
             <div class="desc">
               <div class="thumb">
@@ -428,12 +433,17 @@
               </div>
             </div>
            </c:forEach>
-           
+           </c:if>
            <a href="#" style="border-style: none; color: #2b90d9; text-align: center;"><h6>VIEW ALL</h6></a>
           	<br><br>
             <!-- USERS ONLINE SECTION -->
             <h4 class="centered mt">프로젝트 현황</h4>
             <!-- First Member -->
+            <c:if test="${empty mainEmploy}">
+            <div class="desc" style="text-align: center;">목록없음</div>
+            </c:if>
+            
+            <c:if test="${not empty mainEmploy}">
             <c:forEach items="${mainEmploy}" var="me" varStatus="i" begin="0" end="3">
             <div class="desc">
               <div class="thumb">
@@ -466,7 +476,7 @@
               </div>
             </div>
             </c:forEach>
-            
+            </c:if>
             <a href="#" style="border-style: none; color: #2b90d9; text-align: center;"><h6>VIEW ALL</h6></a>
           	<br><br>
             

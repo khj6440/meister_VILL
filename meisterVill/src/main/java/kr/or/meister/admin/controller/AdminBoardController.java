@@ -171,6 +171,21 @@ public class AdminBoardController {
 		return "admin/adminNoticeList.jsp?"+reqPage;
 	}
 	
+	
+	
+	@RequestMapping(value="/mainNotice.do")
+	public String mainNotice(HttpServletRequest request,int reqPage) {
+		
+		AdminNoticePageVO adminNotice = boardService.mainNotice(reqPage);
+		int totalCnt = boardService.adminNoticeCnt();
+		
+		request.setAttribute("list", adminNotice.getList());
+		request.setAttribute("pageNavi", adminNotice.getPageNavi());
+		request.setAttribute("reqPage", reqPage);
+		request.setAttribute("totalCnt", totalCnt);
+		return "admin/mainNotice.jsp?"+reqPage;
+	}
+	
 /*-----------------------------------------------------------------------------------------------------------------------*/
 	
 		@RequestMapping(value="adminViewPage.do")
@@ -194,9 +209,24 @@ public class AdminBoardController {
 			}	
 		}
 		
+/*------------------------------------------QnA----------------------------------------------------------------*/
+		
 		
 		@RequestMapping(value="adminQnA.do")
 		public String adminQnA(HttpServletRequest request,int reqPage) {
+			
+			AdminQnaPageVO qna = boardService.qna(reqPage);
+			int totalCnt = boardService.qnaCnt();
+			request.setAttribute("list", qna.getList());
+			request.setAttribute("pageNavi", qna.getPageNavi());
+			request.setAttribute("reqPage", reqPage);
+			request.setAttribute("totalCnt", totalCnt);
+			return"admin/qna.jsp?"+reqPage;
+		}
+		
+		
+		@RequestMapping(value="mainAdminQnA.do")
+		public String mainAdminQnA(HttpServletRequest request,int reqPage) {
 			
 			AdminQnaPageVO qna = boardService.qna(reqPage);
 			int totalCnt = boardService.qnaCnt();
@@ -217,6 +247,8 @@ public class AdminBoardController {
 			
 			return "redirect:/meister/adminBoard/adminQnA.do?reqPage=1";
 		}
+		
+/*-----------------------------------------------------------------------------------------------------------------*/
 		
 		@RequestMapping(value="adminNoticeWrite.do")
 		public String adminNoticeWrite() {
