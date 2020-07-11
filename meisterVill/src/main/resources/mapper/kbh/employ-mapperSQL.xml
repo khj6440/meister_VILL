@@ -50,7 +50,7 @@
 </resultMap>
 
 <select id="selectTotal" resultType="_int">
-	select count(*) as cnt from employ
+	select count(*) as cnt from employ where employ_appro = 1
 </select>
 <select id="selectAllList" resultMap="employMap">
 	select * from

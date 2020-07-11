@@ -59,8 +59,8 @@ public class RequestService {
 		}
 		HashMap<String, Object> request = new HashMap<String, Object>();
 		for (int i = 0; i < list.size(); i++) {
-			RequestVO requestVO = (RequestVO)list.get(i);
-			request.put("request"+i, requestVO);
+			RequestMemberVO rmVO = (RequestMemberVO)list.get(i);
+			request.put("request"+i, rmVO.getRequestvo());
 			request.put("number", list.size());
 		}
 		request.put("pageNavi", pageNavi);

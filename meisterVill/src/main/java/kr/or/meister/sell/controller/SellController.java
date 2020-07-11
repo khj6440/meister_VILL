@@ -83,7 +83,7 @@ public class SellController {
 	@RequestMapping(value = "/showList.do", produces = "application/json;charset=utf-8")
 	public String showList(int sellNo, Model m) {
 	SellJoinOthersVO list = service.selectOneList(sellNo);
-			ArrayList<String> mul = new ArrayList<String>();
+		ArrayList<String> mul = new ArrayList<String>();
 		ArrayList<String> skill = new ArrayList<String>();
 
 		if (list.getMultiimgvo() != null) {
@@ -156,7 +156,8 @@ public class SellController {
 		List<MultipartFile> multiList = mhsp.getFiles("files");
 		if (!multiList.isEmpty()) {
 			for(MultipartFile files : multiList) {
-				String filename = setImg(files, request);
+				String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/multiImg/");
+				String filename = setImg(savePath, files, request);
 				mul.setMultiBoardNo(sell.getSellNo());
 				mul.setMultiBoardType(1);
 				mul.setFilename(filename);
@@ -165,19 +166,20 @@ public class SellController {
 			}
 		}
 		System.out.println(sell.getSellOpt1());
-		String filename = setImg(sellImgFile, request);
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/sellImg/");
+		String filename = setImg(savePath, sellImgFile, request);
 		if(sell.getSellOpt1() == null) {
-			sell.setSellOpt1("0");
+			sell.setSellOpt1("null");
 		} else {
 			sell.setSellOpt1("상업적 이용");
 		}
 		if(sell.getSellOpt2() == null) {
-			sell.setSellOpt2("0");
+			sell.setSellOpt2("null");
 		} else {
 			sell.setSellOpt1("소스코드 제공");
 		}
 		if(sell.getSellOpt3() == null) {
-			sell.setSellOpt3("0");
+			sell.setSellOpt3("null");
 		} else {
 			sell.setSellOpt1("맞춤 디자인 제공");
 		}
@@ -189,14 +191,13 @@ public class SellController {
 		return "redirect:/meister/sell/sellList.do?reqPage="+reqPage;
 	}
 	
-	public String setImg(MultipartFile files, HttpServletRequest request) {
+	public String setImg(String savePath, MultipartFile files, HttpServletRequest request) {
 		String filename = "";
 		try {
-		String originalFilename = files.getOriginalFilename(); // upload???�일???�제 ?�일�?
-		String onlyFilename = originalFilename.substring(0,originalFilename.lastIndexOf(".")); //?�장?��? ?�외???�일�?
-		String extension = originalFilename.substring(originalFilename.lastIndexOf(".")); // ?�장??
+		String originalFilename = files.getOriginalFilename(); //
+		String onlyFilename = originalFilename.substring(0,originalFilename.lastIndexOf("."));
+		String extension = originalFilename.substring(originalFilename.lastIndexOf(".")); 
 		filename = onlyFilename+"_"+getCurrentTime()+extension;
-		String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/multiImg/"); //?�?�할 경로
 		String fullpath = savePath+filename;
 		byte[] bytes = files.getBytes();
 		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(fullpath)));

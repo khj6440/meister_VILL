@@ -40,6 +40,6 @@ public class RequestController {
 		RequestMemberVO rmVO = service.selectOneList(requestNo);
 		m.addAttribute("request", rmVO.getRequestvo());
 		m.addAttribute("member", rmVO.getMembervo());
-		return "employ/showEmploy";
+		return "request/showRequest";
 	}
 }

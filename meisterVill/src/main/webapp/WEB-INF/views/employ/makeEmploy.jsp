@@ -194,8 +194,9 @@ function checkFinish() {
 <body>
 <form action="/meister/employ/insertProject.do" method="post" id="projectForm" >
  <div class="container">
-<header class="jumbotron my-4" style="width:1100px;">
-</header>
+ <header class="jumbotron my-4" style="width:1100px; background-image: url('/resources/upload/homeImg/ad2.png'); background-size: cover;" >
+    </header>
+
 <button id="myBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#employModal" style="display:none;">
   </button>
 <div class="employ-content card-shadow" style="display:flex; width:1100px;">

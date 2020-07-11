@@ -1,0 +1,38 @@
+@charset "UTF-8";
+.select-content>ul {
+list-style:none;
+display: flex;
+margin: 0px;
+}
+.select-content, .card{
+box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 3px 5px 0 rgba(0, 0, 0, 0.1);
+padding: 10px;
+}
+.requestList-content{
+width:80%;
+margin-left:10px;
+}
+.card{
+text-align:left;
+}
+.span-border {
+border-left: 1px solid  #dedede;
+padding-right : 5px;
+padding-left : 5px;
+}
+.selectPage {
+border: 1px solid #eeeeee;
+font-weight : bold;
+padding : 12px;
+padding-top : 6px;
+padding-botton : 6px;
+}
+.btn {
+border: 1px solid #eeeeee;
+}
+.btn:hover {
+color : #7DC947;
+}
+.card:hover {
+	border: 0.5px solid #FFBC42;
+}

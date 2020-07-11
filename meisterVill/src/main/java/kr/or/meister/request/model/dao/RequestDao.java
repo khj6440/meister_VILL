@@ -25,8 +25,8 @@ public class RequestDao {
 	}
 
 	public RequestMemberVO selectOneList(int requestNo) {
-		RequestMemberVO r =sqlSession.selectOne("request.selectOneList", requestNo);
-		System.out.println(r);
-		return r;
+		RequestMemberVO rmVO =sqlSession.selectOne("request.selectOneList", requestNo);
+		System.out.println(rmVO);
+		return rmVO;
 	}
 }

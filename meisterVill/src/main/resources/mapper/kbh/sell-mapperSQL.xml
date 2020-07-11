@@ -96,7 +96,7 @@
 </select>
 
 <select id="selectTotal" resultType="_int">
-	select count(*) as cnt from sell
+	select count(*) as cnt from sell where sell_appro = 1 and sell_status = 0
 </select>
 <select id="selectOne" parameterType="_int" resultMap="sjo">
 	select * from sell
@@ -139,3 +139,4 @@
 	select * from pick where member_no = #{parameter}
 </select>
 </mapper>
+

@@ -416,8 +416,9 @@
 <form action="/meister/sell/insertSell.do" method="post" enctype="multipart/form-data" id="updateSell">
 <%-- <jsp:include page="/WEB-INF/views/common/header.jsp"/> --%>
 <div class="container">
-<header class="jumbotron my-4" style="width:1100px;">
-</header>
+ <header class="jumbotron my-4" style="width:1100px; background-image: url('/resources/upload/homeImg/ad1.png'); background-size: cover;" >
+    </header>
+
 <div class="sell-content card-shadow" style="display:flex;">
 <div class="col-xs-9" id="first">
 <div class="panel">
