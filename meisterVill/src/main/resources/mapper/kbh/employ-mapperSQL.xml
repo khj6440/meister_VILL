@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="employ">
+<resultMap id="employMap" type="employ">
+	    <id property="employNo" column="employ_no" />
+	    <result property="employTitle" column="employ_title" />
+	    <result property="employCategory1" column="employ_category1" />
+	    <result property="employCategory2" column="employ_category2" />
+	    <result property="employContent" column="employ_content" />
+	    <result property="employSkill" column="employ_skill" />
+	    <result property="employPrice" column="employ_price" />
+	    <result property="employEnrollDate" column="employ_enroll_date" />
+	    <result property="employStartDate" column="employ_start_date" />
+	    <result property="employPeriod" column="employ_period" />
+	    <result property="employBoardEnd" column="employ_board_end" />
+	    <result property="employAppro" column="employ_appro" />
+	    <result property="employStatus" column="employ_status" />
+	  	<result property="employWriter" column="employ_writer" />
+	  	<result property="projectMembers" column="project_members" />
+	  	<result property="projectStart" column="project_start" />
+</resultMap>
+<resultMap id="memberMap" type="member">
+ 		<id property="memberNo" column="member_no" />
+         <result property="memberEmail" column="member_email" />
+         <result property="memberPw" column="member_pw" />
+         <result property="memberName" column="member_name" />
+         <result property="memberHbd" column="member_hbd" />
+         <result property="memberNickname" column="member_nickname" />
+         <result property="memberPhone" column="member_phone" />
+         <result property="memberImg" column="member_img" />
+         <result property="memberBank" column="member_bank" />
+         <result property="memberAccount" column="member_account" />
+         <result property="memberTime" column="member_time" />
+         <result property="memberLevel" column="member_level" />
+         <result property="memberStatus" column="member_status" />
+         <result property="memberIntro" column="member_intro" />
+         <result property="memberField" column="member_field" />
+         <result property="memberSkill" column="member_skill" />
+         <result property="memberSchool" column="member_school" />
+         <result property="memberMajor" column="member_major" />
+         <result property="memberGrade" column="member_grade" />
+         <result property="memberDate" column="member_date" />
+</resultMap>
+
+<resultMap id="ejm" type="ejm">
+<association property="employvo" resultMap="employMap">
+</association>
+<association property="membervo" resultMap="memberMap">
+</association>
+</resultMap>
+
+<select id="selectTotal" resultType="_int">
+	select count(*) as cnt from employ
+</select>
+<select id="selectAllList" resultMap="employMap">
+	select * from
+		(select rownum as rnum, n.* from
+			(
+			select * from employ
+			where employ_appro > 0
+			order by 1 desc)n
+			)
+	where rnum between #{start} and #{end}
+</select>
+<select id="selectOneList" parameterType="_int" resultMap="ejm">
+	select * from employ 
+		full outer join member on(member.member_no = employ.employ_writer)
+	where employ_no = #{parameter}
+</select>
+<insert id="insertEmploy" parameterType="employ">
+	insert into employ values(employ_seq.nextval, #{employTitle}, #{employCategory1},#{employCategory2},#{employContent},#{employSkill},#{employPrice},sysdate,#{employStartDate},#{employPeriod},#{employBoardEnd},'0','0',#{employWriter},#{employWriter},'변경')
+</insert>
+</mapper>

@@ -210,7 +210,7 @@
 
                     <c:if test="${empty sessionScope.member }">
                         <div class="hd hd-member">
-                            <a class="member-top-menu" href="#">마이스터 등록</a>
+                            <a class="member-top-menu" href="/meister/sell/showList.do">마이스터 등록</a>
                             <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
                             <a class="btn btn-insert" href="/meister/member/join.do">무료 회원가입</a>
                         </div>
@@ -259,8 +259,10 @@
 
                 <div class="hd-category">
                     <ul>
-                        <li><a href="/meister/sell/sellList.do">IT/Programming</a></li>
+
+                        <li><a href="/meister/sell/sellList.do?reqPage=1">IT/Programming</a></li>
                         <li><a href="#">Design</a></li>
+
                     </ul>
                 </div>
 
@@ -272,7 +274,7 @@
             <div class="sim-div">
 
                 <div class="sim-notice-div">
-                    <a href="#">
+                    <a href="/meister/adminBoard/mainNotice.do?reqPage=1">
                         <div class="sim-icon">
                             <i class="fa fa-2x fa-sticky-note" aria-hidden="true"></i>
                         </div>
