@@ -40,17 +40,17 @@
 				for (var i = 0; i < number; i++) {
 					html += "<div class='col-lg-3 col-md-6 mb-4'>";
 	  				html += "<div class='card' style='height: 400px; cursor:pointer;' onclick='showList("+data["sell"+i].sellNo+");'>";
-	  				html += "<div class='imgbox' style='overflow:hidden;'>";
+	  				html += "<div class='imgbox' style='overflow:hidden;' >";
 	  				html += "<img class='card-img-top' src='/resources/upload/sellImg/"+data["sell"+i].sellImg+"'>";
 	  				html += "</div>";
 	  				html += "<c:if test='${not empty sessionScope.member.memberNo}'>";
 	  				for (var j = 0; j < sellNo.length; j++) {
 	  					if(sellNo[j] == data["sell"+i].sellNo) {
-	 						html += "<img class='pick_button' id='pick' src='/resources/upload/homeImg/InHeart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
+	 						html += "<img class='pick_button' src='/resources/upload/homeImg/InHeart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
 	  					}
 	  				}
-	  				html += "<img class='pick_button' id='pick' src='/resources/upload/homeImg/heart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
-	 				html += "<div class='card-body'>";
+	  				html += "<img class='pick_button' src='/resources/upload/homeImg/heart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
+	 				html += "<div class='card-body' >";
 	 				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
 	 				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
 	 				html += "</div>";
@@ -138,24 +138,26 @@
   <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
-    function pick(get,no,event) {
+	    
+    function pick(get, sellNo) {
     	event.stopPropagation();
-        if ($(get).attr("src") == "/resources/upload/homeImg/heart.png") {
+    	var memberNo = "${sessionScope.member.memberNo}";
+    	if ($(get).attr("src") == "/resources/upload/homeImg/heart.png") {
             $(get).attr("src","/resources/upload/homeImg/InHeart.png");
             $(function() {
 		        $.ajax({
-			    url : "/meister/sell/pickList.do",
-                data : {no : memberNo},
+			    url : "/meister/sell/pickingSell.do",
+                data : {memberNo : memberNo, sellNo : sellNo},
                 success : function(data) {
                 }
                });
             });   
         } else {
-            $(get).attr("src","/upload/homeImg/heart.png");
+            $(get).attr("src","/resources/upload/homeImg/heart.png");
             $(function() {
 		        $.ajax({
-			    url : "/meister/sell/canclePickList.do",
-                data : {no : no},
+			    url : "/meister/sell/canclePickingSell.do",
+                data : {sellNo : sellNo, memberNo : memberNo},
                 success : function(data) {
                 }
                });
@@ -163,7 +165,6 @@
         }
     }
     function showList(sellNo) {
-    	console.log(sellNo);
     	location.href="/meister/sell/showList.do?sellNo=" + sellNo;
     }
     </script>

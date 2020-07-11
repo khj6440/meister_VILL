@@ -37,6 +37,7 @@
 		<typeAlias type="kr.or.meister.admin.model.vo.RequestSellVO" alias="requestSell"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.SellSellVO" alias="sellSell"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.MemberJoinEmployVO" alias="memberJoinEmploy"/>
+		
 
 		<typeAlias type="kr.or.meister.coupon.model.vo.CouponVO" alias="coupon"/>
 		<!-- <typeAlias type="kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO" alias="couponJoinCouponIssued"/> -->

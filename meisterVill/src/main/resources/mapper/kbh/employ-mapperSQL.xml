@@ -57,7 +57,7 @@
 		(select rownum as rnum, n.* from
 			(
 			select * from employ
-			where employ_appro > 0
+			where employ_appro = 1
 			order by 1 desc)n
 			)
 	where rnum between #{start} and #{end}
