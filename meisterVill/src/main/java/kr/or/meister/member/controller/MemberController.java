@@ -628,6 +628,11 @@ public class MemberController {
 			return "1";
 		}
 	}
+	@ResponseBody
+	@RequestMapping("/moreMeister.do")
+	public String moreMeister() {
+		
+	}
 	
 	@RequestMapping("/goMain.do")
 	public String goMain() {

@@ -45,21 +45,23 @@
                     <option value="recent">최근 활동순</option>
                 </select>
             </div>
-            <c:forEach items="${meisters }" var="m">
+            
             <div class="meisters-box">
                 <table>
+            <!-- 반복영역 -->
+            <c:forEach items="${meisters }" var="m">
                     <tr>
                         <td>
                             <div class="m-profile">
                             	<div class="pf-img">
-                                     <c:if test="${sessionScope.member.memberImg eq null }">
+                                     <c:if test="${m.memberImg eq null }">
                                          <a href="#">
                                              <img src="/resources/yr/imgs/profile_img2.png" width="100%">
                                          </a>
                                      </c:if>
-                                     <c:if test="${sesssionScope.member.memberImg ne null }">
+                                     <c:if test="${m.memberImg ne null }">
                                          <a href="#">
-                                             <img src="/resources/upload/memberImg/${sessionScope.member.memberImg }" width="100%">
+                                             <img src="/resources/upload/memberImg/${m.memberImg }" width="100%">
                                          </a>
                                     </c:if>
                                  </div>
@@ -68,7 +70,19 @@
                                 <div class="m-name">{m.memberNickname}</div>
                                 <div class="m-introduce">{m.memberIntro}</div>
                                 <div class="m-star">
-                                
+                                	for (var i = 0; i < Math.floor(pointArange); i++) {
+					html2 += "<img style='width:15px; height:15px;' src='/resources/upload/homeImg/full-star.png'>";
+				}
+				if ((pointArange.toFixed(1)) % (Math.floor(pointArange)) == 0) {
+					for (var p = 0; p < 5 - Math.floor(pointArange); p++) {
+						html2 += "<img style='width:15px; height:15px;' src='/resources/upload/homeImg/bin-star.png'>";
+					}
+				} else {
+					html2 += "<img style='width:15px; height:15px;' src='/resources/upload/homeImg/half-star.png'>";
+					for (var p = 0; p < 5 - Math.floor(pointArange) - 1; p++) {
+						html2 += "<img style='width:15px; height:15px;' src='/resources/upload/homeImg/bin-star.png'>";
+					}
+				}
                                 
                                 
                                 
@@ -173,9 +187,15 @@
                             </div>
                         </td>
                     </tr>
+           <!-- 반복영역끝 -->
                 </table>
             </div>
            </c:forEach>
+           
+           
+           
+           
+           
             <div class="m-btn-more">
                 <button type="button" class="btn btn-yr-normal-gray" id="btn-more">더보기</button>
             </div>
