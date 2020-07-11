@@ -221,7 +221,7 @@
                         html += "for (var i = 0; i < Math.floor("+data[i].reviewPoint+")); i++) {";
         				html += "<img style='width:15px; height:15px;' src='/resources/upload/homeImg/full-star.png'>}";
     					html += "if ((pointArange.toFixed(1)) % (Math.floor("+data[i].reviewPoint+")) == 0) {";
-    					for (var p = 0; p < 5 - Math.floor(pointArange); p++) {
+    					html += "for (var p = 0; p < 5 - Math.floor(pointArange); p++) {
     						html2 += "<img style='width:15px; height:15px;' src='/resources/upload/homeImg/bin-star.png'>";
     					}
     				} else {
