@@ -199,16 +199,16 @@
                           <div class="col-sm-4">
                             <h1><i class="fa fa-money"></i></h1>
                             <h3>
-                            <c:if test="${sum != 0 }">${sum}원</c:if> 
-                            <c:if test="${sum == 0 }">0원</c:if>
+                            <c:if test="${sum != null }">${sum} ￦</c:if> 
+                            <c:if test="${sum == null }">0원</c:if>
                             </h3>
                             <h6>총판매 금액</h6>
                           </div>
                           <div class="col-sm-4">
                             <h1><i class="fa fa-trophy"></i></h1>
                             <h3>
-                            <c:if test="${price != 0 }">${price}</c:if>
-                             <c:if test="${price == 0 }">0</c:if>
+                            <c:if test="${price != null }">${price} ￦</c:if>
+                             <c:if test="${price == null }">0</c:if>
 								
                             </h3>
                             <h6>게시물 최고 가격</h6>
@@ -216,8 +216,8 @@
                           <div class="col-sm-4">
                             <h1><i class="fa fa-shopping-cart"></i></h1>
                             <h3>
-                          <c:if test="${listNum != 0 }">${listNum}</c:if>
-                             <c:if test="${listNum == 0 }">0</c:if> 
+                          <c:if test="${listNum != null }">${listNum}개</c:if>
+                             <c:if test="${listNum == null }">0</c:if> 
                             </h3>
                             <h6>총 판매글</h6>
                           </div>
@@ -566,7 +566,6 @@
 					    success: function(data){
 					    	console.log(data);
 							console.log(Object.keys(data.list).length);
-							
 							if(Object.keys(data.list).length === 0){
 								html += '<tr>';
 								html += '<td>'+"목록없음"+'</td>';

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import kr.or.meister.admin.model.dao.AdminDao;
 import kr.or.meister.admin.model.vo.AdminMemberJoinSellJoinOrdersVO;
 import kr.or.meister.admin.model.vo.MemberInformVO;
+import kr.or.meister.admin.model.vo.MemberJoinEmployVO;
 import kr.or.meister.admin.model.vo.MemberJoinReportVO;
 import kr.or.meister.admin.model.vo.MemberJoinVO;
 import kr.or.meister.admin.model.vo.MemberStatsVO;
@@ -24,6 +25,7 @@ import kr.or.meister.admin.model.vo.SellJoinOrdersJoinOptionVO;
 import kr.or.meister.admin.model.vo.SellStatsVO;
 import kr.or.meister.admin.model.vo.selectAllSellPageVO;
 import kr.or.meister.member.model.vo.MemberVO;
+import kr.or.meister.sell.model.vo.SellVO;
 
 @Service("adminService")
 public class AdminService {
@@ -706,11 +708,15 @@ public SellAndRequestVO oneMemberSellAndRequest() {
 }
 
 
-public List<MemberVO> allMember() {
-	// TODO Auto-generated method stub
-	return null;
+public List<AdminMemberJoinSellJoinOrdersVO> adminMainSellList() {
+	return (List<AdminMemberJoinSellJoinOrdersVO>)dao.adminMainSellList();
+	
+
 }
 
 
+public List<MemberJoinEmployVO> adminMainEmployList() {
+	return (List<MemberJoinEmployVO>)dao.adminMainEmployList();
+}
 
 }

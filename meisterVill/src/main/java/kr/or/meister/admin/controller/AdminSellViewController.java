@@ -70,7 +70,7 @@ public class AdminSellViewController {
 	@RequestMapping(value ="/showList.do"/* , produces = "application/json;charset=utf-8" */)
 	public String showList(int sellNo, Model m,int memberNo) {
 		System.out.println("셀번호 : "+sellNo+"유저 번호 : "+memberNo);
-		SellJoinOthersVO list = sellService.selectOneList(sellNo, memberNo);
+		SellJoinOthersVO list = sellService.selectOneList(sellNo);
 		ArrayList<String> mul = new ArrayList<String>();
 		ArrayList<String> skill = new ArrayList<String>();
 		System.out.println(mul);

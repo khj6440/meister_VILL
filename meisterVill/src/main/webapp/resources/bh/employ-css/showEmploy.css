@@ -1,0 +1,26 @@
+@charset "UTF-8";
+.employ-detail-basic-info {
+	background: #f7f7f7;
+    border: 1px solid #dedede;
+    padding: 15px;
+    display:flex;
+    border-bottom: none;
+}
+.employ-detail-basic-info2{
+	background: #f7f7f7;
+    border: 1px solid #dedede;
+    border-top: none;
+    padding: 15px;
+    display:flex;
+}
+.employ-detail-basic-info>div, .employ-detail-basic-info2>div {
+width: 33.3%;
+text-align:center;
+}
+.basic-info-img {
+	width:15px;
+	margin-right:5px;
+	margin-bottom:3px;
+}
+
+

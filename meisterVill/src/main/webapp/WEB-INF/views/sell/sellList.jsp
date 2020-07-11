@@ -7,52 +7,29 @@
 <meta charset="UTF-8">
 <title> 판매글 리스트</title>
   <!-- Bootstrap core CSS -->
-  <link href="/resources/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
+  <link href="/resources/bh/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="/resources/sell-css/css/heroic-features.css?after" rel="stylesheet">
+  <link href="/resources/bh/sell-css/css/heroic-features.css?after" rel="stylesheet">
+   <link href="/resources/bh/common-css/common.css" rel="stylesheet">
+   <link href="/resources/bh/sell-css/sellList.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<style>
- 		.pick_button {
- 			position: absolute;
- 			right: 5px;
- 			top: 5px;
- 			height: 25px;
- 		}
- 		.btn {
- 			border: 1px solid #eeeeee;
- 		}
- 		.btn:hover {
- 			color : #7DC947;
- 		}
- 		.selectPage {
- 			border: 1px solid #eeeeee;
- 			font-weight : bold;
- 			padding : 12px;
- 			padding-top : 6px;
- 			padding-botton : 6px;
- 		}
- 		.card-img-top{
- 			transform: scale(1);
-			-webkit-transform: scale(1);
-			-moz-transform: scale(1);
-			-ms-transform: scale(1);
-			-o-transform: scale(1);
-			transition: all 0.3s ease-in-out; 
-		}
-		.card-img-top:hover {
-			transform: scale(1.2);
-			-webkit-transform: scale(1.2);
-			-moz-transform: scale(1.2);
-			-ms-transform: scale(1.2);
-			-o-transform: scale(1.2);
-		}
-		a {
-			color:black;
-		}
-</style>
   <script>
   	$(function() {
   		var reqPage = ${reqPage};
+  		var memberNo = "${sessionScope.member.memberNo}";
+  		var sellNo = new Array();
+  		if(memberNo != "") {
+	  		$.ajax({
+				url : "/meister/sell/getPick.do",
+				type : "get",
+				data : {memberNo : memberNo},
+				success : function(data) {
+					for(var i = 0; i < data.length; i++) {
+						sellNo[i] = data[i];
+					}
+				}
+			});
+  		}
   		$.ajax({
   			url : "/meister/sell/getSellList.do?reqPage="+reqPage,
 			data : "json",
@@ -61,29 +38,34 @@
 				html = "";
 				page = "";
 				for (var i = 0; i < number; i++) {
-  				html += "<div class='col-lg-3 col-md-6 mb-4'>";
-  				html += "<div class='card' style='height: 400px; cursor:pointer;' onclick='showList("+data["sell"+i].sellNo+");'>";
-  				html += "<div class='imgbox' style='overflow:hidden;'>";
-  				html += "<img class='card-img-top' src='/resources/upload/sellImg/"+data["sell"+i].sellImg+"'>";
-  				html += "</div>";
-  				html += "<c:if test='${not empty sessionScope.member.memberNo}'>";
-  				html += "<img class='pick_button' id='pick' src='/resources/upload/homeImg/heart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
-  				html += "<div class='card-body'>";
-  				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
-  				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
-  				html += "</div>";
-  				html += "</div>";
-  				html += "</div>";
-  				html += "</c:if>";
-  				html += "<c:if test='${empty sessionScope.member.memberNo}'>";
-  				html += "<div class='card-body'>";
-  				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
-  				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
-  				html += "</div>";
-  				html += "</div>";
-  				html += "</div>";
-  				html += "</c:if>";
-			}
+					html += "<div class='col-lg-3 col-md-6 mb-4'>";
+	  				html += "<div class='card' style='height: 400px; cursor:pointer;' onclick='showList("+data["sell"+i].sellNo+");'>";
+	  				html += "<div class='imgbox' style='overflow:hidden;'>";
+	  				html += "<img class='card-img-top' src='/resources/upload/sellImg/"+data["sell"+i].sellImg+"'>";
+	  				html += "</div>";
+	  				html += "<c:if test='${not empty sessionScope.member.memberNo}'>";
+	  				for (var j = 0; j < sellNo.length; j++) {
+	  					if(sellNo[j] == data["sell"+i].sellNo) {
+	 						html += "<img class='pick_button' id='pick' src='/resources/upload/homeImg/InHeart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
+	  					}
+	  				}
+	  				html += "<img class='pick_button' id='pick' src='/resources/upload/homeImg/heart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
+	 				html += "<div class='card-body'>";
+	 				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
+	 				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
+	 				html += "</div>";
+	 				html += "</div>";
+	 				html += "</div>";
+	  				html += "</c:if>";
+	  				html += "<c:if test='${empty sessionScope.member.memberNo}'>";
+	  				html += "<div class='card-body'>";
+	  				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
+	  				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
+	  				html += "</div>";
+	  				html += "</div>";
+	  				html += "</div>";
+	  				html += "</c:if>";
+				}
 			page += "<div class='pageNavi'>"+data["pageNavi"]+"</div>";
 			$("#sell").append(html);
 			$(".sellList-pageNavi").append(page);
@@ -99,7 +81,7 @@
     <header class="jumbotron my-4" style="width:1100px">
     </header>
     <div class="sell-content" style="display:flex; width:1100px">
-    <nav class="sell_side_list" style="width:20%; padding-right:15px;">
+    <nav class="sell_side_list" style="width:20%; padding-right:25px;">
     <div class="side_list_header" style="border-bottom:2px solid #FFBC42;">
     <h5>디자인</h5>
     </div>
@@ -140,38 +122,39 @@
     <!-- Page Features -->	
      <div class="sellList-content" style="width:80%" >
        
-    <div class="row text-center" id="sell">
-      
+    <div class="row text-center card-shadow" id="sell">
+      <br><br><br><br><br><br><br>
        </div>
        <div class="sellList-pageNavi" style="margin: 0 auto; width: 300px; text-align:center; padding-top:100px;">
     
     	</div>
     </div>
-   
     <!-- /.row -->
+    
 	</div>
   </div>
   <!-- /.container -->
     <!-- Bootstrap core JavaScript -->
-  <script src="/resources/sell-css/vendor/jquery/jquery.min.js"></script>
-  <script src="/resources/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
+  <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
-    function pick(get,no) {
+    function pick(get,no,event) {
+    	event.stopPropagation();
         if ($(get).attr("src") == "/resources/upload/homeImg/heart.png") {
             $(get).attr("src","/resources/upload/homeImg/InHeart.png");
             $(function() {
 		        $.ajax({
 			    url : "/meister/sell/pickList.do",
-                data : {no : no},
+                data : {no : memberNo},
                 success : function(data) {
                 }
                });
             });   
         } else {
-            $(get).attr("src","/resources/upload/homeImg/heart.png");
+            $(get).attr("src","/upload/homeImg/heart.png");
             $(function() {
 		        $.ajax({
-			    url : "/meister/sell/deletePickList.do",
+			    url : "/meister/sell/canclePickList.do",
                 data : {no : no},
                 success : function(data) {
                 }
@@ -180,7 +163,8 @@
         }
     }
     function showList(sellNo) {
-    	location.href="/meister/sell/showList.do?sellNo=" + sellNo +"&memberNo=1";
+    	console.log(sellNo);
+    	location.href="/meister/sell/showList.do?sellNo=" + sellNo;
     }
     </script>
 </body>
