@@ -37,11 +37,16 @@
 		<typeAlias type="kr.or.meister.admin.model.vo.RequestSellVO" alias="requestSell"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.SellSellVO" alias="sellSell"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.MemberJoinEmployVO" alias="memberJoinEmploy"/>
+
 		<typeAlias type="kr.or.meister.sell.model.vo.SellMemberOptionVO" alias="smo"/>
 		
 		<typeAlias type="kr.or.meister.orders.model.vo.OrderOptionVO" alias="oov"/>
 		<typeAlias type="kr.or.meister.orders.model.vo.OrdersVO" alias="orders"/>
 		<typeAlias type="kr.or.meister.coupon.model.vo.CouponMemberVO" alias="cm"/>
+
+		
+
+
 		<typeAlias type="kr.or.meister.coupon.model.vo.CouponVO" alias="coupon"/>
 		<typeAlias type="kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO" alias="couponJoinCouponIssued"/>
 		<typeAlias type="kr.or.meister.member.model.vo.MemberJoinSellReviewVO" alias="meisters"/>

@@ -38,7 +38,7 @@
         </div>
         <br><br>
         <p class="fo-si-18 fo-we-bo">프로젝트 내용</p>
-        <p class="no-font">[ 본 프로젝트는 클라이언트가 위시켓 이용요금을 부담합니다. ]</p>
+        <p class="no-font">[ 본 프로젝트는 클라이언트가 마이스터 이용요금을 부담합니다. ]</p>
         <p class="no-font">[ 클라이언트가 직접 발주한 프로젝트입니다. ]</p>
         <br>
         <div class="main-content">

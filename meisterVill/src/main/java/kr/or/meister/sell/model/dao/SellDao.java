@@ -39,7 +39,7 @@ public class SellDao {
 	public int totalCount() {
 		return sqlSession.selectOne("sell.selectTotal");
 	}
-	public SellJoinOthersVO selectOneList(int sellNo) {
+	public SellJoinMemberVO selectOneList(int sellNo) {
 		return sqlSession.selectOne("sell.selectOne",sellNo);
 	}
 	public int insertPick(HashMap<String, Integer> pick) {
@@ -67,6 +67,7 @@ public class SellDao {
 	public List selecctPicList(int memberNo) {
 		return sqlSession.selectList("sell.selectPick", memberNo);
 	}
+
 
 	public SellVO selectSellInfo(int sellNo) {
 		return sqlSession.selectOne("count.selectSellInfo",sellNo);
@@ -103,4 +104,13 @@ public class SellDao {
 
 
 	
+
+	public int deleteOpt(HashMap<String, Object> opt) {
+		return sqlSession.delete("sell.deleteOpt", opt);
+	}
+
+	public List selectMultiImg(int sellNo) {
+		return sqlSession.selectList("sell.selectMultiImg", sellNo);
+	}
+
 }

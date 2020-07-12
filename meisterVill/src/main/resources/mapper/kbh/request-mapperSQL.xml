@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="request">
+<resultMap id="requestMap" type="request">
+	    <id property="requestNo" column="request_no" />
+	    <result property="requestCategory1" column="request_category1" />
+	    <result property="requestCategory2" column="request_category2" />
+	    <result property="requestTitle" column="request_title" />
+	    <result property="requestWriter" column="request_writer" />
+	    <result property="requestWrtierImg" column="request_wrtier_img" />
+	    <result property="requestNow" column="request_now" />
+	    <result property="requestWantform" column="request_wantform" />
+	    <result property="requestWantskill" column="request_wantskill" />
+	    <result property="requestContent" column="request_content" />
+	    <result property="requestPrice" column="request_price" />
+	    <result property="requestBoardEnd" column="request_board_end" />
+	    <result property="requestProjectEnd" column="request_project_end" />
+	  	<result property="requestAppro" column="request_appro" />
+	  	<result property="requestStatus" column="request_status" />
+	  	<result property="requestDate" column="request_date" />
+	  	<result property="requestResMembers" column="request_res_members" />
+</resultMap>
+<resultMap type="member" id="memberMap">
+ 		<id property="memberNo" column="member_no" />
+         <result property="memberEmail" column="member_email" />
+         <result property="memberPw" column="member_pw" />
+         <result property="memberName" column="member_name" />
+         <result property="memberHbd" column="member_hbd" />
+         <result property="memberNickname" column="member_nickname" />
+         <result property="memberPhone" column="member_phone" />
+         <result property="memberImg" column="member_img" />
+         <result property="memberBank" column="member_bank" />
+         <result property="memberAccount" column="member_account" />
+         <result property="memberTime" column="member_time" />
+         <result property="memberLevel" column="member_level" />
+         <result property="memberStatus" column="member_status" />
+         <result property="memberIntro" column="member_intro" />
+         <result property="memberField" column="member_field" />
+         <result property="memberSkill" column="member_skill" />
+         <result property="memberSchool" column="member_school" />
+         <result property="memberMajor" column="member_major" />
+         <result property="memberGrade" column="member_grade" />
+         <result property="memberDate" column="member_date" />
+</resultMap>
+<resultMap id="rmv" type="requestMember">
+<association property="requestvo" resultMap="requestMap">
+</association>
+<association property="membervo" resultMap="memberMap">
+</association>
+</resultMap>
+<select id="selectAllList" parameterType="map" resultMap="rmv">
+  select * from
+    (select rownum as rnum, d.* from
+            (select (to_date(request_date, 'yyyy/MM/dd') + request_board_end) - to_date(sysdate) as dDay, n.* from
+                (
+                  select * from request
+                  where request_appro = 1
+             )n
+            order by dDay)d
+        where dDay > -1 )
+    where rnum between #{start} and #{end}
+</select>
+<select id="selectTotal" resultType="_int">
+	select count(*) as cnt from 
+    (select (to_date(request_date, 'yyyy/MM/dd') + request_board_end) - to_date(sysdate) as dDay from 
+        request  where request_appro = 1
+    ) 
+     where dDay > -1
+</select>
+<select id="selectOneList" parameterType="_int" resultMap="rmv">
+	select * from request
+		full outer join member on(member.member_nickname = request.request_writer)
+	where request_no = #{parameter}
+</select>
+
+
+</mapper>

@@ -79,25 +79,28 @@ public class SellService {
 		return sjm;
 	}
 
-	public int insertPick(int no, int m) {
+	public int insertPick(int sellNo, int m) {
 		HashMap<String, Integer> pick = new HashMap<String, Integer>();
-		pick.put("no", no);
+		pick.put("no", sellNo);
 		pick.put("m",m);
 		int result = dao.insertPick(pick);	
 		return result;
 	}
 
-	public int deletePick(int no, int m) {
+	public int deletePick(int sellNo, int m) {
+		System.out.println("서비스단 sellno" + sellNo + "m" + m);
 		HashMap<String, Integer> pick = new HashMap<String, Integer>();
-		pick.put("no", no);
+		pick.put("no", sellNo);
 		pick.put("m",m);
+		System.out.println("1"+pick.get("no"));
+		System.out.println("2"+pick.get("m"));
 		int result = dao.deletePick(pick);	
 		return result;
 	}
 
-	public SellJoinOthersVO selectOneList(int sellNo) {
-		SellJoinOthersVO sjo = dao.selectOneList(sellNo);
-		return sjo;
+	public SellJoinMemberVO selectOneList(int sellNo) {
+		SellJoinMemberVO sjm = dao.selectOneList(sellNo);
+		return sjm;
 	}
 
 	public int insertSell(SellVO sell) {
@@ -125,6 +128,7 @@ public class SellService {
 		return (ArrayList<PickVO>)list;
 	}
 
+<<<<<<< HEAD
 	public SellVO selectSellInfo(int sellNo) {
 		return dao.selectSellInfo(sellNo);
 	}
@@ -159,4 +163,14 @@ public class SellService {
 
 
 	
+=======
+	public int deleteOpt(HashMap<String, Object> opt) {
+		return dao.deleteOpt(opt);
+	}
+
+	public ArrayList<MultiImgVO> selectMultiImg(int sellNo) {
+		List list = dao.selectMultiImg(sellNo);
+		return (ArrayList<MultiImgVO>)list;
+	}
+>>>>>>> master
 }
