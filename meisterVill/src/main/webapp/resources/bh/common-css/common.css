@@ -6,6 +6,9 @@
 a{
 	text-decoration:none;
 }
+body {
+	padding: 0;
+}
 .fo-color {
 	color : #4D4D4D;
 }

@@ -51,7 +51,7 @@
 	  					}
 	  				}
 	  				html += "<img class='pick_button' src='/resources/upload/homeImg/heart.png' style='cursor:pointer' onclick='pick(this,"+data["sell"+i].sellNo+")'>";
-	 				html += "<div class='card-body' >";
+	 				html += "<div class='card-body' overflow:hidden; padding: 5px;'>";
 	 				html += "<h4 class='card-title'>"+data["member"+i].memberNickname+"</h4>";
 	 				html += "<p class='card-text'>"+data["sell"+i].sellTitle+"</p>";
 	 				html += "</div>";
@@ -76,11 +76,11 @@
   </script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
   <!-- Page Content -->
   <div class="container">
     <!-- Jumbotron Header -->
-    <header class="jumbotron my-4" style="width:1100px">
+    <header class="jumbotron my-4" style="width:1100px; background-image: url('/resources/upload/homeImg/ad3.png'); background-size: cover;" >
     </header>
     <div class="sell-content" style="display:flex; width:1100px">
     <nav class="sell_side_list" style="width:20%; padding-right:25px;">
@@ -128,8 +128,8 @@
       <br><br><br><br><br><br><br>
        </div>
        <div class="sellList-pageNavi" style="margin: 0 auto; width: 300px; text-align:center; padding-top:100px;">
-    
     	</div>
+    	<br><br><br>
     </div>
     <!-- /.row -->
     
@@ -139,6 +139,7 @@
     <!-- Bootstrap core JavaScript -->
   <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
     <script>
 	    
     function pick(get, sellNo) {

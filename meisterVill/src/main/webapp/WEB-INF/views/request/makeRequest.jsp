@@ -207,7 +207,7 @@ function checkFinish() {
 </script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
   <link href="/resources/bh/common-css/common.css" rel="stylesheet">
   <link href="/resources/bh/sell-css/makeSell.css" rel="stylesheet">
 <form action="/meister/request/insertRequest.do" method="post" id="requestForm" >
@@ -525,9 +525,10 @@ function checkFinish() {
 </div>
 </div>
 </div>
+<br><br><br><br><br>
 <jsp:include page="/WEB-INF/views/request/requestFinishModal.jsp"/>
 </form>
-
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 
 </html>

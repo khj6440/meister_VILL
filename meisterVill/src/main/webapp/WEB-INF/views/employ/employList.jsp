@@ -117,6 +117,7 @@
        </div>
        <div class="employList-pageNavi" style="margin: 0 auto; width: 300px; text-align:center; padding-top:100px;">
     	</div>
+    	<br><br><br>
     </div>
    
     <!-- /.row -->
@@ -124,5 +125,6 @@
   </div>
     <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

@@ -116,7 +116,6 @@ public class SellController {
 	@ResponseBody
 	@RequestMapping(value="/pickingSell.do")
 	public String pickList(int memberNo, int sellNo) {
-		System.out.println("memberno" + memberNo + "sellno" + sellNo);
 		int result = service.insertPick(sellNo, memberNo);
 		if (result == 1) {
 			return "1";

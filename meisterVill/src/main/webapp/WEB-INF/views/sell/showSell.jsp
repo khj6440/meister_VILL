@@ -11,7 +11,6 @@
   <link href="/resources/bh/sell-css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="/resources/bh/sell-css/css/heroic-features.css" rel="stylesheet">
-  <link href="/resources/bh/showSell-css/showSell.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script>
 function goLocation(where) {
@@ -146,6 +145,8 @@ $(function() {
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header2.jsp"/>
+<link href="/resources/bh/sell-css/showSell.css" rel="stylesheet">
+<link href="/resources/bh/common-css/common.css" rel="stylesheet">
 <div class="container">
 <div class="row" style="width:1110px; padding-top:30px;">
   <!-- Post Content Column -->
@@ -207,11 +208,11 @@ $(function() {
 	<h5 style="font-weight:bold;">상세 후기</h5><br><br>
 	<div style="width:100%; height:100px; background-color:#f8f9fa; display:flex;" id="pointView">
 	</div>
-	<br><br>
     <div class="media mb-4" id="review-area" style="display:block;">
       </div>
+       <br><br>
     </div>
-    <br><br><br><br><br><br>
+   
     <hr><hr>
   <!-- Sidebar Widgets Column -->
    <div class="col-md-4 border-1px-solid">
@@ -301,7 +302,7 @@ $(function() {
 <!-- Bootstrap core JavaScript -->
 <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
 <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 
 </html>

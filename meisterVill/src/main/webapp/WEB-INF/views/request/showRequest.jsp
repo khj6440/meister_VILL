@@ -69,7 +69,7 @@ $(function() {
 </script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
  <div class="container">
     <div class="row" style="width:1110px; padding-top: 30px;">
       <!-- Post Content Column -->
@@ -171,5 +171,6 @@ $(function() {
   <!-- Bootstrap core JavaScript -->
   <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
