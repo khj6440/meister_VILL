@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-.hd-profile-boundary {
+
+        .hd-profile-boundary {
     margin-left: 9%;
     float: right;
     margin-top: -4%;
@@ -148,6 +149,7 @@ font-family: 'Noto Sans KR', sans-serif;
     border-bottom-right-radius: 10px;
 }
 
+
 .hd-profile-img1:hover > ul {
     display: block;
 }
@@ -164,3 +166,4 @@ font-family: 'Noto Sans KR', sans-serif;
 .normal-hd-list {
     margin-top: 1%;
 }
+

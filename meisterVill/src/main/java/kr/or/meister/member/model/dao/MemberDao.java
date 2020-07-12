@@ -149,4 +149,12 @@ public class MemberDao {
 		return sqlSession.selectList("member.selectAvailableCoupon",sjo);
 	}
 
+	public List allMeistser() {
+		return sqlSession.selectList("member.allMeister");
+	}
+
+	public int totalCountMeister() {
+		return sqlSession.selectOne("member.totalCountMeister");
+	}
+
 }

@@ -40,6 +40,8 @@
 		
 
 		<typeAlias type="kr.or.meister.coupon.model.vo.CouponVO" alias="coupon"/>
+		<typeAlias type="kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO" alias="couponJoinCouponIssued"/>
+		<typeAlias type="kr.or.meister.member.model.vo.MemberJoinSellReviewVO" alias="meisters"/>
 		<!-- <typeAlias type="kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO" alias="couponJoinCouponIssued"/> -->
 
 		<typeAlias type="kr.or.meister.employ.model.vo.EmployVO" alias="employ"/>

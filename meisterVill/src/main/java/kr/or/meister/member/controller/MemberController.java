@@ -57,6 +57,7 @@ import kr.or.meister.member.model.service.MemberService;
 import kr.or.meister.member.model.vo.CareerVO;
 import kr.or.meister.member.model.vo.LicenseVO;
 import kr.or.meister.member.model.vo.MemberDataVO;
+import kr.or.meister.member.model.vo.MemberJoinSellReviewVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
@@ -362,8 +363,10 @@ public class MemberController {
 
 	}
 	@RequestMapping("/meisterList.do")
-	public String meisterList() {
+	public String meisterList(Model model) {
 		//유라: 마이스터 찾기 페이지 이동
+		ArrayList<MemberJoinSellReviewVO> meisters = service.allMeister();
+		model.addAttribute("meisters",meisters);
 		return "member/meisterList";
 	}
 
