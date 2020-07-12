@@ -72,6 +72,8 @@
 		full outer join member on(member.member_nickname = request.request_writer)
 	where request_no = #{parameter}
 </select>
-
+<insert id="insertList" parameterType="request">
+	insert into request values(request_seq.nextval, #{requestCategory1}, #{requestCategory2}, #{requestTitle}, #{requestWriter}, #{requestWrtierImg}, #{requestNow}, #{requestWantform}, #{requestWantskill}, #{requestContent}, #{requestPrice}, #{requestBoardEnd}, #{requestProjectEnd}, #{requestAppro}, #{requestStatus}, to_char(SYSDATE,'YYYY/MM/DD'), #{requestResMembers})
+</insert>
 
 </mapper>

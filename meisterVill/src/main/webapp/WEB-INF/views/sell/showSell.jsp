@@ -7,10 +7,11 @@
 <meta charset="UTF-8">
 <title>마이스터 판매글</title>
   <!-- Bootstrap core CSS -->
-  <link href="/resources/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <link href="/resources/bh/sell-css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="/resources/sell-css/css/heroic-features.css?after" rel="stylesheet">
-  <link href="/resources/showSell-css/showSell.css?after" rel="stylesheet">
+  <link href="/resources/bh/sell-css/css/heroic-features.css" rel="stylesheet">
+  <link href="/resources/bh/showSell-css/showSell.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script>
 function goLocation(where) {

@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title> 판매글 리스트</title>
   <!-- Bootstrap core CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   <link href="/resources/bh/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="/resources/bh/sell-css/css/heroic-features.css?after" rel="stylesheet">
@@ -75,6 +76,7 @@
   </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
   <!-- Page Content -->
   <div class="container">
     <!-- Jumbotron Header -->

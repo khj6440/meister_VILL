@@ -7,11 +7,10 @@
 <meta charset="UTF-8">
 <title>판매글 작성</title>
   <!-- Bootstrap core CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   <link href="/resources/bh/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="/resources/bh/sell-css/css/heroic-features.css?after" rel="stylesheet">
-  <link href="/resources/bh/sell-css/makeSell.css" rel="stylesheet">
-   <link href="/resources/bh/common-css/common.css" rel="stylesheet">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script>
   /**
@@ -37,7 +36,6 @@
   	});
   	$('#inputTitle').keyup(function (e){
           var content = $(this).val();
-
           $('#titleCounter').html(content.length);
           if(content.length > 10) {
           	$("#checkTitle").css("display","none");
@@ -435,6 +433,9 @@
   </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
+  <link href="/resources/bh/sell-css/makeSell.css" rel="stylesheet">
+   <link href="/resources/bh/common-css/common.css" rel="stylesheet">
 <form action="/meister/sell/insertSell.do" method="post" enctype="multipart/form-data" id="updateSell">
 <%-- <jsp:include page="/WEB-INF/views/common/header.jsp"/> --%>
 <div class="container">

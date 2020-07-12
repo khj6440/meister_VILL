@@ -6,13 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <link href="/resources/bh/common-css/common.css" rel="stylesheet">
 <link href="/resources/bh/employ-css/showEmploy.css?after" rel="stylesheet">
 
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
  <div class="container">
     <div class="row" style="width:1110px; padding-top: 30px;">
       <!-- Post Content Column -->

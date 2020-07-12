@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+\<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link href="/resources/bh/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
   <link href="/resources/bh/sell-css/css/heroic-features.css?after" rel="stylesheet">
   <link href="/resources/bh/common-css/common.css?after" rel="stylesheet">
@@ -192,6 +193,7 @@ function checkFinish() {
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
 <form action="/meister/employ/insertProject.do" method="post" id="projectForm" >
  <div class="container">
  <header class="jumbotron my-4" style="width:1100px; background-image: url('/resources/upload/homeImg/ad2.png'); background-size: cover;" >
@@ -211,7 +213,7 @@ function checkFinish() {
 <div class="col-xs-9">
 <div>
 <div class="wrap">
-<input type="text" id="inputTitle" name="employTitle" class="form-control border-radius-0" maxlength="36" style="border-radius:0; height:50px;"placeholder="예)B2B 미디어 커머스 모바일 플랫폼 구축">
+<input type="text" id="inputTitle" name="employTitle" class="form-control border-radius-0" maxlength="30" style="border-radius:0; height:50px;"placeholder="예)B2B 미디어 커머스 모바일 플랫폼 구축">
 <input name="employCategory1" style="display:none;">
 <input name="employCategory2" style="display:none;">
 <input name="employContent" style="display:none;">
@@ -294,7 +296,7 @@ function checkFinish() {
 </div>
 <br>
 <div class="form-content">
-<textarea class="form-input-content"wrap="hard">
+<textarea class="form-input-content"wrap="hard"  maxlength="1300">
 <프로젝트의 현재 상황>
 예시) 프로젝트의 목적, 현재 준비 상황, 진행 계획 등
 
@@ -408,7 +410,7 @@ function checkFinish() {
 
 </div>
 </div>
-<jsp:include page="/WEB-INF/views/common/employFinishModal.jsp"/>
+<jsp:include page="/WEB-INF/views/employ/employFinishModal.jsp"/>
 </form>
 
 </body>

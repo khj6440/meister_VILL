@@ -72,6 +72,11 @@ public class RequestService {
 		return rmv;
 	}
 
+	public int insertRequeset(RequestVO request) {
+		int result = dao.insetRequest(request);
+		return result;
+	}
+
 	
 	
 }

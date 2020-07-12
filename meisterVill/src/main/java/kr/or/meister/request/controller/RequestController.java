@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import kr.or.meister.employ.model.vo.EmployJoinMemberVO;
 import kr.or.meister.request.model.service.RequestService;
 import kr.or.meister.request.model.vo.RequestMemberVO;
+import kr.or.meister.request.model.vo.RequestVO;
 
 @Controller
 @RequestMapping("/meister/request")
@@ -41,5 +42,16 @@ public class RequestController {
 		m.addAttribute("request", rmVO.getRequestvo());
 		m.addAttribute("member", rmVO.getMembervo());
 		return "request/showRequest";
+	}
+	@RequestMapping(value="/makeRequest.do")
+	public String makeRequest() {
+		return "request/makeRequest";
+	}
+	@RequestMapping(value="/insertRequest.do")
+	public String insertRequest(RequestVO request, Model m) {
+		System.out.println(request);
+		int result = service.insertRequeset(request);
+		m.addAttribute("reqPage", 1);
+		return "request/requestList";
 	}
 }

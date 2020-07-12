@@ -144,7 +144,6 @@
 <select id="selectPick" parameterType="_int" resultMap="pickMap">
 	select * from pick where member_no = #{parameter}
 </select>
-
 <delete id="deleteOpt" parameterType="map">
 delete from options where sell_no = #{sellNo} and option_title = #{optionsTitle} 
 </delete>

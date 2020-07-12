@@ -33,6 +33,7 @@ $(function() {
 
       <!-- Modal body -->
       <div class="modal-body">
+      관리자 승인 후 서비스가 등록 됩니다. 
        	프로젝트를 등록 하시겠습니까?
       </div>
 
