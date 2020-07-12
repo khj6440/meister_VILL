@@ -28,6 +28,7 @@ import kr.or.meister.etc.model.vo.PickVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.options.model.vo.OptionsVO;
 import kr.or.meister.sell.model.service.SellService;
+import kr.or.meister.sell.model.vo.SellJoinMemberVO;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
 import kr.or.meister.sell.model.vo.SellVO;
 
@@ -80,19 +81,10 @@ public class SellController {
 		return "0";
 	}
 	
-	@RequestMapping(value = "/showList.do", produces = "application/json;charset=utf-8")
+	@RequestMapping(value = "/showList.do")
 	public String showList(int sellNo, Model m) {
-	SellJoinOthersVO list = service.selectOneList(sellNo);
-		ArrayList<String> mul = new ArrayList<String>();
+		SellJoinMemberVO list = service.selectOneList(sellNo);
 		ArrayList<String> skill = new ArrayList<String>();
-
-		if (list.getMultiimgvo() != null) {
-			StringTokenizer st1 = new StringTokenizer(list.getMultiimgvo().getFilename(), "/");
-			while (st1.hasMoreTokens()) {
-				mul.add(st1.nextToken());
-				m.addAttribute("multiImg", mul);
-			}
-		}
 		if (list.getSellvo().getSellSkill() != null) {
 			StringTokenizer st2 = new StringTokenizer(list.getSellvo().getSellSkill(), "/");
 			while (st2.hasMoreTokens()) {
@@ -102,6 +94,16 @@ public class SellController {
 		}
 		m.addAttribute("sell", list);
 		return "sell/showSell";
+	}
+	@ResponseBody
+	@RequestMapping(value="/getMultiImg.do", produces = "application/json;charset=utf-8")
+	public String getMultiImg(int sellNo, Model m) {
+		ArrayList<MultiImgVO> mul = service.selectMultiImg(sellNo);
+		if (mul != null) {
+			m.addAttribute("size", mul.size());
+			return new Gson().toJson(mul);
+		}
+		return "0";
 	}
 
 	@ResponseBody
@@ -144,8 +146,25 @@ public class SellController {
 			opt.setOptionPrice(optionPrice[i]);
 			opt.setOptionPlusDate(optionPlusDate[i]);
 			result = service.insertOpt(opt);
+			System.out.println("결과" + result);
 		}
-		if (result == optionTitle.length) {
+		if (result == 1) {
+			return "1";
+		}
+		return "0";
+	}
+	@ResponseBody
+	@RequestMapping(value="/deleteOpt.do")
+	public String deleteOpt(String[] optionTitle, int sellNo) {
+		int result = 0;
+		for(int i = 0; i < optionTitle.length; i++) {
+			HashMap<String, Object> opt = new HashMap<String, Object>();
+			opt.put("sellNo", sellNo);
+			opt.put("optionTitle", optionTitle);
+			result = service.deleteOpt(opt);
+			System.out.println("결과" + result);
+		}
+		if (result == 1) {
 			return "1";
 		}
 		return "0";

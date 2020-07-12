@@ -91,9 +91,9 @@ public class SellService {
 		return result;
 	}
 
-	public SellJoinOthersVO selectOneList(int sellNo) {
-		SellJoinOthersVO sjo = dao.selectOneList(sellNo);
-		return sjo;
+	public SellJoinMemberVO selectOneList(int sellNo) {
+		SellJoinMemberVO sjm = dao.selectOneList(sellNo);
+		return sjm;
 	}
 
 	public int insertSell(SellVO sell) {
@@ -119,5 +119,14 @@ public class SellService {
 	public ArrayList<PickVO> selectPickList(int memberNo) {
 		List list = dao.selecctPicList(memberNo);
 		return (ArrayList<PickVO>)list;
+	}
+
+	public int deleteOpt(HashMap<String, Object> opt) {
+		return dao.deleteOpt(opt);
+	}
+
+	public ArrayList<MultiImgVO> selectMultiImg(int sellNo) {
+		List list = dao.selectMultiImg(sellNo);
+		return (ArrayList<MultiImgVO>)list;
 	}
 }

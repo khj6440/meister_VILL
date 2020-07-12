@@ -35,7 +35,7 @@
 	  				html += "<div><h4 class='card-title fo-si-20 fo-we-bo'>"+data["employ"+i].employTitle+"</h4></div>";
 	  				html += "<div><span class='fo-si-15 fo-we-bo span-border' style='border-left:none;'>&#8361; 예상 금액 </span>"+data["employ"+i].employPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" 원 ";
 	  				html += "<span class='fo-si-15 fo-we-bo span-border'>예상 기간 </span>"+data["employ"+i].employPeriod+" 일 ";
-	  				html += "<span class='fo-si-14 fo-we-bo span-border'>등록일자 </span>20"+data["employ"+i].employEnrollDate;
+	  				html += "<span class='fo-si-14 fo-we-bo span-border'>등록일자 </span>"+data["employ"+i].employEnrollDate;
 	  				html +="</div>";
 	  				html += "<div class='fo-si-13' style='height:5em;'>"+data["employ"+i].employContent.split('<br/>').join("\r\n")+"</div>";
 	  				html += "<div><span class='fo-si-13 fo-we-bo span-border' style='border-left:none;'>"+data["employ"+i].employCategory1+" > "+data["employ"+i].employCategory2+"</span>";

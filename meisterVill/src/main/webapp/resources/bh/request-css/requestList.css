@@ -36,3 +36,13 @@ color : #7DC947;
 .card:hover {
 	border: 0.5px solid #FFBC42;
 }
+.d-day-red {
+	background-color:red;
+	border-radius: 6px;
+	padding: 3px 6px;
+}
+.d-day-point {
+	background-color:#FFBC42;;
+	border-radius: 6px;
+	padding: 3px 6px;
+}

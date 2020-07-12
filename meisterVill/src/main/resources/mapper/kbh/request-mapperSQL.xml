@@ -51,7 +51,7 @@
 <select id="selectAllList" parameterType="map" resultMap="rmv">
   select * from
     (select rownum as rnum, d.* from
-            (select (to_date(request_date, 'yyyy/MM/dd') + request_board_end) - to_date(sysdate, 'yyyy/MM/dd') as dDay, n.* from
+            (select (to_date(request_date, 'yyyy/MM/dd') + request_board_end) - to_date(sysdate) as dDay, n.* from
                 (
                   select * from request
                   where request_appro = 1
@@ -62,7 +62,7 @@
 </select>
 <select id="selectTotal" resultType="_int">
 	select count(*) as cnt from 
-    (select (to_date(request_date, 'yyyy/MM/dd') + request_board_end) - to_date(sysdate, 'yyyy/MM/dd') as dDay from 
+    (select (to_date(request_date, 'yyyy/MM/dd') + request_board_end) - to_date(sysdate) as dDay from 
         request  where request_appro = 1
     ) 
      where dDay > -1

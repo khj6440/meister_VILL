@@ -226,8 +226,30 @@
     }
     function checkPre3() {
     	$(this).css("display","none");
-    	$("#second").css("display","block");
-    	$("#third").css("display","none");
+    	$(function() {
+				var list = new Array();
+				var optionTitle1 = new Array();
+				for (var i = 0; i < optCount; i++) {
+  				optionTitle1.push($(".option-title")[i].value);
+  				var sellNo = ${sellNo };
+				}
+				var data = {optionTitle : optionTitle1, sellNo : sellNo};
+				 jQuery.ajaxSettings.traditional = true;
+				$.ajax({
+					url : "/meister/sell/deleteOpt.do",
+					type : "get",
+					data : data,
+					success : function(data) {
+						if(data == "1") {
+							console.log("옵션 삭제 완료");
+							$("#second").css("display","block");
+					    	$("#third").css("display","none");
+						} else {
+							console.log("삭제 오류")
+						}
+					}
+				});
+			});
     }
     
   function makeOpt() {
@@ -537,7 +559,7 @@
 <button type="button" class="btn btn-lg pre-button" onclick="checkPre2();">이전 단계</button>
 </div>
 <div style="width:50%;">
-<button type="button" class="btn btn-lg next-button" onclick="checkNext2();">다음 단계</button>
+<button type="button" class="btn btn-lg next-button next2" onclick="checkNext2();">다음 단계</button>
 </div>
 </div>
 </div>

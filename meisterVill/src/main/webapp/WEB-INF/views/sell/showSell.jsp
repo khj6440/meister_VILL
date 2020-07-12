@@ -29,9 +29,8 @@ function goLocation(where) {
 	break;
 	}
 }
-
+var sellNo = ${sell.sellvo.sellNo};
 $(function() {
-	var sellNo = ${sell.sellvo.sellNo};
 	var memberNo = "${sessionScope.member.memberNo}";
 	$.ajax({
 		url : "/meister/review/selectReview.do",
@@ -125,6 +124,20 @@ $(function() {
 		});
 	});
 });
+$(function() {
+	$.ajax({
+		url : "/meister/sell/getMultiImg.do",
+		type : "get",
+		data : {sellNo : sellNo},
+			success : function(data) {
+				if(data != "0") {
+				for(var i = 0; i < data.length; i++) {
+					$("#imgContent").append("<img class='img-fluid rounded' src='/resources/upload/multiImg/"+data[i].filename+"' style='margin-bottom:20px; width:80%;'>");
+				}
+			}  
+		}
+	});
+});
 
  
 </script>
@@ -184,11 +197,9 @@ $(function() {
 	 </div>
     </div>
     <br><hr>
-    <div class="multiImg-box" id="imgContent">
-    <br><br>
-    <c:forEach items="${multiImg }" var="i">
-		<img class="img-fluid rounded" src="/resources/upload/multiImg/${i}" style="margin-bottom:20px;">
-	</c:forEach>
+    <h5 style="font-weight:bold;">상세 이미지</h5><br><br>
+    <div class="multiImg-box" id="imgContent" style="text-align:center;">
+   
     </div>
     <hr>
 	<h5 style="font-weight:bold;">상세 후기</h5><br><br>

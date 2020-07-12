@@ -68,6 +68,6 @@
 	where employ_no = #{parameter}
 </select>
 <insert id="insertEmploy" parameterType="employ">
-	insert into employ values(employ_seq.nextval, #{employTitle}, #{employCategory1},#{employCategory2},#{employContent},#{employSkill},#{employPrice},sysdate,#{employStartDate},#{employPeriod},#{employBoardEnd},'0','0',#{employWriter},#{employWriter},'변경')
+	insert into employ values(employ_seq.nextval, #{employTitle}, #{employCategory1},#{employCategory2},#{employContent},#{employSkill},#{employPrice},to_char(SYSDATE,'YYYY/MM/DD'),#{employStartDate},#{employPeriod},#{employBoardEnd},'0','0',#{employWriter},#{employWriter},'변경')
 </insert>
 </mapper>

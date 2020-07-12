@@ -24,7 +24,7 @@ function selectDate(obj) {
 }
 function getStringDate(obj) {
 	var arr = obj.split("/");
-	var year = "20" + arr[0];
+	var year = arr[0];
 	var month = arr[1];
 	var day = arr[2];
 	return year + "년" + month +"월"+ day + "일";
@@ -32,7 +32,7 @@ function getStringDate(obj) {
 
 function getDate(obj) {
 	var arr = obj.split("/");
-	var year = "20" + arr[0];
+	var year = arr[0];
 	var month = arr[1] - 1;
 	var day = arr[2];
 	var enrollDate = new Date(year,month,day);
@@ -65,11 +65,11 @@ function getDate(obj) {
 					var dDay = (enrollDate - sysdateDate) / (24*60*60*1000);
 					console.log(dDay);
 					if(dDay > 0 && dDay < 5) {
-					html += "<span class='fo-si-14 fo-we-bo span-border' style='background-color:red;'>D-DAY "+dDay+"</span>";
+					html += "<span class='fo-si-14 fo-we-bo span-border d-day-red'>D-DAY "+dDay+"</span>";
 					} else if (dDay == 0) {
-					html += "<span class='fo-si-14 fo-we-bo span-border' style='background-color:red;'>D-DAY D-day</span>";
+					html += "<span class='fo-si-14 fo-we-bo span-border d-day-red'>D-day</span>";
 					} else {
-						html += "<span class='fo-si-14 fo-we-bo span-border' style='background-color:#FFBC42;'>D-DAY "+dDay+"</span>";	
+						html += "<span class='fo-si-14 fo-we-bo span-border d-day-point'>D-DAY "+dDay+"</span>";	
 					}
 	  				html +="</div>";
 	  				html += "<div class='fo-si-13' style='height:5em;'>"+data["request"+i].requestContent.split('<br/>').join("\r\n")+"</div>";
