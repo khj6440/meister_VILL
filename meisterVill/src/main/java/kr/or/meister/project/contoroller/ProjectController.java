@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,6 +33,8 @@ import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.project.model.service.ProjectService;
 import kr.or.meister.project.model.vo.ProjectChatVO;
 import kr.or.meister.project.model.vo.ProjectFileVO;
+import kr.or.meister.project.model.vo.ProjectNoticeVO;
+import kr.or.meister.project.model.vo.ProjectScheduleVO;
 
 @Controller
 @RequestMapping("/meister/project")
@@ -44,8 +47,11 @@ public class ProjectController {
 
 	@RequestMapping(value = "/home.do")
 	public String home(Model model, int projectNo) {
+		System.out.println("pNum:"+projectNo);
 		EmployVO e = service.getProjectIntro(projectNo);
+		System.out.println("e:"+e.getProjectMembers());
 		ArrayList<MemberVO> members = service.seletProjectMember(e.getProjectMembers());
+		System.out.println("members:"+members.size());
 		model.addAttribute("project", e);
 		model.addAttribute("members", members);
 		return "project/pIntro";
@@ -70,14 +76,26 @@ public class ProjectController {
 	}
 	
 	@RequestMapping(value = "/todo.do")
-	public String todo() {
+	public String todo(Model model,int projectNo) {
+		ArrayList<ProjectNoticeVO> todoList = service.selectProjectNotice(projectNo);
+		model.addAttribute("projectNo", projectNo);
+		model.addAttribute("todoList", todoList);
 		return "project/pTodo";
+	}
+	
+	@RequestMapping(value = "/modal.do")
+	public String todo2() {
+		return "project/modal";
 	}
 
 	@RequestMapping(value = "/schedule.do")
-	public String schedule() {
+	public String schedule(Model model,int projectNo) {
+		ArrayList<ProjectScheduleVO> schedules = service.selectProjectSchedule(projectNo);
+		model.addAttribute("schedules",schedules);
+		model.addAttribute("projectNo", projectNo);
 		return "project/pSchedule";
 	}
+
 
 	@RequestMapping(value = "/files.do")
 	public String files(Model model,int projectNo) {
@@ -169,5 +187,15 @@ public class ProjectController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/insertSchedule.do")
+	public String insertSchedule(HttpSession session, ProjectScheduleVO pSchedule) {
+		MemberVO m  = (MemberVO)(session.getAttribute("member"));
+		pSchedule.setPScheduleWriter(m.getMemberNickname());
+		int result = service.insertProjectSchedule(pSchedule);
+		return "redirect:/meister/project/schedule.do?projectNo="+pSchedule.getProjectNo();
+		
+	}
+	
 	
 }

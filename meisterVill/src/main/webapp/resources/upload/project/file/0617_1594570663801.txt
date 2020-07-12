@@ -1,0 +1,356 @@
+﻿#include<SoftwareSerial.h>
+
+byte rxPin=2;
+byte txPin=3;
+SoftwareSerial BTSerial(rxPin,txPin);
+
+void setup() {
+  Serial.begin(9600);
+  BTSerial.begin(9600);
+  pinMode(8,OUTPUT);
+}
+
+void loop() {
+  if(BTSerial.available()){
+//    Serial.println(BTSerial.readString());람각
+    String str=BTSerial.readString();
+    Serial.println(str);
+    if(str=="on\r\n"){
+      digitalWrite(8,HIGH);
+    }else if(str=="off\r\n"){
+      digitalWrite(8,LOW);
+    }else{
+     Serial.println("error");
+    }
+    
+  }
+
+  if(Serial.available()){
+    BTSerial.println(Serial.readString());
+  }
+}
+----------------------------------------------
+int arr[] ={9,7,5};
+
+void setup(){
+  Serial.begin(9600);
+
+  for(int i =0;i<3;i++){
+    pinMode(arr[i],OUTPUT);
+  }
+}
+
+
+
+void loop(){
+  if(Serial.available()>0){
+    for(int i =0;i<3;i++){
+      digitalWrite(arr[i],LOW);
+    }
+    
+    String ch = Serial.readString();
+    if(ch=="red"){
+      digitalWrite(9,HIGH);
+    }else if(ch=="green"){
+      digitalWrite(7,HIGH);
+    }else if(ch=="blue"){
+      digitalWrite(5,HIGH);
+    }else{
+      Serial.println("잘못입력");
+    }
+  }
+}
+------------------------------
+
+int arr[] = {9,7,5,3,2};
+
+void setup() {
+  Serial.begin(9600);
+  for(int i=0;i<5;i++){
+    pinMode(arr[i],OUTPUT);
+  }
+}
+
+void loop() {
+//   put your main code here, to run repeatedly:
+
+  
+  
+  if(Serial.available()>0){
+    
+    for(int i=0;i<5;i++){
+      digitalWrite(arr[i],LOW);
+    }
+    int inputNumber = Serial.parseInt();
+    Serial.print("불킨다\n");
+    digitalWrite(arr[inputNumber-1],HIGH);
+  }
+//  for(int i=0;i<5;i++){
+//    digitalWrite(arr[i],HIGH);
+//    delay(1000);
+//  }
+//    for(int i=4;i>=0;i--){
+//    digitalWrite(arr[i],LOW);
+//    delay(1000);
+//  }
+  
+  
+}
+-----------------------------------------------------
+#include<LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27,16,2);
+int count =0;
+float sum =0;
+void setup() {
+  analogReference(INTERNAL);
+  Serial.begin(9600);
+  pinMode(12,INPUT);
+ 
+}
+
+void loop() {
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0,0);
+  int num= digitalRead(12);
+
+  if(num==0){
+    lcd.print("Press Button");
+    sum=0;
+    count=0;
+  }else{
+    int val = analogRead(A0);
+    float temp = val/9.31;
+    Serial.println(temp);
+    count++;
+    sum+=temp;
+    float avg = sum/count;
+    lcd.print(avg);
+    lcd.print("C");
+  }
+  delay(200);  
+}
+-----------------------------------
+#include<SoftwareSerial.h>
+SoftwareSerial mySerial(2,3);
+
+void setup() {
+  Serial.begin(9600);
+  mySerial.begin(9600);
+  
+}
+
+void loop() {
+  if(mySerial.available()){
+    Serial.write(mySerial.read());
+  }
+  
+  if(Serial.available()){
+    mySerial.write(Serial.read());
+  }
+}
+
+-----------------------------
+/*
+ WiFiEsp example: WebServer
+
+ A simple web server that shows the value of the analog input 
+ pins via a web page using an ESP8266 module.
+ This sketch will print the IP address of your ESP8266 module (once connected)
+ to the Serial monitor. From there, you can open that address in a web browser
+ to display the web page.
+ The web page will be automatically refreshed each 20 seconds.
+
+ For more details see: http://yaab-arduino.blogspot.com/p/wifiesp.html
+*/
+
+#include "WiFiEsp.h"
+
+// Emulate Serial1 on pins 6/7 if not present
+#ifndef HAVE_HWSERIAL1
+#include "SoftwareSerial.h"
+SoftwareSerial Serial1(2, 3); // RX, TX
+#endif
+
+char ssid[] = "A_CLASS";            // your network SSID (name)
+char pass[] = "khacademy*";        // your network password
+int status = WL_IDLE_STATUS;     // the Wifi radio's status
+int reqCount = 0;                // number of requests received
+
+WiFiEspServer server(80);
+
+
+void setup()
+{
+  pinMode(8,OUTPUT);
+  pinMode(9,OUTPUT);
+  // initialize serial for debugging
+  Serial.begin(9600);
+  // initialize serial for ESP module
+  Serial1.begin(9600);
+  // initialize ESP module
+  WiFi.init(&Serial1);
+
+  // check for the presence of the shield
+  if (WiFi.status() == WL_NO_SHIELD) {
+    Serial.println("WiFi shield not present");
+    // don't continue
+    while (true);
+  }
+
+  // attempt to connect to WiFi network
+  while ( status != WL_CONNECTED) {
+    Serial.print("Attempting to connect to WPA SSID: ");
+    Serial.println(ssid);
+    // Connect to WPA/WPA2 network
+    status = WiFi.begin(ssid, pass);
+  }
+
+  Serial.println("You're connected to the network");
+  printWifiStatus();
+  
+  // start the web server on port 80
+  server.begin();
+}
+
+
+void loop()
+{
+  if(Serial1.available()){
+    if(Serial1.find("+IPD,")){
+      int connectId = Serial1.read()-48; // 접속아이디
+      Serial.print("connectId : ");
+      Serial.println(connectId);
+      Serial1.find("led=");         //파라미터 부분으로 이동
+      int val = Serial1.parseInt(); //파라미터 값 읽어서 변수에 저장
+      if(val ==1){
+        digitalWrite(8,HIGH);
+      }else if(val==2){
+        digitalWrite(8,LOW);
+      }else if(val==3){
+        digitalWrite(9,HIGH);
+      }else if(val==4){
+        digitalWrite(9,LOW);
+      }
+    }
+  }
+}
+
+
+void printWifiStatus()
+{
+  // print the SSID of the network you're attached to
+  Serial.print("SSID: ");
+  Serial.println(WiFi.SSID());
+
+  // print your WiFi shield's IP address
+  IPAddress ip = WiFi.localIP();
+  Serial.print("IP Address: ");
+  Serial.println(ip);
+  
+  // print where to go in the browser
+  Serial.println();
+  Serial.print("To see this page in action, open a browser to http://");
+  Serial.println(ip);
+  Serial.println();
+}
+---------------------------------------------------------
+/*
+ WiFiEsp example: WebClient
+
+ This sketch connects to google website using an ESP8266 module to
+ perform a simple web search.
+
+ For more details see: http://yaab-arduino.blogspot.com/p/wifiesp-example-client.html
+*/
+
+#include "WiFiEsp.h"
+
+// Emulate Serial1 on pins 6/7 if not present
+#ifndef HAVE_HWSERIAL1
+#include "SoftwareSerial.h"
+SoftwareSerial Serial1(2, 3); // RX, TX
+#endif
+
+char ssid[] = "A_CLASS";            // your network SSID (name)
+char pass[] = "khacademy*";        // your network password
+int status = WL_IDLE_STATUS;     // the Wifi radio's status
+
+char server[] = "192.168.10.15";
+
+// Initialize the Ethernet client object
+WiFiEspClient client;
+
+void setup()
+{
+  // initialize serial for debugging
+  Serial.begin(9600);
+  // initialize serial for ESP module
+  Serial1.begin(9600);
+  // initialize ESP module
+  WiFi.init(&Serial1);
+
+  // check for the presence of the shield
+  if (WiFi.status() == WL_NO_SHIELD) {
+    Serial.println("WiFi shield not present");
+    // don't continue
+    while (true);
+  }
+
+  // attempt to connect to WiFi network
+  while ( status != WL_CONNECTED) {
+    Serial.print("Attempting to connect to WPA SSID: ");
+    Serial.println(ssid);
+    // Connect to WPA/WPA2 network
+    status = WiFi.begin(ssid, pass);
+  }
+
+  // you're connected now, so print out the data
+  Serial.println("You're connected to the network");
+  
+  printWifiStatus();
+
+  
+}
+
+void loop()
+{
+  if(client.connect(server,80)){
+    Serial.println("Connected to server");
+    client.print("GET /arduinoTest.do?str=");
+    client.print("testMsg");
+    client.println(" HTTP/1.1");
+    client.println("Host:192.168.10.15:80");
+    client.println("Cache-Control:no-cache");
+    client.println("User-Agent: Arduino");
+    client.println("Connection: Close");
+    client.println();
+  }
+  while(client.available()){
+    char c = client.read();
+    Serial.write(c);
+  }
+  Serial.println();
+  delay(10*1000);
+}
+
+void printWifiStatus()
+{
+  // print the SSID of the network you're attached to
+  Serial.print("SSID: ");
+  Serial.println(WiFi.SSID());
+
+  // print your WiFi shield's IP address
+  IPAddress ip = WiFi.localIP();
+  Serial.print("IP Address: ");
+  Serial.println(ip);
+
+  // print the received signal strength
+  long rssi = WiFi.RSSI();
+  Serial.print("Signal strength (RSSI):");
+  Serial.print(rssi);
+  Serial.println(" dBm");
+}
+
+

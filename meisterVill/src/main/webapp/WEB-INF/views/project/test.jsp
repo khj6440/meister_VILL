@@ -5,12 +5,10 @@
  <jsp:include page="/WEB-INF/views/common/message.jsp" />
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Moonlight CSS Template</title>
+<link rel="shortcut icon" type="image⁄x-icon" href="/resources/yr/imgs/logo.png">
+<title>MEISTER VILL | PROJECT</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" type="image⁄x-icon" href="/resources/yr/imgs/logo.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <link rel="stylesheet" href="/resources/hj/test/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -82,13 +80,13 @@
 		</div>
 		<div class="slide" id="3">
 			<div class="content third-content">
-				<iframe src="/meister/project/todo.do"
+				<iframe src="/meister/project/todo.do?projectNo=${projectNo }"
 					style="width: 100%; height: 100%;" frameborder="0"></iframe>
 			</div>
 		</div>
 		<div class="slide" id="4">
 			<div class="content fourth-content">
-				<iframe src="/meister/project/schedule.do"
+				<iframe src="/meister/project/schedule.do?projectNo=${projectNo }"
 					style="width: 100%; height: 100%;" frameborder="0"></iframe>
 			</div>
 		</div>

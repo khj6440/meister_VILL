@@ -90,5 +90,34 @@
 		where 
 			project_no =#{_parameter}		
 	</select>
-	
+	<select id="selectProjectSchedule" parameterType="int" resultType="pSchedule">
+		select
+			p_schedule_no as pScheduleNo,
+			project_no as projectNo,
+			p_schedule_writer as pScheduleWriter,
+			p_schedule_content as pScheduleContent,
+			p_schedule_start as pScheduleStart,
+			p_schedule_end as pScheduleEnd
+		from
+			project_schedule
+		where
+			project_no = #{_parameter}
+	</select>
+	<insert id="insertProjectSchedule" parameterType="pSchedule">
+		insert into project_schedule values
+		(project_schedule_seq.nextval,#{projectNo},#{pScheduleWriter},#{pScheduleContent},#{pScheduleStart},#{pScheduleEnd})
+		
+	</insert>
+	<select id="selectProjectNotice" parameterType="int" resultType="pNotice">
+		select
+			p_notice_no as pNoticeNo,
+			project_no as projectNo,
+			p_notice_writer as pNoticeWriter,
+			p_notice_content as pNoticeContent,
+			p_notice_date as pNoticeDate
+		from
+			project_notice
+		where
+			project_no =#{_parameter}
+	</select>
 </mapper>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<link rel="shortcut icon" type="image⁄x-icon" href="/resources/yr/imgs/logo.png">
 <link type="text/css"
 	href="/resources/yr/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet">
@@ -484,7 +485,7 @@
 	var memberNickname = "${sessionScope.member.memberNickname}";
 
 	function connectMsg() {
-		wsMsg = new WebSocket("ws://192.168.10.15/message.do");
+		wsMsg = new WebSocket("ws://192.168.0.6/message.do");
 
 		wsMsg.onopen = function() {
 			console.log("웹 소켓 연결 생성(msg)");
@@ -618,15 +619,17 @@
 		$.ajax({
 			url : "/meister/member/readMsg.do",
 			data : {
-				msgNo:msgNo
+				msgNo:msgNo,
+				memberNickname:"${sessionScope.member.memberNickname}"
 			},
 			type : "get",
-			success : function() {
+			success : function(data) {
 				$(".au-message__item").each(function(index,item){
 					if($(item).attr("num")==msgNo){
 						$(item).find(".au-message__item-inner").css("border-left","5px solid gray");
 					}
-				}) 
+				});
+				$(".unreadCnt").html(data);
 			},
 			error : function() {
 				console.log("ajax 실패");

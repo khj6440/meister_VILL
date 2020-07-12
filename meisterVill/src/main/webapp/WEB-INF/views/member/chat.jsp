@@ -325,7 +325,7 @@ ul.list-style-none li a:hover {
         var ws;
 		var memberNickname = '${sessionScope.member.memberNickname}';
 		function connect() {
-			ws = new WebSocket("ws://192.168.10.15/chat.do");	//protocol이 http가 아닌 ws://임
+			ws = new WebSocket("ws://192.168.0.6/chat.do");	//protocol이 http가 아닌 ws://임
 			//연결 -> 메세지 받았을 때 -> 종료
 			//연결
 			ws.onopen = function(){

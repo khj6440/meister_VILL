@@ -235,11 +235,10 @@ html, body {
 		
 		$(window).scroll(function(){ 
 		    var height = $(document).scrollTop(); 
-		    if(height > 300){ 
+		    if(height >= 300){ 
 		    	$('.page-body').eq(0).css({"position":"fixed","top":"0","z-index":"1000","right":"0"}); 
-				    
 		    }else{ 
-		      $('.page-body').eq(0).css({'position':"relative"}); 
+		      $('.page-body').eq(0).css({"position":"","top":"","z-index":"","right":""}); 
 		    } 
 		});
 		
