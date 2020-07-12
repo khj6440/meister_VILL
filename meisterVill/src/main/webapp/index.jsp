@@ -514,7 +514,7 @@
         <a href="/meister/member/order.do">결제페이지</a><br>
         <a href="/meister/member/changePwLink.do">비번 변경 링크 이메일</a><br>
         <a href="/meister/member/purchaseSuccess.do">결제완료 페이지</a><br>
-        <a href="/meister/member/couponListModal.do">쿠폰리스트 모달 테스트</a><br>
+        <a href="/meister/sell/couponListModal.do">쿠폰리스트 모달 테스트</a><br>
         <a href="/meister/member/couponWriteFrm.do">쿠폰이벤트 작성페이지</a><br>
         <a href="/meister/member/carouselTestFrm.do">캐러셀테스트</a><br>
         <a href="/meister/member/carouselTestFrm2.do">캐러셀테스트2</a><br>  

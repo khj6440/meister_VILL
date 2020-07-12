@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="sell">
+<mapper namespace="count">
 <resultMap id="sellMap" type="sell">
 	    <id property="sellNo" column="sell_no" />
 	    <result property="sellTitle" column="sell_title" />
@@ -21,13 +21,6 @@
 	  	<result property="sellFix" column="sell_fix" />
 	  	<result property="sellImg" column="sell_img" />
 </resultMap>
-<resultMap type="multiImg" id="multiMap">
-	    <id property="imgNo" column="img_no" />
-	    <result property="multiBoardNo" column="multi_board_no" />
-	    <result property="multiBoardType" column="multi_board_type" />
-	    <result property="filename" column="filename" />
-	    <result property="filepath" column="filepath" />
-</resultMap>
 <resultMap type="options" id="optionsMap">
 		<id property="optionNo" column="option_no" />
 	    <result property="sellNo" column="sell_no" />
@@ -35,11 +28,6 @@
 	    <result property="optionContent" column="option_content" />
 	    <result property="optionPrice" column="option_price" />
 	    <result property="optionPlusDate" column="option_plus_date" />
-</resultMap>
-<resultMap type="pick" id="pickMap">
-		<id property="pickNo" column="pick_no" />	
-	    <result property="sellNo" column="sell_no" />
-	    <result property="memberNo" column="member_no" />
 </resultMap>
 <resultMap type="member" id="memberMap">
  		<id property="memberNo" column="member_no" />
@@ -64,22 +52,6 @@
          <result property="memberDate" column="member_date" />
 </resultMap>
 
-<resultMap id="sjo" type="sjo">
- 	<association property="sellvo" resultMap="sellMap">
-	</association>
-    <association property="membervo" resultMap="memberMap">
-    </association>
-	<association property="multiimgvo" resultMap="multiMap">
-	</association>
-	<association property="optionsvo" resultMap="optionsMap">
-	</association>
-</resultMap>
-<resultMap id="sjm" type="sjm">
- 	<association property="sellvo" resultMap="sellMap">
-	</association>
-    <association property="membervo" resultMap="memberMap">
-    </association>
-</resultMap>
 <resultMap type="smo" id="smo">
 	<association property="sellvo" resultMap="sellMap">
 	</association>
@@ -89,63 +61,59 @@
 	</association>
 </resultMap>
 
-<select id="selectAllList" resultMap="sjm">
-	select * from
-		(select rownum as rnum, n.* from
-			(select 
-				*
-			from sell
-			join member
-			on (sell_writer = member_no)
-			where sell_appro = 1 and sell_status = 0
-		order by 1 desc)n
-		)
-	where rnum between #{start} and #{end}
+
+<select id="selectSellInfo" resultMap="sellMap">
+	select *
+	from sell
+	where sell_no=#{sellNo}
+</select>
+<select id="selectOneMember" parameterType="_int" resultMap="memberMap">
+	select *
+	from member
+	where member_no=#{memberNo}
+</select>
+<select id="selectOptionsInfo" parameterType="_int" resultMap="optionsMap">
+	select *
+	from options
+	where sell_no=#{sellNo}
+</select>
+<insert id="purchaseSell" parameterType="orders">
+	insert into orders values(
+		orders_seq.nextval,
+		#{orderMemberNo},
+		#{orderBoardNo},
+		to_char(SYSDATE,'YYYY/MM/DD'),
+		0
+	)
+</insert>
+<select id="getOrders" parameterType="_int" resultType="orders">
+	select
+		max(order_no) as orderNo,
+		max(order_date) as orderDate
+	from orders
+	where order_member_no=#{orderMemberNo}
 </select>
 
-<select id="selectTotal" resultType="_int">
-	select count(*) as cnt from sell
-</select>
-<select id="selectOne" parameterType="_int" resultMap="sjo">
-	select * from sell
-		full outer join member on (sell.sell_writer=member.member_no)
-		left join multi_img on (sell.sell_no = multi_img.multi_board_no)
-		left join options on (sell.sell_no = options.sell_no)
-	where sell.sell_no = #{parameter}
-</select>
-<insert id="insertSell" parameterType="sell" useGeneratedKeys="true" keyColumn="sell_no" keyProperty="sellNo">
-	insert into sell values(sell_seq.nextval,'0',#{sellWriter},'0','0','0','0','0','0','0','0','0','0','0','0','0','0','0') 
+<insert id="orderOption" parameterType="oov">
+	insert into order_option values(
+		order_option_seq.nextval,
+		#{optionNo},
+		#{orderNo}
+	)
+	
 </insert>
-<insert id="insertOpt" parameterType="options">
-	insert into options values(options_seq.nextval,#{sellNo},#{optionTitle},#{optionContent},#{optionPrice},#{optionPlusDate})
-</insert>
-<insert id="insertMulImg" parameterType="multiImg">
-	insert into multi_img values(multi_img_seq.nextval,#{multiBoardNo},#{multiBoardType},#{filename},#{filepath})
-</insert>
-<update id="updateSellList" parameterType="sell">
-	update sell set 
-		sell_title = #{sellTitle},
-		sell_writer = #{sellWriter},
-		sell_price = #{sellPrice},
-		sell_category1 = #{sellCategory1},
-		sell_category2 = #{sellCategory2},
-		sell_skill = #{sellSkill},
-		sell_date = sysdate,
-		sell_appro = #{sellAppro},
-		sell_status = #{sellStatus},
-		sell_opt1 = #{sellOpt1},
-		sell_opt2 = #{sellOpt2},
-		sell_opt3 = #{sellOpt3},
-		sell_opt_fix = #{sellOptFix},
-		sell_period = #{sellPeriod},
-		sell_content = #{sellContent},
-		sell_fix = #{sellFix},
-		sell_img = #{sellImg}
-	where sell_no = #{sellNo}
+<update id="couponUse" parameterType="map">
+	update coupon_issued
+	set
+		coupon_issued_check=1
+	where coupon_issued_no in
+		<foreach collection="array" item="no" open="(" separator="," close=")">
+			#{no}
+		</foreach>	
 </update>
-<select id="selectPick" parameterType="_int" resultMap="pickMap">
-	select * from pick where member_no = #{parameter}
-</select>
+
+
+	
 
 
 </mapper>

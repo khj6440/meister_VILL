@@ -16,6 +16,7 @@ import kr.or.meister.member.model.vo.MemberDataVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
+import kr.or.meister.sell.model.vo.SellVO;
 
 @Repository("memberDao")
 public class MemberDao {
@@ -141,13 +142,6 @@ public class MemberDao {
 		return sqlSession.insert("member.welcomeCoupon",memberNo);
 	}
 
-	public List couponMoalOpen(int memberNo) {
-		return sqlSession.selectList("member.couponList", memberNo);
-				
-	}
-	public List selectAllCoupon(SellJoinOthersVO sjo) {
-		return sqlSession.selectList("member.selectAvailableCoupon",sjo);
-	}
 
 	public List allMeistser() {
 		return sqlSession.selectList("member.allMeister");
@@ -155,6 +149,10 @@ public class MemberDao {
 
 	public int totalCountMeister() {
 		return sqlSession.selectOne("member.totalCountMeister");
+	}
+
+	public SellVO selectSellInfo(int sellNo) {
+		return sqlSession.selectOne("count.sellInfo",sellNo);
 	}
 
 }

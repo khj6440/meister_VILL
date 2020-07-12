@@ -1,12 +1,12 @@
 package kr.or.meister.coupon.model.vo;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import lombok.Data;
 
 @Data
 public class CouponApplyVO {
-	private List arrCouponName;
-	private List arrCouponPrice;
+	private ArrayList<String> arrCouponName;
+	private ArrayList<Integer> arrCouponPrice;
 	private int totalDiscount;
 }

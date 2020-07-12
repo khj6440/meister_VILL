@@ -80,6 +80,14 @@
     <association property="membervo" resultMap="memberMap">
     </association>
 </resultMap>
+<resultMap type="smo" id="smo">
+	<association property="sellvo" resultMap="sellMap">
+	</association>
+	<association property="membervo" resultMap="memberMap">
+	</association>
+	<association property="optionsvo" resultMap="optionsMap">
+	</association>
+</resultMap>
 
 <select id="selectAllList" resultMap="sjm">
 	select * from
@@ -138,4 +146,6 @@
 <select id="selectPick" parameterType="_int" resultMap="pickMap">
 	select * from pick where member_no = #{parameter}
 </select>
+
+
 </mapper>

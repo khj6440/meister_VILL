@@ -26,7 +26,7 @@ import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
 
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
-
+import kr.or.meister.sell.model.vo.SellVO;
 import kr.or.meister.request.model.vo.RequestMemberVO;
 import kr.or.meister.sell.model.vo.SellJoinMemberVO;
 
@@ -129,15 +129,8 @@ public class MemberService {
 	public int welcomeCoupon(int memberNo) {
 		return dao.welcomeCoupon(memberNo);
 	}
-	public ArrayList<CouponJoinCouponIssuedVO> selectAllCoupon(int memberNo) {	
-		return (ArrayList<CouponJoinCouponIssuedVO>)dao.couponMoalOpen(memberNo);
-	}
-
-	public ArrayList<CouponJoinCouponIssuedVO> selectAllCoupon(SellJoinOthersVO sjo) {
-		return (ArrayList<CouponJoinCouponIssuedVO>)dao.selectAllCoupon(sjo);
-	}
-
-
+	
+	
 
 	
 	public HashMap<String, Object> selectAllEmploy(int memberNo,int reqPage, int employstatus, int employappro) {
@@ -246,6 +239,8 @@ public class MemberService {
 	public int totalCountMeister() {
 		return dao.totalCountMeister();
 	}
+
+	
 
 
 

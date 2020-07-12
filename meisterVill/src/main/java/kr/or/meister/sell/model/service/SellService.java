@@ -8,12 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO;
+import kr.or.meister.coupon.model.vo.CouponMemberVO;
+import kr.or.meister.couponIssued.model.vo.CouponIssuedVO;
 import kr.or.meister.etc.model.vo.MultiImgVO;
 import kr.or.meister.etc.model.vo.PickVO;
+import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.options.model.vo.OptionsVO;
+import kr.or.meister.orders.model.vo.OrderOptionVO;
+import kr.or.meister.orders.model.vo.OrdersVO;
 import kr.or.meister.sell.model.dao.SellDao;
 import kr.or.meister.sell.model.vo.SellJoinMemberVO;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
+import kr.or.meister.sell.model.vo.SellMemberOptionVO;
 import kr.or.meister.sell.model.vo.SellVO;
 
 @Service("sellService")
@@ -117,4 +124,39 @@ public class SellService {
 		List list = dao.selecctPicList(memberNo);
 		return (ArrayList<PickVO>)list;
 	}
+
+	public SellVO selectSellInfo(int sellNo) {
+		return dao.selectSellInfo(sellNo);
+	}
+
+	public MemberVO selectOneMember(int memberNo) {
+		return dao.selectOneMember(memberNo);
+	}
+
+	public ArrayList<OptionsVO> selectOptionsInfo(int sellNo) {
+		return (ArrayList<OptionsVO>)dao.selectOptionInfo(sellNo);
+	}
+
+	public ArrayList<CouponJoinCouponIssuedVO> getCouponCnt(CouponMemberVO cm) {
+		return (ArrayList<CouponJoinCouponIssuedVO>)dao.getCouponCnt(cm);
+	}
+
+	public int purchaseSell(OrdersVO ov) {
+		return dao.purchaseSell(ov);
+	}
+
+	public OrdersVO getOrders(int orderMemberNo) {
+		return dao.getOrders(orderMemberNo);
+	}
+
+	public int couponUse(int[] couponNo) {
+		return dao.couponUse(couponNo);
+	}
+
+	public int orderOption(OrderOptionVO oov) {
+		return dao.orderOption(oov);
+	}
+
+
+	
 }

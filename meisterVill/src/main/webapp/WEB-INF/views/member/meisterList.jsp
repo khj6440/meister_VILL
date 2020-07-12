@@ -70,7 +70,7 @@
                                 <div class="m-name">{m.memberNickname}</div>
                                 <div class="m-introduce">{m.memberIntro}</div>
                                 <div class="m-star">
-                                	for (var i = 0; i < Math.floor(pointArange); i++) {
+                                	<!-- for (var i = 0; i < Math.floor(pointArange); i++) {
 					html2 += "<img style='width:15px; height:15px;' src='/resources/upload/homeImg/full-star.png'>";
 				}
 				if ((pointArange.toFixed(1)) % (Math.floor(pointArange)) == 0) {
@@ -83,7 +83,7 @@
 						html2 += "<img style='width:15px; height:15px;' src='/resources/upload/homeImg/bin-star.png'>";
 					}
 				}
-                                
+                      -->           
                                 
                                 
                                 

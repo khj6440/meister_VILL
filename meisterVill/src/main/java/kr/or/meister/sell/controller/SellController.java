@@ -23,12 +23,19 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.Gson;
 
+import kr.or.meister.coupon.model.vo.CouponApplyVO;
+import kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO;
+import kr.or.meister.coupon.model.vo.CouponMemberVO;
+import kr.or.meister.couponIssued.model.vo.CouponIssuedVO;
 import kr.or.meister.etc.model.vo.MultiImgVO;
 import kr.or.meister.etc.model.vo.PickVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.options.model.vo.OptionsVO;
+import kr.or.meister.orders.model.vo.OrderOptionVO;
+import kr.or.meister.orders.model.vo.OrdersVO;
 import kr.or.meister.sell.model.service.SellService;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
+import kr.or.meister.sell.model.vo.SellMemberOptionVO;
 import kr.or.meister.sell.model.vo.SellVO;
 
 @Controller
@@ -210,5 +217,106 @@ public class SellController {
 	public long getCurrentTime() {
 		Calendar today = Calendar.getInstance();
 		return today.getTimeInMillis();
+	}
+	
+	@RequestMapping("/order.do") 
+	 public String order(int sellNo, int memberNo,Model model) { 
+		 //유라: 구매하기 버튼 누름 
+		 SellVO sellvo = service.selectSellInfo(sellNo);
+		 MemberVO membervo = service.selectOneMember(memberNo);
+		 MemberVO sellervo = service.selectOneMember(sellvo.getSellWriter());
+		 ArrayList<OptionsVO> optionsvoArr = service.selectOptionsInfo(sellNo);
+		 System.out.println("구매타이틀"+sellvo.getSellTitle());
+		 System.out.println("구매가격"+sellvo.getSellPrice());
+		 System.out.println("구매자닉네임"+membervo.getMemberNickname());
+		 System.out.println("구매옵션1제목"+optionsvoArr.get(0).getOptionTitle());
+		 SellMemberOptionVO smo = new SellMemberOptionVO();
+		 smo.setMembervo(membervo);
+		 smo.setSellvo(sellvo);
+		 smo.setOptionsvoArr(optionsvoArr);
+		 CouponMemberVO cm = new CouponMemberVO();
+		 cm.setMemberNo(memberNo);
+		 cm.setSellPrice(sellvo.getSellPrice());
+		 ArrayList<CouponJoinCouponIssuedVO> arrCjci = service.getCouponCnt(cm);
+		 model.addAttribute("sell",smo.getSellvo());
+		 model.addAttribute("member",smo.getMembervo());
+		 model.addAttribute("seller",sellervo);
+		 model.addAttribute("options",smo.getOptionsvoArr()); 
+		 model.addAttribute("coupons",arrCjci);
+		 model.addAttribute("couponCnt",arrCjci.size());
+		 return "order/order"; 
+		 }
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/couponModalOpen.do", produces = "application/json;charset=UTF-8")
+	public String couponModalOpen(ArrayList<CouponJoinCouponIssuedVO> arrCoupons) {
+		//유라: 결제창에서 쿠폰모달 오픈
+		System.out.println(arrCoupons);
+		return new Gson().toJson(arrCoupons);
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/couponApply.do", produces = "application/json;charset=UTF-8")
+	public String couponApply(CouponApplyVO cav) {
+		// 유라: 쿠폰 적용 버튼 누름
+		System.out.println(cav.getTotalDiscount());
+		return new Gson().toJson(cav);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/purchaseSuccess.do")
+	public String purchaseSuccess(int orderMemberNo, int orderBoardNo, String sellTitle, String memberEmail, int price, int[] optionNo, int[] couponNo, Model model) {
+		//유라: 결제하기 버튼 클릭
+		System.out.println("uu"+orderMemberNo);
+		System.out.println("uu"+orderBoardNo);
+		System.out.println("uu"+sellTitle);
+		System.out.println("uu"+memberEmail);
+		System.out.println("uu"+price);
+		System.out.println("uu"+optionNo);
+		System.out.println("uu"+couponNo);
+		OrdersVO ov = new OrdersVO();
+		ov.setOrderMemberNo(orderMemberNo);
+		ov.setOrderBoardNo(orderBoardNo);
+		int result = service.purchaseSell(ov);
+		if(result>0) {
+			OrdersVO ov2 = service.getOrders(orderMemberNo);
+			int resultOption=0;
+			for(int i=0; i<optionNo.length;i++) {
+				OrderOptionVO oov = new OrderOptionVO();
+				oov.setOptionNo(optionNo[i]);
+				oov.setOrderNo(ov.getOrderNo());
+				resultOption += service.orderOption(oov);
+			}	
+			
+			int resultCoupon= service.couponUse(couponNo);
+			if(resultCoupon>0 && resultOption==optionNo.length) {
+				model.addAttribute("memberNo", ov.getOrderMemberNo());
+				model.addAttribute("memberEmail", memberEmail);
+				model.addAttribute("sellTitle",sellTitle);
+				model.addAttribute("date",ov.getOrderDate());
+				model.addAttribute("price",price);
+				return "1";
+			}else {
+				return "0";
+			}
+		}else {
+			return "0";
+		}
+	} 
+	
+	@RequestMapping("/sellEnd.do")
+	public String sellEnd(int orderMemberNo, int orderBoardNo, String sellTitle, String memberEmail, int price, Model model) {
+		//결제완료 페이지 이동
+		model.addAttribute("memberNo", orderMemberNo);
+		model.addAttribute("orderBoardNo",orderBoardNo);
+		model.addAttribute("memberEmail", memberEmail);
+		OrdersVO ov = service.getOrders(orderMemberNo);
+		model.addAttribute("orderNo",ov.getOrderNo());
+		model.addAttribute("orderDate",ov.getOrderDate());
+		model.addAttribute("sellTitle",sellTitle);
+		model.addAttribute("price",price);
+		return "order/purchaseSuccess";
 	}
 }
