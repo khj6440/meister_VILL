@@ -83,6 +83,16 @@ public class ProjectController {
 		return "project/pTodo";
 	}
 	
+	@RequestMapping(value = "/todo2.do")
+	public String todo2(Model model,int projectNo,String date) {
+		ArrayList<ProjectNoticeVO> todoList = service.selectProjectNotice(projectNo,date);
+		model.addAttribute("projectNo", projectNo);
+		model.addAttribute("todoList", todoList);
+		model.addAttribute("pickDate",date);
+		return "project/pTodo";
+	}
+	
+	
 	@RequestMapping(value = "/modal.do")
 	public String todo2() {
 		return "project/modal";
@@ -197,5 +207,29 @@ public class ProjectController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/insertTodo.do")
+	public int insertTodo(ProjectNoticeVO notice) {
+		int result = service.insertProjectNotice(notice);
+		return result;
+	}
+	@ResponseBody
+	@RequestMapping(value="/deleteTodo.do")
+	public int deleteTodo(int pNoticeNo) {
+		int result =service.deleteProjectNotice(pNoticeNo);
+		return result;
+	}
+	@ResponseBody
+	@RequestMapping(value="/updateTodoDone.do")
+	public int updateTodoDone(int pNoticeNo) {
+		int result= service.updateTodoDone(pNoticeNo);
+		return result;
+	}
+	@ResponseBody
+	@RequestMapping(value="/updateTodoDont.do")
+	public int updateTodoDont(int pNoticeNo) {
+		int result= service.updateTodoDont(pNoticeNo);
+		return result;
+	}
 	
 }

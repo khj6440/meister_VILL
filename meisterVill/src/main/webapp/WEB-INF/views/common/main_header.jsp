@@ -93,7 +93,8 @@
                 <c:if test="${empty sessionScope.member }">
                     <div class="hd hd-member">
                         <a class="member-top-menu" href="#">마이스터 등록</a>
-                        <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
+                        <!-- <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a> -->
+                        <a class="member-top-menu" href="/meister/member/loginFrm.do">로그인</a>
                         <a class="btn btn-insert" href="/meister/member/join.do">무료 회원가입</a>
                     </div>
                 </c:if>
@@ -170,7 +171,8 @@
             <c:if test="${empty sessionScope.member }">
                 <div class="member-top-line">
                     <a class="member-top-menu" href="#">마이스터 등록</a>
-                    <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a>
+ <!--                    <a class="member-top-menu" href="#" data-toggle="modal" data-target="#loginModal">로그인</a> -->
+                    <a class="member-top-menu" href="/meister/member/loginFrm.do">로그인</a>
                     <a class="btn btn-insert" href="/meister/member/join.do">무료 회원가입</a>
                 </div>
             </c:if>

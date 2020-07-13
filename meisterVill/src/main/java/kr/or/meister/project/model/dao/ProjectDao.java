@@ -1,6 +1,7 @@
 package kr.or.meister.project.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -62,4 +63,32 @@ public class ProjectDao {
 		return (ArrayList<ProjectNoticeVO>)list;
 
 	}
+
+	public int insertProjectNotice(ProjectNoticeVO notice) {
+		return sqlSession.insert("project.insertProjectNotice",notice);
+	}
+
+	public int selectProjectNoticePK(ProjectNoticeVO notice) {
+		return sqlSession.selectOne("project.selectProjectNoticePK",notice);
+	}
+
+	public int deleteProjectNotice(int pNoticeNo) {
+		return sqlSession.delete("project.deleteProjectNotice",pNoticeNo);
+	}
+
+	public ArrayList<ProjectNoticeVO> selectProjectNotice(HashMap<String, String> map) {
+		List list = sqlSession.selectList("project.selectProjectNotice2",map);
+		return (ArrayList<ProjectNoticeVO>)list;
+
+	}
+
+	public int updateTodoDone(int pNoticeNo) {
+		return sqlSession.update("project.updateTodoDone",pNoticeNo);
+	}
+
+	public int updateTodoDont(int pNoticeNo) {
+		return sqlSession.update("project.updateTodoDont",pNoticeNo);
+	}
+
+	
 }

@@ -58,10 +58,10 @@
 		</div>
 		<ul>
 			<li><a href="#1"><i class="fa fa-home"></i> <em>Home</em></a></li>
-			<li><a href="#2"><i class="fa fa-user"></i> <em>Chat</em></a></li>
-			<li><a href="#3"><i class="fa fa-pencil"></i> <em>To DO</em></a></li>
-			<li><a href="#4"><i class="fa fa-image"></i> <em>Schedule</em></a></li>
-			<li><a href="#5"><i class="fa fa-envelope"></i> <em>Files</em></a></li>
+			<li><a href="#2"><i class="fa fa-comments"></i> <em>Chat</em></a></li>
+			<li><a href="#3"><i class="fa fa-list-ul"></i> <em>To DO</em></a></li>
+			<li><a href="#4"><i class="fa fa-calendar-check-o"></i> <em>Schedule</em></a></li>
+			<li><a href="#5"><i class="fa fa-file-text-o"></i> <em>Files</em></a></li>
 		</ul>
 	</nav>
 

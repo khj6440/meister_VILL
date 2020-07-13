@@ -52,6 +52,9 @@ html, body {
 	padding: 0px;
 	height: 100%;
 }
+.task-content2:hover{
+	cursor: not-allowed;
+}
 </style>
 </head>
 <body>
@@ -77,6 +80,15 @@ html, body {
 										</div>
 									</div>
 								</div>
+								<div>
+								 <c:if test="${empty pickDate  }">
+								 	<input value="2020-07-13" id="pickDay" type="date">
+								 </c:if>
+								 <c:if test="${not empty pickDate  }">
+								 	<input value="${pickDate}" id="pickDay" type="date">
+								 
+								 </c:if>
+								<button class="btn" onclick="getTodoList()">검색</button></div>
 							</div>
 						</div>
 
@@ -94,58 +106,32 @@ html, body {
 														<section class="task-panel tasks-widget">
 															<div class="panel-body">
 																<div class="task-content">
-																	<div class="to-do-label">
-																		<div class="checkbox-fade fade-in-primary">
-																			<label class="check-task"> <input
-																				type="checkbox" value=""> <span class="cr">
-																					<i
-																					class="cr-icon icofont icofont-ui-check txt-primary"></i>
-																			</span> <span class="task-title-sp">Lorem Ipsum Dolor
-																					Sit Amet</span> <span class="float-right hidden-phone">
-																					<i class="icofont icofont-ui-delete delete_todo"></i>
-																			</span>
-																			</label>
-																		</div>
-																	</div>
-																	<div class="to-do-label">
-																		<div class="checkbox-fade fade-in-primary">
-																			<label class="check-task"> <input
-																				type="checkbox" value=""> <span class="cr">
-																					<i
-																					class="cr-icon icofont icofont-ui-check txt-primary"></i>
-																			</span> <span class="task-title-sp">Lorem Ipsum Dolor
-																					Sit Amet</span> <span class="float-right hidden-phone">
-																					<i class="icofont icofont-ui-delete delete_todo"></i>
-																			</span>
-																			</label>
-																		</div>
-																	</div>
-																	<div class="to-do-label">
-																		<div class="checkbox-fade fade-in-primary">
-																			<label class="check-task"> <input
-																				type="checkbox" value=""> <span class="cr">
-																					<i
-																					class="cr-icon icofont icofont-ui-check txt-primary"></i>
-																			</span> <span class="task-title-sp">Lorem Ipsum Dolor
-																					Sit Amet</span> <span class="float-right hidden-phone">
-																					<i class="icofont icofont-ui-delete delete_todo"></i>
-																			</span>
-																			</label>
-																		</div>
-																	</div>
-																	<div class="to-do-label">
-																		<div class="checkbox-fade fade-in-primary">
-																			<label class="check-task"> <input
-																				type="checkbox" value=""> <span class="cr">
-																					<i
-																					class="cr-icon icofont icofont-ui-check txt-primary"></i>
-																			</span> <span class="task-title-sp">Lorem Ipsum Dolor
-																					Sit Amet</span> <span class="float-right hidden-phone">
-																					<i class="icofont icofont-ui-delete delete_todo"></i>
-																			</span>
-																			</label>
-																		</div>
-																	</div>
+																	<c:forEach items="${todoList }" var="t">
+																		<c:if
+																			test="${t.PNoticeWriter eq sessionScope.member.memberNickname }">
+																			<div class="to-do-label" id=${t.PNoticeNo }>
+																				<div class="checkbox-fade fade-in-primary">
+																				<c:if test="${t.PNoticeDone eq 0 }">
+																					<label class="check-task" > 
+																						<input	type="checkbox" > 
+																				</c:if>
+																				<c:if test="${t.PNoticeDone eq 1 }">
+																					<label class="check-task done-task" > 
+																					<input	type="checkbox" checked="checked" > 
+																				</c:if>
+																					<span class="cr">
+																						<i	class="cr-icon icofont icofont-ui-check txt-primary"></i>
+																					</span> <span class="task-title-sp">${t.PNoticeContent}</span>
+																						<span style="margin-left: 25px;" class="float-right hidden-phone"> <i
+																							class="icofont icofont-ui-delete delete_todo" onclick="delete_todo(${t.PNoticeNo})"></i>
+																					</span>
+																					<span class="float-right">${t.PNoticeDate }</span>
+																						
+																					</label>
+																				</div>
+																			</div>
+																		</c:if>
+																	</c:forEach>
 																</div>
 																<div>
 																	<a
@@ -176,18 +162,34 @@ html, body {
 													<div class="card-block">
 														<section class="task-panel tasks-widget">
 															<div class="panel-body">
-																<div class="task-content">
+																<div class="task-content2">
 																	<c:forEach items="${todoList }" var="t">
-																		<div class="to-do-label">
-																			<div class="checkbox-fade fade-in-primary">
-																				<label class="check-task"> <input
-																					type="checkbox" value=""> <span class="cr">
-																						<i
-																						class="cr-icon icofont icofont-ui-check txt-primary"></i>
-																				</span> <span class="task-title-sp">${t.PNoticeContent }</span>
-																				</label>
+																		<c:if
+																			test="${t.PNoticeWriter ne sessionScope.member.memberNickname }">
+																			<div class="to-do-label">
+																				<div class="checkbox-fade fade-in-primary">
+																				<c:if test="${t.PNoticeDone eq 0 }">
+																					<label class="check-task"> 
+																					<input	type="checkbox" value="" disabled="disabled">
+
+																				</c:if>
+																				<c:if test="${t.PNoticeDone eq 1 }">
+																					<label class="check-task done-task"> 
+																					<input	type="checkbox" checked="checked" value="" disabled="disabled">
+
+																				</c:if>
+																																								
+																						<span class="cr"> <i
+																							class="cr-icon icofont icofont-ui-check txt-primary"></i>
+																					</span> <span class="task-title-sp">${t.PNoticeContent }</span>
+																					
+																						<span style="float: right;margin-left: 25px;" class="task-title-sp">작성자
+																							: ${t.PNoticeWriter }</span>
+																							<span class="float-right">${t.PNoticeDate }</span>
+																					</label>
+																				</div>
 																			</div>
-																		</div>
+																		</c:if>
 																	</c:forEach>
 																</div>
 															</div>
@@ -247,6 +249,85 @@ html, body {
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade" id="default-Modal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">DELETE TO DO</h4>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h5>삭제 확인</h5>
+					<p>삭제 하시겠습니까?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default waves-effect "
+						data-dismiss="modal">Close</button>
+					<button onclick="deleteTodo();" type="button"
+						class="btn btn-primary waves-effect waves-light ">Save
+						changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input id="pNum" style="display: none" value="${projectNo }">
+	<input id="mNick" style="display: none" value="${sessionScope.member.memberNickname}">
+	<script type="text/javascript">
+		function getTodoList(){
+			var value = $("#pickDay").val();
+			location.href="/meister/project/todo2.do?projectNo="+${projectNo}+"&date="+value;
+		}
+	</script>
+	<script type="text/javascript">
+		var num = 0;
+		var clicked=null;
+		var result2;
+		function deleteTodo(){
+			$.ajax({
+				url : "/meister/project/deleteTodo.do",
+				data : {
+					pNoticeNo : clicked,
+				},
+				type : "POST",
+				success : function(data) {
+					if(data>0){
+						$('#' + clicked).fadeOut();
+						clicked= null;
+					}else{
+						alert("실패")
+					}
+				},
+				error : function() {
+					console.log("ajax 실패");
+				}
+			});
+			$("#default-Modal").modal('hide');		
+		}
+		/* function insertTodo(saveTask) {
+			var result=0;
+			$.ajax({
+				url : "/meister/project/insertTodo.do",
+				data : {
+					projectNo : "${projectNo}",
+					pNoticeWriter : "${sessionScope.member.memberNickname}",
+					pNoticeContent : saveTask
+				},
+				type : "POST",
+				success : function(data) {
+					result2=data;
+				},
+				error : function() {
+					console.log("ajax 실패");
+				}
+			});
+			
+		} */
+		
+	</script>
 
 	<script type="e9351a8aaabbca07704238a6-text/javascript"
 		src="/resources/hj/projectRoom/calendar/js/jquery.min.js"></script>
