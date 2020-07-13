@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+a{
+	text-decoration:none;
+}
+body {
+	padding: 0;
+}
+.fo-color {
+	color : #4D4D4D;
+}
+.fo-si-12 {
+	font-size : 12px;
+}
+.fo-si-13 {
+	font-size : 13px;
+}
+.fo-si-14 {
+	font-size : 14px;
+}
+.fo-si-15 {
+	font-size : 15px;
+}
+.fo-si-16 {
+	font-size : 16px;
+}
+.fo-si-17 {
+	font-size : 17px;
+}
+.fo-si-18 {
+	font-size : 18px;
+}
+.fo-si-19 {
+	font-size : 19px;
+}
+.fo-si-20 {
+	font-size : 20px;
+}
+.fo-si-21 {
+	font-size : 21px;
+}
+.fo-si-22 {
+	font-size : 22px;
+}
+.fo-si-25 {
+	font-size : 25px;
+}
+.fo-si-28 {
+	font-size : 28px;
+}
+.fo-we-bo {
+	font-weight: bold;
+}
+.col-xs-12 {
+width : 100%;
+}
+.col-xs-10 {
+width : 83.33%;
+}
+.col-xs-9 {
+width : 75%;
+}
+.col-xs-8 {
+width : 66.67%;
+}
+.col-xs-6 {
+width : 50%;
+}
+.col-xs-4 {
+width : 33.33%;
+}
+.col-xs-3 {
+width : 25%;
+}
+.col-xs-2 {
+width : 16.67%;
+}
+
+.card-shadow {
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 3px 5px 0 rgba(0, 0, 0, 0.1);
+}
+.border-1px-solid {
+	border: 1px solid #dedede;
+}
+li>a {
+color:#4D4D4D;
+text-decoration: none !important;
+}
+a:hover {
+	color : black !important;
+	font-weight: bold;
+}
+.no-font {
+	font-family : none;
+}
+
+.meta {
+	background: #f2f3f7;
+	border-radius: 14px;
+	margin-right: 5px;
+	padding: 5px 10px;
+	font-size: 15px;
+	line-height: 29px;
+	margin-top: 10px;
+}

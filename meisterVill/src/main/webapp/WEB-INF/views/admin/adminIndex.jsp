@@ -105,7 +105,7 @@
                         color: "#A593E0"
                       },
                       {
-                          value: ${sEmploy},
+                          value: ${sEmploy},  
                           color: "#f68275"
                         }
                     ];
@@ -114,17 +114,23 @@
                   <footer> 
 					<div>
                      <div style="border: 1px solid #1c9ca7; width: 10px; height: 10px; display: inline-block; background-color: #1c9ca7;"></div>
-                     <div style="display: inline-block;">판매 게시물 : ${sSellCnt}개</div>
+                     <div style="display: inline-block;">
+                     		판매 게시물 : ${sSellCnt}개
+                     </div>
                      <div style=" display: inline-block; float:right; margin-right:15%; color: #1c9ca7;">${sSell}%</div>
                      <br> 
                      
                      <div style="border: 1px solid #A593E0; width: 10px; height: 10px; display: inline-block; background-color: #A593E0;"></div>
-                     <div style="display: inline-block;">견적요청 게시물 : ${sRequestCnt}개</div>
+                     <div style="display: inline-block;">
+                     		  견적요청 게시물 : ${sRequestCnt}개
+                     </div>
                      <div style=" display: inline-block; float:right; margin-right:15%; color: #A593E0;">${sRequest}%</div>
                      <br> 
                      
                      <div style="border: 1px solid #f68275; width: 10px; height: 10px; display: inline-block; background-color: #f68275;"></div>
-                     <div style="display: inline-block;">프로젝트 게시물 : ${sEmployCnt}개</div>
+                     <div style="display: inline-block;">
+                     		  프로젝트 게시물 : ${sEmployCnt}개
+                     </div>
                      <div style=" display: inline-block; float:right; margin-right:15%; color: #f68275;">${sEmploy}%</div>
                       
                     </div>
@@ -140,7 +146,12 @@
                   <div class="chart mt">
                     <!-- <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div> -->
                   </div>
-                  <p class="mt"><b style="font-size: xx-large;">${sellRequestSum } ￦</b><p>총 누적 판매금액</p></p>
+                  <p class="mt"><b style="font-size: xx-large;">
+                  
+                  <c:if test="${sellRequestSum != null }">${sellRequestSum } ￦</c:if>
+                  <c:if test="${sellRequestSum == null }">0 ￦</c:if>
+                  </b><p>총 누적 판매금액</p></p>
+                  
                 </div>
               </div>
               <!-- /col-md-4 -->
@@ -152,18 +163,54 @@
                 <!-- WHITE PANEL - TOP USER -->
                 <div class="white-panel pn">
                   <div class="white-header">
-                    <h5>SELL PRICE TOP USER</h5>
+                    <h5>판매글 최다수익 유저</h5>
                   </div>
-                  <p><img src="/resources/upload/memberImg/${sm.memberImg }" class="img-circle" width="50"></p>
-                  <p><b>${sm.memberName }</b></p>
+                  <p>
+                  
+                  <c:if test="${sm.memberImg != null}">
+                  <img src="/resources/upload/memberImg/${sm.memberImg }" class="img-circle" style="width: 50px; height: 50px;">
+                  </c:if>
+                  
+                  <c:if test="${sm.memberImg == null}">
+                  <img src="/resources/upload/memberImg/unnamed.png" class="img-circle" style="width: 50px; height: 50px;">
+                  </c:if>
+                  
+                  </p>
+                  <p><b>
+                  <c:if test="${sm.memberName != null}">
+                  ${sm.memberName }
+                  </c:if>
+                  
+                  <c:if test="${sm.memberName == null}">
+                  		없음
+                  </c:if>
+                  
+                  </b></p>
                   <div class="row">
                     <div class="col-md-6">
                       <p class="small mt">닉네임</p>
-                      <p>${sm.memberNickname }</p>
+                      <p>
+                      <c:if test="${sm.memberNickname != null}">
+                      ${sm.memberNickname }
+                      </c:if>
+                      
+                      <c:if test="${sm.memberNickname == null}">
+                       		없음
+                      </c:if>
+                      </p>
                     </div>
                     <div class="col-md-6">
                       <p class="small mt">총 수익</p>
-                      <p>${sellSum } ￦</p>
+                      <p>
+                      <c:if test="${sellSum != null}">
+                      ${sellSum } ￦
+                      </c:if>
+                      
+                      <c:if test="${sellSum == null}">
+                       0 ￦
+                      </c:if>
+                      
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -173,39 +220,108 @@
                 <!-- WHITE PANEL - TOP USER -->
                 <div class="white-panel pn">
                   <div class="white-header">
-                    <h5>ALL PRICE TOP USER</h5>
+                    <h5>최다수익 유저</h5>
                   </div>
-                  <p><img src="/resources/upload/memberImg/${am.memberImg }" class="img-circle" width="50"></p>
-                  <p><b>${am.memberName }</b></p>
+                  <p>
+                  
+                  <c:if test="${am.memberImg != null}">
+                  <img src="/resources/upload/memberImg/${am.memberImg }" class="img-circle" style="width: 50px; height: 50px;">
+                  </c:if>
+                  
+                  <c:if test="${am.memberImg == null}">
+                  <img src="/resources/upload/memberImg/unnamed.png" class="img-circle" style="width: 50px; height: 50px;">
+                  </c:if>
+                  
+                  </p>
+                  <p><b>
+                  <c:if test="${am.memberName != null}">
+                  ${am.memberName }
+                  </c:if>
+                  
+                  <c:if test="${am.memberName == null}">
+                  		없음
+                  </c:if>
+                  
+                  </b></p>
                   <div class="row">
                     <div class="col-md-6">
                       <p class="small mt">닉네임</p>
-                      <p>${am.memberNickname }</p>
+                      <p>
+                      <c:if test="${am.memberNickname != null}">
+                      ${am.memberNickname }
+                      </c:if>
+                      
+                      <c:if test="${am.memberNickname == null}">
+                       		없음
+                      </c:if>
+                      </p>
                     </div>
                     <div class="col-md-6">
                       <p class="small mt">총 수익</p>
-                      <p>${allSum } ￦</p>
+                      <p>
+                      <c:if test="${allSum != null}">
+                      ${allSum } ￦
+                      </c:if>
+                      
+                      <c:if test="${allSum == null}">
+                       0 ￦
+                      </c:if>
+                      
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
               <!-- /col-md-4 -->
-             <div class="col-md-4 mb">
+              <div class="col-md-4 mb">
                 <!-- WHITE PANEL - TOP USER -->
                 <div class="white-panel pn">
                   <div class="white-header">
-                    <h5>REQUEST PRICE TOP USER</h5>
+                    <h5>견적글 최다수익 유저</h5>
                   </div>
-                  <p><img src="/resources/upload/memberImg/${rm.memberImg }" class="img-circle" width="50"></p>
-                  <p><b>${rm.memberName }</b></p>
+                  <p>
+                  
+                  <c:if test="${rm.memberImg != null}">
+                  <img src="/resources/upload/memberImg/${rm.memberImg }" class="img-circle" style="width: 50px; height: 50px;">
+                  </c:if>
+                  
+                  <c:if test="${rm.memberImg == null}">
+                  <img src="/resources/upload/memberImg/unnamed.png" class="img-circle" style="width: 50px; height: 50px;">
+                  </c:if>
+                  
+                  </p>
+                  <p><b>
+                  <c:if test="${rm.memberName != null}">
+                  ${rm.memberName }
+                  </c:if>
+                  
+                  <c:if test="${rm.memberName == null}">
+                  		없음
+                  </c:if>
+                  
+                  </b></p>
                   <div class="row">
                     <div class="col-md-6">
                       <p class="small mt">닉네임</p>
-                      <p>${rm.memberNickname }</p>
+                      <p>
+                      <c:if test="${rm.memberNickname != null}">
+                      ${rm.memberNickname }
+                      </c:if>
+                      
+                      <c:if test="${rm.memberNickname == null}">
+                       		없음
+                      </c:if>
+                      </p>
                     </div>
                     <div class="col-md-6">
                       <p class="small mt">총 수익</p>
-                      <p>${requestSum } ￦</p>
+                      <p>
+                      <c:if test="${requestSum != null}">${requestSum } ￦</c:if>
+                      
+                      <c:if test="${requestSum == null}">
+                       0 ￦
+                      </c:if>
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -214,40 +330,79 @@
             </div>
             <!-- /row -->
             <div class="row">
-              <div class="col-lg-4 col-md-4 col-sm-4 mb">
-                <div class="product-panel-2 pn">
-                  <div class="badge badge-hot">HOT</div>
-                  <img src="resources/adminCss/img/product.jpg" width="200" alt="">
-                  <h5 class="mt">Flat Pack Heritage</h5>
-                  <h6>TOTAL SALES: 1388</h6>
-                  <button class="btn btn-small btn-theme04">FULL REPORT</button>
+            <div style=" display: block;">
+          <div class="col-md-4 mb">
+                <!-- WHITE PANEL - TOP USER -->
+                <div class="white-panel pn" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/resources/upload/admin/img00.jpg');  background-size: cover;">
+                  <div class="white-header">
+                    <h5>현재 날씨</h5>
+                  </div>
+                  
+                  <p>
+					<img id="img">
+					<h4 style="color: white;">Seoul</h4>
+                  </p>
+                  <p><b>
+					
+                  
+                  </b></p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p style="font-size: 18px;" class="small mt">온도</p>
+                      <p>
+                      <span style="font-size: 20px; color: white;" id="temp"></span>
+                      </p>
+                    </div>
+                    <div class="col-md-6">
+                      <p style="font-size: 18px;" class="small mt">습도</p>
+                      <p>
+						<span style="font-size: 20px; color: white;" id="humidity"></span>
+                      </p>
+                       </div>
+                    </div>
                 </div>
               </div>
+              </div>
               <!-- /col-md-4 -->
+           
               <!--  PROFILE 02 PANEL -->
-              <div class="col-lg-4 col-md-4 col-sm-4 mb">
-                <div class="content-panel pn">
-                  <div id="profile-02">
-                    <div class="user">
-                      <img src="resources/adminCss/img/friends/fr-06.jpg" class="img-circle" width="80">
-                      <h4>DJ SHERMAN</h4>
-                    </div>
+             <div style=" display: block;">
+          <div class="col-md-4 mb">
+                <!-- WHITE PANEL - TOP USER -->
+                <a href="#">
+                <div class="white-panel pn" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/resources/upload/admin/reImg.png');  background-size: cover;">
+                  <div class="white-header">
+                    <h5>신고현황</h5>
                   </div>
-                  <div class="pr2-social centered">
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                  </div>
+                  
+                  <p>
+					<img src="/resources/upload/admin/reportImg.png" class="img-circle" style="width: 55px; height: 55px; margin-top: 7%;">
+					<h4 style="color: white;">미확인 신고</h4>
+                  </p>
+                  <p><b>
+					<div style="font-size: 18px; color: white;">${reportCnt } 개</div>
+                  
+                  </b></p>
+
                 </div>
-                <!-- /panel -->
+                </a>
+              </div>
               </div>
               <!--/ col-md-4 -->
               <div class="col-md-4 col-sm-4 mb">
-                <div class="green-panel pn">
-                  <div class="green-header">
-                    <h5>DISK SPACE</h5>
+                <div class="white-panel pn">
+                  <div class="white-header">
+                    <h5>검색</h5>
                   </div>
-                  <canvas id="serverstatus03" height="120" width="120"></canvas>
+                  
+                  <form action="">
+                  <div style="margin-top: 10%;">
+                  <input type="text" name="search" style="width: 80%; height: 50px; border-radius: 15px;"><br><br>
+                  <input type="submit" value="검색" style="width: 80%; height: 50px; border-radius: 15px;">
+                  </div>
+                  </form>
+                  
+<%--                   <canvas id="serverstatus03" height="120" width="120"></canvas>
                   <script>
                     var doughnutData = [{
                         value: 60,
@@ -260,7 +415,7 @@
                     ];
                     var myDoughnut = new Chart(document.getElementById("serverstatus03").getContext("2d")).Doughnut(doughnutData);
                   </script>
-                  <h3>60% USED</h3>
+                  <h3>60% USED</h3> --%>
                 </div>
               </div>
               <!-- /col-md-4 -->
@@ -273,141 +428,97 @@
               *********************************************************************************************************************************************************** -->
           <div class="col-lg-3 ds">
             <!--COMPLETED ACTIONS DONUTS CHART-->
-            <div class="donut-main">
-              <h4>COMPLETED ACTIONS & PROGRESS</h4>
-              <canvas id="newchart" height="130" width="130"></canvas>
-              <script>
-                var doughnutData = [{
-                    value: 70,
-                    color: "#4ECDC4"
-                  },
-                  {
-                    value: 30,
-                    color: "#fdfdfd"
-                  }
-                ];
-                var myDoughnut = new Chart(document.getElementById("newchart").getContext("2d")).Doughnut(doughnutData);
-              </script>
-            </div>
+           
             <!--NEW EARNING STATS -->
-            <div class="panel terques-chart">
-              <div class="panel-body">
-                <div class="chart">
-                  <div class="centered">
-                    <span>TODAY EARNINGS</span>
-                    <strong>$ 890,00 | 15%</strong>
-                  </div>
-                  <br>
-                  <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,564,455]"></div>
-                </div>
-              </div>
-            </div>
+            
             <!--new earning end-->
             <!-- RECENT ACTIVITIES SECTION -->
-            <h4 class="centered mt">RECENT ACTIVITY</h4>
+            <h4 class="centered mt">최근 판매 리스트</h4>
             <!-- First Activity -->
+            <c:if test="${empty mainSell }">
+            	<div class="desc" style="text-align: center;">목록없음</div>
+            </c:if>
+            
+            <c:if test="${not empty mainSell }">
+            <c:forEach items="${mainSell}" var="ms" varStatus="i" begin="0" end="3">
             <div class="desc">
               <div class="thumb">
-                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
+                <div><img style="width: 40px; height: 40px; border-radius: 15px;" src="/resources/upload/sellImg/${ms.sellImg}"></div>
               </div>
               <div class="details">
                 <p>
-                  <muted>Just Now</muted>
+                  <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; display: inline-block;">${ms.sellTitle }</span>
                   <br/>
-                  <a href="#">Paul Rudd</a> purchased an item.<br/>
+                  <a href="#">게시글 이동</a>
+                  <c:if test="${ms.sellStatus == 0}">
+                  		<span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 9px;">
+                   	상태&nbsp[정상]
+                    </span>
+                  </c:if>
+                  <c:if test="${ms.sellStatus == 1 }">
+                     <span class="label label-info label-mini"style="background-color: #6c757d; font-size: 9px;">
+                   	상태&nbsp[비활성화]
+                    </span>
+                    </c:if>
+                    
+                    <c:if test="${ms.sellStatus == 2 }">
+                     <span class="label label-info label-mini"style="background-color: #F16B6F; font-size: 9px;">
+                   	상태&nbsp[삭제됨]
+                    </span>
+                    </c:if><span style="display: inline-block;">&nbsp&nbsp&nbsp&nbsp&nbsp[${ms.memberNickname }] / [${ms.sellDate }]</span>
+                   
+                   <br/>
                 </p>
               </div>
             </div>
-            <!-- Second Activity -->
-            <div class="desc">
-              <div class="thumb">
-                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-              </div>
-              <div class="details">
-                <p>
-                  <muted>2 Minutes Ago</muted>
-                  <br/>
-                  <a href="#">James Brown</a> subscribed to your newsletter.<br/>
-                </p>
-              </div>
-            </div>
-            <!-- Third Activity -->
-            <div class="desc">
-              <div class="thumb">
-                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-              </div>
-              <div class="details">
-                <p>
-                  <muted>3 Hours Ago</muted>
-                  <br/>
-                  <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
-                </p>
-              </div>
-            </div>
-            <!-- Fourth Activity -->
-            <div class="desc">
-              <div class="thumb">
-                <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-              </div>
-              <div class="details">
-                <p>
-                  <muted>7 Hours Ago</muted>
-                  <br/>
-                  <a href="#">Brando Page</a> purchased a year subscription.<br/>
-                </p>
-              </div>
-            </div>
+           </c:forEach>
+           </c:if>
+           <a href="/meister/admin/sellListFrm.do?reqPage=1" style="border-style: none; color: #2b90d9; text-align: center;"><h6>VIEW ALL</h6></a>
+          	<br><br>
             <!-- USERS ONLINE SECTION -->
-            <h4 class="centered mt">TEAM MEMBERS ONLINE</h4>
+            <h4 class="centered mt">프로젝트 현황</h4>
             <!-- First Member -->
+            <c:if test="${empty mainEmploy}">
+            <div class="desc" style="text-align: center;">목록없음</div>
+            </c:if>
+            
+            <c:if test="${not empty mainEmploy}">
+            <c:forEach items="${mainEmploy}" var="me" varStatus="i" begin="0" end="3">
             <div class="desc">
               <div class="thumb">
-                <img class="img-circle" src="/resources/adminCss/img/ui-divya.jpg" width="35px" height="35px" align="">
+                <div><img style="width: 40px; height: 40px; border-radius: 15px;" src="/resources/upload/project/projectImg.jpg"></div>
               </div>
               <div class="details">
                 <p>
-                  <a href="#">DIVYA MANIAN</a><br/>
-                  <muted>Available</muted>
+                  <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; display: inline-block;">${me.employTitle }</span>
+                  <br/>
+                  <a href="#">게시글 이동</a>
+                  <c:if test="${me.employStatus == 0}">
+                  		<span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 9px;">
+                   	상태&nbsp[모집중]
+                    </span>
+                  </c:if>
+                  <c:if test="${me.employStatus == 1 }">
+                     <span class="label label-info label-mini"style="background-color: #6c757d; font-size: 9px;">
+                   	상태&nbsp[진행중]
+                    </span>
+                    </c:if>
+                    
+                    <c:if test="${me.employStatus == 2 }">
+                     <span class="label label-info label-mini"style="background-color: #F16B6F; font-size: 9px;">
+                   	상태&nbsp[마감]
+                    </span>
+                    </c:if><span style="display: inline-block;">&nbsp&nbsp&nbsp&nbsp&nbsp[${me.memberNickname }] / [${me.employEnrollDate }]</span>
+                   
+                   <br/>
                 </p>
               </div>
             </div>
-            <!-- Second Member -->
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="/resources/adminCss/img/ui-sherman.jpg" width="35px" height="35px" align="">
-              </div>
-              <div class="details">
-                <p>
-                  <a href="#">DJ SHERMAN</a><br/>
-                  <muted>I am Busy</muted>
-                </p>
-              </div>
-            </div>
-            <!-- Third Member -->
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="/resources/adminCss/img/ui-danro.jpg" width="35px" height="35px" align="">
-              </div>
-              <div class="details">
-                <p>
-                  <a href="#">DAN ROGERS</a><br/>
-                  <muted>Available</muted>
-                </p>
-              </div>
-            </div>
-            <!-- Fourth Member -->
-            <div class="desc">
-              <div class="thumb">
-                <img class="img-circle" src="/resources/adminCss/img/ui-zac.jpg" width="35px" height="35px" align="">
-              </div>
-              <div class="details">
-                <p>
-                  <a href="#">Zac Sniders</a><br/>
-                  <muted>Available</muted>
-                </p>
-              </div>
-            </div>
-          </div>
+            </c:forEach>
+            </c:if>
+            <a href="#" style="border-style: none; color: #2b90d9; text-align: center;"><h6>VIEW ALL</h6></a>
+          	<br><br>
+            
           <!-- /col-lg-3 -->
         </div>
         <!-- /row -->
@@ -448,7 +559,7 @@
         // (string | mandatory) the text inside the notification
         text: '페이지 테스트 중!',
         // (string | optional) the image to display on the left
-        image: '/resources/upload/common/adminImg.jpg',
+        image: '/resources/upload/memberImg/${sessionScope.member.memberImg}',
         // (bool | optional) if you want it to fade out on its own or just sit there
         sticky: false,
         // (int | optional) the time you want it to be alive for before fading out
@@ -478,6 +589,30 @@
       var to = $("#" + id).data("to");
       console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
     }
+    
+
+      
+
+    	  var apiURI ="http://api.openweathermap.org/data/2.5/weather?q=seoul&appid=04003b0b72f9410592237a06f042555e"   
+              $.ajax({
+                url : apiURI,
+                method : 'GET',
+                success :  (data)=> {
+                  var temp = String((data.main.temp- 273.15)).substring(0,4); // 온도
+                  var humidity = data.main.humidity;
+                  var location = data.name; // 지역이름 
+                 
+                  $('#chatLog').append('지역 ：' + location + ' 온도　：' + temp　+ '도   습도 : ' + humidity + "%입니다. "+'\n');
+                  $("#temp").html(temp + " °C");
+                  $("#humidity").html(humidity + " %");
+     // 아이콘 취득 
+                  var imgURL = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
+                  // 아이콘 표시
+                  $('#img').attr("src", imgURL);
+                }
+              });    
+    	  
+
   </script>
 </body>
 

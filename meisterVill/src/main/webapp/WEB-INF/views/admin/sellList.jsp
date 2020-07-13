@@ -6,6 +6,8 @@
 <html>
 
 <head>
+
+
 <!-- ******************************************************************************** -->
 	<!-- Default : link , meta , script -->
 	<jsp:include page="/WEB-INF/views/admin/adminDefault.jsp" />
@@ -51,11 +53,11 @@
                 <tr>
                 
                 <c:forEach items="${list}" var="s" varStatus="i">
+
+
                     <td style=" margin-left: 5%; margin-bottom: 5%; margin-top:5%; display: inline-block; border-top-style: none;">
                      <div onClick="location.href='/meister/adminSellView/showList.do?sellNo='+${s.sellNo}+'&memberNo='+${s.memberNo}" class="sellView"><img src="/resources/upload/sellImg/${s.sellImg}" style="width: 450px; height: 400px;"></div> 
-                     
-                    <div style="margin: 0 auto;">
-                    <div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 440px; font-size: 17px;">${s.sellTitle}</div>
+
 				
 				<div>
                     <c:if test="${s.memberImg != null }">
@@ -110,6 +112,7 @@
 
 					<div>
                       <!-- <span class="label label-info label-mini" style="background-color: red">신고 접수</span> -->
+
                       <button onClick="location.href='/meister/adminSellView/showList.do?sellNo='+${s.sellNo}+'&memberNo='+${s.memberNo}" class="btn btn-success btn-xs sellView" style="background-color: #FFBC42; border-color: #FFBC42; color: white;"><i class="fa fa-check"></i>상세보기</button>
                       <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
                     <c:if test="${s.sellStatus != 1 && s.sellStatus != 2}">
@@ -177,7 +180,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">회원 정지</h5>
                 </div>
                 <div class="modal-body">
-                   		 정말로 정지하시겠습니까?
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -188,6 +191,28 @@
         </div>
     </div>
     
+
+<!-- --------------------------------sellViewModal----------------------------------------------------- -->
+    <div style="padding-top: 10%;" class="modal fade" id="sellExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="width: 70%;" class="modal-dialog" role="document">
+            <div  class="modal-content">
+                <div style="border-top-left-radius: 4px; border-top-right-radius: 4px; background-color: #6c757d;"class="sell-modal-header modal-header">
+                    <h5 class="modal-title sell-modal-title" id="exampleModalLabel">상세 내용</h5>
+                </div>
+                <div class="sell-modal-body modal-body">
+ 		
+                   		<div id="memberNo"></div>
+                   		
+                   		<div id="memberName"></div>
+	 
+                </div>
+                <div class="sell-modal-footer modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>     
+                </div>
+            </div>
+        </div>
+    </div>
+
 <!-- --------------------------------Modal-mini----------------------------------------------------- -->  
     
         <div style="padding-top: 10%;" class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -300,13 +325,6 @@ $.ajax({
 </script>
 
 
-
-
-  
-  
-  
-  
   
 </body>
-
 </html>
