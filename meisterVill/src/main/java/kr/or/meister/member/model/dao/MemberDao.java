@@ -11,11 +11,15 @@ import org.springframework.stereotype.Repository;
 import kr.or.meister.chat.model.vo.ChatVO;
 import kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO;
 import kr.or.meister.coupon.model.vo.CouponVO;
+import kr.or.meister.member.model.vo.CareerVO;
+import kr.or.meister.member.model.vo.LicenseVO;
 import kr.or.meister.member.model.vo.MemberCookieVO;
 import kr.or.meister.member.model.vo.MemberDataVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
+import kr.or.meister.orders.model.vo.OrdersVO;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
+import kr.or.meister.sell.model.vo.SellVO;
 
 @Repository("memberDao")
 public class MemberDao {
@@ -65,9 +69,7 @@ public class MemberDao {
 		return lm;
 	}
 
-	public MemberDataVO selectOneMember2(MemberDataVO mdv) {
-		return sqlSession.selectOne("memberDataVO.selectOneMember2", mdv);
-	}
+	
 
 	public int updateMemberLevel(MemberVO member) {
 		return sqlSession.update("member.updateMemberLevel", member);
@@ -107,15 +109,15 @@ public class MemberDao {
 		return sqlSession.selectList("employ.selectAllEmploy", map);
 	}
 
-	public int totalCount(int memberNo) {
-		return sqlSession.selectOne("employ.selectTotal", memberNo);
+	public int totalCountEmploy(int memberNo) {
+		return sqlSession.selectOne("employ.totalCountEmploy", memberNo);
 	}
 
 	public int totalCountRequest(String memberNickname) {
 		return sqlSession.selectOne("request.totalCountRequest", memberNickname);
 	}
 
-	public List selectAllRequest(HashMap<String, Integer> map) {
+	public List selectAllRequest(HashMap<String, Object> map) {
 		return sqlSession.selectList("request.selectAllRequest", map);
 	}
 
@@ -148,5 +150,77 @@ public class MemberDao {
 	public List selectAllCoupon(SellJoinOthersVO sjo) {
 		return sqlSession.selectList("member.selectAvailableCoupon",sjo);
 	}
+
+	public int totalCountSell(int memberNo) {
+		return sqlSession.selectOne("sell.selectTotalSell", memberNo);
+	}
+	public List selectAllSell(HashMap<String, Integer> map) {
+		return sqlSession.selectList("sell.selectAllSell", map);
+	}
+
+	public int totalCountPick(int memberNo) {
+		return sqlSession.selectOne("sell.totalCountPick",memberNo);
+	}
+
+	public List selectAllPick(HashMap<String, Integer> map) {
+		return sqlSession.selectList("sell.selectAllPick",map);
+	}
+
+	public int totalCountRequestRe(int memberNo) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo",memberNo);
+		map.put("str1",memberNo+"/");
+		map.put("str2","/"+memberNo+"/");
+		return sqlSession.selectOne("request.totalCountRequestRe",map);
+	}
+
+	public List selectAllRequestRe(HashMap<String, Object> map) {
+		return sqlSession.selectList("request.selectAllRequestRe",map);
+	}
+
+
+	public List<OrdersVO> selectAllOrder(int memberNo, int purchase) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo",memberNo);
+		map.put("purchase",purchase);
+		return sqlSession.selectList("sell.selectAllOrder",map);
+	}
+	
+	public SellVO selectOneOfSell(int sell_no) {
+		return sqlSession.selectOne("sell.selectOneOfSell",sell_no);
+	}
+	
+	public int updateProfileMember(MemberVO member2) {
+		return sqlSession.update("member.updateProfileMember",member2);
+	}
+
+	public int updateProfileCareer(CareerVO member3) {
+		return sqlSession.update("member.updateProfileCareer",member3);
+	}
+
+	public int updateProfileLicense(LicenseVO member4) {
+		return sqlSession.update("member.updateProfileLicense",member4);
+	}
+
+	public MemberVO selectOneMember2(int memberNo) {
+		return sqlSession.selectOne("member.selectOneMember2", memberNo);
+	}
+	
+	public CareerVO selectOneCareer(int memberNo) {
+		return sqlSession.selectOne("member.selectOneCareer",memberNo);
+	}
+
+	public LicenseVO selectOneLicense(int memberNo) {
+		return sqlSession.selectOne("member.selectOneLicense",memberNo);
+	}
+
+	public List selectAllSell2(HashMap<String, String> map) {
+		return sqlSession.selectList("sell.selectAllSell2", map);
+	}
+	
+	
+	
+	
+	
 
 }

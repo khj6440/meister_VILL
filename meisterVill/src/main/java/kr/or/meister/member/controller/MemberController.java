@@ -33,7 +33,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,7 +61,10 @@ import kr.or.meister.member.model.vo.LicenseVO;
 import kr.or.meister.member.model.vo.MemberDataVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
+import kr.or.meister.orders.model.vo.OrdersVO;
+import kr.or.meister.sell.model.vo.SellData;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
+import kr.or.meister.sell.model.vo.SellVO;
 
 @Controller
 @RequestMapping("/meister/member")
@@ -69,18 +74,12 @@ public class MemberController {
 	@Qualifier("memberService")
 	private MemberService service;
 
-	@RequestMapping("/mypagego.do")
-	public String mypagego(int reqPage, Model model) {
-		model.addAttribute("reqPage",reqPage);
-		return "member/mypage";
-	}
-
-	@RequestMapping("/mypage.do")
-	public String mypage( Model model, HttpSession session) {
-		
-		MemberVO m2 = (MemberVO) session.getAttribute("member");
-		model.addAttribute("m", m2);
 	
+	@RequestMapping("/mypage.do")
+	public String mypage(int memberNo, int reqPage, Model model, HttpSession session) {
+		MemberVO m2 = (MemberVO) session.getAttribute("member");
+		session.setAttribute("member", m2);
+		model.addAttribute("reqPage",reqPage);
 		return "member/mypage";
 	}
 	
@@ -106,9 +105,23 @@ public class MemberController {
 		}
 	}
 	@RequestMapping("/myprofile.do")
-	public String myprofile(HttpSession session, Model model, CareerVO cr, LicenseVO ls) {
-		MemberVO m = (MemberVO) session.getAttribute("member");
-		model.addAttribute("m", m);
+	public String myprofile(HttpSession session, Model model, int memberNo, int reqPage,int sellstatus, int sellappro ) {
+		SellData sell = service.selectAllSell2(memberNo, reqPage, sellstatus, sellappro);
+		MemberDataVO m = service.selectOneMemberInf(memberNo);
+		System.out.println("memberNo : "+memberNo);
+		MemberVO member = m.getMembervo();
+		CareerVO career = m.getCareervo();
+		LicenseVO license = m.getLicensevo();
+		String field = member.getMemberField1();
+		String field2 = member.getMemberField2();
+		model.addAttribute("member",member);
+		model.addAttribute("career",career);
+		model.addAttribute("license",license);
+		model.addAttribute("field", field);
+		model.addAttribute("field2", field2);
+		
+		model.addAttribute("list", sell.getList());
+		model.addAttribute("pageNavi", sell.getPageNavi());
 		return "member/myprofile";
 	}
 
@@ -145,13 +158,14 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/selectAllEmploy.do", produces = "application/json;charset=utf-8")
 	public ModelAndView selectAllMember(int memberNo, int reqPage, String memberNickname, 
-			@RequestParam(defaultValue = "0") int employstatus, @RequestParam(defaultValue = "0") int employappro) {
+			@RequestParam(defaultValue = "0") int employstatus, @RequestParam(defaultValue = "0") int employappro,
+			@RequestParam(defaultValue = "0") int requeststatus, @RequestParam(defaultValue = "0") int requestappro) {
 		System.out.println("memberNo :"+ memberNo);
 		System.out.println("reqPage : "+ reqPage);
 		System.out.println("employstatus="+employstatus);
 		System.out.println("employappro="+employappro);
 		HashMap<String, Object> list = service.selectAllEmploy(memberNo, reqPage, employstatus, employappro);
-		HashMap<String,Object> list2 = service.selectAllRequest(memberNo, reqPage, memberNickname);
+		HashMap<String,Object> list2 = service.selectAllRequest(memberNo, reqPage, memberNickname, requeststatus, requestappro);
 		System.out.println("controller list : "+list);
 		ModelAndView mo=new ModelAndView();
 		mo.addObject("reqPage", reqPage);
@@ -163,11 +177,12 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping(value = "/selectAllRequest.do", produces = "application/json;charset=utf-8")
 	public ModelAndView selectAllMember2(int memberNo, int reqPage, String memberNickname,
-			@RequestParam(defaultValue = "0") int employstatus, @RequestParam(defaultValue = "0") int employappro) {
+			@RequestParam(defaultValue = "0") int employstatus, @RequestParam(defaultValue = "0") int employappro,
+			@RequestParam(defaultValue = "0") int requeststatus, @RequestParam(defaultValue = "0") int requestappro) {
 		System.out.println("memberNo :"+ memberNo);
 		System.out.println("reqPage : "+ reqPage);
 		HashMap<String, Object> list = service.selectAllEmploy(memberNo, reqPage, employstatus, employappro);
-		HashMap<String,Object> list2 = service.selectAllRequest(memberNo, reqPage, memberNickname);
+		HashMap<String,Object> list2 = service.selectAllRequest(memberNo, reqPage, memberNickname, requeststatus, requestappro);
 		System.out.println("controller list2 : "+list2);
 		ModelAndView mo=new ModelAndView();
 		mo.addObject("list", new Gson().toJson(list));
@@ -182,14 +197,44 @@ public class MemberController {
 	      m.addAttribute("reqPage", reqPage);
 	      return "member/mypage";
 	   }
+	@RequestMapping(value="/requestList.do")
+	   public String requestList(int reqPage, Model m) {
+	      m.addAttribute("reqPage", reqPage);
+	      return "member/mypage";
+	   }
 	
 	
 
 	@RequestMapping("/mypage5.do")
-	public String mypage5(HttpSession session, Model model) {
+	public String mypage5(int reqPage, HttpSession session, Model model) {
 		MemberVO m2 = (MemberVO) session.getAttribute("member");
-		model.addAttribute("m", m2);
+		model.addAttribute("member", m2);
+		model.addAttribute("reqPage", reqPage);
 		return "member/mypage5";
+	}
+	
+	@RequestMapping("/mypage9.do")
+	public String mypage9(int reqPage, HttpSession session, Model model) {
+		MemberVO m2 = (MemberVO) session.getAttribute("member");
+		model.addAttribute("member", m2);
+		model.addAttribute("reqPage", reqPage);
+		return "member/mypage9";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/selectAllSell.do", produces = "application/json;charset=utf-8")
+	public ModelAndView selectAllSell(int memberNo, int reqPage, @RequestParam(defaultValue = "0") int sellstatus, @RequestParam(defaultValue = "0") int sellappro) {
+		System.out.println("memberNo :"+ memberNo);
+		System.out.println("reqPage : "+ reqPage);
+		HashMap<String, Object> list = service.selectAllSell(memberNo, reqPage, sellstatus, sellappro);
+		/* HashMap<String,Object> list2 = service.selectAllPick(memberNo, reqPage); */
+		/* System.out.println("controller list2 : "+list2); */
+		ModelAndView mo = new ModelAndView();
+		mo.addObject("list", new Gson().toJson(list));
+		mo.addObject("reqPage", reqPage);
+		/* mo.addObject("list2", new Gson().toJson(list2)); */
+		mo.setViewName("member/mypage9");
+		return mo;
 	}
 	@RequestMapping("/mypage13.do")
 	public String mypage13(HttpSession session, Model model) {
@@ -197,6 +242,46 @@ public class MemberController {
 		model.addAttribute("m", m2);
 		return "member/mypage13";
 	}
+	@ResponseBody
+	@RequestMapping(value = "/selectAllRequestRe.do", produces = "application/json;charset=utf-8")
+	public ModelAndView selectAllRequestRe(int memberNo, int reqPage) {
+		System.out.println("memberNo :"+ memberNo);
+		System.out.println("reqPage : "+ reqPage);
+		
+		HashMap<String, Object> list = service.selectAllRequestRe(memberNo, reqPage);
+		/* HashMap<String,Object> list2 = service.selectAllPick(memberNo, reqPage); */
+		/* System.out.println("controller list2 : "+list2); */
+		ModelAndView mo = new ModelAndView();
+		mo.addObject("list", new Gson().toJson(list));
+		mo.addObject("reqPage", reqPage);
+		/* mo.addObject("list2", new Gson().toJson(list2)); */
+		mo.setViewName("member/mypage5");
+		return mo;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/selectAllOrder.do", produces = "application/json;charset=utf-8")
+	public ModelAndView selectAllOrder(int memberNo,  int purchase) {
+		System.out.println("memberNo :"+ memberNo);
+		
+		List<OrdersVO> orderlist = service.selectAllOrder(memberNo,purchase);
+		System.out.println(orderlist.size());
+		int sell_no;
+		SellVO sellvo=new SellVO();
+		ModelAndView mo = new ModelAndView();
+		for(int i=0;i<orderlist.size();i++) {
+			sell_no=orderlist.get(i).getOrderBoardNo();
+			System.out.println(sell_no);
+			sellvo=service.selectOneOfSell(sell_no);
+			System.out.println(sellvo);
+			mo.addObject("selllist"+i, sellvo);
+		}
+		mo.addObject("list", new Gson().toJson(orderlist));
+		/* mo.addObject("list2", new Gson().toJson(list2)); */
+		mo.setViewName("member/mypage5");
+		return mo;
+	}
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/transformMember.do", produces = "text/html;charset=utf-8")
@@ -232,12 +317,7 @@ public class MemberController {
 		return num;
 	}
 
-	@RequestMapping("/mypage9.do")
-	public String mypage9(HttpSession session, Model model) {
-		MemberVO m2 = (MemberVO) session.getAttribute("member");
-		model.addAttribute("m", m2);
-		return "member/mypage9";
-	}
+
 
 	@ResponseBody
 	@RequestMapping(value = "/checkLogin.do", produces = "application/json;charset=utf-8")
@@ -715,5 +795,90 @@ public class MemberController {
 		return "member/test2";
 	}
 	
+	//프로필 수정
+	
+	@PostMapping("/profileupdate.do")
+	public String updateProfile(
+			HttpServletRequest request, Model model) {
+		int memberNo=Integer.parseInt(request.getParameter("memberNo"));
+		String memberSkill = request.getParameter("memberSkill");
+		System.out.println("memberSkill : "+memberSkill);
+		String memberImg = request.getParameter("memberImg");
+		String memberIntro = request.getParameter("memberIntro");
+		String memberNickname = request.getParameter("memberNickname");
+		String memberField1 = request.getParameter("memberField1");
+		String memberField2 = request.getParameter("memberField2");
+		String memberSkill1 = request.getParameter("memberSkill1");
+		String memberSkill2 = request.getParameter("memberSkill2");
+		String memberSchool = request.getParameter("memberSchool");
+		String memberMajor = request.getParameter("memberMajor");
+		String memberGrade = request.getParameter("memberGrade");
+		String licenseName = request.getParameter("licenseName");
+		String licenseDate = request.getParameter("licenseDate");
+		String licenseAgency = request.getParameter("licenseAgency");
+		String companyName = request.getParameter("companyName");
+		String companyDepartment = request.getParameter("companyDepartment");
+		String companyJobTitle = request.getParameter("companyJobTitle");
+		int typeFree;
+		System.out.println(request.getParameter("typeFree"));
+		if(request.getParameter("typeFree")==null || request.getParameter("typeFree").equals(""))
+		{
+			typeFree=0;
+		}else {
+			typeFree=1;
+		}
+		
+		int companyJobMon;
+		if(request.getParameter("companyJobMon")==null || request.getParameter("companyJobMon").equals(""))
+			 companyJobMon =0;
+		else
+			 companyJobMon = Integer.parseInt(request.getParameter("companyJobMon"));
 
+		System.out.println(memberNo);
+		
+		
+		MemberVO mvo=new MemberVO();
+		CareerVO cvo=new CareerVO();
+		LicenseVO lvo=new LicenseVO();
+		
+		mvo.setMemberNo(memberNo);
+		mvo.setMemberIntro(memberIntro);
+		mvo.setMemberNickname(memberNickname);
+		mvo.setMemberField(memberField1+"/"+memberField2);
+		/* if(memberSkill2) */
+		mvo.setMemberSkill(memberSkill);
+		mvo.setMemberSchool(memberSchool);
+		mvo.setMemberMajor(memberMajor);
+		mvo.setMemberGrade(memberGrade);
+		
+		lvo.setLicenseName(licenseName);
+		lvo.setLicenseDate(licenseDate);
+		lvo.setLicenseAgency(licenseAgency);
+		lvo.setMemberNo(memberNo);
+		
+		cvo.setCompanyName(companyName);
+		cvo.setCompanyDepartment(companyDepartment);
+		cvo.setCompanyJobTitle(companyJobTitle);
+		cvo.setCompanyJobMon(companyJobMon);
+		cvo.setMemberNo(memberNo);
+		cvo.setTypeFree(typeFree);
+		
+		MemberDataVO member = new MemberDataVO();
+		member.setMembervo(mvo);
+		member.setCareervo(cvo);
+		member.setLicensevo(lvo);
+		System.out.println("mvo:"+mvo);
+		System.out.println("mvo:"+cvo);
+		System.out.println("mvo:"+lvo);
+		
+		int result = service.updateProfileMember(member);
+		if(result==1) {
+			model.addAttribute("member", mvo);
+			model.addAttribute("career", cvo);
+			model.addAttribute("license", lvo);
+		}
+		
+		/* model.addAttribute("member"model) */
+		return "member/myprofile";
+	}
 }

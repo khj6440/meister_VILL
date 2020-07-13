@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sell">
+	<resultMap id="sm" type="sjm">
+		<association property="sellvo" javaType="sell">
+			<id property="sellNo" column="sell_no" />
+			<result property="sellTitle" column="sell_title" />
+			<result property="sellWriter" column="sell_writer" />
+			<result property="sellPrice" column="sell_price" />
+			<result property="sellCategory1" column="sell_category1" />
+			<result property="sellCategory2" column="sell_category2" />
+			<result property="sellSkill" column="sell_skill" />
+			<result property="sellDate" column="sell_date" />
+			<result property="sellAppro" column="sell_appro" />
+			<result property="sellStatus" column="sell_status" />
+			<result property="sellOpt1" column="sell_opt1" />
+			<result property="sellOpt2" column="sell_opt2" />
+			<result property="sellOpt3" column="sell_opt3" />
+			<result property="sellOptFix" column="sell_opt_fix" />
+			<result property="sellPeriod" column="sell_period" />
+			<result property="sellContent" column="sell_content" />
+			<result property="sellFix" column="sell_fix" />
+			<result property="sellImg" column="sell_img" />
+		</association>
+		<!-- javaType : "객체를 속성으로 가지고있는 해당 객체의 CamelCase명 또는, @Alias("키값")" -->
+		<!-- property : "객체참조변수명" -->
+		<!-- id : "PK" -->
+		<association property="membervo" javaType="member">
+			<id property="memberNo" column="member_no" />
+			<result property="memberEmail" column="member_email" />
+			<result property="memberPw" column="member_pw" />
+			<result property="memberName" column="member_name" />
+			<result property="memberHbd" column="member_hbd" />
+			<result property="memberNickname" column="member_nickname" />
+			<result property="memberPhone" column="member_phone" />
+			<result property="memberImg" column="member_img" />
+			<result property="memberBank" column="member_bank" />
+			<result property="memberAccount" column="member_account" />
+			<result property="memberTime" column="member_time" />
+			<result property="memberLevel" column="member_level" />
+			<result property="memberStatus" column="member_status" />
+			<result property="memberIntro" column="member_intro" />
+			<result property="memberField" column="member_field" />
+			<result property="memberSkill" column="member_skill" />
+			<result property="memberSchool" column="member_school" />
+			<result property="memberMajor" column="member_major" />
+			<result property="memberGrade" column="member_grade" />
+			<result property="memberDate" column="member_date" />
+		</association>
+	</resultMap>
+	
+	<select id="selectTotalSell" resultType="_int"
+		parameterType="_int">
+		select count(*) as cnt from sell where sell_writer = #{_parameter}
+	</select>
+	<select id="selectAllSell" resultMap="sm" parameterType="map">
+		select * from
+		(select rownum as rnum, n.* from
+		(select
+		*
+		from sell
+		join member
+		on (sell_writer = #{memberNo})
+		order by 1 desc)n
+		)
+		where rnum between #{start} and #{end}
+		<if test="sellstatus!=3">
+			and sell_status=#{sellstatus}
+		</if>
+		<if test="sellappro!=3">
+			and sell_appro=#{sellappro}
+		</if>
+	</select>
+	<select id="totalCountPick" resultType="_int"
+		parameterType="_int">
+		select count(*) as cnt from sell
+		where sell_no
+		in (select sell_no from pick where member_no = #{_parameter}
+	</select>
+	<select id="selectAllPick" resultMap="sm" parameterType="map">
+		select * from
+		(select rownum as rnum, n.* from
+		(select * from sell
+		where sell_no
+		in (select sell_no from pick where member_no = member_no)
+		order by 1
+		desc)n
+		)
+		where rnum between #{start} and #{end}
+	</select>
+
+	<select id="selectAllOrder" resultType="orders" parameterType="map">
+		select 
+			 order_no as orderNo,
+			 order_member_no as orderMemberNo,
+			 order_board_no as orderBoardNo,
+			 order_date as orderDate,
+			 order_board_type as orderBoardType
+		 from orders 
+		 where order_member_no = #{memberNo} and order_board_type = #{purchase}
+	</select>
+	
+	<select id="selectOneOfSell" parameterType="_int" resultType="sell">
+		select * from sell where sell_no = #{sell_no}
+	</select>
+	
+	<select id="selectAllSell2" resultType="sell" parameterType="map">
+		select 
+			sell_title as sellTitle
+		from
+		(select rownum as rnum, n.* from
+		(select
+		*
+		from sell
+		join member
+		on (sell_writer = #{memberNo})
+		order by 1 desc)n
+		)
+		where rnum between #{start} and #{end}
+		<if test="sellstatus!=3">
+			and sell_status=#{sellstatus}
+		</if>
+		<if test="sellappro!=3">
+			and sell_appro=#{sellappro}
+		</if>
+	</select>
+</mapper>

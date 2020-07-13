@@ -20,7 +20,11 @@ public class MemberVO {
 	private int memberStatus;
 	private String memberIntro;
 	private String memberField;
+	private String memberField1;
+	private String memberField2;
 	private String memberSkill;
+	private String memberSkill1;
+	private String memberSkill2;
 	private String memberSchool;
 	private String memberMajor;
 	private String memberGrade;
