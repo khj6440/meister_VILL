@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+
 	<select id="selectLoginMember" parameterType="member" resultType="member">
 		select 
 			member_no as memberNo,
@@ -24,13 +25,13 @@
 			member_grade as memberGrade,
 			member_date as memberDate
 		from member
-		where member_email=#{memberEmail} and member_pw=#{memberPw}
+		where member_email=#{memberEmail} and member_pw=#{memberPw} and member_status=0
 	</select>
 	<select id="findEmail" parameterType="member" resultType="string">
 		select
 			member_email as memberEmail
 		from member
-		where member_name=#{memberName} and member_phone=#{memberPhone}
+		where member_name=#{memberName} and member_phone=#{memberPhone} and member_status=0
 	</select>
 	<select id="checkLoginEmail" parameterType="string" resultType="member">
 		select
@@ -55,13 +56,10 @@
 			member_grade as memberGrade,
 			member_date as memberDate
 		from member
-		where member_email=#{memberEmail}
+		where member_email=#{memberEmail} and member_status=0
 		
 	</select>
-	<insert id="loginMaintain">
-		insert cookie set sessionkey=#{sessionId}, sessionlimit=#{next}
-		where member_no=#{memberNo}
-	</insert>
+
 	<select id="checkNickname" parameterType="string" resultType="member">
 		select
 			member_no as memberNo,
@@ -85,6 +83,128 @@
 			member_grade as memberGrade,
 			member_date as memberDate
 		from member
-		where member_nickname=#{memberNickname}
+		where member_nickname=#{memberNickname} and member_status=0
 	</select>
+	<insert id="joinMember" parameterType="member">
+		insert into member values(
+			member_seq.nextval,
+			#{memberEmail},
+			#{memberPw},
+			#{memberName},
+			#{memberHbd},
+			#{memberNickname},
+			#{memberPhone},
+			null,
+			null,
+			null,
+			null,
+			0,
+			0,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			to_char(SYSDATE,'YYYY/MM/DD')
+		)
+		
+	</insert>
+	
+	<update id="changeForgottenPw" parameterType="member">
+		update member set member_pw=#{memberPw} where member_email=#{memberEmail} and member_status=0
+	</update>
+	<insert id="welcomeCoupon" parameterType="_int">
+		insert into coupon_issued values(
+			coupon_issued_seq.nextval,
+			#{memberNo},
+			1,
+			0,
+			sysdate,
+			sysdate+30
+		)
+	</insert>
+
+<!-- 	<select id="couponList" parameterType="_int" resultType="couponJoinCouponIssued">
+		select
+			coupon_issued_no as couponIssouedNo,
+			coupon_issued_member_no as couponIssuedMemberNo,
+			coupon_issued_coupon_no as couponIssuedCouponNo,
+			coupon_issued_check as couponIssuedCheck,
+			coupon_issued_start as couponIssuedStart,
+			coupon_issued_end as couponIssuedEnd,
+            coupon_name as couponName,
+            coupon_time_limit as couponTimeLimit,
+            coupon_money as couponMoney,
+            coupon_status as couponStatus,
+            coupon_end as couponEnd,
+            coupon_content as couponContent,
+            coupon_img as couponImg,
+            coupon_limit_money as couponLimitMoney
+		from coupon_issued
+        left join coupon on (coupon_issued_coupon_no=coupon_no)
+		where coupon_issued_member_no=#{memberNo} and coupon_issued_check=0 and (to_date(coupon_issued_end)-sysdate)>0 and #{sellPrice}>coupon_limit_money;
+	</select> -->
+	
+	<select id="selectAvailableCoupon" parameterType="sjo" resultType="couponJoinCouponIssued">
+		select
+			coupon_issued_no as couponIssouedNo,
+			coupon_issued_member_no as couponIssuedMemberNo,
+			coupon_issued_coupon_no as couponIssuedCouponNo,
+			coupon_issued_check as couponIssuedCheck,
+			coupon_issued_start as couponIssuedStart,
+			coupon_issued_end as couponIssuedEnd,
+            coupon_name as couponName,
+            coupon_time_limit as couponTimeLimit,
+            coupon_money as couponMoney,
+            coupon_status as couponStatus,
+            coupon_end as couponEnd,
+            coupon_content as couponContent,
+            coupon_img as couponImg,
+            coupon_limit_money as couponLimitMoney
+		from coupon_issued
+        left join coupon on (coupon_issued_coupon_no=coupon_no)
+		where coupon_issued_member_no=#{memberNo} and coupon_issued_check=0 and (to_date(coupon_issued_end)-sysdate)>0 and #{sellPrice}>coupon_limit_money;
+	</select>
+	<select id="totalCountMeister" resultType="_int">
+		select count(*) from member where member_level=1 and member_status=0
+	</select>
+	<select id="allMeister" resultType="meisters">
+		select g.* from
+(select rownum as rnum, f.* from
+(select distinct
+	m.member_img as memberImg,
+    m.member_nickname as memberNickname,
+    m.member_intro as memberIntro,
+    (select round(avg(review_point),1) from review  where review_writer = m.member_nickname group by sell_no) as reviewPoint,    
+    (select review_content from review where review_no=(select max(review_no) from review where review_writer = (select member_nickname from member m1 where m1.member_no=m.member_no))) as reviewContent,
+    (select review_no from review where review_no=(select max(review_no) from review where review_writer = (select member_nickname from member m1 where m1.member_no=m.member_no))) as reviewNo
+from member m  
+left join sell s on (m.member_no = s.sell_writer)
+where member_level=1)f)g
+where rnum between 1 and 10;
+	</select>
+	
+	<select id="couponList" parameterType="cm" resultType="couponJoinCouponIssued">
+		<![CDATA[
+		select
+			coupon_issued_no as couponIssouedNo,
+			coupon_issued_member_no as couponIssuedMemberNo,
+			coupon_issued_coupon_no as couponIssuedCouponNo,
+			coupon_issued_check as couponIssuedCheck,
+			coupon_issued_start as couponIssuedStart,
+			coupon_issued_end as couponIssuedEnd,
+            coupon_name as couponName,
+            coupon_time_limit as couponTimeLimit,
+            coupon_money as couponMoney,
+            coupon_status as couponStatus,
+            coupon_end as couponEnd,
+            coupon_content as couponContent,
+            coupon_img as couponImg,
+            coupon_less_money as couponLessMoney
+		from coupon_issued
+        left join coupon on (coupon_issued_coupon_no=coupon_no)
+		where coupon_issued_member_no=#{memberNo} and coupon_issued_check=0 and (to_date(coupon_issued_end)-sysdate)>0 and coupon_less_money<#{sellPrice}]]>
+	</select>
+	
 </mapper>

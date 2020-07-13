@@ -41,14 +41,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
     <!--내 css-->
-    <link rel="stylesheet" type="text/css" href="/resources/yr/css/header2_css.css">
+    
     <link rel="stylesheet" href="/resources/yr/css/login_modal_css.css" type="text/css">
     <link rel="stylesheet" href="/resources/yr/css/login_header_css.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/resources/yr/css/header2_css.css">
 </head>
 
 
 
 <body>
+    
+     <style>
+        .pf-img {
+    width: 63.51px;
+    height: 63.51px;
+
+    border-radius: 50%;
+    border: 1px solid blue;
+}
+    </style>
+    
 
     <header>
         <!-- Bootstrap core JavaScript -->
@@ -139,7 +151,7 @@
                 <div class="container">
                     <a class="navbar-brand" href="#">맞춤견적</a>
                     <a class="navbar-brand" href="#">커뮤니티</a>
-                    <a class="navbar-brand" href="#">마이스터</a>
+                    <a class="navbar-brand" href="/meister/member/meisterList.do">마이스터</a>
                     <a class="navbar-brand" href="#">프로젝트</a>
 
                 </div>
@@ -177,9 +189,18 @@
 
                             <ul class="hd-profile-boundary1">
                                 <li class="hd-profile-img1">
-                                    <a href="#">
-                                        <img src="/resources/yr/imgs/profile_img2.png" width="100%">
-                                    </a>
+                                <div class="pf-img">
+                                    <c:if test="${sessionScope.member.memberImg eq null }">
+                                <a href="#">
+                                    <img src="/resources/yr/imgs/profile_img2.png" width="100%">
+                                </a>
+                            </c:if>
+                            <c:if test="${sesssionScope.member.memberImg ne null }">
+                                <a href="#">
+                                    <img src="/resources/upload/memberImg/${sessionScope.member.memberImg }" width="100%">
+                                </a>
+                            </c:if>
+                            </div>
 
                                     <ul class="hd-profile-menu1">
                                         <li id="none" name="hd-menu1"><a href="#">프로필 관리</a></li>
@@ -215,7 +236,7 @@
             <div class="sim-div">
 
                 <div class="sim-notice-div">
-                    <a href="#">
+                    <a href="/meister/adminBoard/mainNotice.do?reqPage=1">
                         <div class="sim-icon">
                             <i class="fa fa-2x fa-sticky-note" aria-hidden="true"></i>
                         </div>
@@ -223,7 +244,7 @@
                     </a>
                 </div>
                 <div class="sim-qna-div">
-                    <a href="#">
+                    <a href="/meister/adminBoard/mainAdminQnA.do?reqPage=1">
                         <div class="sim-icon">
                             <i class="fa fa-2x fa-question-circle" aria-hidden="true"></i>
                         </div>

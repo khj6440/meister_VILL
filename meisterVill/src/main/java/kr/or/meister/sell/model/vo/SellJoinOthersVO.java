@@ -13,5 +13,4 @@ public class SellJoinOthersVO {
 	private MemberVO membervo;
 	private MultiImgVO multiimgvo;
 	private OptionsVO optionsvo;
-	private PickVO pickvo;
 }

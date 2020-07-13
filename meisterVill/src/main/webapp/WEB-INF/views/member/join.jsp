@@ -30,7 +30,7 @@
                 <div class="jcb-title">
                     약관동의
                 </div>
-                <form action="/meister/member/joinInput.do" method="post">
+                <form action="/meister/member/joinEnd.do" method="post">
                     <div class="jcb-content">
                         <div class="all-ok">
                             <input type="checkbox" name="all-check" value="allCheck" id="all-check">

@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
 
     <!--yr css-->
-    <link rel="stylesheet" href="/resources/yr/css/header_css.css" type="text/css">
+    <link rel="stylesheet" href="/resources/yr/css/mainheader_css.css" type="text/css">
     <link rel="stylesheet" href="/resources/yr/css/login_modal_css.css" type="text/css">
 </head>
 
@@ -51,7 +51,7 @@
                                 <form id="loginFrm" action="/meister/member/loginMember.do" method="post">
                                     <input type="text" name="memberEmail" class="login-input input-yr-normal" placeholder="이메일을 입력하세요"><br>
                                     <input type="password" name="memberPw" class="login-input input-yr-normal" placeholder="비밀번호를 입력하세요"><br>
-                                    <div class="login-msg-box">msg</div>
+                                    <div class="login-msg-box"></div>
                                     <input type="button" class="btn btn-insert btn-in-modal" value="로그인">
                                     <div class="login-chk-dv">
                                         <div>

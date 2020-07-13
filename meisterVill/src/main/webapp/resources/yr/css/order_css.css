@@ -1,0 +1,365 @@
+@charset "UTF-8";
+
+.tax-content{
+            padding: 3%;
+            width: 100%;
+        }
+        .tax-content>div>i{
+            position: relative;
+        }
+        .tax-content>div>div{
+            font-size: 11px;
+            width: 280px;
+            background-color: #4d4d4d;
+            color: white;
+            padding: 1%;
+            position: absolute;
+            margin-left: 760px;
+            margin-top: -70px;
+            display: none;
+        }
+        .tax-content>div>i:hover+div{
+            display: block;
+        }
+        .btn-charge{
+            float: right;
+            margin-right: 30px;
+            width: 250px;
+            height: 70px;
+            font-size: 25px;
+            font-weight: 400px;
+            margin-bottom: 30px;
+        }
+
+
+        /*구매정보*/
+
+
+        .content-box {
+            font-family: 'Noto Sans KR', sans-serif;
+            width: 950px;
+            margin: 3% auto;
+            overflow: hidden;
+
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+
+        .order-table {
+            width: 100%;
+            padding: 3%;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            margin-bottom: 40px;
+        }
+
+        .ot-info {
+            width: 100%;
+            margin-bottom: 30px;
+            overflow: hidden;
+
+        }
+
+        .ot-info>div {
+            float: left;
+        }
+
+        .oti-1 {
+            width: 200px;
+            height: 133.3px;
+            overflow: hidden;
+
+            margin-right: 20px;
+        }
+
+        .oti-2 {
+            width: 70%;
+        }
+
+        .order-title {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: 900;
+            color: #4d4d4d;
+            margin-bottom: 50px;
+        }
+
+        .order-member {
+            bottom: 0;
+        }
+
+        .order-member>div:first-child {
+
+            width: 5%;
+        }
+
+        .order-member>div:last-child {
+            width: 80%;
+        }
+
+        .order-member>div {
+            float: left;
+        }
+
+        .ot-basic {
+            width: 100%;
+            clear: left;
+            margin-bottom: 30px;
+
+        }
+
+        .ot-basic>table {
+            width: 100%;
+            text-align: justify;
+        }
+
+        .ot-basic>table>tr {
+
+            width: 100%;
+        }
+
+        .otb-table>tbody>tr>th {
+            font-size: 15px;
+            height: 40px;
+            background-color: #dbdbdb;
+            color: #4d4d4d;
+            border-top: 1px solid #4d4d4d;
+            border-bottom: 1px solid #4d4d4d;
+        }
+
+        .otb-table>tbody>tr>th:first-child {
+            padding-left: 3%;
+            width: 60%;
+            text-align: left;
+
+
+        }
+
+        .otb-table>tbody>tr>th:first-child+th {
+
+            text-align: center;
+
+
+        }
+
+        .otb-table>tbody>tr>th:last-child {
+            padding-right: 3%;
+            width: 30%;
+            text-align: right;
+
+        }
+
+        .otb-table>tbody>tr>td {
+            font-size: 15px;
+            height: 40px;
+            line-height: 40px;
+            color: #4d4d4d
+        }
+
+        .otb-table>tbody>tr>td:first-child {
+            text-align: left;
+            padding-left: 3%;
+        }
+
+        .otb-table>tbody>tr>td:first-child+td {
+            text-align: center;
+
+        }
+
+        .basic-price {
+            text-align: right;
+            padding-right: 3%;
+        }
+
+        .ot-option {
+            width: 100%;
+        }
+
+        .oto-table {
+            width: 100%;
+
+        }
+
+        .oto-table>tr {
+
+            width: 100%;
+        }
+
+        .oto-table>tbody>tr>th {
+            font-size: 15px;
+            height: 40px;
+            background-color: #dbdbdb;
+            color: #4d4d4d;
+            border-top: 1px solid #4d4d4d;
+            border-bottom: 1px solid #4d4d4d;
+
+        }
+
+        .oto-table>tbody>tr>th:first-child {
+            padding-left: 3%;
+            width: 60%;
+            text-align: left;
+
+        }
+
+        .oto-table>tbody>tr>th:first-child+th {
+
+            text-align: center;
+
+        }
+
+        .oto-table>tbody>tr>th:last-child {
+            padding-right: 3%;
+            width: 30%;
+            text-align: right;
+
+        }
+
+        .oto-table>tbody>tr>td {
+            font-size: 15px;
+            height: 40px;
+            color: #4d4d4d
+        }
+
+        .oto-table>tbody>tr>td:first-child {
+            text-align: left;
+            padding-left: 3%;
+        }
+
+        .oto-table>tbody>tr>td:first-child+td {
+            text-align: center;
+
+        }
+
+        .oto-table>tbody>tr>td:last-child {
+            text-align: right;
+            padding-right: 3%;
+
+        }
+
+
+
+        /*결제div*/
+
+        .tax-box, .charge-table {
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 35px;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+        }
+
+        .ct-header, .tax-header {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 17px;
+            font-weight: 900;
+            padding-left: 10px;
+            background-color: #dbdbdb;
+        }
+
+        .ct-coupon>div {
+            float: left;
+            width: 50%;
+            padding: 3%;
+
+        }
+
+        .ct1>div {
+            font-weight: 700;
+            float: left;
+        }
+
+        .ct1>button {
+            float: right;
+        }
+
+        .ct2 {
+            clear: left;
+            margin-top: 70px;
+        }
+
+        .coupon-cnt {
+            margin-left: 10px;
+        }
+
+        #coupon-table {
+            width: 100%;
+
+        }
+
+        #coupon-table>tbody>tr>td:last-child {
+            text-align: center;
+        }
+
+        .total-price {
+            width: 100%;
+        }
+
+        .total-price>div {
+            font-weight: 900;
+            width: 50%;
+            float: left;
+        }
+
+        .total-price>div:last-child {
+            width: 50%;
+            text-align: right;
+        }
+
+        .coupon-price {
+            clear: left;
+        }
+
+        .coupon-price>div {
+            float: left;
+            width: 50%;
+
+        }
+
+        .coupon-price>div:last-child {
+            text-align: right;
+        }
+
+        .coupon-price {
+            clear: left;
+            margin-top: 35px;
+        }
+
+        .payment-price {
+            margin-top: 100px;
+            width: 100%;
+        }
+
+        .payment-price>div {
+            width: 100%;
+
+        }
+
+        .payment-price>div:first-child {
+            font-size: 19px;
+            font-weight: 900;
+            color: #ffbc42;
+        }
+
+        .thePay {
+            font-size: 25px;
+            font-weight: 700;
+            text-align: right;
+            color: #ffbc42;
+        }
+        .won{
+        	
+        float:right;
+        	font-size: 25px;
+            font-weight: 700;
+            text-align: right;
+            color: #ffbc42;
+        }
+        
+        

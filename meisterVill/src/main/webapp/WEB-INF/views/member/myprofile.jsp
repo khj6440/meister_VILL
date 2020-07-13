@@ -6,6 +6,19 @@
 <html lang="en" class="no-js">
 <head>
 <meta charset="utf-8" />
+<!-- modal -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" type="text/css"
+	href="/resources/sh/dist/css/style.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/sh/dist/css/MultiStep.min.css">
+<link rel="stylesheet" type="text/css"
+	href="/resources/sh/dist/css/MultiStep-theme.min.css">
+<!--  -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
@@ -22,11 +35,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
 	rel="stylesheet" type="text/css" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="/resources/sh/css/styles.css" rel="stylesheet" />
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
-	rel="stylesheet">
+
 <!--timeline css -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,13 +49,17 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/sh/css/component.css" />
 <script src="/resources/sh/js/modernizr.custom.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap"
+	rel="stylesheet">
+
 <style>
-*{
+* {
 	font-family: 'Noto Sans KR', sans-serif;
 	color: #4D4D4D;
 }
-
 
 .profile_container {
 	padding-top: 20%;
@@ -99,6 +112,14 @@
 	line-height: 3;
 }
 
+.star_div_img {
+	margin-top: 15px;
+	margin-right: 3px;
+	width: 17px;
+	height: 17px;
+	float: left;
+}
+
 .p_user_project {
 	height: calc(100%/ 3);
 }
@@ -129,7 +150,7 @@
 	padding-left: 20px;
 }
 
-.p_btn {
+#p_btn {
 	font-weight: bold;
 	color: #4D4D4D;
 	border-radius: 4px;
@@ -139,13 +160,13 @@
 	float: right;
 	right: 0;
 	bottom: 0;
-	margin-right: 30px;
+	margin-right: -170px;
+	margin-bottom: 40px;
 	text-align: center;
 	line-height: 50px;
 	background-color: #FFBC42;
 	border: none;
 	box-shadow: 0px px 3px darkgray;
-	color: #4D4D4D;
 }
 
 .p_btn:hover {
@@ -191,7 +212,7 @@
 
 .p_user_content_div {
 	border: 1px solid lightgray;
-	margin-bottom: 50px;
+	margin-bottom: 70px;
 }
 
 .p_user_content_div2 {
@@ -221,50 +242,177 @@
 	font-size: 15px;
 	font-weight: bold;
 }
-.p_user_star2{
-	margin : 0 auto;
-	background-color : rgb(243, 244, 248);
-	overflow : hidden;
+
+.p_user_star2 {
+	margin: 0 auto;
+	background-color: rgb(243, 244, 248);
+	overflow: hidden;
 	box-sizing: content-box;
-	height : 150px;
+	height: 150px;
 }
-.star2_1{
-	width : 50%;
-	height : 100%;
+
+.star2_1 {
+	width: 50%;
+	height: 100%;
 	box-sizing: border-box;
-	float : left;
-	text-align : right;
+	float: left;
+	text-align: right;
 	line-height: 3.5;
 	font-weight: bold;
 	font-size: 40px;
-	padding-right : 20px;
-	
+	padding-right: 20px;
 }
-.star2_2{
-	width : 50%;
-	height : 100%;
+
+.star2_2 {
+	width: 50%;
+	height: 100%;
 	box-sizing: border-box;
-	float : left;
+	float: left;
 }
-.star2_2_1{
-	width : 100%;
-	height : 50%;
-	padding-top : 50px;
+
+.star2_2_1 {
+	width: 100%;
+	height: 50%;
+	padding-top: 35px;
 }
-.star2_2_2{
-	width : 100%;
-	height : 50%;
+
+.star2_2_2 {
+	width: 100%;
+	height: 50%;
 	font-weight: bold;
-	padding-left : 5px;
+	padding-left: 5px;
 }
-.p_user_service{
+
+.p_user_service {
+	margin: 0 auto;
+	text-align: center;
+	cursor: pointer;
+}
+
+.p_span_service {
+	color: blue;
+}
+/* modal content1 */
+.sh_modal_content_wrap {
+	font-size: 15px;
+	margin: 0 auto;
+	width: 750px;
+	height: 400px;
+	overflow: hidden;
+	box-sizing: content-box;
+	margin-top: 20px;
+}
+
+.sh_sub_content1 {
+	width: 60%;
+	height: 100%;
+	float: left;
+	box-sizing: border-box;
+}
+
+.sh_sub_content1_1 {
+	width: 100%;
+	height: 30%;
+	box-sizing: border-box;
+}
+
+.m_profile_img {
+	width: 100px;
+	height: 100px;
+	border: 1px solid lightgray;
+	border-radius: 50px;
+	float: left;
+	margin-left: 10px;
+}
+
+.m_nickname_box {
+	width: 280px;
+	height: 50px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.m_nickname {
+	width: 100%;
+	height: 50px;
+}
+
+#member_nickname {
+	width: 270px;
+	height: 40px;
+}
+
+.sh_sub_content1_2 {
 	margin : 0 auto;
-	text-align : center;
-	cursor : pointer;
+	width: 95%;
+	height: 60%;
+	border: 1px solid lightgray;
+	box-sizing: border-box;
+	padding: 10px;
+	margin-left : 10px;
+	resize : none;
 }
-.p_span_service{
-	color : blue;
+
+.sh_sub_content2 {
+	margin: 5px;
+	width: 38%;
+	height: 95%;
+	border: 1px solid lightgray;
+	border-radius: 4px;
+	float: left;
+	box-sizing: border-box;
+	overflow-y: scroll; 
 }
+/* modal content2 */
+.sh_modal_content_wrap_2{
+    font-size: 15px;
+	margin : 0 auto;
+	border : 1px solid black;
+    width : 730px;
+	/*width : 95%;*/
+	height : 400px;
+	overflow: hidden;
+	box-sizing: content-box;
+    margin-top: 20px;
+}
+.sh_sub_content1_22{
+	width : 60%;
+	height : 100%;
+	border : 1px solid red;
+	float: left;
+	box-sizing: border-box;
+}
+.sh_sub_content1_1_2{
+	width : 100%;
+	height : 40%;
+	box-sizing: border-box;
+    border : 1px solid red;
+}
+
+.sh_sub_content1_2_2{
+	width : 100%;
+	height : 60%;
+	border : 1px solid lightgray;
+	box-sizing: border-box;
+    padding: 10px;
+}
+.sh_sub_content2_2{
+    padding: 10px;
+	width : 40%;
+	height : 100%;
+	border : 1px solid lightgray;
+    border-radius: 4px;
+	float: left;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+    .select_field{
+        width : 90%;
+        height : 50px;
+        margin-left: 20px;
+        margin-top : 10px;
+  }
 </style>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -275,26 +423,33 @@
 
 					<div class="p_user_inf">
 						<div>
-							<img class="p_img" src="/upload/admin/unnamedimg.png">
+							<img class="p_img" src="/upload/common/unnamedimg.png">
 						</div>
 						<div class="p_user_infbox">
 							<div class="p_user_nickname">${m.memberNickname }</div>
 							<div class="p_user_star">
 								<div class="star_div">
-									<img src="/upload/common/star-off.png"> <img
-										src="/upload/common/star-off.png"> <img
-										src="/upload/common/star-off.png"> <img
-										src="/upload/common/star-off.png"> <img
-										src="/upload/common/star-off.png"> 0.0 | 0개의
-									평가
+									<img class="star_div_img" src="/upload/common/star-off.png">
+									<img class="star_div_img" src="/upload/common/star-off.png">
+									<img class="star_div_img" src="/upload/common/star-off.png">
+									<img class="star_div_img" src="/upload/common/star-off.png">
+									<img class="star_div_img" src="/upload/common/star-off.png">
+									0.0 | 0개의 평가
 								</div>
 							</div>
 							<div class="p_user_project">
 								<div class="p_user_project_1">0 개</div>
 								<div class="p_user_project_2">총작업수</div>
 							</div>
-							<button onclick="location.href='#'" type="button" class="p_btn">프로필
-								등록 / 수정</button>
+
+							<section id="main_content" class="inner">
+								<button id="p_btn" data-toggle="modal"
+									data-target="#submitModal">프로필 등록 / 수정</button>
+							</section>
+
+							<div id="submitModal" class="multi-step"></div>
+
+
 						</div>
 
 					</div>
@@ -346,30 +501,31 @@
 					<h4>서비스</h4>
 					<section class="page-section text-white mb-0 p_user_content_div2"
 						id="about">
-							<div class="p_user_service" onclick ="location.href='#'">
-								<img src="/upload/common/service.png" style="width : 50px; height : 50px;"><br>
-								서비스를 등록하여 수익을 얻어보세요!<br>
-								<span class="p_span_service">+ 서비스 등록하기</span>
-							</div>
-						
+						<div class="p_user_service" onclick="location.href='#'">
+							<img src="/upload/common/service.png"
+								style="width: 50px; height: 50px;"><br> 서비스를 등록하여 수익을
+							얻어보세요!<br> <span class="p_span_service">+ 서비스 등록하기</span>
+						</div>
+
 					</section>
 					<!-- Contact Section-->
 					<h4 id="p_h4">받은 평가</h4>
-					<section class="page-section p_user_content_div3" id="contact">
-						<div class="container">
+					<section class="page-section p_user_content_div3" id="contact"
+						style="margin-top: -20px;">
+						<div class="container" style="margin-top: 0; padding: 0;">
 							<div class="p_user_star2">
-								<div class="star2_1"> 0.0</div>
+								<div class="star2_1">0.0</div>
 								<div class="star2_2">
 									<div class="star2_2_1">
-										<img src="/upload/common/star-off.png"> <img
-										src="/upload/common/star-off.png"> <img
-										src="/upload/common/star-off.png"> <img
-										src="/upload/common/star-off.png"> <img
-										src="/upload/common/star-off.png">
+										<img class="star_div_img" src="/upload/common/star-off.png">
+										<img class="star_div_img" src="/upload/common/star-off.png">
+										<img class="star_div_img" src="/upload/common/star-off.png">
+										<img class="star_div_img" src="/upload/common/star-off.png">
+										<img class="star_div_img" src="/upload/common/star-off.png">
 									</div>
 									<div class="star2_2_2">(0개의 평가)</div>
 								</div>
-								
+
 							</div>
 						</div>
 					</section>
@@ -400,21 +556,21 @@
 										<span class="p_span">경력 사항</span>
 										<hr>
 										<p>${list.companyName}</p>
-										
+
 									</div>
 								</li>
 								<li>
 									<div class="cbp_tmlabel p_timeline_div">
 										<span class="p_span">학력 · 전공</span>
 										<hr>
-										<p>내용</p>
+										<p></p>
 									</div>
 								</li>
 								<li>
 									<div class="cbp_tmlabel">
 										<span class="p_span">보유 자격증</span>
 										<hr>
-										<p>내용</p>
+										<p></p>
 									</div>
 								</li>
 
@@ -444,8 +600,168 @@
 	<script src="/resources/sh/assets/mail/contact_me.js"></script>
 	<!-- Core theme JS-->
 	<script src="/resources/sh/js/scripts.js"></script>
-	<script>
+	<!-- maister modal -->
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="/resources/sh/dist/js/MultiStep.min.js"></script>
 		
-	</script>
+		<script>
+		
+		function categoryChange(e) {
+			   var s1_sub = ["웹사이트 신규 제작", "웹사이트 개선", "모바일앱 신규 제작", "모바일앱 개선","소프트웨어","임베디드 시스템","데이터 사이언스","게임"];
+		       var s2_sub = ["로고디자인", "로고+명함디자인", "로고+간판디자인", "웹·모바일 디자인","명함·봉투(로고디자인 미포함)","전단지·포스터","현수막","북커버·앨범커버","3D프린팅·도면","배너광고·카드뉴스","SNS 디자인(유튜브·블로그·모두 등)","PPT·인포그래픽","포토샵 편집","의류 디자인","일러스트","캘리그라피"];
+		        /*
+			   $('#select_sub_menu').html("");*/
+            var d;
+            var value = $('#select_menu option:selected').val();
+            console.log(value);
+			if(value == "IT프로그래밍")  d = s1_sub;
+			else if(value == "디자인") d = s2_sub;
+
+		        
+            for(var i = 0; i<d.length;i++){
+                $('#select_sub_menu').append($('<option class="opt">'+d[i]+'</option>'));
+                }
+			/*for(var i =0; i<d.length;i++){
+                $('.opt').prop('value',d[i]);
+            }*/
+		     }
+		        $(document).ready(function(){
+		            var str1 = "";
+		            var str2 = "";
+		            var str3 = "";
+		           $('#select_menu').on('change',function(){
+		               str1 = this.value;
+                       console.log(str1);
+		               
+		           });
+		           $('#select_sub_menu').on('change',function(){
+                           console.log("test");
+		                   str2 = this.value;
+                           console.log(this);
+		                   str3 = str1 +"/"+ str2;
+                           console.log(str3);
+		                   $('.sh_sub_content1_2_2').text(str3);
+		                   console.log(str3);
+		               });
+		              
+		        });
+		</script>
+	<script type="text/javascript">
+	
+         $(document).ready(function() {
+        	
+
+        $('#submitModal').MultiStep({
+            title:'Meister 등록',
+          
+            data:[{
+                content:`<div class='sh_modal_content_wrap'>
+       			 <div class='sh_sub_content1'>
+   				 <div class='sh_sub_content1_1'>
+   				 <c:if test="${empty sessionScope.member.memberImg}">
+   				 	<div class='m_profile_img'>
+       			 	</div>
+       			 </c:if>
+       			 <c:if test="${not empty sessionScope.member.memberImg}">
+       				<div class='m_profile_img'>
+      			 	</div>
+       			 </c:if>
+                        <div class="m_nickname_box">
+                        <span style="font-weight: bold;" >전문가 닉네임</span>
+       			<div class="m_nickname">
+       				<input type='text' id='member_nickname' placeholder='${sessionScope.member.memberNickname}' style='cursor:not-allowed;'readonly>
+       			</div>
+                   </div>
+       			</div>
+                    <span style="font-weight: bold; margin-left : 10px;">자기소개</span>
+       			<textarea class='sh_sub_content1_2' style='text-align:left;'>${sessionScope.member.memberIntro}</textarea>
+       		</div>
+       		<div class='sh_sub_content2'>
+       		content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2
+       		content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2
+       		content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2
+       		content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2
+       		content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2
+       		</div> 
+   			</div> 
+                
+                `,
+        
+                label:'전문가 소개'
+            },{
+                content:` <div class='sh_modal_content_wrap_2'>
+       			 <div class='sh_sub_content1_22'>
+   				 <div class='sh_sub_content1_1_2'>
+                       <span style="margin-left:20px;">전문 분야 및 상세 분야를 선택해주세요</span> <span style="font-size: 8px; color : #FFBC42"> 복수선택</span><br>
+                        <select id="select_menu" onchange="categoryChange(this)" name="member_field" class="select_field">
+                            <option value="IT프로그래밍">IT프로그래밍</option>
+                            <option value="디자인">디자인</option>
+                        </select><br>
+                        <select id="select_sub_menu" name="member_sub_field" class="select_field">
+                            <option>상세메뉴를 선택해주세요</option>
+                            
+                        </select>
+       			</div>
+       			<div class='sh_sub_content1_2_2'>
+       			     content1_2
+       			</div>
+       		</div>
+       		<div class='sh_sub_content2_2'>
+       		  content2
+       		</div> 
+   </div> 
+                	
+                `,
+                label:'전문 분야'
+            },{
+               
+                label:'보유 기술'
+            },{
+                content:`
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+                `,
+                	label:'학력·전공',
+                	skip:true
+            },{
+            	label:'자격증',
+            	skip:true
+            },{
+            	label:'경력사항',
+            	skip:true
+            }],
+            final:'마이스터로 등록 하시겠습니까?',
+            modalSize:'lg'
+        });
+    });
+    </script>
+
 </body>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- Core theme CSS (includes Bootstrap)-->
+
+<link href="/resources/sh/css/styles.css" rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
+	rel="stylesheet">
 </html>
