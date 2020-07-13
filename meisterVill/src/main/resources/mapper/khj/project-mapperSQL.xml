@@ -88,7 +88,10 @@
 		from 
 			project_file
 		where 
-			project_no =#{_parameter}		
+			project_no =#{_parameter}
+		order by
+			p_file_time desc	
+				
 	</select>
 	<select id="selectProjectSchedule" parameterType="int" resultType="pSchedule">
 		select

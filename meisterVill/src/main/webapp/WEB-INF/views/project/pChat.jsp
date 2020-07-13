@@ -94,7 +94,8 @@ html, body {
 									<div class="col-lg-8">
 										<div class="page-header-title">
 											<div class="d-inline">
-												<h2  style="font-weight:500; font-size:2rem;color: black;">PROJECT CHAT</h2>
+												<h2 style="font-weight: 500; font-size: 2rem; color: black;">PROJECT
+													CHAT</h2>
 												<span style="font-size: 13px;">팀원들과의 대화가 저장됩니다.</span>
 											</div>
 										</div>
@@ -132,13 +133,13 @@ html, body {
 																				<c:if test="${empty m.memberImg }">
 																					<img src="/resources/upload/common/none_user.png"
 																						alt="user" class="img-fluid rounded-circle"
-																						width="40px">
+																						style="width: 40px; height: 40px;">
 																				</c:if>
 																				<c:if test="${not empty m.memberImg }">
 																					<img
 																						src="/resources/upload/memberImg/${m.memberImg}"
 																						alt="user" class="img-fluid rounded-circle"
-																						width="40px">
+																						style="width: 40px; height: 40px;">
 																				</c:if>
 																				<span class="profile-status online float-right"></span>
 																			</div>
@@ -174,10 +175,10 @@ html, body {
 																	<div
 																		class="chat-content text-right d-inline-block pl-3"
 																		style="width: 70%;">
-																		<div class="box msg p-2 d-inline-block mb-1 box">${c.PChatContent}</div>
+																		<div class="box msg p-2 d-inline-block mb-1 box" style="font-size: 17px; border-radius: 10px;">${c.PChatContent}</div>
 																		<br>
 																	</div>
-																	<div
+																	<div style="font-size: 12px;"
 																		class="chat-time text-right d-block font-10 mt-1 mr-0 mb-3">
 																		<div class="chat-gap" style="display: none;">${c.PChatTime}</div>
 																		<c:forTokens items="${c.PChatTime }" delims="/"
@@ -208,9 +209,9 @@ html, body {
 																	<div class="chat-content d-inline-block pl-3"
 																		style="width: 70%;">
 																		<h6 class="font-weight-medium">${c.PChatSender }</h6>
-																		<div class="msg p-2 d-inline-block mb-1">${c.PChatContent}</div>
+																		<div style="font-size: 17px;border-radius: 10px;" class="msg p-2 d-inline-block mb-1">${c.PChatContent}</div>
 																	</div>
-																	<div class="chat-time d-block font-10 mt-1 mr-0 mb-3">
+																	<div style="font-size: 12px;" class="chat-time d-block font-10 mt-1 mr-0 mb-3">
 																		<div class="chat-gap" style="display: none;">${c.PChatTime }</div>
 																		<c:forTokens items="${c.PChatTime }" delims="/"
 																			var="item" varStatus="status">
@@ -237,14 +238,17 @@ html, body {
 														<div class="col-9">
 															<div class="input-field mt-0 mb-0">
 																<input id="textarea1" placeholder="Type and enter"
-																	class="form-control border-0" type="text">
+																	class="form-control" type="text">
 															</div>
 														</div>
 														<div class="col-3">
-															<label id="sendLabel" for="myFile">파일업로드</label> <a
+															<label id="sendLabel"
+																style="text-align:center;font-size:13px;height: 100%;width:50%; background-color: #ebebeb; line-height: 1.5em; padding: 5px; color: black; border-radius: 10px; border: 1px solid black;"
+																for="myFile"><i class="fa fa-upload"
+																aria-hidden="true"></i> 파일</label> <a style="background: #ffbc42; color:white;"
 																class="btn-circle btn-lg btn-cyan float-right text-white transBtn"
 																href="javascript:void(0)" onclick="transChat()"><i
-																class="fas fa-paper-plane"></i></a>
+																class="fa fa-arrow-right" aria-hidden="true"></i></a>
 														</div>
 
 													</div>
@@ -290,15 +294,16 @@ html, body {
 		obj.on("drop", function(e) {
 			e.preventDefault();
 			$(this).css('border', 'none');
-			
+
 			var files = e.originalEvent.dataTransfer.files;
 			var formData = new FormData();
 			for (var i = 0; i < files.length; i++) {
 				formData.append('file[]', files[i]);
 			}
-			formData.append("projectNo","${projectNo}");
-			formData.append("pFileWriter","${sessionScope.member.memberNickname}");
-			
+			formData.append("projectNo", "${projectNo}");
+			formData.append("pFileWriter",
+					"${sessionScope.member.memberNickname}");
+
 			$.ajax({
 				url : "/meister/project/uploadProjectFile.do",
 				data : formData,
@@ -318,30 +323,33 @@ html, body {
 			});
 		});
 
-		$("#myFile").on('change', function() {
+		$("#myFile").on(
+				'change',
+				function() {
 
-			var form = $('#uploadForm')[0];
-			var formData = new FormData(form);
-			formData.append("projectNo","${projectNo}");
-			formData.append("pFileWriter","${sessionScope.member.memberNickname}");
-			$.ajax({
-				url : "/meister/project/uploadProjectFile.do",
-				data : formData,
-				type : "POST",
-				contentType : false,
-				processData : false,
-				success : function(data) {
-					var resultList = JSON.parse(data);
-					resultList.forEach(function(item, index) {
-						transChat(item);
-					})
-				},
-				error : function() {
-					console.log("ajax 실패");
-				}
-			});
+					var form = $('#uploadForm')[0];
+					var formData = new FormData(form);
+					formData.append("projectNo", "${projectNo}");
+					formData.append("pFileWriter",
+							"${sessionScope.member.memberNickname}");
+					$.ajax({
+						url : "/meister/project/uploadProjectFile.do",
+						data : formData,
+						type : "POST",
+						contentType : false,
+						processData : false,
+						success : function(data) {
+							var resultList = JSON.parse(data);
+							resultList.forEach(function(item, index) {
+								transChat(item);
+							})
+						},
+						error : function() {
+							console.log("ajax 실패");
+						}
+					});
 
-		});
+				});
 
 		$(document).on('keypress', "#textarea1", function(e) {
 			if (e.keyCode == 13) {
@@ -365,7 +373,7 @@ html, body {
 			var arr = param.split(":");
 			var extensions = [ ".jpg", ".gif", ".png", ".JPG", ".PNG", ".GIF" ];
 			msg = `<a href="/meister/project/projectFileDownload.do?filename=`
-					+ arr[0] + `&filepath=` + arr[1] + `"style="color:red;">`;
+					+ arr[0] + `&filepath=` + arr[1] + `"style="color:#ffbc42;font-weight:bold;text-decoration:underline;">`;
 			msg += arr[0];
 
 			for (var i = 0; i < extensions.length; i++) {
@@ -397,16 +405,19 @@ html, body {
 			var chat = $(".chat-list").html();
 			chat += `<li class="chat-item odd list-style-none mt-3" style="word-break:break-all;text-align:right;">`;
 			chat += `<div class="chat-content text-right d-inline-block pl-3" style="width:70%;">`;
+			console.log($(".chat-gap").eq(0).html());
+			if($(".chat-gap").eq(0).html() != undefined){
 			var arrDate = $(".chat-gap").last().html().split("/");
-
+	
 			if (arrDate[0] != year || arrDate[1] != month || arrDate[2] != day
 					|| arrDate[4] != minutes) {
 				chat += `<div>2020</div>`;
+				}
 			}
-			chat += `<div class="box msg p-2 d-inline-block mb-1 box">` + msg
+			chat += `<div class="box msg p-2 d-inline-block mb-1 box" style="font-size: 17px;border-radius:10px;">` + msg
 					+ `</div>`
 			chat += `<br></div>`;
-			chat += `<div class="chat-time text-right d-block font-10 mt-1 mr-0 mb-3">`;
+			chat += `<div style="font-size: 12px;" class="chat-time text-right d-block font-10 mt-1 mr-0 mb-3">`;
 			chat += `<div class="chat-gap" style="display:none;">` + year + "/"
 					+ month + "/" + day + "/" + hours + "/" + minutes
 					+ `</div> `;
@@ -436,66 +447,70 @@ html, body {
 		}
 
 	}
-	
-	
+
 	var ws;
 	var memberNickname = '${sessionScope.member.memberNickname}';
 	function connect() {
-		ws = new WebSocket("ws://192.168.10.15/projectChat.do");	//protocol이 http가 아닌 ws://임
+		ws = new WebSocket("ws://192.168.0.6/projectChat.do"); //protocol이 http가 아닌 ws://임
 		//연결 -> 메세지 받았을 때 -> 종료
 		//연결
-		ws.onopen = function(){
+		ws.onopen = function() {
 			console.log("웹 소켓 연결 생성(project chat)");
 			//객체 생성
 			var msg = {
-					type : "register",
-					memberNickname : memberNickname,
-					projectNo: "${projectNo}"
+				type : "register",
+				memberNickname : memberNickname,
+				projectNo : "${projectNo}"
 			}
 			//JSON으로 Object -> String으로 타입 변환해서 보내기
 			// "{type : 'register', memberNickname : 'user01'}"
 			ws.send(JSON.stringify(msg));
 		};
 		//메세지 수신
-		ws.onmessage = function (e) {
-	
-			console.log("msg수신:"+e.data)
+		ws.onmessage = function(e) {
+
+			console.log("msg수신:" + e.data)
 			var data = JSON.parse(e.data);
 			var html = $(".chat-list").html();
-			html+=`<li class="chat-item list-style-none mt-3" style="word-break:break-all;text-align:left;">`;
-			html+=`<div class="chat-img d-inline-block">`;
-			html+=`<img src="/resources/upload/common/none_user.png"	alt="user" class="rounded-circle" width="45">`;
-			html+=`</div>`;
-			html+=`<div class="chat-content d-inline-block pl-3" style="width:70%;">`;
-			html+=`<h6 class="font-weight-medium">`+data.sender+`</h6>`;
-			html+=`<div class="msg p-2 d-inline-block mb-1">`+data.msg+`</div>`;
-			html+=`</div>`;
-			html+=`<div class="chat-time d-block font-10 mt-1 mr-0 mb-3">`
-			
+			html += `<li class="chat-item list-style-none mt-3" style="word-break:break-all;text-align:left;">`;
+			html += `<div class="chat-img d-inline-block">`;
+			html += `<img src="/resources/upload/common/none_user.png"	alt="user" class="rounded-circle" width="45">`;
+			html += `</div>`;
+			html += `<div class="chat-content d-inline-block pl-3" style="width:70%;">`;
+			html += `<h6 class="font-weight-medium">` + data.sender + `</h6>`;
+			html += `<div class="msg p-2 d-inline-block mb-1" style="font-size: 17px;border-radius:10px;">` + data.msg
+					+ `</div>`;
+			html += `</div>`;
+			html += `<div style="font-size: 12px;" class="chat-time d-block font-10 mt-1 mr-0 mb-3">`
+
 			var arr = data.sendTime.split("/");
-			html+=`<div class="chat-gap" style="display:none;">`+arr[0]+"/"+arr[1]+"/"+arr[2]+"/"+arr[3]+"/"+arr[4]+`</div> `;
-			html+= (arr[3]<=12?"오전 "+arr[3] :"오후 "+(arr[3]-12) ) +":"+arr[4];
-			
-			html+=`</div>`;
-			html+=`</li>`;
-			
+			html += `<div class="chat-gap" style="display:none;">` + arr[0]
+					+ "/" + arr[1] + "/" + arr[2] + "/" + arr[3] + "/" + arr[4]
+					+ `</div> `;
+			html += (arr[3] <= 12 ? "오전 " + arr[3] : "오후 " + (arr[3] - 12))
+					+ ":" + arr[4];
+
+			html += `</div>`;
+			html += `</li>`;
+
 			$(".chat-list").html("");
 			$(".chat-list").append(html);
-			$('#chat-box').stop().animate({ scrollTop: $('#chat-box')[0].scrollHeight }, 300);
-	
+			$('#chat-box').stop().animate({
+				scrollTop : $('#chat-box')[0].scrollHeight
+			}, 300);
+
 		};
 
 		//종료
-		ws.onclose = function () {
+		ws.onclose = function() {
 			console.log("웹 소켓 연결 종료(project chat)")
 		};
 	}
-	
 
 	$(function() {
 		connect();
 		/* transChat(); */
-		$(".jFiler-row").css("display","none");
+		$(".jFiler-row").css("display", "none");
 	});
 </script>
 <!-- --------------------------------------------- -->

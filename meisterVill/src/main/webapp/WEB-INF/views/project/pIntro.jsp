@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -152,14 +154,14 @@ button.primary.ghost {
 
 				</div>
 				<div class="site-section site-hero inner"
-					style="margin-top:50px;margin-bottom: 0px; padding-bottom: 0px; /* background-image: url('/resources/upload/project/bg2.jpg');  background-repeat: no-repeat; background-size: 100% 100%;*/">
+					style="margin-top: 50px; margin-bottom: 0px; padding-bottom: 0px;">
 
 					<div class="container">
 						<div class="row align-items-center">
 							<div class="col-md-10">
 								<span style="font-size: 20px; color: grey;" d-block mb-3
 									caption" data-aos="fade-up">PROJECT</span>
-								<div style="font-size: 40px; font-weight: bold"
+								<div style="font-size: 40px; font-weight: bold;overflow:hidden;  text-overflow:ellipsis;white-space:nowrap;"
 									class="d-block mb-4" data-aos="fade-up" data-aos-delay="100">${project.employTitle }</div>
 							</div>
 						</div>
@@ -205,7 +207,12 @@ button.primary.ghost {
 								<span class="" style="border-bottom: 2px solid #FFBC42">budget</span>
 							</div>
 							<div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
-								<p>${project.employPrice }</p>
+
+								<p>
+									<fmt:formatNumber value="${project.employPrice }"
+										pattern="###,###,###,###" />
+									원
+								</p>
 							</div>
 						</div>
 
@@ -216,7 +223,7 @@ button.primary.ghost {
 									Start</span>
 							</div>
 							<div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
-								<p>${project.projectStart }~~</p>
+								<p>${project.projectStart }~</p>
 							</div>
 						</div>
 
@@ -226,13 +233,14 @@ button.primary.ghost {
 
 				<div class="site-section" style="padding-top: 2em;">
 					<div class="container">
-						<div class="row mb-5 justify-content-center" style="justify-content: none;">
+						<div class="row mb-5 justify-content-center"
+							style="justify-content: none;">
 							<div class="col-lg-4 mb-5">
 								<div class="site-section-heading" data-aos="fade-up"
 									data-aos-delay="100">
 									<h2 style="font-size: 30px; color: black;">PROJECT MEMBER</h2>
 								</div>
-							
+
 							</div>
 						</div>
 						<div class="row" style="justify-content: space-between;">
@@ -265,18 +273,25 @@ button.primary.ghost {
 								</div> --%>
 								<div class="card-container col-md-6 col-lg-4 mb-5 mb-lg-5"
 									data-aos="fade-up" data-aos-delay="100"
-									style="max-width: 29%; border-radius: 10px; border: 2px solid #dedede; box-shadow: 2px 2px 2px grey;">
-									<img class="round" style="width: 150px; height: 150px;"
-										src="/resources/upload/common/none_user.png" alt="user" />
-									<h3>${m.memberName }</h3>
-									<h6>${m.memberNickname }</h6>
-									<div>${m.memberPhone }</div>
+									style="max-width: 24%; border-radius: 10px; border: 2px solid #dedede; box-shadow: 2px 2px 2px grey;">
+									<c:if test="${empty m.memberImg}">
+										<img class="round" style="width: 150px; height: 150px;"
+											src="/resources/upload/common/none_user.png" alt="user" />
+									</c:if>
+									<c:if test="${not empty m.memberImg }">
+										<img class="round" style="width: 150px; height: 150px;"
+											src="/resources/upload/memberImg/${m.memberImg}" alt="user" />
+									</c:if>
+									<h4 style="margin: 15px 0px;">${m.memberName }</h4>
+									<h6 style="color: #c2c2c2;">${m.memberNickname }</h6>
+									<div>${m.memberPhone}</div>
 									<div class="skills">
 										<h6>Skills</h6>
 										<ul>
-									<c:forTokens items="${m.memberSkill }" delims="/" var="item" varStatus="status">
-											<li>${item}</li>
-									</c:forTokens>
+											<c:forTokens items="${m.memberSkill }" delims="/" var="item"
+												varStatus="status">
+												<li>${item}</li>
+											</c:forTokens>
 										</ul>
 									</div>
 								</div>
@@ -291,9 +306,7 @@ button.primary.ghost {
 	</div>
 </body>
 <script>
-	$(function() {
 	
-	})
 </script>
 
 <!-------------------------------------------------------------------------------  -->

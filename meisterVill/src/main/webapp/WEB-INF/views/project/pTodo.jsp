@@ -81,14 +81,14 @@ html, body {
 									</div>
 								</div>
 								<div>
-								 <c:if test="${empty pickDate  }">
-								 	<input value="2020-07-13" id="pickDay" type="date">
+								 <c:if test="${empty pickDate }">
+								 	<input value="2020-07-14" id="pickDay" max="2020-07-14" type="date">
 								 </c:if>
-								 <c:if test="${not empty pickDate  }">
-								 	<input value="${pickDate}" id="pickDay" type="date">
+								 <c:if test="${not empty pickDate}">
+								 	<input value="${pickDate}" id="pickDay" max="2020-07-14" type="date">
 								 
 								 </c:if>
-								<button class="btn" onclick="getTodoList()">검색</button></div>
+								<button style="color:white;background: #ffbc42;" class="btn" onclick="getTodoList()">Search</button></div>
 							</div>
 						</div>
 
@@ -123,7 +123,7 @@ html, body {
 																						<i	class="cr-icon icofont icofont-ui-check txt-primary"></i>
 																					</span> <span class="task-title-sp">${t.PNoticeContent}</span>
 																						<span style="margin-left: 25px;" class="float-right hidden-phone"> <i
-																							class="icofont icofont-ui-delete delete_todo" onclick="delete_todo(${t.PNoticeNo})"></i>
+																							class="icofont icofont-ui-delete delete_todo" onclick="delete_todo(${t.PNoticeNo},event)"></i>
 																					</span>
 																					<span class="float-right">${t.PNoticeDate }</span>
 																						
@@ -134,8 +134,7 @@ html, body {
 																	</c:forEach>
 																</div>
 																<div>
-																	<a
-																		class="btn btn-primary btn-add-task waves-effect waves-light m-t-10"
+																	<a id="myAddBtn" class="btn btn-primary btn-add-task waves-effect waves-light m-t-10"
 																		href="#" data-toggle="modal" data-target="#flipFlop"><i
 																		class="icofont icofont-plus"></i> Add New Tasks</a>
 																</div>
@@ -262,14 +261,14 @@ html, body {
 				</div>
 				<div class="modal-body">
 					<h5>삭제 확인</h5>
+					<br>
 					<p>삭제 하시겠습니까?</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default waves-effect "
 						data-dismiss="modal">Close</button>
 					<button onclick="deleteTodo();" type="button"
-						class="btn btn-primary waves-effect waves-light ">Save
-						changes</button>
+						class="btn btn-primary waves-effect waves-light ">Delete</button>
 				</div>
 			</div>
 		</div>
@@ -326,7 +325,21 @@ html, body {
 			});
 			
 		} */
-		
+		$(function(){
+			if($("#pickDay").val()!="2020-07-14"){
+				$("#myAddBtn").prop("disabled",true);
+				$("#myAddBtn").html("당일만 입력가능");
+			};
+			
+			$("#pickDay").change(function(){
+				if($(this).val()=="2020-07-14"){
+					location.href="/meister/project/todo2.do?projectNo="+${projectNo}+"&date=2020-07-14";
+				}else{
+					$("#myAddBtn").prop("disabled",true);
+					$("#myAddBtn").html("당일만 입력가능");
+				}
+			})
+		})
 	</script>
 
 	<script type="e9351a8aaabbca07704238a6-text/javascript"

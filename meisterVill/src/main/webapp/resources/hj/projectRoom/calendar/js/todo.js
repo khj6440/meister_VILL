@@ -46,12 +46,14 @@ $(document)
 							.on(
 									"click",
 									function() {
+										
 										$(".md-form-control").removeClass(
 												"md-valid");
 										var task = $('.add_task_todo').val();
 										if (task == "") {
 											alert("please enter task");
 										} else {
+											
 											var add_todo = $('<div class="to-do-list" id="'
 													+ i
 													+ '"><div class="checkbox-fade fade-in-primary"><label class="check-task"><input type="checkbox" onclick="check_task('
@@ -67,6 +69,7 @@ $(document)
 											$(add_todo).appendTo(".new-task")
 													.hide().fadeIn(300);
 											$('.add_task_todo').val('');
+											
 										}
 									});
 					$(".delete_todolist").on("click", function() {
@@ -134,7 +137,7 @@ $(document)
 																	+ saveTask
 																	+ '</span><span style="margin-left: 25px;"  class="float-right hidden-phone"><i class="icofont icofont-ui-delete delete_todo" onclick="delete_todo('
 																	+ result2
-																	+ ');"></i></span><span class="float-right">'
+																	+ ',event);"></i></span><span class="float-right">'
 																	+ year
 																	+ "-"
 																	+ month
@@ -156,6 +159,7 @@ $(document)
 															$("#flipFlop")
 																	.modal(
 																			'hide');
+															$("#pickDay").val("2020-07-14");
 														},
 
 														error : function() {
@@ -224,7 +228,10 @@ $(document)
 					 * });
 					 */
 				});
-function delete_todo(e) {
+function delete_todo(e,event) {
+	event.preventDefault();
+	event.stopPropagation();
+	console.log(event);
 	clicked = e;
 	$("#default-Modal").modal('show');
 }
