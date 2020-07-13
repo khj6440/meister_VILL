@@ -282,12 +282,12 @@
 	</select>
 	
 	<select id="memberOneViewSellCnt" resultType="_int">
-	<!-- sell 총 게시물 수  -->
+	<!-- sell 총 게시물 수 --> 
 		 select count(*) as sellListCnt from sell where sell_writer = #{memberNo}
 	</select>
 	
 	<select id="memberOneViewPickCnt" resultType="_int">
-	<!-- sell 총 게시물 수  -->
+	<!-- sell 총 게시물 수 --> 
 		 select count(*) as pickListCnt from pick where member_no = #{memberNo}
 	</select>
 	
@@ -460,9 +460,11 @@
             from notice where notice_no = #{noticeNo}
 	</select>
 	
+
 	<select id="reportCnt" resultType="_int">
 		select count(*) as reportCnt from report where REPORT_BOARD_TYPE = 0
 	</select>
 	
+
 
 </mapper>

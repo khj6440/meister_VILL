@@ -2,6 +2,12 @@
 div {
 display: block;
 }
+.employ-content, .sell-content{
+	display:flex; 
+	width:1100px;
+	padding: 15px;	
+}
+
 .panel {
 border-color: #e6e6e6 !important;
 border: 1px solid transparent;
@@ -169,6 +175,7 @@ height: 408px;
 font-size: 14px;
 line-height: 24px;
 padding:10px;
+margin-top: 20px;
 }
 .form-input-content:hover {
 	border: 1px solid #FFBC42;
@@ -225,4 +232,75 @@ font-size: 20px;
 position: absolute;
 left: 220px;
 top: 14px;
+}
+.gig-form-tooltip-text {
+	padding-left:30px;
+	font-size:14px;
+}
+.bubble_box {
+	display:none;
+	position: relative;
+	background: #fffdec;;
+	border: 2px solid #fae57c;
+	padding:20px;
+	margin:10px;
+}
+.bubble_box:after, .bubble_box:before {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.bubble_box:after {
+	border-color: rgba(0, 0, 0, 0);
+	border-right-color: #fffdec;;
+	border-width: 5px;
+	margin-top: -5px;
+}
+.bubble_box:before {
+	border-color: rgba(0, 0, 0, 0);
+	border-right-color: #fae57c;;
+	border-width: 11px;
+	margin-top: -11px;
+}
+#checkInsert {
+	border: 1px solid #dedede;
+	padding:20px;
+}
+.insert-now {
+	font-size: 14px;
+	padding-left:13px;
+}
+.form-input-wantform {
+width: 736px;
+min-width: 100%;
+max-width: 100%;
+margin: 0px;
+height: 100px;
+font-size: 14px;
+line-height: 21px;
+padding:10px;
+margin-top: 20px;
+}
+.form-input-wantform:hover {
+	border: 1px solid #FFBC42;
+}
+.form-input-wantskill {
+width: 736px;
+min-width: 100%;
+max-width: 100%;
+margin: 0px;
+height: 40px;
+font-size: 14px;
+line-height: 21px;
+padding:10px;
+margin-top: 20px;
+}
+.form-input-wantskill:hover {
+	border: 1px solid #FFBC42;
 }

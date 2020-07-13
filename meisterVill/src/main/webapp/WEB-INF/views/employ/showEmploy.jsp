@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <link href="/resources/bh/common-css/common.css" rel="stylesheet">
 <link href="/resources/bh/employ-css/showEmploy.css?after" rel="stylesheet">
@@ -38,7 +39,7 @@
         </div>
         <br><br>
         <p class="fo-si-18 fo-we-bo">프로젝트 내용</p>
-        <p class="no-font">[ 본 프로젝트는 클라이언트가 위시켓 이용요금을 부담합니다. ]</p>
+        <p class="no-font">[ 본 프로젝트는 클라이언트가 마이스터 이용요금을 부담합니다. ]</p>
         <p class="no-font">[ 클라이언트가 직접 발주한 프로젝트입니다. ]</p>
         <br>
         <div class="main-content">
@@ -126,5 +127,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="employ">
-<!-- <resultMap id="em" type="employMember">
+<resultMap id="em" type="employMember">
 <association property="employvo" javaType="employ">
 	    <id property="employNo" column="employ_no" />
 	    <result property="employTitle" column="employ_title" />
@@ -44,26 +44,32 @@
     </association>
 </resultMap>
 
-<select id="selectTotal" resultType="_int" parameterType="_int">
-	select count(*) as cnt from employ where employ_writer = #{_parameter}
+<resultMap id="ejm" type="ejm">
+<association property="employvo" resultMap="employMap">
+</association>
+<association property="membervo" resultMap="memberMap">
+</association>
+</resultMap>
+
+<select id="selectTotal" resultType="_int">
+	select count(*) as cnt from employ where employ_appro = 1
 </select>
 <select id="selectAllEmploy" resultMap="em" parameterType="map">
 	select * from
 		(select rownum as rnum, n.* from
-			(select 
-				*
-			from employ
-			join member
-			on (employ_writer = member_no)
-		order by 1 desc)n
-		)
-	where rnum between #{start} and #{end} 
-	<if test="employstatus!=3">
-		and employ_status=#{employstatus}
-	</if>
-	<if test="employappro!=3">
-		and employ_appro=#{employappro}
-	</if>
-</select> -->
-
+			(
+			select * from employ
+			where employ_appro = 1
+			order by 1 desc)n
+			)
+	where rnum between #{start} and #{end}
+</select>
+<select id="selectOneList" parameterType="_int" resultMap="ejm">
+	select * from employ 
+		full outer join member on(member.member_no = employ.employ_writer)
+	where employ_no = #{parameter}
+</select>
+<insert id="insertEmploy" parameterType="employ">
+	insert into employ values(employ_seq.nextval, #{employTitle}, #{employCategory1},#{employCategory2},#{employContent},#{employSkill},#{employPrice},to_char(SYSDATE,'YYYY/MM/DD'),#{employStartDate},#{employPeriod},#{employBoardEnd},'0','0',#{employWriter},#{employWriter},'변경')
+</insert>
 </mapper>

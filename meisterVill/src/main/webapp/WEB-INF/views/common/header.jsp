@@ -45,7 +45,18 @@
     <link rel="stylesheet" href="/resources/yr/css/login_modal_css.css" type="text/css">
     <link rel="stylesheet" href="/resources/yr/css/login_header_css.css" type="text/css">
 </head>
+
 <body>
+    <style>
+        .pf-img {
+    width: 63.51px;
+    height: 63.51px;
+
+    border-radius: 50%;
+    border: 1px solid blue;
+}
+    </style>
+    
 
     <header>
         <!-- Bootstrap core JavaScript -->
@@ -165,6 +176,7 @@
 
         </script>
 
+
         <div class="normal-header">
             <!-- Navigation -->
 
@@ -210,9 +222,18 @@
 
                             <ul class="hd-profile-boundary1">
                                 <li class="hd-profile-img1">
-                                    <a href="#">
-                                        <img src="/resources/yr/imgs/profile_img2.png" width="100%">
-                                    </a>
+                                    <div class="pf-img">
+                                        <c:if test="${sessionScope.member.memberImg eq null }">
+                                            <a href="#">
+                                                <img src="/resources/yr/imgs/profile_img2.png" width="100%">
+                                            </a>
+                                        </c:if>
+                                        <c:if test="${sesssionScope.member.memberImg ne null }">
+                                            <a href="#">
+                                                <img src="/resources/upload/memberImg/${sessionScope.member.memberImg }" width="100%">
+                                            </a>
+                                        </c:if>
+                                    </div>
 
                                     <ul class="hd-profile-menu1">
                                         <li id="none" name="hd-menu1"><a href="#">프로필 관리</a></li>
@@ -246,7 +267,7 @@
                 </div>
 
             </div>
-           
+
         </div>
         <div class="side-info-menu sim-close">
 
@@ -308,10 +329,10 @@
                                     LOGIN
                                 </div>
                                 <div class="login-input-dv">
-                                    <form action="/meister/member/loginMember.do" method="post">
+                                    <form id="loginFrm" action="/meister/member/loginMember.do" method="post">
                                         <input type="text" name="memberEmail" class="login-input" placeholder="이메일을 입력하세요"><br>
                                         <input type="password" name="memberPw" class="login-input" placeholder="비밀번호를 입력하세요"><br>
-                                        <div class="login-msg-box">msg</div>
+                                        <div class="login-msg-box"></div>
                                         <input type="button" class="btn btn-insert btn-in-modal" value="로그인">
                                         <div class="login-chk-dv">
                                             <div>
@@ -339,7 +360,7 @@
                                     <h6>1만원 할인 쿠폰 지급!</h6>
 
                                     <a href="#" class="btn btn-insert btn-log-ins">회원가입</a>
-                                    
+
                                 </div>
                             </div>
 

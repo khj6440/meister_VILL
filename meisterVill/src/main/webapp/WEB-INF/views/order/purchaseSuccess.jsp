@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -25,27 +26,27 @@
                     <table>
                         <tr>
                             <th>주문번호</th>
-                            <td>1</td>
+                            <td>${orderNo }</td>
                         </tr>
                         <tr>
                             <th>구매회원번호</th>
-                            <td>11</td>
+                            <td>${orderMemberNo }</td>
                         </tr>
                         <tr>
                             <th>회원이메일</th>
-                            <td>11</td>
+                            <td>${memberEmail }</td>
                         </tr>
                         <tr>
                             <th>상품</th>
-                            <td>11</td>
+                            <td>${sellTitle }</td>
                         </tr>
                         <tr>
                             <th>주문일자</th>
-                            <td>11</td>
+                            <td>${orderDate }</td>
                         </tr>
                         <tr>
                             <th>구매금액</th>
-                            <td>11</td>
+                            <td>${price }</td>
                         </tr>
 
                     </table>
@@ -53,7 +54,7 @@
 
             </div>
             <div class="btn-div">
-                <button type="button" class="btn btn-yr-normal-gray">메인화면</button>
+                <button type="button" onclick="location.href='/'" class="btn btn-yr-normal-gray">메인화면</button>
                 <button type="button" class="btn btn-yr-normal-gray">마이페이지</button>
             </div>
         </div>

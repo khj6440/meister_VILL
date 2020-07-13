@@ -73,14 +73,20 @@
 	</association>
 	<association property="optionsvo" resultMap="optionsMap">
 	</association>
-	<association property="pickvo" resultMap="pickMap">
-	</association>
 </resultMap>
 <resultMap id="sjm" type="sjm">
  	<association property="sellvo" resultMap="sellMap">
 	</association>
     <association property="membervo" resultMap="memberMap">
     </association>
+</resultMap>
+<resultMap type="smo" id="smo">
+	<association property="sellvo" resultMap="sellMap">
+	</association>
+	<association property="membervo" resultMap="memberMap">
+	</association>
+	<association property="optionsvo" resultMap="optionsMap">
+	</association>
 </resultMap>
 
 <select id="selectAllList" resultMap="sjm">
@@ -98,15 +104,12 @@
 </select>
 
 <select id="selectTotal" resultType="_int">
-	select count(*) as cnt from sell
+	select count(*) as cnt from sell where sell_appro = 1 and sell_status = 0
 </select>
-<select id="selectOne" parameterType="map" resultMap="sjo">
+<select id="selectOne" parameterType="_int" resultMap="sjm">
 	select * from sell
 		full outer join member on (sell.sell_writer=member.member_no)
-		left join multi_img on (sell.sell_no = multi_img.multi_board_no)
-		left join options on (sell.sell_no = options.sell_no)
-		left join pick on (sell.sell_no = pick.sell_no and pick.member_no = #{memberNo})
-	where sell.sell_no = #{sellNo}
+	where sell.sell_no = #{parameter}
 </select>
 <insert id="insertSell" parameterType="sell" useGeneratedKeys="true" keyColumn="sell_no" keyProperty="sellNo">
 	insert into sell values(sell_seq.nextval,'0',#{sellWriter},'0','0','0','0','0','0','0','0','0','0','0','0','0','0','0') 
@@ -125,7 +128,7 @@
 		sell_category1 = #{sellCategory1},
 		sell_category2 = #{sellCategory2},
 		sell_skill = #{sellSkill},
-		sell_date = sysdate,
+		sell_date = to_char(SYSDATE,'YYYY/MM/DD'),
 		sell_appro = #{sellAppro},
 		sell_status = #{sellStatus},
 		sell_opt1 = #{sellOpt1},
@@ -138,4 +141,14 @@
 		sell_img = #{sellImg}
 	where sell_no = #{sellNo}
 </update>
+<select id="selectPick" parameterType="_int" resultMap="pickMap">
+	select * from pick where member_no = #{parameter}
+</select>
+<delete id="deleteOpt" parameterType="map">
+delete from options where sell_no = #{sellNo} and option_title = #{optionsTitle} 
+</delete>
+<select id="selectMultiImg" parameterType="_int" resultType="multiImg">
+	select * from multi_img where multi_board_no = #{parameter} and multi_board_type = 1
+</select>
 </mapper>
+
