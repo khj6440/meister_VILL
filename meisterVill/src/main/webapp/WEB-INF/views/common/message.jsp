@@ -485,7 +485,7 @@
 	var memberNickname = "${sessionScope.member.memberNickname}";
 
 	function connectMsg() {
-		wsMsg = new WebSocket("ws://192.168.0.6/message.do");
+		wsMsg = new WebSocket("ws://192.168.10.15/message.do");
 
 		wsMsg.onopen = function() {
 			console.log("웹 소켓 연결 생성(msg)");
