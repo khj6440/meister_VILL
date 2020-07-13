@@ -41,6 +41,7 @@ import kr.or.meister.admin.model.vo.SellSellVO;
 import kr.or.meister.admin.model.vo.SellJoinOrdersJoinOptionVO;
 import kr.or.meister.admin.model.vo.SellStatsVO;
 import kr.or.meister.admin.model.vo.selectAllSellPageVO;
+import kr.or.meister.etc.model.vo.ReportVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.sell.model.service.SellService;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
@@ -355,6 +356,8 @@ public class AdminController {
 		SellStatsVO ss = service.sellStats();
 		SellAndRequestVO saq = service.sellAndRequest();
 		SellAndRequestVO oneMemberSaq = service.oneMemberSellAndRequest();
+		int reportCnt = service.reportCnt();
+		
 		int allSum = 0;
 		int allMember = 0;
 		int sellSum = 0;
@@ -485,6 +488,7 @@ public class AdminController {
 		
 		request.setAttribute("mainSell", mainSell);
 		request.setAttribute("mainEmploy", mainEmploy);
+		request.setAttribute("reportCnt", reportCnt);
 		return "admin/adminIndex";
 	}
 	

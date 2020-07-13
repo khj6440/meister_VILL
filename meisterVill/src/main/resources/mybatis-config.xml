@@ -50,8 +50,11 @@
 		<typeAlias type="kr.or.meister.project.model.vo.ProjectFileVO" alias="pFile"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.MemberInformVO" alias="memberInform"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.RequestListVO" alias="requestList"/>
+		<typeAlias type="kr.or.meister.admin.model.vo.AdminReportVO" alias="adminReport"/>
 		<typeAlias type="kr.or.meister.notice.model.vo.NoticeVO" alias="notice"/>
 		<typeAlias type="kr.or.meister.notice.model.vo.QnAVO" alias="qna"/>
+		
+		
 		
 
 	</typeAliases>

@@ -382,6 +382,10 @@
 		UPDATE sell SET sell_status = 2 WHERE sell_no = #{sellNo}
 	</update>
 	
+	<update id="reviewDelete" parameterType="int">
+		 UPDATE report SET report_board_type = 2 WHERE report_no = #{reportNo}
+	</update>
+	
 	<update id="approval" parameterType="int">
 		UPDATE sell SET sell_appro = 1 WHERE sell_no = #{sellNo}
 	</update>
@@ -454,6 +458,10 @@
             notice_date as noticeDate,
             notice_view_count as noticeViewCount
             from notice where notice_no = #{noticeNo}
+	</select>
+	
+	<select id="reportCnt" resultType="_int">
+		select count(*) as reportCnt from report where REPORT_BOARD_TYPE = 0
 	</select>
 	
 

@@ -143,7 +143,7 @@
         }
     }
     function showList(sellNo) {
-    	location.href="/meister/sell/showList.do?sellNo=" + sellNo + "&memberNo=1";
+    	location.href="/meister/sell/showList.do?sellNo="+sellNo+"&memberNo="+${sessionScope.member.memberNo};
     }
     </script>
 </body>

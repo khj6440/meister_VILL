@@ -30,6 +30,10 @@ public class AdminBoardDao {
 	public int sellDelete(int sellNo) {
 		return sqlSession.update("adminMember.sellDelete",sellNo);
 	}
+	
+	public int reviewDelete(int reportNo) {
+		return sqlSession.update("adminMember.reviewDelete",reportNo);
+	}
 
 	
 /*-----------------------------------------------------------------------------------------------------------------------*/	

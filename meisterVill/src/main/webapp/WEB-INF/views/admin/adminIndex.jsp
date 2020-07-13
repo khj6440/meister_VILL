@@ -163,16 +163,16 @@
                 <!-- WHITE PANEL - TOP USER -->
                 <div class="white-panel pn">
                   <div class="white-header">
-                    <h5>SELL PRICE TOP USER</h5>
+                    <h5>판매글 최다수익 유저</h5>
                   </div>
                   <p>
                   
                   <c:if test="${sm.memberImg != null}">
-                  <img src="/resources/upload/memberImg/${sm.memberImg }" class="img-circle" width="50">
+                  <img src="/resources/upload/memberImg/${sm.memberImg }" class="img-circle" style="width: 50px; height: 50px;">
                   </c:if>
                   
                   <c:if test="${sm.memberImg == null}">
-                  <img src="/resources/upload/memberImg/unnamed.png" class="img-circle" width="50">
+                  <img src="/resources/upload/memberImg/unnamed.png" class="img-circle" style="width: 50px; height: 50px;">
                   </c:if>
                   
                   </p>
@@ -220,16 +220,16 @@
                 <!-- WHITE PANEL - TOP USER -->
                 <div class="white-panel pn">
                   <div class="white-header">
-                    <h5>ALL PRICE TOP USER</h5>
+                    <h5>최다수익 유저</h5>
                   </div>
                   <p>
                   
                   <c:if test="${am.memberImg != null}">
-                  <img src="/resources/upload/memberImg/${am.memberImg }" class="img-circle" width="50">
+                  <img src="/resources/upload/memberImg/${am.memberImg }" class="img-circle" style="width: 50px; height: 50px;">
                   </c:if>
                   
                   <c:if test="${am.memberImg == null}">
-                  <img src="/resources/upload/memberImg/unnamed.png" class="img-circle" width="50">
+                  <img src="/resources/upload/memberImg/unnamed.png" class="img-circle" style="width: 50px; height: 50px;">
                   </c:if>
                   
                   </p>
@@ -277,16 +277,16 @@
                 <!-- WHITE PANEL - TOP USER -->
                 <div class="white-panel pn">
                   <div class="white-header">
-                    <h5>REQUEST PRICE TOP USER</h5>
+                    <h5>견적글 최다수익 유저</h5>
                   </div>
                   <p>
                   
                   <c:if test="${rm.memberImg != null}">
-                  <img src="/resources/upload/memberImg/${rm.memberImg }" class="img-circle" width="50">
+                  <img src="/resources/upload/memberImg/${rm.memberImg }" class="img-circle" style="width: 50px; height: 50px;">
                   </c:if>
                   
                   <c:if test="${rm.memberImg == null}">
-                  <img src="/resources/upload/memberImg/unnamed.png" class="img-circle" width="50">
+                  <img src="/resources/upload/memberImg/unnamed.png" class="img-circle" style="width: 50px; height: 50px;">
                   </c:if>
                   
                   </p>
@@ -330,40 +330,79 @@
             </div>
             <!-- /row -->
             <div class="row">
-              <div class="col-lg-4 col-md-4 col-sm-4 mb">
-                <div class="product-panel-2 pn">
-                  <div class="badge badge-hot">HOT</div>
-                  <img src="resources/adminCss/img/product.jpg" width="200" alt="">
-                  <h5 class="mt">Flat Pack Heritage</h5>
-                  <h6>TOTAL SALES: 1388</h6>
-                  <button class="btn btn-small btn-theme04">FULL REPORT</button>
+            <div style=" display: block;">
+          <div class="col-md-4 mb">
+                <!-- WHITE PANEL - TOP USER -->
+                <div class="white-panel pn" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/resources/upload/admin/img00.jpg');  background-size: cover;">
+                  <div class="white-header">
+                    <h5>현재 날씨</h5>
+                  </div>
+                  
+                  <p>
+					<img id="img">
+					<h4 style="color: white;">Seoul</h4>
+                  </p>
+                  <p><b>
+					
+                  
+                  </b></p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p style="font-size: 18px;" class="small mt">온도</p>
+                      <p>
+                      <span style="font-size: 20px; color: white;" id="temp"></span>
+                      </p>
+                    </div>
+                    <div class="col-md-6">
+                      <p style="font-size: 18px;" class="small mt">습도</p>
+                      <p>
+						<span style="font-size: 20px; color: white;" id="humidity"></span>
+                      </p>
+                       </div>
+                    </div>
                 </div>
               </div>
+              </div>
               <!-- /col-md-4 -->
+           
               <!--  PROFILE 02 PANEL -->
-              <div class="col-lg-4 col-md-4 col-sm-4 mb">
-                <div class="content-panel pn">
-                  <div id="profile-02">
-                    <div class="user">
-                      <img src="resources/adminCss/img/friends/fr-06.jpg" class="img-circle" width="80">
-                      <h4>DJ SHERMAN</h4>
-                    </div>
+             <div style=" display: block;">
+          <div class="col-md-4 mb">
+                <!-- WHITE PANEL - TOP USER -->
+                <a href="#">
+                <div class="white-panel pn" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/resources/upload/admin/reImg.png');  background-size: cover;">
+                  <div class="white-header">
+                    <h5>신고현황</h5>
                   </div>
-                  <div class="pr2-social centered">
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                  </div>
+                  
+                  <p>
+					<img src="/resources/upload/admin/reportImg.png" class="img-circle" style="width: 55px; height: 55px; margin-top: 7%;">
+					<h4 style="color: white;">미확인 신고</h4>
+                  </p>
+                  <p><b>
+					<div style="font-size: 18px; color: white;">${reportCnt } 개</div>
+                  
+                  </b></p>
+
                 </div>
-                <!-- /panel -->
+                </a>
+              </div>
               </div>
               <!--/ col-md-4 -->
               <div class="col-md-4 col-sm-4 mb">
-                <div class="green-panel pn">
-                  <div class="green-header">
-                    <h5>DISK SPACE</h5>
+                <div class="white-panel pn">
+                  <div class="white-header">
+                    <h5>검색</h5>
                   </div>
-                  <canvas id="serverstatus03" height="120" width="120"></canvas>
+                  
+                  <form action="">
+                  <div style="margin-top: 10%;">
+                  <input type="text" name="search" style="width: 80%; height: 50px; border-radius: 15px;"><br><br>
+                  <input type="submit" value="검색" style="width: 80%; height: 50px; border-radius: 15px;">
+                  </div>
+                  </form>
+                  
+<%--                   <canvas id="serverstatus03" height="120" width="120"></canvas>
                   <script>
                     var doughnutData = [{
                         value: 60,
@@ -376,7 +415,7 @@
                     ];
                     var myDoughnut = new Chart(document.getElementById("serverstatus03").getContext("2d")).Doughnut(doughnutData);
                   </script>
-                  <h3>60% USED</h3>
+                  <h3>60% USED</h3> --%>
                 </div>
               </div>
               <!-- /col-md-4 -->
@@ -434,7 +473,7 @@
             </div>
            </c:forEach>
            </c:if>
-           <a href="#" style="border-style: none; color: #2b90d9; text-align: center;"><h6>VIEW ALL</h6></a>
+           <a href="/meister/admin/sellListFrm.do?reqPage=1" style="border-style: none; color: #2b90d9; text-align: center;"><h6>VIEW ALL</h6></a>
           	<br><br>
             <!-- USERS ONLINE SECTION -->
             <h4 class="centered mt">프로젝트 현황</h4>
@@ -550,6 +589,30 @@
       var to = $("#" + id).data("to");
       console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
     }
+    
+
+      
+
+    	  var apiURI ="http://api.openweathermap.org/data/2.5/weather?q=seoul&appid=04003b0b72f9410592237a06f042555e"   
+              $.ajax({
+                url : apiURI,
+                method : 'GET',
+                success :  (data)=> {
+                  var temp = String((data.main.temp- 273.15)).substring(0,4); // 온도
+                  var humidity = data.main.humidity;
+                  var location = data.name; // 지역이름 
+                 
+                  $('#chatLog').append('지역 ：' + location + ' 온도　：' + temp　+ '도   습도 : ' + humidity + "%입니다. "+'\n');
+                  $("#temp").html(temp + " °C");
+                  $("#humidity").html(humidity + " %");
+     // 아이콘 취득 
+                  var imgURL = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
+                  // 아이콘 표시
+                  $('#img').attr("src", imgURL);
+                }
+              });    
+    	  
+
   </script>
 </body>
 
