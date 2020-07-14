@@ -1,63 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="request">
-<resultMap id="re" type="requestMember">
-<association property="requestvo" javaType="request">
-	    <id property="requestNo" column="employ_no" />
-	    <result property="requestCategory1" column="request_category1" />
-	    <result property="requestCategory2" column="request_category2" />
-	    <result property="requestTitle" column="request_title" />
-	    <result property="requestWriter" column="request_writer" />
-	    <result property="requestWriterImg" column="request_writer_img" />
-	    <result property="requestNow" column="request_now" />
-	    <result property="requestWantform" column="request_wantform" />
-	    <result property="requestWantskill" column="request_wantskill" />
-	    <result property="requestContent" column="request_content" />
-	    <result property="requestPrice" column="request_price" />
-	    <result property="requestBoardEnd" column="request_board_end" />
-	    <result property="requestProjectEnd" column="request_project_end" />
-	    <result property="requestAppro" column="request_appro" />
-	    <result property="requestStatus" column="request_status" />
-	    <result property="requestDate" column="request_date" />
-	    <result property="requestResMembers" column="request_res_members" />
-	</association>
-	<association property="membervo" javaType="member">
-         <id property="memberNo" column="member_no" />
-         <result property="memberEmail" column="member_email" />
-         <result property="memberPw" column="member_pw" />
-         <result property="memberName" column="member_name" />
-         <result property="memberHbd" column="member_hbd" />
-         <result property="memberNickname" column="member_nickname" />
-         <result property="memberPhone" column="member_phone" />
-         <result property="memberImg" column="member_img" />
-         <result property="memberBank" column="member_bank" />
-         <result property="memberAccount" column="member_account" />
-         <result property="memberTime" column="member_time" />
-         <result property="memberLevel" column="member_level" />
-         <result property="memberStatus" column="member_status" />
-         <result property="memberIntro" column="member_intro" />
-         <result property="memberField" column="member_field" />
-         <result property="memberSkill" column="member_skill" />
-         <result property="memberSchool" column="member_school" />
-         <result property="memberMajor" column="member_major" />
-         <result property="memberGrade" column="member_grade" />
-         <result property="memberDate" column="member_date" />
-    </association>
-</resultMap>
+	<resultMap id="re" type="requestMember">
+		<association property="requestvo" javaType="request">
+			<id property="requestNo" column="employ_no" />
+			<result property="requestCategory1" column="request_category1" />
+			<result property="requestCategory2" column="request_category2" />
+			<result property="requestTitle" column="request_title" />
+			<result property="requestWriter" column="request_writer" />
+			<result property="requestWriterImg"
+				column="request_writer_img" />
+			<result property="requestNow" column="request_now" />
+			<result property="requestWantform" column="request_wantform" />
+			<result property="requestWantskill" column="request_wantskill" />
+			<result property="requestContent" column="request_content" />
+			<result property="requestPrice" column="request_price" />
+			<result property="requestBoardEnd" column="request_board_end" />
+			<result property="requestProjectEnd"
+				column="request_project_end" />
+			<result property="requestAppro" column="request_appro" />
+			<result property="requestStatus" column="request_status" />
+			<result property="requestDate" column="request_date" />
+			<result property="requestResMembers" column="request_res_members" />
+		</association>
+		<association property="membervo" javaType="member">
+			<id property="memberNo" column="member_no" />
+			<result property="memberEmail" column="member_email" />
+			<result property="memberPw" column="member_pw" />
+			<result property="memberName" column="member_name" />
+			<result property="memberHbd" column="member_hbd" />
+			<result property="memberNickname" column="member_nickname" />
+			<result property="memberPhone" column="member_phone" />
+			<result property="memberImg" column="member_img" />
+			<result property="memberBank" column="member_bank" />
+			<result property="memberAccount" column="member_account" />
+			<result property="memberTime" column="member_time" />
+			<result property="memberLevel" column="member_level" />
+			<result property="memberStatus" column="member_status" />
+			<result property="memberIntro" column="member_intro" />
+			<result property="memberField" column="member_field" />
+			<result property="memberSkill" column="member_skill" />
+			<result property="memberSchool" column="member_school" />
+			<result property="memberMajor" column="member_major" />
+			<result property="memberGrade" column="member_grade" />
+			<result property="memberDate" column="member_date" />
+		</association>
+	</resultMap>
 
-	<select id="totalCountRequest" parameterType="string" resultType="_int" >
-	select count(*) as cnt from request where request_writer = #{memberNickname}
+	<select id="totalCountRequest" parameterType="string" resultType="_int">
+		select count(*) as cnt from request where request_writer = #{_parameter}
 	</select>
-<select id="selectAllRequest" resultMap="re" parameterType="map">
-	select * from
+	<select id="selectAllRequest" resultMap="re" parameterType="map">
+		select * from
 		(select rownum as rnum, n.* from
-			(select 
-				*
-			from request
-			join member
-			on (request_writer = member_nickname)
+		(select
+		*
+		from request
+		join member
+		on (request_writer = #{memberNickname})
 		order by 1 desc)n
 		)
-	where rnum between #{start} and #{end}
-</select>
+		where rnum between #{start} and #{end}
+		<if test="requeststatus!=3">
+			and request_status=#{requeststatus}
+		</if>
+		<if test="requestappro!=3">
+			and request_appro=#{requestappro}
+		</if> 
+	</select>
+	<select id="totalCountRequestRe" parameterType="map" resultType="_int">
+		select count(*) from request where request_res_members like #{memberNo} || '%' or request_res_members like #{str1} || '%' or request_res_members  like '%' || #{str2} || '%'
+	</select>
+	<select id="selectAllRequestRe" resultMap="re" parameterType="map">
+		select * from
+		(select rownum as rnum, n.* from
+		(select
+		*
+		from request
+		where request_res_members like #{memberNo} || '%' or request_res_members like #{str1} || '%' or request_res_members  like '%' || #{str2} || '%'
+		order by 1 desc)n
+		)
+		where rnum between #{start} and #{end}
+		
+	</select>
 </mapper>

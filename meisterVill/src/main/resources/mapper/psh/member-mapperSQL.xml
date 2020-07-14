@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-<!-- 	
+
 	<select id="selectOneMember3" parameterType="member" resultType="member">
 		select 
          member_no as memberNo,
@@ -28,7 +28,7 @@
       	where member_email=#{memberEmail} and member_pw=#{memberPw}
 	</select>
 	
-	<select id="selectOneMember2" parameterType="MemberDataVO" resultType="MemberDataVO">
+	<select id="selectOneMember2" parameterType="_int" resultType="memberupdate">
 		select 
          member_no as memberNo,
          member_email as memberEmail,
@@ -49,21 +49,30 @@
          member_school as memberSchool,
          member_major as memberMajor,
          member_grade as memberGrade,
-         member_date as memberDate,
-         type_free as typeFree,
-         company_name as companyName,
-         company_department as companyDepartment,
-         company_job_title as companyJobTitle,
-         company_job_mon as companyJobMon,
-         license_name as licenseName,
-         license_date as licenseDate,
-         license_agency as licenseAgency
+         member_date as memberDate
       from member
-      left join
-      career using (member_no) 
-      left join license using(member_no)
+      where member_no = #{_parameter}
 	</select>
-	
+	<select id="selectOneCareer" parameterType="_int" resultType="career">
+		select
+			career_no as careerNo,
+			type_free as typeFree,
+			company_name as companyName,
+         	company_department as companyDepartment,
+         	company_job_title as companyJobTitle,
+         	company_job_mon as companyJobMon
+		from career
+		where member_no = #{_parameter}
+	</select>
+	<select id="selectOneLicense" parameterType="_int" resultType="license">
+		select
+			license_no as licenseNo,
+         	license_name as licenseName,
+         	license_date as licenseDate,
+         	license_agency as licenseAgency
+		from license
+		where member_no = #{_parameter}
+	</select>
 	<update id="updateMemberLevel" parameterType="member">
 		update member set member_level=0 where member_nickname=#{memberNickname}
 	</update>
@@ -95,5 +104,20 @@
          member_date as memberDate
       from member
       	where member_nickname=#{memberNickname}
-	</select> -->
+
+	</select>
+	
+	<update id="updateProfileMember" parameterType="memberupdate">
+		update member set member_img=#{memberImg}, member_intro=#{memberIntro} ,member_field=#{memberField},member_skill=#{memberSkill}, member_school=#{memberSchool}, member_major=#{memberMajor}, member_grade=#{memberGrade}, member_level = 1 where member_no=#{memberNo}
+	</update>
+	
+	<update id="updateProfileCareer" parameterType="career">
+		update career set type_free= #{typeFree}, company_name=#{companyName},company_department = #{companyDepartment} , company_job_title = #{companyJobTitle}, company_job_mon = #{companyJobMon} where member_no = #{memberNo}
+	</update>
+	
+	<update id="updateProfileLicense" parameterType="license">
+		update license set license_name=#{licenseName}, license_date= #{licenseDate}, license_agency = #{licenseAgency} where member_no = #{memberNo}
+	</update>
+	
+
 </mapper>

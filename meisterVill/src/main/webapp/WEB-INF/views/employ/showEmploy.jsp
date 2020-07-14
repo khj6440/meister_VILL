@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <link href="/resources/bh/common-css/common.css" rel="stylesheet">
 <link href="/resources/bh/employ-css/showEmploy.css?after" rel="stylesheet">
@@ -126,5 +127,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

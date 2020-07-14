@@ -49,8 +49,8 @@ public class SellController {
 	
 	@ResponseBody
 	@RequestMapping(value="/getSellList.do", produces = "application/json;charset=utf-8")
-	public String getList(MemberVO m, int reqPage) {
-		HashMap<String, Object> list = service.selectAllList(reqPage);
+	public String getList(String keyWord, int reqPage) {
+		HashMap<String, Object> list = service.selectAllList(reqPage, keyWord);
 		return new Gson().toJson(list);
 	}
 	@ResponseBody
@@ -64,8 +64,9 @@ public class SellController {
 		return new Gson().toJson(sellNo);
 	}
 	@RequestMapping(value="/sellList.do")
-	public String sellList(int reqPage, Model m) {
+	public String sellList(int reqPage, String keyWord, Model m) {
 		m.addAttribute("reqPage", reqPage);
+		m.addAttribute("keyWord", keyWord);
 		return "sell/sellList";
 	}
 	@ResponseBody
@@ -116,7 +117,6 @@ public class SellController {
 	@ResponseBody
 	@RequestMapping(value="/pickingSell.do")
 	public String pickList(int memberNo, int sellNo) {
-		System.out.println("memberno" + memberNo + "sellno" + sellNo);
 		int result = service.insertPick(sellNo, memberNo);
 		if (result == 1) {
 			return "1";

@@ -6,17 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link href="/resources/bh/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
   <link href="/resources/bh/sell-css/css/heroic-features.css?after" rel="stylesheet">
-  <link href="/resources/bh/common-css/common.css?after" rel="stylesheet">
-  <link href="/resources/bh/sell-css/makeSell.css?after" rel="stylesheet">
 
 <!--데이트피커-->
 <link href="/resources/bh/date-picker/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
 <!-- Air datepicker css -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="/resources/bh/date-picker/js/datepicker.js"></script> <!-- Air datepicker js -->
-<script src="/resources/bh/date-picker/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
 <script>
 var detailCate = "";
 $(function() {
@@ -192,6 +189,11 @@ function checkFinish() {
 </script>
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
+  <link href="/resources/bh/common-css/common.css" rel="stylesheet">
+  <link href="/resources/bh/sell-css/makeSell.css" rel="stylesheet">
+  <script src="/resources/bh/date-picker/js/datepicker.js"></script> <!-- Air datepicker js -->
+<script src="/resources/bh/date-picker/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
 <form action="/meister/employ/insertProject.do" method="post" id="projectForm" >
  <div class="container">
  <header class="jumbotron my-4" style="width:1100px; background-image: url('/resources/upload/homeImg/ad2.png'); background-size: cover;" >
@@ -199,7 +201,7 @@ function checkFinish() {
 
 <button id="myBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#employModal" style="display:none;">
   </button>
-<div class="employ-content card-shadow" style="display:flex; width:1100px;">
+<div class="employ-content card-shadow ">
 <div class="col-xs-9" id="first">
 <div class="panel">
 <ul class="list-style">
@@ -211,7 +213,7 @@ function checkFinish() {
 <div class="col-xs-9">
 <div>
 <div class="wrap">
-<input type="text" id="inputTitle" name="employTitle" class="form-control border-radius-0" maxlength="36" style="border-radius:0; height:50px;"placeholder="예)B2B 미디어 커머스 모바일 플랫폼 구축">
+<input type="text" id="inputTitle" name="employTitle" class="form-control border-radius-0" maxlength="30" style="border-radius:0; height:50px;"placeholder="예)B2B 미디어 커머스 모바일 플랫폼 구축">
 <input name="employCategory1" style="display:none;">
 <input name="employCategory2" style="display:none;">
 <input name="employContent" style="display:none;">
@@ -294,7 +296,7 @@ function checkFinish() {
 </div>
 <br>
 <div class="form-content">
-<textarea class="form-input-content"wrap="hard">
+<textarea class="form-input-content"wrap="hard"  maxlength="1300">
 <프로젝트의 현재 상황>
 예시) 프로젝트의 목적, 현재 준비 상황, 진행 계획 등
 
@@ -408,9 +410,10 @@ function checkFinish() {
 
 </div>
 </div>
-<jsp:include page="/WEB-INF/views/common/employFinishModal.jsp"/>
+<jsp:include page="/WEB-INF/views/employ/employFinishModal.jsp"/>
 </form>
-
+<br><br><br>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 
 </html>

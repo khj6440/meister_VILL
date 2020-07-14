@@ -49,7 +49,8 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/sh/css/component.css" />
 <script src="/resources/sh/js/modernizr.custom.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap"
@@ -217,7 +218,7 @@
 
 .p_user_content_div2 {
 	border: 1px solid lightgray;
-	height: 300px;
+	height: 500px;
 	margin-bottom: 50px;
 }
 
@@ -287,6 +288,7 @@
 	margin: 0 auto;
 	text-align: center;
 	cursor: pointer;
+	margin-top: 100px;
 }
 
 .p_span_service {
@@ -304,16 +306,19 @@
 }
 
 .sh_sub_content1 {
-	width: 60%;
+	width: 90%;
 	height: 100%;
 	float: left;
 	box-sizing: border-box;
+	text-align: center;
+	margin-left: 30px;
 }
 
 .sh_sub_content1_1 {
 	width: 100%;
 	height: 30%;
 	box-sizing: border-box;
+	margin-left: 20px;
 }
 
 .m_profile_img {
@@ -344,14 +349,14 @@
 }
 
 .sh_sub_content1_2 {
-	margin : 0 auto;
+	margin: 0 auto;
 	width: 95%;
 	height: 60%;
 	border: 1px solid lightgray;
 	box-sizing: border-box;
 	padding: 10px;
-	margin-left : 10px;
-	resize : none;
+	margin-left: 10px;
+	resize: none;
 }
 
 .sh_sub_content2 {
@@ -362,57 +367,317 @@
 	border-radius: 4px;
 	float: left;
 	box-sizing: border-box;
-	overflow-y: scroll; 
+	overflow-y: scroll;
 }
 /* modal content2 */
-.sh_modal_content_wrap_2{
-    font-size: 15px;
-	margin : 0 auto;
-	border : 1px solid black;
-    width : 730px;
+.sh_modal_content_wrap_2 {
+	font-size: 15px;
+	margin: 0 auto;
+	border: 1px solid black;
+	width: 730px;
 	/*width : 95%;*/
-	height : 400px;
+	height: 400px;
 	overflow: hidden;
 	box-sizing: content-box;
-    margin-top: 20px;
-}
-.sh_sub_content1_22{
-	width : 60%;
-	height : 100%;
-	border : 1px solid red;
-	float: left;
-	box-sizing: border-box;
-}
-.sh_sub_content1_1_2{
-	width : 100%;
-	height : 40%;
-	box-sizing: border-box;
-    border : 1px solid red;
+	margin-top: 20px;
 }
 
-.sh_sub_content1_2_2{
-	width : 100%;
-	height : 60%;
-	border : 1px solid lightgray;
-	box-sizing: border-box;
-    padding: 10px;
-}
-.sh_sub_content2_2{
-    padding: 10px;
-	width : 40%;
-	height : 100%;
-	border : 1px solid lightgray;
-    border-radius: 4px;
+.sh_sub_content1_22 {
+	width: 60%;
+	height: 100%;
 	float: left;
-    box-sizing: border-box;
-    overflow-y: scroll;
+	box-sizing: border-box;
 }
-    .select_field{
-        width : 90%;
-        height : 50px;
-        margin-left: 20px;
-        margin-top : 10px;
-  }
+
+.sh_sub_content1_1_2 {
+	width: 100%;
+	height: 40%;
+	box-sizing: border-box;
+}
+
+.sh_sub_content1_2_2 {
+	width: 100%;
+	height: 60%;
+	border: 1px solid lightgray;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.sh_select_field {
+	width: 80%;
+	position: absolute;
+	word-break: break-all;
+}
+
+.sh_sub_content2_2 {
+	padding: 10px;
+	width: 40%;
+	height: 100%;
+	border: 1px solid lightgray;
+	border-radius: 4px;
+	float: left;
+	box-sizing: border-box;
+	overflow-y: scroll;
+	overflow: hidden;
+	position: relative;
+}
+
+/* 보유기술 css */
+.sh_modal_content_wrap_333 {
+	font-size: 15px;
+	margin: 0 auto;
+	border: 2px solid lightgray; 
+	width : 730px;
+	/*width : 95%;*/
+	height: 400px;
+	overflow: hidden;
+	box-sizing: content-box;
+	margin-top: 20px;
+	width: 730px;
+}
+
+.sh_sub_content1_333 {
+	width: 60%;
+	height: 100%;
+	float: left;
+	box-sizing: border-box;
+}
+
+.sh_sub_content1_1_333 {
+	width: 100%;
+	height: 40%;
+	box-sizing: border-box;
+	pading-top: 20px;
+}
+
+.sh_sub_content1_2_333 {
+	width: 100%;
+	height: 60%;
+	border: 1px solid lightgray;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.sh_sub_content2_333 {
+	padding: 10px;
+	width: 40%;
+	height: 100%;
+	border: 1px solid lightgray;
+	border-radius: 4px;
+	float: left;
+	box-sizing: border-box;
+	overflow-y: scroll;
+	overflow: hidden;
+	position: relative;
+}
+
+.sh_select_skill {
+	width: 80%;
+	position: absolute;
+	word-break: break-all;
+}
+
+.select_field {
+	width: 90%;
+	height: 50px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+/* 학력_전공 css */
+.sh_sub_content1_2_444 {
+	width: 100%;
+	height: 60%;
+	border: 1px solid lightgray;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.sh_sub_content2_444 {
+	padding: 10px;
+	width: 40%;
+	height: 100%;
+	border: 1px solid lightgray;
+	border-radius: 4px;
+	float: left;
+	box-sizing: border-box;
+	overflow-y: scroll;
+	overflow: hidden;
+	position: relative;
+}
+
+.sh_select_school {
+	margin-top: 40px;
+	width: 70%;
+	position: absolute;
+	word-break: break-all;
+}
+
+.select_field {
+	width: 90%;
+	height: 50px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+.complete_btn {
+	cursor: pointer;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	border: 1px solid #FFBC42;
+	color: #FFBC42;
+	border-radius: 4px;
+	background-color: white;
+	width: 100%;
+	height: 30px;
+}
+
+.complete_btn:hover {
+	color: white;
+	background-color: #FFBC42;
+}
+/* 자격증 css */
+.sh_sub_content1_2_555 {
+	width: 100%;
+	height: 60%;
+	border: 1px solid lightgray;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.sh_select_license {
+	margin-top: 40px;
+	width: 70%;
+	position: absolute;
+	word-break: break-all;
+}
+
+.select_field {
+	width: 90%;
+	height: 50px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+.complete_btn {
+	cursor: pointer;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	border: 1px solid #FFBC42;
+	color: #FFBC42;
+	border-radius: 4px;
+	background-color: white;
+	width: 100%;
+	height: 30px;
+}
+
+.complete_btn:hover {
+	color: white;
+	background-color: #FFBC42;
+}
+/* career css */
+.sh_modal_content_wrap_333 {
+	font-size: 15px;
+	margin: 0 auto;
+	width: 730px;
+	/*width : 95%;*/
+	height: 400px;
+	overflow: hidden;
+	box-sizing: content-box;
+	margin-top: 20px;
+}
+
+.sh_sub_content1_333 {
+	width: 60%;
+	height: 100%;
+	float: left;
+	box-sizing: border-box;
+}
+
+.sh_sub_content1_1_444 {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.sh_sub_content1_2_666 {
+	width: 100%;
+	height: 60%;
+	border: 1px solid lightgray;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+.sh_select_career {
+	margin-top: 40px;
+	width: 70%;
+	position: absolute;
+	word-break: break-all;
+}
+
+.select_field {
+	width: 90%;
+	height: 50px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+.complete_btn3 {
+	cursor: pointer;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	border: 1px solid #FFBC42;
+	color: #FFBC42;
+	border-radius: 4px;
+	background-color: white;
+	width: 100%;
+	height: 30px;
+}
+
+.select_career_check {
+	text-align: center;
+	line-height: 3;
+	margin-left: 10px;
+	background-color: #FFBC42;
+	color: white;
+	width: 90%;
+	height: 40px;
+	margin-bottom: -10px;
+	margin-top: 10px;
+}
+
+.complete_btn3:hover {
+	color: white;
+	background-color: #FFBC42;
+}
+.intro_container{
+	padding-left : 20px;
+	font-size : 20px;
+}
+/* 서비스 페이징 */
+ .p_user_service_div{
+            width : 650px;
+            height : 60px;
+            z-index: 1;
+			margin:0 auto;
+			text-align: center;
+			margin-left : 150px;
+        }
+        .p_user_service_div2{
+            border: 1px solid lightgray;
+            margin-left : 20px;
+            text-align:center;
+            margin: 0 auto;
+            width : 30%;
+            position: absolute;
+            
+        }
+        .service_img_div{
+            width : 30px;
+            height : 30px;
+            position: relative;
+        }
+        .pageNavi{
+        	text-align: center;
+        }
 </style>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp"></jsp:include>
@@ -423,22 +688,27 @@
 
 					<div class="p_user_inf">
 						<div>
-							<img class="p_img" src="/upload/common/unnamedimg.png">
+							<img class="p_img" src="/resources/upload/common/unnamedimg.png">
 						</div>
 						<div class="p_user_infbox">
-							<div class="p_user_nickname">${m.memberNickname }</div>
+							<div class="p_user_nickname">${member.memberNickname }</div>
 							<div class="p_user_star">
 								<div class="star_div">
-									<img class="star_div_img" src="/upload/common/star-off.png">
-									<img class="star_div_img" src="/upload/common/star-off.png">
-									<img class="star_div_img" src="/upload/common/star-off.png">
-									<img class="star_div_img" src="/upload/common/star-off.png">
-									<img class="star_div_img" src="/upload/common/star-off.png">
-									0.0 | 0개의 평가
+									<img class="star_div_img"
+										src="/resources/upload/common/star-on.png"> <img
+										class="star_div_img"
+										src="/resources/upload/common/star-on.png"> <img
+										class="star_div_img"
+										src="/resources/upload/common/star-on.png"> <img
+										class="star_div_img"
+										src="/resources/upload/common/star-on.png"> <img
+										class="star_div_img"
+										src="/resources/upload/common/star-off.png"> 4.0 | 1개의
+									평가
 								</div>
 							</div>
 							<div class="p_user_project">
-								<div class="p_user_project_1">0 개</div>
+								<div class="p_user_project_1">1 개</div>
 								<div class="p_user_project_2">총작업수</div>
 							</div>
 
@@ -446,9 +716,13 @@
 								<button id="p_btn" data-toggle="modal"
 									data-target="#submitModal">프로필 등록 / 수정</button>
 							</section>
-
-							<div id="submitModal" class="multi-step"></div>
-
+							<form id="profileform" style="background-color: white;"
+								action="/meister/member/profileupdate.do" method="post">
+								<input type="hidden" name="memberNo"
+									value="${sessionScope.member.memberNo }" id="memberNo" /> <input
+									type="hidden" name="memberSkill" />
+								<div id="submitModal" class="multi-step"></div>
+							</form>
 
 						</div>
 
@@ -495,18 +769,30 @@
 					<h4 id="p_h4">소개</h4>
 					<section class="page-section portfolio p_user_content_div"
 						id="portfolio">
-						<div class="container">${m.memberIntro }</div>
+						<div class="intro_container">${member.memberIntro }</div>
 					</section>
 					<!-- About Section-->
 					<h4>서비스</h4>
 					<section class="page-section text-white mb-0 p_user_content_div2"
 						id="about">
-						<div class="p_user_service" onclick="location.href='#'">
-							<img src="/upload/common/service.png"
-								style="width: 50px; height: 50px;"><br> 서비스를 등록하여 수익을
-							얻어보세요!<br> <span class="p_span_service">+ 서비스 등록하기</span>
-						</div>
+						<c:if test="${not empty list }">
+								<c:forEach items="${list }" var="s">
+									<div class="p_user_service_div">
+										<div class="p_user_service_div2"><a href="#">{s.sellTitle}</a></div>
+									</div>
+								</c:forEach>
 
+								<div class="pageNavi">${pageNavi }</div>
+						
+						</c:if>
+						<c:if test="${empty list}">
+							<div class="p_user_service" onclick="location.href='#'">
+								<img src="/resources/upload/common/service.png"
+									style="width: 50px; height: 50px;"><br> 서비스를 등록하여
+								수익을 얻어보세요!<br> <span class="p_span_service">+ 서비스
+									등록하기</span>
+							</div>
+						</c:if>
 					</section>
 					<!-- Contact Section-->
 					<h4 id="p_h4">받은 평가</h4>
@@ -514,16 +800,21 @@
 						style="margin-top: -20px;">
 						<div class="container" style="margin-top: 0; padding: 0;">
 							<div class="p_user_star2">
-								<div class="star2_1">0.0</div>
+								<div class="star2_1">4.0</div>
 								<div class="star2_2">
 									<div class="star2_2_1">
-										<img class="star_div_img" src="/upload/common/star-off.png">
-										<img class="star_div_img" src="/upload/common/star-off.png">
-										<img class="star_div_img" src="/upload/common/star-off.png">
-										<img class="star_div_img" src="/upload/common/star-off.png">
-										<img class="star_div_img" src="/upload/common/star-off.png">
+										<img class="star_div_img"
+											src="/resources/upload/common/star-on.png"> <img
+											class="star_div_img"
+											src="/resources/upload/common/star-on.png"> <img
+											class="star_div_img"
+											src="/resources/upload/common/star-on.png"> <img
+											class="star_div_img"
+											src="/resources/upload/common/star-on.png"> <img
+											class="star_div_img"
+											src="/resources/upload/common/star-off.png">
 									</div>
-									<div class="star2_2_2">(0개의 평가)</div>
+									<div class="star2_2_2">(1개의 평가)</div>
 								</div>
 
 							</div>
@@ -540,7 +831,7 @@
 									<div class="cbp_tmlabel p_timeline_div">
 										<span class="p_span">전문 분야 및 상세 분야</span>
 										<hr>
-										<p>${m.memberField }</p>
+										<p>${member.memberField }</p>
 									</div>
 								</li>
 								<li>
@@ -548,29 +839,35 @@
 									<div class="cbp_tmlabel p_timeline_div">
 										<span class="p_span">보유 기술</span>
 										<hr>
-										<p>${m.memberSkill}</p>
+										<p>${member.memberSkill}</p>
 									</div>
 								</li>
 								<li>
 									<div class="cbp_tmlabel p_timeline_div">
 										<span class="p_span">경력 사항</span>
 										<hr>
-										<p>${list.companyName}</p>
-
+										<c:if test="${career.typeFree ==0}">
+											<h4>회사 경력</h4>
+											<p>${career.companyName}·${career.companyDepartment }·${career.companyJobTitle }·${career.companyJobMon }년</p>
+										</c:if>
+										<c:if test="${career.typeFree == 1}">
+											<p>프리랜서</p>
+											<p>${career.companyJobMon}년</p>
+										</c:if>
 									</div>
 								</li>
 								<li>
 									<div class="cbp_tmlabel p_timeline_div">
 										<span class="p_span">학력 · 전공</span>
 										<hr>
-										<p></p>
+										<p>${sessionScope.member.memberSchool }·${sessionScope.member.memberMajor }·${sessionScope.member.memberGrade }</p>
 									</div>
 								</li>
 								<li>
 									<div class="cbp_tmlabel">
 										<span class="p_span">보유 자격증</span>
 										<hr>
-										<p></p>
+										<p>${license.licenseName }·${license.licenseDate }·${license.licenseAgency }</p>
 									</div>
 								</li>
 
@@ -607,51 +904,249 @@
 		crossorigin="anonymous"></script>
 	<script type="text/javascript"
 		src="/resources/sh/dist/js/MultiStep.min.js"></script>
-		
-		<script>
-		
+
+	<script>
+	  
 		function categoryChange(e) {
-			   var s1_sub = ["웹사이트 신규 제작", "웹사이트 개선", "모바일앱 신규 제작", "모바일앱 개선","소프트웨어","임베디드 시스템","데이터 사이언스","게임"];
-		       var s2_sub = ["로고디자인", "로고+명함디자인", "로고+간판디자인", "웹·모바일 디자인","명함·봉투(로고디자인 미포함)","전단지·포스터","현수막","북커버·앨범커버","3D프린팅·도면","배너광고·카드뉴스","SNS 디자인(유튜브·블로그·모두 등)","PPT·인포그래픽","포토샵 편집","의류 디자인","일러스트","캘리그라피"];
-		        /*
-			   $('#select_sub_menu').html("");*/
+			   var s1_sub = ["웹사이트신규제작", "웹사이트개선", "모바일앱신규제작", "모바일앱개선","소프트웨어","임베디드시스템","데이터사이언스","게임"];
+		       var s2_sub = ["로고디자인", "로고+명함디자인", "로고+간판디자인", "웹·모바일디자인","전단지·포스터","현수막","북커버·앨범커버","3D프린팅·도면","배너광고·카드뉴스","SNS디자인(유튜브·블로그·모두 등)","PPT·인포그래픽","포토샵편집","의류디자인","일러스트","캘리그라피"];
+		        
             var d;
             var value = $('#select_menu option:selected').val();
-            console.log(value);
+			if(value == "IT프로그래밍")  d = s1_sub;
+			else if(value == "디자인") d = s2_sub;
+
+		        var str="";
+            for(var i = 0; i<d.length;i++){
+            	str+='<option class="opt" value='+d[i]+'>'+d[i]+'</option>';
+                }
+                $('#select_sub_menu').html(str);
+			
+		     }
+		var str1 = "";
+        var str2 = "";
+        var str3 = "";
+		    
+		        
+		        $(document).on('change', '#select_menu',function(){
+		        	str1 = this.value;
+		        })
+		        
+		        $(document).on('change', '#select_sub_menu',function(){
+		        	 
+	                   str2 = this.value;
+	                   str3 = str1 +"/"+ str2;
+	                   $('.sh_sub_content1_2_2').text(str3);
+	                   $('.sh_select_field').html(str3+'<br>');
+		        })
+		</script>
+	<script>
+	
+        function categoryChange2(e) {
+	   var s1_sub = ["워드프레스", "HTML·CSS", "JavaScript", "Java","Python","PHP","C#","Perl","TypeScript","React","Angular","ASP.NET","Bootstrap"
+                    ,"Flash","JSP","ASP","Node.js","XE","Android-Studio","Visual-Basic","Arduino","C&C++","Excel","SQL","jQuery","node.js","Unity","Visual Studio"];
+       var s2_sub = ["Adobe-Photoshop", "Adobe-Dreamweaver", "AdobeFlash", "sketch-up","Sketchapp","HTML&CSS","3D-MAX","3D-CAD","CAD","v-ray"];
+	   
+
+	   var d;
+            var value = $('#select_menu2 option:selected').val();
 			if(value == "IT프로그래밍")  d = s1_sub;
 			else if(value == "디자인") d = s2_sub;
 
 		        
-            for(var i = 0; i<d.length;i++){
-                $('#select_sub_menu').append($('<option class="opt">'+d[i]+'</option>'));
-                }
-			/*for(var i =0; i<d.length;i++){
-                $('.opt').prop('value',d[i]);
-            }*/
-		     }
-		        $(document).ready(function(){
-		            var str1 = "";
-		            var str2 = "";
-		            var str3 = "";
-		           $('#select_menu').on('change',function(){
-		               str1 = this.value;
-                       console.log(str1);
-		               
-		           });
-		           $('#select_sub_menu').on('change',function(){
-                           console.log("test");
-		                   str2 = this.value;
-                           console.log(this);
-		                   str3 = str1 +"/"+ str2;
-                           console.log(str3);
-		                   $('.sh_sub_content1_2_2').text(str3);
-		                   console.log(str3);
-		               });
-		              
-		        });
-		</script>
-	<script type="text/javascript">
+		     var str="";
+	            for(var i = 0; i<d.length;i++){
+	            	str+='<option class="opt" value='+d[i]+'>'+d[i]+'</option>';
+	                }
+	                $('#select_sub_menu2').html(str);
+				
+			     }
+		
+      
+            var str4 = "";
+            var str5 = "";
+            var str6 = "";
+        
+		        $(document).on('change', '#select_menu2',function(){
+		        	str4 = this.value;
+                    console.log(str4);
+		        })
+		        
+		        $(document).on('change', '#select_sub_menu2',function(){
+		        	 
+	                   str5 = this.value;
+	                   console.log(str5);
+	                   str6 = str5;
+	                   $('.sh_sub_content1_2_333').text(str6);
+	                   var str2 = $('#select_sub_menu2 option:selected').val();
+	                   var str = $('.sh_select_skill').val();
+	                   if(str==""){
+							$('.sh_select_skill').val(str2);	                	   
+	                   }else{
+	                   $('.sh_select_skill').val(str+"/"+str2);
+	                	   
+	                   }
+	                   
+	                  $('input[name=memberSkill]').val($('.sh_select_skill').val());
+	                   
+	                	
+	                   
+	                   
+	                   
+	                   
+		        })
+		        
+      
+        
+        $(document).on('click','#complete_btn2',function(){
+        	var str11 = "";
+            var str22 = "";
+            var str33 = "";
+            var str44 = "";
+            	console.log("1111");
+                str11 = $(".member_school").val();
+                str22 = $(".member_major").val();
+                str33 = $('#select_grade_menu option:selected').val();
+                str44 = str11 + "·" + str22 + "·" + str33;
+                console.log(str44);
+                $('.sh_select_school').text(str44);
+        })
+           
+      /*   $('#p_btn').on('click',function(){
+	        $(".btn-next").attr('disabled',true);
+        	
+        });
+		     */
+
+      	/* $(document).on('click','.btn-next',function(){
+      		$(".btn-next").attr('disabled',true);
+      	});
+		
+		$(document).on('click','.btn-prev',function(){
+			$('.btn-next').attr("disabled",false);			
+		});
+		        
+		        
+		$(document).on('click','#p_btn',function(){
+			 $('.btn-next').attr("disabled", "disabled");
+			
+			 /* 자기소개 
+			 
+			 $('.sh_sub_content1_2_2').on('change',function(){
+				 var str2 = $('.sh_sub_content1_2_2').val();
+				 console.log(str2);
+				 $('.btn-next').attr("disabled",false);
+			 })
+			 
+		 }); */
+		 var num = 0;
+			function test(){
+			 num++;
+			 console.log($('#1'));
+			 var id = $("#"+num).attr("id");
+			 console.log(num);
+			 console.log(Number(num)+1);
+			 $("#"+num).attr("id",Number(num)+1);
+
+				
+		 }
 	
+		$(document).on('click','.btn-next',function(){
+			$('#1').attr("disabled",true);
+			/* $('.btn-next').attr("disabled",true); */
+			var content1 = $('.sh_sub_content1_2').html();
+			if(content1!=null){
+				$('#1').attr("disabled", false);
+			}
+			 /* $(document).on('click','.sh_select_field',function(){
+				$('#2').attr("disabled", false);
+			});
+			 */
+			
+			
+		});
+		        
+    </script>
+	<script>
+	
+	$(document).on('click','#complete_btn4',function(){
+        var str55 = "";
+        var str66 = "";
+        var str77 = "";
+        var str88 = "";
+                
+                str55 = $(".license_name").val();
+                str66 = $(".license_date").val();
+                str77 = $(".license_agency").val();
+                str88 = str55 + "·" + str66 + "·" + str77;
+                $('.sh_select_license').text(str88);
+            });
+	
+	$(document).on('click','#complete_btn5',function(){
+		var str000 = "";
+        var str111 = "";
+        var str222 = "";
+        var str333 = "";
+        var str444 = "";
+        var str555 = "";
+     			
+        		str000 = $("#type_free").val();
+               	console.log(str000);
+               
+                str111 = $(".company_name").val();
+                str222 = $(".company_department").val();
+                str333 = $(".company_job_title").val();
+                str444 = $('#select_job_mon option:selected').val();
+                
+                if($("#type_free").val()==0){
+                if(str111 != null && str222 != null && str333 != null && str444 != null){
+                	str555 = str111 + "·" + str222 + "·" + str333 + "·" +str444;
+                	console.log(str555);
+                	$('.sh_select_career').html(str555+"/"+"<br>");
+                }
+                	
+                }else{
+                	 var jobDay = $('#select_job_mon option:selected').val();
+                	 $('.sh_select_career').html(jobDay);
+                }
+            });
+
+        $(document).on('change','#type_free',function(){
+        	if($("#type_free").is(":checked")){
+        		$("#type_free").val("1");
+        		$(".company_name").val("");
+        		$(".company_department").val("");
+        		$(".company_job_title").val("");
+        		
+        		$(".company_name").attr("readonly","readonly");
+        		$(".company_department").attr("readonly","readonly");
+        		$(".company_job_title").attr("readonly","readonly");
+                console.log($("#type_free").val());
+            }else{
+            	$("#type_free").val("0");
+            	$(".company_name").removeAttr("readonly");
+            	$(".company_department").removeAttr("readonly");
+            	$(".company_job_title").removeAttr("readonly");
+            	console.log($("#type_free").val());
+            }
+        	
+        		
+        	})
+
+    </script>
+
+
+
+	<script type="text/javascript">
+	function readURL(input) {
+	    if(input.files && input.files[0]){
+	        var reader=new FileReader();
+	        reader.onload=function(e){
+	            $('#m_profile_img').attr('src',e.target.result);
+	        };
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
          $(document).ready(function() {
         	
 
@@ -659,90 +1154,217 @@
             title:'Meister 등록',
           
             data:[{
-                content:`<div class='sh_modal_content_wrap'>
+                content:`<div class='sh_modal_content_wrap_333'>
        			 <div class='sh_sub_content1'>
    				 <div class='sh_sub_content1_1'>
    				 <c:if test="${empty sessionScope.member.memberImg}">
    				 	<div class='m_profile_img'>
+   				 <img id="m_profile_img" src="/resources/upload/common/unnamedimg.png" style="width:inherit; height:inherit; border-radius:50px; border:none;" />
+   				 	<input type="file" name="memberImg" class="subbtn" value="${sessionScope.member.memberImg}" onchange="readURL(this)">
+   				 	
        			 	</div>
        			 </c:if>
        			 <c:if test="${not empty sessionScope.member.memberImg}">
        				<div class='m_profile_img'>
+       				<input type="file" name="memberImg" class="subbtn" value="${sessionScope.member.memberImg}" onchange="readURL(this)">
       			 	</div>
        			 </c:if>
                         <div class="m_nickname_box">
-                        <span style="font-weight: bold;" >전문가 닉네임</span>
+                        <span style="font-weight: bold; text-align : left;" >전문가 닉네임</span>
        			<div class="m_nickname">
-       				<input type='text' id='member_nickname' placeholder='${sessionScope.member.memberNickname}' style='cursor:not-allowed;'readonly>
+       				<input type='text' name="memberNickname" id='member_nickname' value='${sessionScope.member.memberNickname}' style='cursor:not-allowed;'readonly>
        			</div>
                    </div>
        			</div>
                     <span style="font-weight: bold; margin-left : 10px;">자기소개</span>
-       			<textarea class='sh_sub_content1_2' style='text-align:left;'>${sessionScope.member.memberIntro}</textarea>
+       			<textarea class='sh_sub_content1_2' style='text-align:left;' name="memberIntro">${sessionScope.member.memberIntro}</textarea>
        		</div>
-       		<div class='sh_sub_content2'>
-       		content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2
-       		content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2
-       		content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2
-       		content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2
-       		content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2content2
-       		</div> 
+       		
    			</div> 
                 
                 `,
         
                 label:'전문가 소개'
             },{
-                content:` <div class='sh_modal_content_wrap_2'>
+                content:` <div class='sh_modal_content_wrap_333'>
        			 <div class='sh_sub_content1_22'>
    				 <div class='sh_sub_content1_1_2'>
-                       <span style="margin-left:20px;">전문 분야 및 상세 분야를 선택해주세요</span> <span style="font-size: 8px; color : #FFBC42"> 복수선택</span><br>
-                        <select id="select_menu" onchange="categoryChange(this)" name="member_field" class="select_field">
+                       <span style="margin-left:20px;">전문 분야 및 상세 분야를 선택해주세요</span> <span style="font-size: 8px; color : #FFBC42"> 단일선택</span><br>
+                        <select id="select_menu" onchange="categoryChange(this)" name="memberField1" class="select_field">
                             <option value="IT프로그래밍">IT프로그래밍</option>
                             <option value="디자인">디자인</option>
                         </select><br>
-                        <select id="select_sub_menu" name="member_sub_field" class="select_field">
-                            <option>상세메뉴를 선택해주세요</option>
+                        <select id="select_sub_menu" name="memberField2" class="select_field">
+                            <option key="default-empty" hidden>상세메뉴를 선택해주세요</option>
                             
                         </select>
        			</div>
        			<div class='sh_sub_content1_2_2'>
-       			     content1_2
+       				선택한 전문 분야:
        			</div>
        		</div>
        		<div class='sh_sub_content2_2'>
-       		  content2
+       		  추가 항목<br>
+       		└─><span class="sh_select_field">${member.memberField}</span>
        		</div> 
    </div> 
                 	
                 `,
                 label:'전문 분야'
             },{
+               content:`<div class='sh_modal_content_wrap_333'>
+      			 <div class='sh_sub_content1_333'>
+  				 <div class='sh_sub_content1_1_333'>
+                      <span style="margin-left:20px;">분야 별 보유 기술을 선택해주세요.</span> <span style="font-size: 8px; color : #FFBC42"> 복수선택</span><br>
+                       <select id="select_menu2" onchange="categoryChange2(this)" class="select_field">
+                           <option value="IT프로그래밍">IT프로그래밍</option>
+                           <option value="디자인">디자인</option>
+                       </select><br>
+                       <select id="select_sub_menu2"  class="select_field select_skill">
+                           <option key="default-empty" hidden>상세메뉴를 선택해주세요</option>
+                           
+                       </select>
+      			</div>
+      			<div class='sh_sub_content1_2_333'>
+      			     선택한 기술 : 
+      			    	 
+      			</div>
+      		</div>
+      		<div class='sh_sub_content2_333'>
+      		  추가 기술 항목<br>
+                  └─><input type="text" style="border:none;" class="sh_select_skill" name="memberSkill">
+      		</div> 
+  </div> 
+               
+               `,
                
                 label:'보유 기술'
             },{
-                content:`
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                  </div>
+                content:`<div class='sh_modal_content_wrap_333'>
+                    <div class='sh_sub_content1_333' style="width : 100%;">
+                    <div class='sh_sub_content1_1_333'>
+                        <span style="margin-left:20px;">최종 학력 전공을 작성해주세요</span><br>
+                        <input type="text" name="memberSchool" class="select_field member_school" placeholder="학교명(ex 마이대학교)" style="height : 41px;"><br>
+                        <input type="text" name="memberMajor" class="select_field member_major" placeholder="전공(ex 소프트웨어학과)" style="height : 41px; width : 62.5%;">
+                        <select id="select_grade_menu" name="memberGrade" class="select_field" style="height : 45px; width : 24%;">
+                            <option value="상태" selected disabled hidden>상태</option>
+                            <option value="재학" >재학</option>
+                            <option value="휴학" >휴학</option>
+                            <option value="이수" >이수</option>
+                            <option value="졸업" >졸업</option>
+                        </select>
+                    </div>
+                    <button type="button" class="complete_btn" id="complete_btn2">확인</button>
+                    <div class='sh_sub_content1_2_444'>
+                        선택 학력·전공 : <br>
+                        <span class="sh_select_school"></span>
+                    </div>
+                </div>
+                
+            </div>
                 `,
-                	label:'학력·전공',
-                	skip:true
+                	label:'학력·전공'
             },{
-            	label:'자격증',
-            	skip:true
+            	content:`
+            		<div class='sh_modal_content_wrap_333'>
+                    <div class='sh_sub_content1_333' style="width : 100%;">
+                        <div class='sh_sub_content1_1_333'>
+                            <span style="margin-left:20px;">보유한 자격증을 작성해주세요</span><br>
+                            <input type="text" name="licenseName" class="select_field license_name" placeholder="자격증명" style="height : 41px;"><br>
+                            <input type="date" name="licenseDate" class="select_field license_date" placeholder="발급일" style="height : 41px; width : 25%;">
+                            <input type="text" name="licenseAgency" class="select_field license_agency" placeholder="발급기관" style="height : 41px; width : 60.5%;">
+                            
+                        </div>
+                        <button type="button" class="complete_btn3" id="complete_btn4">확인</button>
+                        <div class='sh_sub_content1_2_555'>
+                            자격증 : <br>
+                            <span class="sh_select_license"></span>
+                        </div>
+                    </div>
+                    
+                </div>
+            	`,
+            	label:'자격증'
             },{
-            	label:'경력사항',
-            	skip:true
+            	content:`
+            		<div class='sh_modal_content_wrap_333'>
+                    <div class='sh_sub_content1_333' style="width : 100%;">
+                        <div class='sh_sub_content1_1_444'>
+                            <span style="margin-left:20px;">경력사항을 작성해주세요</span><br>
+                            <p class="select_career_check">프리랜서인 경우, 체크해주세요 <input type="checkbox" id="type_free" name="typeFree" value="0"  ></p><br>
+                            
+                            <input type="text" name="companyName" class="select_field company_name" placeholder="회사명" style="height : 41px; width : 25%; ">
+                            <input type="text" name="companyDepartment" class="select_field company_department" placeholder="근무부서" style="height : 41px; width : 60.5%;">
+                            <input type="text" name="companyJobTitle" class="select_field company_job_title" placeholder="직위" style="height : 41px; width : 60.5%;">
+                            <select id="select_job_mon" name="companyJobMon" class="select_field " style="height : 45px; width : 24%;">
+                                <option value="상태" selected disabled hidden>근무기간(년)</option>
+                                <option value="1" >1년</option>
+                                <option value="2">2년</option>
+                                <option value="3">3년</option>
+                                <option value="4">4년</option>
+                                <option value="5" >5년</option>
+                                <option value="6" >6년</option>
+                                <option value="7" >7년</option>
+                                <option value="8" >8년</option>
+                                <option value="9">9년</option>
+                                <option value="10">10년</option>
+                                <option value="11">11년</option>
+                                <option value="12">12년</option>
+                            </select>
+                        </div>
+                        <button type="button" class="complete_btn3" id="complete_btn5">확인</button>
+                        <div class='sh_sub_content1_2_666'>
+                            	경력사항 : <br>
+                            <span class="sh_select_career"></span>
+                        </div>
+                    </div>
+                    
+                </div>
+            	`,
+            	label:'경력사항'
             }],
-            final:'마이스터로 등록 하시겠습니까?',
+            
+            final:`'마이스터로 등록 하시겠습니까?'<br>
+        		<button type="submit" class="btnupdate" >등록하기</button>
+        `
+            	,
             modalSize:'lg'
         });
+        
+        
+        
+        /* $("form").on("submit", function(event) {
+            event.preventDefault();
+            // process form
+            $(document).on("click", ".btnupdate",function(){
+            	 console.log($('.sh_sub_content1_2').val());
+            	
+            	 var formdata=new FormData($('#profileform')[0]);
+            	 for (var value of formdata.values()) {
+            		   console.log(value); 
+            		}
+            	//에이작스 쓰기
+            	//data:formdata
+            	$.ajax({
+            		url:"/meister/member/profileupdate.do",
+            		type:"get",
+            		data:formdata,
+            		contentType:false,
+            		processData:false,
+            		success:function(data){
+            			console.log(data);
+            		},error:function(){
+            			console.log("profile update error");
+            		}
+            	})
+            	
+             }) 
+         }); */
+        
     });
+     
     </script>
-
+<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
 

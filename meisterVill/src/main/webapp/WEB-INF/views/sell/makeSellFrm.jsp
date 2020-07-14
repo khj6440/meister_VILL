@@ -7,11 +7,10 @@
 <meta charset="UTF-8">
 <title>판매글 작성</title>
   <!-- Bootstrap core CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   <link href="/resources/bh/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="/resources/bh/sell-css/css/heroic-features.css?after" rel="stylesheet">
-  <link href="/resources/bh/sell-css/makeSell.css" rel="stylesheet">
-   <link href="/resources/bh/common-css/common.css" rel="stylesheet">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script>
   /**
@@ -37,7 +36,6 @@
   	});
   	$('#inputTitle').keyup(function (e){
           var content = $(this).val();
-
           $('#titleCounter').html(content.length);
           if(content.length > 10) {
           	$("#checkTitle").css("display","none");
@@ -427,21 +425,24 @@
 				}
 			}
 		});
-		$(".title-row").mouseover(function() {
-			$(".bubble_box_title").css("display","none");
-		});
  });
 
   </script>
 </head>
 <body>
-<form action="/meister/sell/insertSell.do" method="post" enctype="multipart/form-data" id="updateSell">
+<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
+  <link href="/resources/bh/sell-css/makeSell.css" rel="stylesheet">
+   <link href="/resources/bh/common-css/common.css" rel="stylesheet">
+
 <%-- <jsp:include page="/WEB-INF/views/common/header.jsp"/> --%>
 <div class="container">
  <header class="jumbotron my-4" style="width:1100px; background-image: url('/resources/upload/homeImg/ad1.png'); background-size: cover;" >
     </header>
-
-<div class="sell-content card-shadow" style="display:flex;">
+<form action="/meister/sell/insertSell.do" method="post" enctype="multipart/form-data" id="updateSell">
+<jsp:include page="/WEB-INF/views/common/sellFinishModal.jsp"/>
+<button id="sellBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sellModal" style="display:none;">
+</button> 
+<div class="sell-content card-shadow">
 <div class="col-xs-9" id="first">
 <div class="panel">
 <ul class="list-style">
@@ -514,7 +515,7 @@
 </div></div></div>
 </li>
 <li>
-<div class="row" style="padding:10px;">
+<div class="row skill-row" style="padding:10px;">
 <div class="col-xs-3">
 <p class="fo-we-bo">사용 기술</p>
 </div>
@@ -541,17 +542,17 @@
 <div class="panel">
 <ul class="list-style more-option-area" style="padding: 0">
 <li><div class="col-xs-4"><p class="fo-we-bo">금액</p></div><div class="col-xs-8"><input type="text" id="priceBox" name="sellPrice" placeholder="최소 5000원" class="input-boxs"><span class="input-span">원</span></div></li>
-<li><div class="col-xs-4"><p class="fo-we-bo">상업적 이용</p></div><div class="col-xs-8"><input type="checkbox" name="sellOpt1" class="check-box"></div></li>
-<li><div class="col-xs-4"><p class="fo-we-bo">소스코드 제공</p></div><div class="col-xs-8"><input type="checkbox" name="sellOpt2" class="check-box"></div></li>
-<li><div class="col-xs-4"><p class="fo-we-bo">맞춤 디자인 제공</p></div><div class="col-xs-8"><input type="checkbox" name="sellOpt3" class="check-box"></div></li>
-<li><div class="col-xs-4"><p class="fo-we-bo">수정 횟수</p></div><div class="col-xs-8"><input type="text" id="fixBox" name="sellOptFix" class="input-boxs"><span class="input-span">회</span><span id="fixSpan">최소 0회 이상 작성해주세요</span></div></li>
-<li><div class="col-xs-4"><p class="fo-we-bo">작업 기간</p></div><div class="col-xs-8"><input type="text" id="periodBox" name="sellPeriod" class="input-boxs"><span class="input-span">일</span><span id="periodSpan">최소 1일 이상 작성해주세요</span></div></li>
+<li class="use-li"><div class="col-xs-4"><p class="fo-we-bo">상업적 이용</p></div><div class="col-xs-8"><input type="checkbox" name="sellOpt1" class="check-box"></div></li>
+<li class="code-li"><div class="col-xs-4"><p class="fo-we-bo">소스코드 제공</p></div><div class="col-xs-8"><input type="checkbox" name="sellOpt2" class="check-box"></div></li>
+<li class="design-li"><div class="col-xs-4"><p class="fo-we-bo">맞춤 디자인 제공</p></div><div class="col-xs-8"><input type="checkbox" name="sellOpt3" class="check-box"></div></li>
+<li class="fix-li"><div class="col-xs-4"><p class="fo-we-bo">수정 횟수</p></div><div class="col-xs-8"><input type="text" id="fixBox" name="sellOptFix" class="input-boxs"><span class="input-span">회</span><span id="fixSpan">최소 0회 이상 작성해주세요</span></div></li>
+<li class="period-li"><div class="col-xs-4"><p class="fo-we-bo">작업 기간</p></div><div class="col-xs-8"><input type="text" id="periodBox" name="sellPeriod" class="input-boxs"><span class="input-span">일</span><span id="periodSpan">최소 1일 이상 작성해주세요</span></div></li>
 </ul>
 </div><br><br>
 <p class="fo-we-bo">추가 옵션</p>
 <div class="panel">
 <ul class="list-style more-option-area" id="more-option-area" style="padding: 0">
-<li><a style="text-decoration:none; margin:0 auto; color:#4D4D4D; font-size: 14px; line-height:18px; cursor:pointer;" href="java:script(0)" onclick="makeOpt();"><img style="width:12px; height:12px;" src="/resources/upload/homeImg/more.png">&nbsp;맞춤옵션 추가</a></li>
+<li class="option-boxing"><a style="text-decoration:none; margin:0 auto; color:#4D4D4D; font-size: 14px; line-height:18px; cursor:pointer;" href="java:script(0)" onclick="makeOpt();"><img style="width:12px; height:12px;" src="/resources/upload/homeImg/more.png">&nbsp;맞춤옵션 추가</a></li>
 </ul>
 </div>
 <div style="width:100%; padding:20px; display:flex;">
@@ -583,8 +584,7 @@
 </div>
 <input type="text" name="sellContent" style="display:none;">
 </li>
-
-<li>
+<li class="delete-box">
 <div class="col-xs-4"><p class="fo-we-bo">수정 및 재진행 안내</p></div>
 <div class="col-xs-8">
 <div>
@@ -616,7 +616,7 @@
 <div class="col-xs-9" id="fourth" style="display:none;" >
 <div class="panel">
 <ul class="list-style">
-<li>
+<li class="main-img-box">
 <div class="col-xs-3"><p class="fo-we-bo">메인 이미지 등록</p></div>
 <div class="col-xs-9">
 <div style="padding: 5px;border: 1px solid #dedede;margin: 3px 1%;">
@@ -647,22 +647,153 @@
 </div>
 </div>
 <div class="col-xs-3">
-<div class="bubble_box_title">
+<div class="bubble_box box-title">
 <h5>서비스 제목</h5>
 <ul class="gig-form-tooltip-text">
-<li>서비스 제목은 자동으로 삽입되는 문구 ‘드립니다’와 어울리도록 작성해주세요.</li>
+<li>서비스 제목은 ‘드립니다’와 어울리도록 작성해주세요.</li>
 <li>［ ］&lt; &gt; / 와 같은 특수 문자와 가격 정보는 사용 불가합니다.</li>
 <li>최초, 유일, 무한, 1위, 수익 금액 등은 인증 자료 제출 후에만 사용할 수 있습니다.</li>
 </ul>
+</div>
+<div class="bubble_box box-skill" style="top: 350px;">
+<h5>사용 기술</h5>
+<ul class="gig-form-tooltip-text">
+<li>제공되는 서비스의 기술을 정확하게 입력하여 의뢰인이 빠르게 서비스를 찾을 수 있도록 도와주세요.</li>
+<li>사용하시는 기술을 입력후 엔터를 입력해주세요!</li>
+</ul>
+</div>
+
+<div class="bubble_box box-use" style="top: 120px;">
+<ul class="gig-form-tooltip-text">
+<li>상업적 용도로 사용 가능한 서비스일 경우, 해당 체크박스를 선택해주세요.</li>
+</ul>
+</div>
+<div class="bubble_box box-code" style="top: 215px;">
+<ul class="gig-form-tooltip-text">
+<li>의뢰인에게 소스코드를 제공할 경우, 해당 체크박스를 선택해주세요.</li>
+</ul>
+</div>
+<div class="bubble_box box-design" style="top: 290px;">
+<ul class="gig-form-tooltip-text">
+<li>해당 패키지에서 의뢰인의 요청에 따라 등 맞춤 디자인을 제공하는 경우, 체크박스를 선택해주세요.</li>
+</ul>
+</div>
+<div class="bubble_box box-fix" style="top: 420px;">
+<ul class="gig-form-tooltip-text">
+<li>최종적으로 수정 가능한 횟수를 적어주세요.</li>
+</ul>
+</div>
+<div class="bubble_box box-period" style="top: 510px;">
+<ul class="gig-form-tooltip-text">
+<li>작업하는데 걸리는 일 수를 적어주세요.</li>
+</ul>
+</div>
+<div class="bubble_box box-options" style="top: 690px;">
+<ul class="gig-form-tooltip-text">
+<li>부가적으로 추가하고 싶은 옵션이 있으면 추가 할 수 있습니다.</li>
+</ul>
+</div>
+<div class="bubble_box box-delete" style="top: 400px;">
+<ul class="gig-form-tooltip-text">
+<li>취소 및 환불규정은 판매하시는 서비스의 관련 법령에 따라 일괄 적용됩니다..</li>
+</ul> 
+</div>
+
+<div class="bubble_box box-main-img" style="top: 70px;">
+<ul class="gig-form-tooltip-text">
+<li>이미지 권장 사이즈: 652 x 488px (4:3 비율)</li>
+<br/>
+<h5>사용 제한 이미지</h5>
+<li>저작권 침해 (무단복제, 도용) 이미지</li>
+<li>프로필 사진과 동일한 이미지</li>
+<li>가격, 연락처, 서비스와 관련 없는 홍보성 문구</li>
+<li>임의로 제작된 인증 마크, 라벨, 할인표기</li>
+<li>검증 불가 내용 (최초, 유일, 무제한, 1위, 누적의뢰 수/금액 표기 등)</li>
+</ul>
+</div>
+
 
 </div>
 </div>
-</div>
-<jsp:include page="/WEB-INF/views/common/sellFinishModal.jsp"/>
-<button id="sellBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#sellModal" style="display:none;">
-</button> 
 </form>
+</div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
+<script>
+$(function() {
+	$(".title-row").mouseover(function() {
+		$(".box-title").css("display","block");
+	});
+	$(".title-row").mouseout(function() {
+		$(".box-title").css("display","none");
+	});
+	
+	$(".skill-row").mouseover(function() {
+		$(".box-skill").css("display","block");
+	});
+	$(".skill-row").mouseout(function() {
+		$(".box-skill").css("display","none");
+	});
+	
+	$(".use-li").mouseover(function() {
+		$(".box-use").css("display","block");
+	});
+	$(".use-li").mouseout(function() {
+		$(".box-use").css("display","none");
+	});
+	
+	$(".code-li").mouseover(function() {
+		$(".box-code").css("display","block");
+	});
+	$(".code-li").mouseout(function() {
+		$(".box-code").css("display","none");
+	});
+	
+	$(".design-li").mouseover(function() {
+		$(".box-design").css("display","block");
+	});
+	$(".design-li").mouseout(function() {
+		$(".box-design").css("display","none");
+	});
+	
+	$(".fix-li").mouseover(function() {
+		$(".box-fix").css("display","block");
+	});
+	$(".fix-li").mouseout(function() {
+		$(".box-fix").css("display","none");
+	});
+	
+	$(".period-li").mouseover(function() {
+		$(".box-period").css("display","block");
+	});
+	$(".period-li").mouseout(function() {
+		$(".box-period").css("display","none");
+	});
+	
+	$(".option-boxing").mouseover(function() {
+		$(".box-options").css("display","block");
+	});
+	$(".option-boxing").mouseout(function() {
+		$(".box-options").css("display","none");
+	});
+	
+	$(".delete-box").mouseover(function() {
+		$(".box-delete").css("display","block");
+	});
+	$(".delete-box").mouseout(function() {
+		$(".box-delete").css("display","none");
+	});
+	
+	$(".main-img-box").mouseover(function() {
+		$(".box-main-img").css("display","block");
+	});
+	$(".main-img-box").mouseout(function() {
+		$(".box-main-img").css("display","none");
+	});
+	
+});			
+</script>
+
 <script>
 function finishSell() {
 	var mainImg = $("#uploadImg").val();

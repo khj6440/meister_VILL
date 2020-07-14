@@ -72,6 +72,37 @@
 		full outer join member on(member.member_nickname = request.request_writer)
 	where request_no = #{parameter}
 </select>
-
+<insert id="insertList" parameterType="request">
+	insert into request values(request_seq.nextval, #{requestCategory1}, #{requestCategory2}, #{requestTitle}, #{requestWriter}, #{requestWrtierImg}, #{requestNow}, #{requestWantform}, #{requestWantskill}, #{requestContent}, #{requestPrice}, #{requestBoardEnd}, #{requestProjectEnd}, #{requestAppro}, #{requestStatus}, to_char(SYSDATE,'YYYY/MM/DD'), #{requestResMembers})
+</insert>
+<select id="selectOne" parameterType="String" resultMap="memberMap">
+	select * from member where member_nickname = #{parameter}
+</select>
+<insert id="insertChat" parameterType="map">
+	insert into chat values(chat_seq.nextval,#{memberNick},#{writerNick},'채팅 시작',to_char(SYSDATE,'YYYY/MM/DD/HH24/mi'),
+	null,0,#{memberImg},#{writerImg})
+</insert>
+<insert id="insertChat2" parameterType="map">
+	insert into chat values(chat_seq.nextval,#{writerNick},#{memberNick},'채팅 시작',to_char(SYSDATE,'YYYY/MM/DD/HH24/mi'),
+	null,0,#{writerImg},#{memberImg})
+</insert>
+<select id="selectKeyTotal" parameterType="String" resultType="_int">
+	select count(*) as cnt from request
+	<where>
+		<if test='value != null'>
+			request_appro = 1 and request_category2 = #{value}
+		</if>
+	</where>
+</select>
+<select id="selectKeyWordList" resultMap="requestMap" parameterType="map">
+	select * from
+		(select rownum as rnum, n.* from
+			(
+			select * from request
+			where request_appro = 1 and request_category2 = #{keyWord}
+			order by 1 desc)n
+			)
+	where rnum between #{start} and #{end}
+</select>
 
 </mapper>

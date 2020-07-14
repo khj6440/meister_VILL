@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>모집글 작성</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <link href="/resources/bh/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="/resources/bh/sell-css/css/heroic-features.css?after" rel="stylesheet">
@@ -39,10 +40,11 @@ function getDate(obj) {
 	return enrollDate;
 }
   	$(function() {
+  		var keyWord = "${keyWord}";
   		var reqPage = ${reqPage};
   		$.ajax({
   			url : "/meister/request/getRequestList.do",
-			data : {reqPage:reqPage},
+			data : {reqPage:reqPage,keyWord : keyWord},
 			success : function(data) {
 			 	var number = data["number"];
 				var skill ="";
@@ -72,7 +74,7 @@ function getDate(obj) {
 						html += "<span class='fo-si-14 fo-we-bo span-border d-day-point'>D-DAY "+dDay+"</span>";	
 					}
 	  				html +="</div>";
-	  				html += "<div class='fo-si-13' style='height:5em;'>"+data["request"+i].requestContent.split('<br/>').join("\r\n")+"</div>";
+	  				html += "<div class='fo-si-13' style='height:5em; overflow:hidden; padding: 5px;'>"+data["request"+i].requestContent.split('<br/>').join("\r\n")+"</div>";
 	  				html += "<div><span class='fo-si-13 fo-we-bo span-border' style='border-left:none;'>"+data["request"+i].requestCategory1+" > "+data["request"+i].requestCategory2+"</span>";
 					html += "</span>";
 	  				html += "</div>";
@@ -85,6 +87,10 @@ function getDate(obj) {
 			$(".requestList-pageNavi").append(page); 
 		}
   		});
+  		$(".navbar-click").click(function() {
+  			keyWord = $(this).parent().text();
+  			location.href="/meister/request/showList.do?reqPage=1&&keyWord="+keyWord;
+  		});
   	 });
   	
   	function showList(no) {
@@ -92,6 +98,7 @@ function getDate(obj) {
   	}
   </script>
 <body>
+<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
 <div class="container">
     <!-- Jumbotron Header -->
      <header class="jumbotron my-4" style="width:1100px; background-image: url('/resources/upload/homeImg/ad3.png'); background-size: cover;" >
@@ -104,16 +111,16 @@ function getDate(obj) {
     </div>
     <div class="side_list_body">
     	<ul class="list-group list-group-flush">
-  			<li class="list-group-item"><a href="#">로고 · 브랜딩</a></li>
-  			<li class="list-group-item"><a href="#">북 · 앨범디자인</a></li>
-		  	<li class="list-group-item"><a href="#">공간디자인</a></li>
-		  	<li class="list-group-item"><a href="#">웹 · 모바일 디자인</a></li>
-		  	<li class="list-group-item"><a href="#">상세 · 랜딩페이지</a></li>
-		  	<li class="list-group-item"><a href="#">블로그 · SNS 디자인</a></li>
-		  	<li class="list-group-item"><a href="#">게임 · VR</a></li>
-		  	<li class="list-group-item"><a href="#">PPT · 인포그래픽</a></li>
-		  	<li class="list-group-item"><a href="#">일러스트 · 캐리커쳐</a></li>
-		  	<li class="list-group-item"><a href="#">포토샵 · 편집</a></li>
+  			<li class="list-group-item"><span class="navbar-click">로고 · 브랜딩</span></li>
+  			<li class="list-group-item"><span class="navbar-click">북 · 앨범디자인</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">공간디자인</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">웹 · 모바일 디자인</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">상세 · 랜딩페이지</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">블로그 · SNS 디자인</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">게임 · VR</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">PPT · 인포그래픽</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">일러스트 · 캐리커쳐</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">포토샵 · 편집</span></li>
 		</ul>
     </div><br>
     <div class="side_list_header" style="border-bottom:2px solid #FFBC42;">
@@ -121,17 +128,17 @@ function getDate(obj) {
     </div>
      <div class="side_list_body">
     	<ul class="list-group list-group-flush">
-  			<li class="list-group-item"><a href="#">중 · 대형 프로젝트</a></li>
-  			<li class="list-group-item"><a href="#">워드프레스</a></li>
-		  	<li class="list-group-item"><a href="#">웹사이트 개발</a></li>
-		  	<li class="list-group-item"><a href="#">쇼핑몰 · 커머스</a></li>
-		  	<li class="list-group-item"><a href="#">모바일앱 · 웹</a></li>
-		  	<li class="list-group-item"><a href="#">프로그램 개발</a></li>
-		  	<li class="list-group-item"><a href="#">임베디드 HW · SW</a></li>
-		  	<li class="list-group-item"><a href="#">게임</a></li>
-		  	<li class="list-group-item"><a href="#">데이터베이스</a></li>
-		  	<li class="list-group-item"><a href="#">블록체인</a></li>
-		  	<li class="list-group-item"><a href="#">보안</a></li>
+  			<li class="list-group-item"><span class="navbar-click">중 · 대형 프로젝트</span></li>
+  			<li class="list-group-item"><span class="navbar-click">워드프레스</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">웹사이트 개발</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">쇼핑몰 · 커머스</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">모바일앱 · 웹</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">프로그램 개발</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">임베디드 HW · SW</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">게임</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">데이터베이스</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">블록체인</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">보안</span></li>
 		</ul>
     </div>
     </nav>
@@ -148,6 +155,7 @@ function getDate(obj) {
        </div>
        <div class="requestList-pageNavi" style="margin: 0 auto; width: 300px; text-align:center; padding-top:100px;">
     	</div>
+    	<br><br><br>
     </div>
    
     <!-- /.row -->
@@ -155,5 +163,6 @@ function getDate(obj) {
   </div>
     <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

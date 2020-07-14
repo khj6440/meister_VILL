@@ -719,4 +719,9 @@ public List<MemberJoinEmployVO> adminMainEmployList() {
 	return (List<MemberJoinEmployVO>)dao.adminMainEmployList();
 }
 
+
+public int reportCnt() {
+	return dao.reportCnt();
+}
+
 }

@@ -12,6 +12,7 @@
 			msg_read as msgRead
 		from message 
 		where msg_receiver=#{_parameter}
+		order by msg_time desc
 	</select>
 	
 	<insert id="insertMessage" parameterType="message" >

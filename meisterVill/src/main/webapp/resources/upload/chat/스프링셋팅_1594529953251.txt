@@ -1,0 +1,32 @@
+1 . 메이븐,스프링 c: 압축해제
+
+2 . apache-maven-3.5.3 폴더 아래 repository 폴더 생성
+
+3 . maven 폴더아래 conf 아래 setting.xml -> <localRepository>/path/to/local/repo</localRepository> 아래줄에 추가 
+
+4 . repository 경로를 <localRepository> 태그엔이 입력후 저장
+
+5 . sts-bundle  -> sts-3.9.12.RELEASE -> STS.ini 열기
+
+6 . STS.ini -> org.springsource.sts.ide 행에서 엔터 -vm C:\Program Files\Java\jdk1.8.0_144\jre\bin\javaw.exe
+
+7. STS.exe 실행
+
+8. Window->preference->maven->user settings 에 setting.xml경로 맞추기
+
+9. Window->preference->Team->ignored resources 에 */target/* 패턴추가
+
+10 . 서버생성및 워크스페이스 설정
+
+11 . Spring legacy project 생성 ->기본패키지 3depth 생성
+
+12 . porm.xml ->Overview 에 java -version:1.8 spring version 5.0.6 변경(스프링에게 알려줌)
+
+13 . 프로젝트 우클릭 properties ->project Facets (메이븐에게 알려줌) 
+ java version :1.8 , runtime  server 체크후 적용
+
+14 . src->main->webapp 이 WebContent 역할  index.jsp 생성
+
+15 . WebModules path '/'로 설정 해줘야함
+
+16 . maven 라이브러리 추가및 src/main/resources 아래 applicationContext.xml 생성

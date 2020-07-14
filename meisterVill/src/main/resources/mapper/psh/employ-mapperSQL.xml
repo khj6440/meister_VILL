@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="employ">
-<!-- <resultMap id="em" type="employMember">
+<resultMap id="em" type="employMember">
 <association property="employvo" javaType="employ">
 	    <id property="employNo" column="employ_no" />
 	    <result property="employTitle" column="employ_title" />
@@ -44,7 +44,7 @@
     </association>
 </resultMap>
 
-<select id="selectTotal" resultType="_int" parameterType="_int">
+<select id="totalCountEmploy" resultType="_int" parameterType="_int">
 	select count(*) as cnt from employ where employ_writer = #{_parameter}
 </select>
 <select id="selectAllEmploy" resultMap="em" parameterType="map">
@@ -54,16 +54,16 @@
 				*
 			from employ
 			join member
-			on (employ_writer = member_no)
+			on (employ_writer = #{memberNo})
 		order by 1 desc)n
 		)
-	where rnum between #{start} and #{end} 
+	where rnum between #{start} and #{end}
 	<if test="employstatus!=3">
 		and employ_status=#{employstatus}
 	</if>
 	<if test="employappro!=3">
 		and employ_appro=#{employappro}
 	</if>
-</select> -->
+</select> 
 
 </mapper>

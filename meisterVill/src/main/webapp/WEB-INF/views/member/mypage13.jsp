@@ -246,7 +246,7 @@ box-shadow : 1px 1px 1px lightgray;
 			<div class="my_sub_container1">
 				<div class="my_profile">
 					<div class="my_img">
-						<img src="/upload/common/unnamedimg.png" class="my_profile_img">
+						<img src="/resources/upload/common/unnamedimg.png" class="my_profile_img">
 					</div>
 					<div class="my_profile_sub">
 						<span class="my_nickname">${sessionScope.member.memberNickname }</span>
@@ -357,7 +357,7 @@ box-shadow : 1px 1px 1px lightgray;
 								<div class="project_margin">
 								<span>등록된 서비스가 없습니다.</span><br>
 								<span>서비스글을 작성하여 수익을 내보세요!!</span><br>
-								<img class="project_write_img" src="/upload/common/service.png"><br>
+								<img class="project_write_img" src="/resources/upload/common/service.png"><br>
 								<button type="button" class="project_request_write" onclick="location.href='#'">내 서비스 등록하기</button>
 								</div>
 							</div>
@@ -375,7 +375,7 @@ box-shadow : 1px 1px 1px lightgray;
 						<c:if test="${empty cp.couponNo }">
 							<div class="project_null">
 								<div class="project_margin">
-								<div><img class="null_img" src="/upload/common/warning.png"></div>
+								<div><img class="null_img" src="/resources/upload/common/warning.png"></div>
 								<span style="line-height : 10;">보유한 쿠폰이 없습니다.</span><br>
 								
 								</div>

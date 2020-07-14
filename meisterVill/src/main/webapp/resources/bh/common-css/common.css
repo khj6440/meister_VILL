@@ -1,9 +1,16 @@
 @charset "UTF-8";
+
 * {
-	font-family: noto sans kr;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 a{
 	text-decoration:none;
+}
+body {
+	padding: 0;
+}
+.fo-color {
+	color : #4D4D4D;
 }
 .fo-si-12 {
 	font-size : 12px;
@@ -98,4 +105,7 @@ a:hover {
 	font-size: 15px;
 	line-height: 29px;
 	margin-top: 10px;
+}
+.navbar-click {
+	cursor: pointer;
 }
