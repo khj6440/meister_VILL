@@ -125,11 +125,7 @@ ul.list-style-none li a:hover {
 															</div>
 															<div class="w-75 d-inline-block v-middle pl-2">
 																<h6 class="message-title mb-0 mt-1">${c.chatSender}</h6>
-																<span
-																	class="font-12 text-nowrap d-block text-muted text-truncate">
-																	${c.chatContent } </span> <span
-																	class="font-12 text-nowrap d-block text-muted">
-																	${c.chatTime } </span>
+															
 															</div>
 														</a>
 													</c:forEach>
