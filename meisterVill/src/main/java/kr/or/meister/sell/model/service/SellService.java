@@ -128,7 +128,6 @@ public class SellService {
 		return (ArrayList<PickVO>)list;
 	}
 
-<<<<<<< HEAD
 	public SellVO selectSellInfo(int sellNo) {
 		return dao.selectSellInfo(sellNo);
 	}
@@ -161,9 +160,6 @@ public class SellService {
 		return dao.orderOption(oov);
 	}
 
-
-	
-=======
 	public int deleteOpt(HashMap<String, Object> opt) {
 		return dao.deleteOpt(opt);
 	}
@@ -172,5 +168,5 @@ public class SellService {
 		List list = dao.selectMultiImg(sellNo);
 		return (ArrayList<MultiImgVO>)list;
 	}
->>>>>>> master
+
 }

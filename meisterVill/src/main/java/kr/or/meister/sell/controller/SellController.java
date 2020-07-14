@@ -288,43 +288,42 @@ public class SellController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/purchaseSuccess.do")
-	public String purchaseSuccess(int orderMemberNo, int orderBoardNo, String sellTitle, String memberEmail, int price, int[] optionNo, int[] couponNo, Model model) {
+	public String purchaseSuccess(int orderMemberNo, int orderBoardNo, String sellTitle, String memberEmail, int price, Model model) {
 		//유라: 결제하기 버튼 클릭
 		System.out.println("uu"+orderMemberNo);
 		System.out.println("uu"+orderBoardNo);
 		System.out.println("uu"+sellTitle);
 		System.out.println("uu"+memberEmail);
 		System.out.println("uu"+price);
-		System.out.println("uu"+optionNo);
-		System.out.println("uu"+couponNo);
 		OrdersVO ov = new OrdersVO();
-		ov.setOrderMemberNo(orderMemberNo);
-		ov.setOrderBoardNo(orderBoardNo);
-		int result = service.purchaseSell(ov);
-		if(result>0) {
-			OrdersVO ov2 = service.getOrders(orderMemberNo);
-			int resultOption=0;
-			for(int i=0; i<optionNo.length;i++) {
-				OrderOptionVO oov = new OrderOptionVO();
-				oov.setOptionNo(optionNo[i]);
-				oov.setOrderNo(ov.getOrderNo());
-				resultOption += service.orderOption(oov);
-			}	
-			
-			int resultCoupon= service.couponUse(couponNo);
-			if(resultCoupon>0 && resultOption==optionNo.length) {
-				model.addAttribute("memberNo", ov.getOrderMemberNo());
-				model.addAttribute("memberEmail", memberEmail);
-				model.addAttribute("sellTitle",sellTitle);
-				model.addAttribute("date",ov.getOrderDate());
-				model.addAttribute("price",price);
-				return "1";
-			}else {
-				return "0";
-			}
-		}else {
-			return "0";
-		}
+		
+		 ov.setOrderMemberNo(orderMemberNo); ov.setOrderBoardNo(orderBoardNo); 
+		 int result = service.purchaseSell(ov);
+		 if(result>0) {
+			 return "1";
+		 }else {
+			 return "0";
+		 }
+		 
+		 
+		 
+		 
+		 /*if(result>0) { 
+			 OrdersVO ov2 =service.getOrders(orderMemberNo); 
+		 int resultOption=0; for(int i=0; i<optionNo.length;i++) { 
+			 OrderOptionVO oov = new OrderOptionVO();
+		 }
+		 * oov.setOptionNo(optionNo[i]); oov.setOrderNo(ov.getOrderNo()); resultOption
+		 * += service.orderOption(oov); }
+		 * 
+		 * int resultCoupon= service.couponUse(couponNo); if(resultCoupon>0 &&
+		 * resultOption==optionNo.length) { model.addAttribute("memberNo",
+		 * ov.getOrderMemberNo()); model.addAttribute("memberEmail", memberEmail);
+		 * model.addAttribute("sellTitle",sellTitle);
+		 * model.addAttribute("date",ov.getOrderDate());
+		 * model.addAttribute("price",price); return "1"; }else { return "0"; } }else {
+		 */
+			/* } */
 	} 
 	
 	@RequestMapping("/sellEnd.do")
@@ -339,5 +338,10 @@ public class SellController {
 		model.addAttribute("sellTitle",sellTitle);
 		model.addAttribute("price",price);
 		return "order/purchaseSuccess";
+	}
+	
+	@RequestMapping("/orderModal.do")
+	public String orderModal() {
+		return "order/orderModal";
 	}
 }

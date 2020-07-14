@@ -118,7 +118,7 @@
 		insert into coupon_issued values(
 			coupon_issued_seq.nextval,
 			#{memberNo},
-			1,
+			2,
 			0,
 			sysdate,
 			sysdate+30

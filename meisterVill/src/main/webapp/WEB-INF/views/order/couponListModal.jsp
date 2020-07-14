@@ -46,7 +46,8 @@
                                             <label>
                                                 <input type="checkbox" class="a-coupon real-coupon" value="${cp.couponMoney }">
                                                 <i class="fa fa-check-circle-o chk-circle" aria-hidden="true"></i>
-                                                <span value="${cp.couponNo }">${cp.couponName }</span>
+                                                <span>${cp.couponName }</span>
+                                                <input type="hidden" value="${cp.couponNo }" class="cpNo">
                                             </label>                                            
                                             <div class="coupon-content">${cp.couponContent }</div>
                                             <div class="coupon-period">${cp.couponEnd }까지 사용가능</div>

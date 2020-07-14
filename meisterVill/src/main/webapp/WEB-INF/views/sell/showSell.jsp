@@ -7,10 +7,10 @@
 <meta charset="UTF-8">
 <title>마이스터 판매글</title>
   <!-- Bootstrap core CSS -->
-  <link href="/resources/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
+  <link href="/resources/bh/sell-css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="/resources/sell-css/css/heroic-features.css?after" rel="stylesheet">
-  <link href="/resources/showSell-css/showSell.css?after" rel="stylesheet">
+  <link href="/resources/bh/sell-css/css/heroic-features.css" rel="stylesheet">
+  <link href="/resources/bh/sell-css/showSell.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script>
 function goLocation(where) {
@@ -30,6 +30,7 @@ function goLocation(where) {
 }
 var sellNo = ${sell.sellvo.sellNo};
 $(function() {
+	
 	var memberNo = "${sessionScope.member.memberNo}";
 	$.ajax({
 		url : "/meister/review/selectReview.do",
@@ -174,6 +175,7 @@ $(function() {
 	    navbar.classList.remove("sticky");
 	  }
 	}
+	
 </script>
     <br><br>
     <h4 style="font-weight:bold;" id="mainContent">서비스 설명</h4>
@@ -248,10 +250,10 @@ $(function() {
            <span><img src="/resources/upload/homeImg/calendar.png" style="width:15px;"> 작업 소요일 : ${sell.sellvo.sellPeriod }일 &nbsp;&nbsp;&nbsp;<img src="/resources/upload/homeImg/settings.png" style="width:16px;"> 수정 횟수 : ${sell.sellvo.sellOptFix }회</span>
            <br><br>
            <c:if test="${not empty sessionScope.member.memberNo }">
-       		<button class="btn fo-si-14 " style="width:100%; height:50px; background-color:#FFBC42; font-weight:bold;">구매하기</button>
+       		<button class="btn fo-si-14 " style="width:100%; height:50px;background-color:#FFBC42; font-weight:bold;" type="button" onclick="location.href='/meister/sell/order.do?sellNo=${sell.sellvo.sellNo}&memberNo=${sessionScope.member.memberNo }'">구매하기</button>
         	</c:if>
         	 <c:if test="${ empty sessionScope.member.memberNo }">
-        	  <button class="btn fo-si-14 " style="width:100%; height:50px; background-color:#FFBC42; font-weight:bold;" disabled>로그인 후 구매 가능합니다</button>
+        	  <button type="button" class="btn fo-si-14 " style="width:100%; height:50px; background-color:#FFBC42; font-weight:bold;" disabled>로그인 후 구매 가능합니다</button>
         	</c:if>
         </div>
       </div>
@@ -266,7 +268,7 @@ $(function() {
     <div class="card my-4 card-shadow">
     	<div class="card-body" style="text-align:center;">
     		<div class="card-profile">
-    			<img style="width: 100px;height:100px;object-fit: cover;border-radius: 70%; margin-bottom:15px;" src="/resources/upload/memberImg/${sell.membervo.memberImg }">
+    			<%-- <img style="width: 100px;height:100px;object-fit: cover;border-radius: 70%; margin-bottom:15px;" src="/resources/upload/memberImg/${sell.membervo.memberImg }"> --%>
     			<h5>${sell.membervo.memberNickname }</h5>
     		</div>
     		<hr style="width:50px;border:0; height: 3px;background-color:#FFBC42;">

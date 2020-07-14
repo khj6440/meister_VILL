@@ -87,6 +87,7 @@ public class MemberController {
 		if (result > 0) {
 			// 웰컴쿠폰 발급
 			MemberVO mem = service.selectLoginMember(m);
+			System.out.println(mem.getMemberNo());
 			int result2 = service.welcomeCoupon(mem.getMemberNo());
 			if (result2 > 0) {
 				System.out.println("쿠폰 발급 완");

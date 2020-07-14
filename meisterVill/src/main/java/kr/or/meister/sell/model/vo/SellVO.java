@@ -23,3 +23,4 @@ public class SellVO {
 	private String sellFix;
 	private String sellImg;
 }
+

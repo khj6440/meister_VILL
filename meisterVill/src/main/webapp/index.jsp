@@ -144,7 +144,8 @@
 
 
                                     <div class="bigbox">
-
+	
+									<!-- 반복 -->
                                         <div class="minibox slider item1">
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
@@ -154,69 +155,7 @@
                                                 <div>제목</div>
                                             </div>
                                         </div>
-                                        <div class="minibox slider item2">
-                                            <div class="slide-img">
-                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
-                                            </div>
-                                            <div class="slide-msg">
-                                                <div>카테고리</div>
-                                                <div>제목</div>
-                                            </div>
-                                        </div>
-                                        <div class="minibox slider item1">
-                                            <div class="slide-img">
-                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
-                                            </div>
-                                            <div class="slide-msg">
-                                                <div>카테고리</div>
-                                                <div>제목</div>
-                                            </div>
-                                        </div>
-                                        <div class="minibox slider item2">
-                                            <div class="slide-img">
-                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
-                                            </div>
-                                            <div class="slide-msg">
-                                                <div>카테고리</div>
-                                                <div>제목</div>
-                                            </div>
-                                        </div>
-                                        <div class="minibox slider item1">
-                                            <div class="slide-img">
-                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
-                                            </div>
-                                            <div class="slide-msg">
-                                                <div>카테고리</div>
-                                                <div>제목</div>
-                                            </div>
-                                        </div>
-                                        <div class="minibox slider item2">
-                                            <div class="slide-img">
-                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
-                                            </div>
-                                            <div class="slide-msg">
-                                                <div>카테고리</div>
-                                                <div>제목</div>
-                                            </div>
-                                        </div>
-                                        <div class="minibox slider item1">
-                                            <div class="slide-img">
-                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
-                                            </div>
-                                            <div class="slide-msg">
-                                                <div>카테고리</div>
-                                                <div>제목</div>
-                                            </div>
-                                        </div>
-                                        <div class="minibox slider item2">
-                                            <div class="slide-img">
-                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
-                                            </div>
-                                            <div class="slide-msg">
-                                                <div>카테고리</div>
-                                                <div>제목</div>
-                                            </div>
-                                        </div>
+                                        
 
                                     </div>
 
@@ -518,11 +457,12 @@
         <a href="/meister/member/couponWriteFrm.do">쿠폰이벤트 작성페이지</a><br>
         <a href="/meister/member/carouselTestFrm.do">캐러셀테스트</a><br>
         <a href="/meister/member/carouselTestFrm2.do">캐러셀테스트2</a><br>  
+        <a href="/meister/sell/orderModal.do">결제완료 모달</a><br>
         <a class="navbar-brand" href="/meister/employ/showList.do?reqPage=1">프로젝트</a>
         <a href="/meister/employ/makeEmploy.do">모집글 작성하기</a><br>
         <a href="/meister/sell/makeSell.do?sellWriter=${sessionScope.member.memberNo }">파내글 작성하기</a><br>
         <a href="/meister/sell/sellList.do?reqPage=1">파내글 보기</a><br>
-
+		<a class="navbar-brand" href="/meister/request/showList.do?reqPage=1">프로젝트</a>
     </div>
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
@@ -835,6 +775,14 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+        	/*$.ajax({
+        		url:"/meister/member/mainIt.do",
+        		type:"json",
+        		
+        	});*/
+        	
+        	
+        	
             $('.bigbox').slick({
                 slidesToShow: 5,
                 slidesToScroll: 1,

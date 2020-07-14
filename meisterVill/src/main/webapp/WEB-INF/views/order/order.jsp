@@ -3,7 +3,6 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
@@ -13,6 +12,8 @@
 
     <!-- 아임포트 -->
     <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+    
+    <link rel="stylesheet" href="/resources/yr/css/joinSuccessModal_css.css" type="text/css">
 
 </head>
 
@@ -77,10 +78,12 @@
                             <td>
                                 <label>
                                     <input type="checkbox" value="${opt.optionPrice}" class="plusOptChk">
-                                    ${opt.optionTitle }</label>
+                                    ${opt.optionTitle }
+                                    <input type="hidden" class="optNo" value="${opt.optionNo }">
+                                    </label>
                             </td>
                             <td>${opt.optionPlusDate }</td>
-                            <td value="${opt.optionNo }" class="optPrice">${opt.optionPrice } 원</td>
+                            <td class="optPrice">${opt.optionPrice } 원</td>
                         </tr>
 
                     </c:forEach>
@@ -157,23 +160,47 @@
                     var sellPr = Number(${sell.sellPrice});
                     var totalDiscount = 0;
                     var totalPr = Number(sellPr - totalDiscount);
-                    
+                   /* var optionsArr = $(".plusOptChk").prop('checked','checked');
+                	var couponsArr = [];
+                	var options = "${options}";*/
+                	
+                	/* .parent().parent().siblings(".optNo").val(); 
+                	$(".plusOptChk:checked").each(function(i){
+                		console.log("hh");
+                		optionsArr.push($(this).parent().parent().siblings(".optNo").val());
+                		console.log("디스뭐냐" + $(this));
+                		console.log("이건" + $(this).parent().parent().siblings(".optNo").val());
+                	}); */
+                	$(".chk").each(function(i){
+                		couponsArr.push($(this).siblings(".cpNo").val());
+                	});
 
                     $("body").mouseover(function() {
-                    	console.log("??"+totalPr)
-                        console.log("!!" + Number(sellPr - totalDiscount))
                         $(".payment-price").children("div").eq(1).children().eq(1).html(Number(sellPr - totalDiscount));
-
+                        
+                        /* var optIndex = $(".plusOptChk:checked").index($(".plusOptChk:checked").last());
+                        var couponIndex = $(".chk").index($(".chk").last());
+                        var optionsArr = $(".plusOptChk:checked").parent().parent().siblings(".optPrice"); <- 이거 주석풀어요?
+                        var couponsArr = $(".chk");
+                        var options = [];
+                        var coupons = [];
+                        for(int i=0; i<(Number)optIndex+1;i++){
+                        	options.push(optionsArr.eq(i).attr("value"));
+                        }
+                        for(int i=0; i<(Number)couponIndex+1;i++){
+                        	coupons.push(couponsArr.eq(i).attr("value"));
+                        }
+                        console.log(options.eq(0)) */
                     });
 
 
                     //옵션 추가
                     $(".plusOptChk").change(function() {
-
+                    	//console.log(optionsArr);
                         console.log("가격" + sellPr);
                         console.log("옵션" + $(this).val());
                         if ($(this).is(":checked")) {
-                        	var qq = $(".plusOptChk:checked").parent().parent().siblings(".optPrice").attr("value");
+                        	var qq = $(this).parent().parent().siblings(".optPrice").attr("value");
                         	console.log("--"+qq);
                             sellPr += Number($(this).val());
                             console.log("더하기" + sellPr);
@@ -238,24 +265,17 @@
                     
                     //결제하기
                     $("#payBtn").click(function() {
-                        var price1 = $(".thePay").html();
+                    	
+                        var arr
+                    	var price1 = $(".thePay").html();
                         var d = new Date();
                         var memName = "${member.memberName}";
                         var sellTitle = "${sell.sellTitle}";
                         var orderMemberNo = ${member.memberNo};
                         var orderBoardNo = ${sell.sellNo};
-                        console.log("날짜" + date);
                         var date = d.getFullYear() + "" + (d.getMonth() + 1) + "" + d.getDate() + "" + d.getHours() + "" + d.getMinutes() + "" + d.getSeconds();
-                        var optionNo = $(".plusOptChk:checked").parent().parent().siblings(".optPrice").attr("value");
-                        var couponNo = $(".chk").attr("value");
-                        if(optionNo!=null){
-                            console.log("옵션리스트"+optionNo);
-                            	
-                            }
-                            if(couponNo!=null){
-                            	
-                            console.log("쿠폰리스트"+couponNo);
-                            }
+                        console.log("날짜" + date);
+                       
                         IMP.init("imp73883772");
                         IMP.request_pay({
                             //결제시 구매에 대한 정보를 모듈에 전달 (결제창에 내 정보가 뜨는 단계)
@@ -281,9 +301,15 @@
                             	console.log(orderMemberNo);
                             	console.log(orderBoardNo);
                             	console.log(sellTitle);
-                            	console.log(price1);
+                            	console.log(price1); 
                                 //결제를 성공했을 때 해당하는 정보를 읽어옴
-                                var allData = {orderMemberNo: orderMemberNo, orderBoardNo: orderBoardNo, sellTitle: sellTitle, memberEmail:memberEmail, price:price1, optionNo:optionNo, couponNo:couponNo }
+                                var allData = {
+                                		orderMemberNo: orderMemberNo, 
+                                		orderBoardNo: orderBoardNo, 
+                                		sellTitle: sellTitle, 
+                                		memberEmail:memberEmail, 
+                                		price:price1, 
+                                		 }
                                 $.ajax({
                                 	url: "/meister/sell/purchaseSuccess.do",
                                 	data : allData,
@@ -292,7 +318,7 @@
                                 	success: function(data){
                                 		console.log("ajax~~"+data);
                                 		if(data=="1"){
-				                           location.href="/meister/sell/sellEnd.do?orderBoardNo=${sell.sellNo}&orderMemberNo=${member.memberNo}&memberEmail=${member.memberEmail}&sellTitle=${sell.sellTitle}&price=$('.thePay').html()";
+                                			$("#orderModal").modal("show");
                                 			
                                 		}else{
                                 			console.log("실패");
@@ -318,6 +344,7 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
     <jsp:include page="/WEB-INF/views/order/couponListModal.jsp" />
+    <jsp:include page="/WEB-INF/views/order/orderModal.jsp"/>
 
 </body>
 

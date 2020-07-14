@@ -9,7 +9,7 @@ public class CouponJoinCouponIssuedVO {
 	private int couponIssuedMemberNo;
 	private int couponIssuedCouponNo;
 	private int couonIssuedCheck;
-	private String couponIsseudStart;
+	private String couponIssuedStart;
 	private String couponIssuedEnd;
 	private int couponNo;
 	private String couponName;
