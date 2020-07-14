@@ -29,13 +29,11 @@ public class EmployDao {
 	}
 
 	public int insertEmploy(EmployVO employ) {
-		System.out.println("컨텐트값" + employ.getEmployContent());
 		return sqlSession.insert("employ.insertEmploy", employ);
 	}
 
 	public int totalKeyCount(String keyWord) {
 		int result = sqlSession.selectOne("employ.selectKeyTotal", keyWord);
-		System.out.println(result);
 		return result;
 	}
 	

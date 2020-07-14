@@ -18,6 +18,7 @@
   	$(function() {
   		var reqPage = ${reqPage};
   		var memberNo = "${sessionScope.member.memberNo}";
+  		var keyWord = "${keyWord}";
   		var sellNo = new Array();
   		if(memberNo != "") {
 	  		$.ajax({
@@ -31,9 +32,10 @@
 				}
 			});
   		}
+  		
   		$.ajax({
   			url : "/meister/sell/getSellList.do?reqPage="+reqPage,
-			data : "json",
+			data : {keyWord : keyWord},
 			success : function(data) {
 				var number = data["number"];
 				html = "";
@@ -72,6 +74,10 @@
 			$(".sellList-pageNavi").append(page);
 		}
   		});
+  		$(".navbar-click").click(function() {
+  			keyWord = $(this).parent().text();
+  			location.href="/meister/employ/showList.do?reqPage=1&&keyWord="+keyWord;
+  		});
   	 });
   </script>
 </head>
@@ -89,16 +95,16 @@
     </div>
     <div class="side_list_body">
     	<ul class="list-group list-group-flush">
-  			<li class="list-group-item"><a href="#">로고 · 브랜딩</a></li>
-  			<li class="list-group-item"><a href="#">북 · 앨범디자인</a></li>
-		  	<li class="list-group-item"><a href="#">공간디자인</a></li>
-		  	<li class="list-group-item"><a href="#">웹 · 모바일 디자인</a></li>
-		  	<li class="list-group-item"><a href="#">상세 · 랜딩페이지</a></li>
-		  	<li class="list-group-item"><a href="#">블로그 · SNS 디자인</a></li>
-		  	<li class="list-group-item"><a href="#">게임 · VR</a></li>
-		  	<li class="list-group-item"><a href="#">PPT · 인포그래픽</a></li>
-		  	<li class="list-group-item"><a href="#">일러스트 · 캐리커쳐</a></li>
-		  	<li class="list-group-item"><a href="#">포토샵 · 편집</a></li>
+  				<li class="list-group-item"><span class="navbar-click">로고 · 브랜딩</span></li>
+  			<li class="list-group-item"><span class="navbar-click">북 · 앨범디자인</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">공간디자인</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">웹 · 모바일 디자인</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">상세 · 랜딩페이지</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">블로그 · SNS 디자인</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">게임 · VR</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">PPT · 인포그래픽</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">일러스트 · 캐리커쳐</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">포토샵 · 편집</span></li>
 		</ul>
     </div><br>
     <div class="side_list_header" style="border-bottom:2px solid #FFBC42;">
@@ -106,17 +112,17 @@
     </div>
      <div class="side_list_body">
     	<ul class="list-group list-group-flush">
-  			<li class="list-group-item"><a href="#">중 · 대형 프로젝트</a></li>
-  			<li class="list-group-item"><a href="#">워드프레스</a></li>
-		  	<li class="list-group-item"><a href="#">웹사이트 개발</a></li>
-		  	<li class="list-group-item"><a href="#">쇼핑몰 · 커머스</a></li>
-		  	<li class="list-group-item"><a href="#">모바일앱 · 웹</a></li>
-		  	<li class="list-group-item"><a href="#">프로그램 개발</a></li>
-		  	<li class="list-group-item"><a href="#">임베디드 HW · SW</a></li>
-		  	<li class="list-group-item"><a href="#">게임</a></li>
-		  	<li class="list-group-item"><a href="#">데이터베이스</a></li>
-		  	<li class="list-group-item"><a href="#">블록체인</a></li>
-		  	<li class="list-group-item"><a href="#">보안</a></li>
+  			<li class="list-group-item"><span class="navbar-click">중 · 대형 프로젝트</span></li>
+  			<li class="list-group-item"><span class="navbar-click">워드프레스</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">웹사이트 개발</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">쇼핑몰 · 커머스</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">모바일앱 · 웹</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">프로그램 개발</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">임베디드 HW · SW</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">게임</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">데이터베이스</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">블록체인</span></li>
+		  	<li class="list-group-item"><span class="navbar-click">보안</span></li>
 		</ul>
     </div>
     </nav>

@@ -22,7 +22,6 @@ public class EmployService {
 
 	public HashMap<String, Object> selectAllList(int reqPage, String keyWord) {
 		int numPerPage = 10;
-		System.out.println(keyWord);
 		if(keyWord.equals("no")) {
 			int totalCount = dao.totalCount();
 			int totalPage = 0;
