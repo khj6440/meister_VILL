@@ -94,7 +94,7 @@
 		</if>
 	</where>
 </select>
-<select id="selectKeyWordList" resultMap="requestMap">
+<select id="selectKeyWordList" resultMap="requestMap" parameterType="map">
 	select * from
 		(select rownum as rnum, n.* from
 			(

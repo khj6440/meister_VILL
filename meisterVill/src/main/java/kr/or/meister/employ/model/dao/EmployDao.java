@@ -31,16 +31,12 @@ public class EmployDao {
 	public int insertEmploy(EmployVO employ) {
 		return sqlSession.insert("employ.insertEmploy", employ);
 	}
-
-	public int totalKeyCount(String keyWord) {
-		int result = sqlSession.selectOne("employ.selectKeyTotal", keyWord);
-		return result;
-	}
-	
-	public List selectKeyWordList(HashMap<String, Object> map) {
-		List list = sqlSession.selectList("employ.selectKeyWordList", map);
-		return list;
-	}
-
+	/*
+	 * public int totalKeyCount(String keyWord) { int result =
+	 * sqlSession.selectOne("employ.selectKeyTotal", keyWord); return result; }
+	 * 
+	 * public List selectKeyWordList(HashMap<String, Object> map) { List list =
+	 * sqlSession.selectList("employ.selectKeyWordList", map); return list; }
+	 */
 	
 }

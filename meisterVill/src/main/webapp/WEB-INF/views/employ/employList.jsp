@@ -19,10 +19,9 @@
 <script>
   	$(function() {
   		var reqPage = ${reqPage};
-  		var keyWord = "${keyWord}";
   		$.ajax({
   			url : "/meister/employ/getEmployList.do",
-			data : {reqPage:reqPage, keyWord : keyWord},
+			data : {reqPage:reqPage},
 			success : function(data) {
 			 	var number = data["number"];
 				var skill ="";
@@ -52,10 +51,6 @@
 			$("#employ").append(html);
 			$(".employList-pageNavi").append(page); 
 		}
-  		});
-  		$(".navbar-click").click(function() {
-  			keyWord = $(this).parent().text();
-  			location.href="/meister/employ/showList.do?reqPage=1&&keyWord="+keyWord;
   		});
   		
   	 });

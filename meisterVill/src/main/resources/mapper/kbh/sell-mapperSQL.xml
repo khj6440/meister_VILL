@@ -158,7 +158,7 @@ delete from options where sell_no = #{sellNo} and option_title = #{optionsTitle}
 		</if>
 	</where>
 </select>
-<select id="selectKeyWordList" resultMap="sellMap">
+<select id="selectKeyWordList" resultMap="sellMap" parameterType="map">
 	select * from
 		(select rownum as rnum, n.* from
 			(
