@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import kr.or.meister.admin.model.vo.AdminMemberJoinSellJoinOrdersVO;
 import kr.or.meister.admin.model.vo.AdminNoticePageVO;
+import kr.or.meister.admin.model.vo.AdminReportVO;
 import kr.or.meister.admin.model.vo.MemberInformVO;
 import kr.or.meister.admin.model.vo.MemberJoinEmployVO;
 import kr.or.meister.admin.model.vo.MemberJoinReportVO;
@@ -220,6 +221,10 @@ public class AdminDao {
 	public int approval(int sellNo) {
 		return sqlSession.update("adminMember.approval",sellNo);
 	}
+	
+	public int approvalNo(int sellNo) {
+		return sqlSession.update("adminMember.approvalNo",sellNo);
+	}
 
 	public int adminNoticeCnt() {
 		return sqlSession.selectOne("adminMember.adminNoticeCnt");
@@ -245,6 +250,25 @@ public class AdminDao {
 	public List<MemberJoinEmployVO> adminMainEmployList() {
 		return sqlSession.selectList("adminMember.adminMainEmployList");
 	}
+
+	public int reportCnt() {
+		return sqlSession.selectOne("adminMember.reportCnt");
+	}
+	
+	public int reportDelCnt() {
+		return sqlSession.selectOne("adminMember.reportDelCnt");
+	}
+	
+	
+	public List<AdminReportVO> reportPage(HashMap<String, Integer> se) {
+		return sqlSession.selectList("joinSellJoinOrders.reportPage",se);
+	}
+	
+	public List<AdminReportVO> reportDelPage(HashMap<String, Integer> se) {
+		return sqlSession.selectList("joinSellJoinOrders.reportDelPage",se);
+	}
+	
+
 
 
 

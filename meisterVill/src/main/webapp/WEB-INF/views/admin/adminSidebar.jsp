@@ -80,13 +80,11 @@
           <li class="sub-menu">
             <a href="javascript:;" style="background-color: #4D4D4D;">
               <i class="fa fa-tasks"></i>
-              <span>Forms</span>
+              <span>신고</span>
               </a>
             <ul class="sub">
-              <li><a href="form_component.html">Form Components</a></li>
-              <li><a href="advanced_form_components.html">Advanced Components</a></li>
-              <li><a href="form_validation.html">Form Validation</a></li>
-              <li><a href="contactform.html">Contact Form</a></li>
+              <li><a href="/meister/adminBoard/reportList.do?reqPage=1">신고현황</a></li>
+              <li><a href="/meister/adminBoard/reportDelList.do?reqPage=1">처리된 신고</a></li>
             </ul>
           </li>
           <li class="sub-menu">

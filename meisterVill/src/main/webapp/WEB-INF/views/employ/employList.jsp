@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>모집글 작성</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <link href="/resources/bh/sell-css/vendor/bootstrap/css/bootstrap.min.css?after" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="/resources/bh/sell-css/css/heroic-features.css?after" rel="stylesheet">
@@ -35,9 +36,9 @@
 	  				html += "<div><h4 class='card-title fo-si-20 fo-we-bo'>"+data["employ"+i].employTitle+"</h4></div>";
 	  				html += "<div><span class='fo-si-15 fo-we-bo span-border' style='border-left:none;'>&#8361; 예상 금액 </span>"+data["employ"+i].employPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" 원 ";
 	  				html += "<span class='fo-si-15 fo-we-bo span-border'>예상 기간 </span>"+data["employ"+i].employPeriod+" 일 ";
-	  				html += "<span class='fo-si-14 fo-we-bo span-border'>등록일자 </span>20"+data["employ"+i].employEnrollDate;
+	  				html += "<span class='fo-si-14 fo-we-bo span-border'>등록일자 </span>"+data["employ"+i].employEnrollDate;
 	  				html +="</div>";
-	  				html += "<div class='fo-si-13' style='height:5em;'>"+data["employ"+i].employContent.split('<br/>').join("\r\n")+"</div>";
+	  				html += "<div class='fo-si-13' style='height:5em; overflow:hidden; padding: 5px;'>"+data["employ"+i].employContent.split('<br/>').join("\r\n")+"</div>";
 	  				html += "<div><span class='fo-si-13 fo-we-bo span-border' style='border-left:none;'>"+data["employ"+i].employCategory1+" > "+data["employ"+i].employCategory2+"</span>";
 					html += "<span class='fo-si-13 fo-we-bo span-border'>관련 기술 : ";
 					html += ""+skill+"";
@@ -59,10 +60,12 @@
   	}
   </script>
 <body>
+<jsp:include page="/WEB-INF/views/common/header2.jsp"/>
 <div class="container">
     <!-- Jumbotron Header -->
-    <header class="jumbotron my-4" style="width:1100px">
+     <header class="jumbotron my-4" style="width:1100px; background-image: url('/resources/upload/homeImg/ad3.png'); background-size: cover;" >
     </header>
+
     <div class="employ-content" style="display:flex; width:1100px">
     <nav class="employ_side_list" style="width:20%; padding-right:15px;">
     <div class="side_list_header" style="border-bottom:2px solid #FFBC42;">
@@ -114,6 +117,7 @@
        </div>
        <div class="employList-pageNavi" style="margin: 0 auto; width: 300px; text-align:center; padding-top:100px;">
     	</div>
+    	<br><br><br>
     </div>
    
     <!-- /.row -->
@@ -121,5 +125,6 @@
   </div>
     <script src="/resources/bh/sell-css/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/bh/sell-css/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

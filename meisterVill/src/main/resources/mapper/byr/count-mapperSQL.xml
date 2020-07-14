@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="count">
+<resultMap id="sellMap" type="sell">
+	    <id property="sellNo" column="sell_no" />
+	    <result property="sellTitle" column="sell_title" />
+	    <result property="sellWriter" column="sell_writer" />
+	    <result property="sellPrice" column="sell_price" />
+	    <result property="sellCategory1" column="sell_category1" />
+	    <result property="sellCategory2" column="sell_category2" />
+	    <result property="sellSkill" column="sell_skill" />
+	    <result property="sellDate" column="sell_date" />
+	    <result property="sellAppro" column="sell_appro" />
+	    <result property="sellStatus" column="sell_status" />
+	    <result property="sellOpt1" column="sell_opt1" />
+	    <result property="sellOpt2" column="sell_opt2" />
+	    <result property="sellOpt3" column="sell_opt3" />
+	  	<result property="sellOptFix" column="sell_opt_fix" />
+	  	<result property="sellPeriod" column="sell_period" />
+	  	<result property="sellContent" column="sell_content" />
+	  	<result property="sellFix" column="sell_fix" />
+	  	<result property="sellImg" column="sell_img" />
+</resultMap>
+<resultMap type="options" id="optionsMap">
+		<id property="optionNo" column="option_no" />
+	    <result property="sellNo" column="sell_no" />
+	    <result property="optionTitle" column="option_title" />
+	    <result property="optionContent" column="option_content" />
+	    <result property="optionPrice" column="option_price" />
+	    <result property="optionPlusDate" column="option_plus_date" />
+</resultMap>
+<resultMap type="member" id="memberMap">
+ 		<id property="memberNo" column="member_no" />
+         <result property="memberEmail" column="member_email" />
+         <result property="memberPw" column="member_pw" />
+         <result property="memberName" column="member_name" />
+         <result property="memberHbd" column="member_hbd" />
+         <result property="memberNickname" column="member_nickname" />
+         <result property="memberPhone" column="member_phone" />
+         <result property="memberImg" column="member_img" />
+         <result property="memberBank" column="member_bank" />
+         <result property="memberAccount" column="member_account" />
+         <result property="memberTime" column="member_time" />
+         <result property="memberLevel" column="member_level" />
+         <result property="memberStatus" column="member_status" />
+         <result property="memberIntro" column="member_intro" />
+         <result property="memberField" column="member_field" />
+         <result property="memberSkill" column="member_skill" />
+         <result property="memberSchool" column="member_school" />
+         <result property="memberMajor" column="member_major" />
+         <result property="memberGrade" column="member_grade" />
+         <result property="memberDate" column="member_date" />
+</resultMap>
+
+<resultMap type="smo" id="smo">
+	<association property="sellvo" resultMap="sellMap">
+	</association>
+	<association property="membervo" resultMap="memberMap">
+	</association>
+	<association property="optionsvo" resultMap="optionsMap">
+	</association>
+</resultMap>
+
+
+<select id="selectSellInfo" resultMap="sellMap">
+	select *
+	from sell
+	where sell_no=#{sellNo}
+</select>
+<select id="selectOneMember" parameterType="_int" resultMap="memberMap">
+	select *
+	from member
+	where member_no=#{memberNo}
+</select>
+<select id="selectOptionsInfo" parameterType="_int" resultMap="optionsMap">
+	select *
+	from options
+	where sell_no=#{sellNo}
+</select>
+<insert id="purchaseSell" parameterType="orders">
+	insert into orders values(
+		orders_seq.nextval,
+		#{orderMemberNo},
+		#{orderBoardNo},
+		to_char(SYSDATE,'YYYY/MM/DD'),
+		0
+	)
+</insert>
+<select id="getOrders" parameterType="_int" resultType="orders">
+	select
+		max(order_no) as orderNo,
+		max(order_date) as orderDate
+	from orders
+	where order_member_no=#{orderMemberNo}
+</select>
+
+<insert id="orderOption" parameterType="oov">
+	insert into order_option values(
+		order_option_seq.nextval,
+		#{optionNo},
+		#{orderNo}
+	)
+	
+</insert>
+<update id="couponUse" parameterType="map">
+	update coupon_issued
+	set
+		coupon_issued_check=1
+	where coupon_issued_no in
+		<foreach collection="array" item="no" open="(" separator="," close=")">
+			#{no}
+		</foreach>	
+</update>
+
+
+	
+
+
+</mapper>

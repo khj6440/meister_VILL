@@ -436,5 +436,63 @@ from(select rownum as rnum, n.* from
 		from qna order by qna_no desc)n)
 		where rnum between #{start} and #{end}
   </select>
+  
+  <select id="reportPage" parameterType="Map" resultType="adminReport">
+        select *
+        from(select rownum as rnum, n.* from
+		(select 
+        report_no as reportNo,
+        report_member_nickname as reportMemberNickname,
+        report_board_type as reportBoardType,
+        report_board_no as reportBoardNo,
+        review_no as reviewNo,
+        sell_no as sellNo,
+        review_writer as reviewWriter,
+        review_content as reviewContent,
+        review_point as reviewPoint,
+        review_date as reviewDate,
+        review_writer_img as reviewWriterImg,
+        sell_title as sellTitle,
+        sell_img as sellImg,
+        member_img as memberImg,
+        member_no as memberNo
+		from report LEFT JOIN review on (review_no = report_board_no)
+                    LEFT JOIN sell using (sell_no)
+                    LEFT JOIN member on (review_writer = member_nickname) where report_Board_Type != 2 order by report_no desc)n)
+		where rnum between #{start} and #{end}
+  </select>
+  
+  
+    <select id="reportDelPage" parameterType="Map" resultType="adminReport">
+        select *
+        from(select rownum as rnum, n.* from
+		(select 
+        report_no as reportNo,
+        report_member_nickname as reportMemberNickname,
+        report_board_type as reportBoardType,
+        report_board_no as reportBoardNo,
+        review_no as reviewNo,
+        sell_no as sellNo,
+        review_writer as reviewWriter,
+        review_content as reviewContent,
+        review_point as reviewPoint,
+        review_date as reviewDate,
+        review_writer_img as reviewWriterImg,
+        sell_title as sellTitle,
+        sell_img as sellImg,
+        member_img as memberImg,
+        member_no as memberNo,
+        review_save_content as reviewSaveContent,
+        report_save_no as reportSaveNo
+		from report LEFT JOIN review on (review_no = report_board_no)
+                    LEFT JOIN sell using (sell_no)
+                    LEFT JOIN report_save on (report_no_s = report_no)
+                    LEFT JOIN member on (review_writer = member_nickname) where report_Board_Type= 2 order by report_no desc)n)
+		where rnum between #{start} and #{end}
+  </select>
+  
+  <delete id="reviewSaveDel" parameterType="_int">
+  	delete report_save where report_save_no = #{reportSaveNo}
+  </delete>
   			 				
 </mapper>

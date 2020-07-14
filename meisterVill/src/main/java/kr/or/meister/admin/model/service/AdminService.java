@@ -312,6 +312,10 @@ public class AdminService {
 	public int approval(int sellNo) {
 		return dao.approval(sellNo);
 	}
+	
+	public int approvalNo(int sellNo) {
+		return dao.approvalNo(sellNo);
+	}
 
 	public int memberHalt(int memberNo) {
 		return dao.memberHalt(memberNo);
@@ -717,6 +721,11 @@ public List<AdminMemberJoinSellJoinOrdersVO> adminMainSellList() {
 
 public List<MemberJoinEmployVO> adminMainEmployList() {
 	return (List<MemberJoinEmployVO>)dao.adminMainEmployList();
+}
+
+
+public int reportCnt() {
+	return dao.reportCnt();
 }
 
 }

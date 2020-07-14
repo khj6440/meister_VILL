@@ -41,6 +41,7 @@ import kr.or.meister.admin.model.vo.SellSellVO;
 import kr.or.meister.admin.model.vo.SellJoinOrdersJoinOptionVO;
 import kr.or.meister.admin.model.vo.SellStatsVO;
 import kr.or.meister.admin.model.vo.selectAllSellPageVO;
+import kr.or.meister.etc.model.vo.ReportVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.sell.model.service.SellService;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
@@ -61,6 +62,19 @@ public class AdminController {
 	
 	@RequestMapping(value="approval.do")
 	public String approval(int sellNo, HttpServletRequest request) {
+		
+		int result = service.approval(sellNo);
+		
+		if(result>0) {
+			return "redirect:/meister/admin/sellApprovalFrm.do?reqPage=1";
+		}else {
+			return "redirect:/meister/admin/sellApprovalFrm.do?reqPage=1";
+		}	
+	}
+	
+	
+	@RequestMapping(value="approvalNo.do")
+	public String approvalNo(int sellNo, HttpServletRequest request) {
 		
 		int result = service.approval(sellNo);
 		
@@ -355,6 +369,8 @@ public class AdminController {
 		SellStatsVO ss = service.sellStats();
 		SellAndRequestVO saq = service.sellAndRequest();
 		SellAndRequestVO oneMemberSaq = service.oneMemberSellAndRequest();
+		int reportCnt = service.reportCnt();
+		
 		int allSum = 0;
 		int allMember = 0;
 		int sellSum = 0;
@@ -485,6 +501,7 @@ public class AdminController {
 		
 		request.setAttribute("mainSell", mainSell);
 		request.setAttribute("mainEmploy", mainEmploy);
+		request.setAttribute("reportCnt", reportCnt);
 		return "admin/adminIndex";
 	}
 	

@@ -100,6 +100,7 @@
                       <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
 
                       <button value="${s.sellNo }" class="btn btn-danger btn-xs modalApproval" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-bell" ></i> 승인</button>
+            		  <button value="${s.sellNo }" class="btn btn-danger btn-xs sellDelete" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i> 비승인</button>
             
                     </div>
 					</div>
@@ -230,6 +231,41 @@ $(function(){
 	  		});
 		});
 	});
+	  
+	  
+	  $(".sellDelete").click(function() {
+		  $("#exampleModal").modal("show");  
+		  var sellNo = $(this).val(); 
+		  var reqPage = ${reqPage};
+		  var totalCnt = ${totalCnt}-1;
+		  $(".modal-title").html("게시물 비승인");
+		  $(".modal-header").css("background-color","#F16B6F");
+		  $(".memberValue").css("background-color","#F16B6F");
+		  $(".memberValue").css("border-color","#F16B6F");
+		  $(".memberValue").html("비승인");
+		  $(".modal-body").html("정말로 게시물을 비승인하시겠습니까?");
+	  $(".memberValue").click(function() {		
+  $.ajax({
+	    url: "/meister/admin/approval.do?sellNo="+sellNo,
+
+	    success: function(){
+	    	$("#exampleModal").modal("hide");
+	    	$(".modal2text").html("비승인되었습니다.");
+	    	$(".modal-content2").css("background-color","#F16B6F");
+	    	$("#exampleModal2").modal("show");
+	    	setTimeout(function() {
+	    		location.reload();
+	    		if(totalCnt%6 == 0){
+	    			reqPage=reqPage-1;
+	    		window.location.href="sellApprovalFrm.do?reqPage="+reqPage;
+	    		}
+	    		}, 1000);		
+	    }
+
+	  		});
+		});
+	});  
+	  
 });
 </script>
 

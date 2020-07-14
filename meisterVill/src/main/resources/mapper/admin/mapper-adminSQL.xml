@@ -282,12 +282,12 @@
 	</select>
 	
 	<select id="memberOneViewSellCnt" resultType="_int">
-	<!-- sell 총 게시물 수  -->
+	<!-- sell 총 게시물 수 --> 
 		 select count(*) as sellListCnt from sell where sell_writer = #{memberNo}
 	</select>
 	
 	<select id="memberOneViewPickCnt" resultType="_int">
-	<!-- sell 총 게시물 수  -->
+	<!-- sell 총 게시물 수 --> 
 		 select count(*) as pickListCnt from pick where member_no = #{memberNo}
 	</select>
 	
@@ -382,8 +382,44 @@
 		UPDATE sell SET sell_status = 2 WHERE sell_no = #{sellNo}
 	</update>
 	
+	<update id="reviewDelete" parameterType="Map">
+		 UPDATE report SET report_board_type = 2 WHERE report_no = #{reportNo}
+	</update>
+
+	<update id="reviewOk" parameterType="int">
+		 UPDATE report SET report_board_type = 1 WHERE report_no = #{reportNo}
+	</update>
+	
+	
+	<delete id="reviewRealDelete" parameterType="Map">
+		    delete report where report_board_no = #{reportBoardNo}
+	</delete>
+
+	<delete id="reportBoardNoDelete" parameterType="Map">
+		    delete report where report_board_no = #{reportBoardNo} and report_no != #{reportNo}
+	</delete>
+	
+	
+	<update id="reviewBack" parameterType="int">
+		 UPDATE report SET report_board_type = 1 WHERE report_no = #{reportNo}
+	</update>
+	
+	<delete id="reDel" parameterType="int">
+		 delete review where review_no = #{reviewNo}
+	</delete>
+	
+	<delete id="resDel" parameterType="int">
+		 delete report_save where report_save_no = #{reportSaveNo}
+	</delete>
+
+
+	
 	<update id="approval" parameterType="int">
 		UPDATE sell SET sell_appro = 1 WHERE sell_no = #{sellNo}
+	</update>
+	
+	<update id="approvalNo" parameterType="int">
+		UPDATE sell SET sell_appro = 2 WHERE sell_no = #{sellNo}
 	</update>
 	
 	
@@ -456,5 +492,34 @@
             from notice where notice_no = #{noticeNo}
 	</select>
 	
+
+	<select id="reportCnt" resultType="_int">
+		select count(*) as reportCnt from report where REPORT_BOARD_TYPE = 0
+	</select>
+	
+	<select id="reportDelCnt" resultType="_int">
+		select count(*) as reportCnt from report where REPORT_BOARD_TYPE = 2
+	</select>
+	
+	<insert id="reportReviewSave" parameterType="Map">
+		insert into report_save values(REPORT_SAVE_SEQ.NEXTVAL, #{reportNo}, #{sellNo}, #{reviewContent})
+	</insert>
+
+	<update id="reviewSaveBack" parameterType="Map">
+		 update review set review_content=#{reviewSaveContent} where review_no = #{reviewNo} and sell_no = #{sellNo}
+	</update>
+	
+	<update id="reviewDel" parameterType="Map">
+		  update review set review_content='신고로 인해 차단된 후기입니다.' where review_content = #{reviewContent} and review_no = #{reviewNo}
+	</update>
+	
+	<select id="reportIf" resultType="reportSave">
+		   select report_save_no as reportSaveNo,
+            report_no_s as reportNoS,
+            sell_no_s as sellNoS,
+            review_save_content as reviewSaveContent
+            from report_save
+	</select>
+
 
 </mapper>
