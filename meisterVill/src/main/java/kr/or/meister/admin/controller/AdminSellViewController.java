@@ -16,6 +16,7 @@ import kr.or.meister.admin.model.service.AdminService;
 import kr.or.meister.review.model.service.ReviewService;
 import kr.or.meister.review.model.vo.ReviewJoinMemberVO;
 import kr.or.meister.sell.model.service.SellService;
+import kr.or.meister.sell.model.vo.SellJoinMemberVO;
 import kr.or.meister.sell.model.vo.SellJoinOthersVO;
 
 @Controller
@@ -67,35 +68,21 @@ public class AdminSellViewController {
 	
 	
 	
-	@RequestMapping(value ="/showList.do"/* , produces = "application/json;charset=utf-8" */)
-	public String showList(int sellNo, Model m,int memberNo) {
-		System.out.println("셀번호 : "+sellNo+"유저 번호 : "+memberNo);
-		SellJoinOthersVO list = sellService.selectOneList(sellNo, memberNo);
-		ArrayList<String> mul = new ArrayList<String>();
-		ArrayList<String> skill = new ArrayList<String>();
-		System.out.println(mul);
-		System.out.println(skill);
-		
-		
-
-		if(mul.size() > 0) {
-			StringTokenizer st1 = new StringTokenizer(list.getMultiimgvo().getFilename(),"/");
-			while(st1.hasMoreTokens()) {
-				mul.add(st1.nextToken());
-				m.addAttribute("multiImg", mul);
+	@RequestMapping(value = "/showList.do")
+	public String showList(int sellNo, Model m) {
+		SellJoinMemberVO list = sellService.selectOneList(sellNo);
+			ArrayList<String> skill = new ArrayList<String>();
+			if (list.getSellvo().getSellSkill() != null) {
+				StringTokenizer st2 = new StringTokenizer(list.getSellvo().getSellSkill(), "/");
+				while (st2.hasMoreTokens()) {
+					skill.add(st2.nextToken());
+					m.addAttribute("skill", skill);
+				}
 			}
-		}
 
-		if(skill.size() > 0) {
-		StringTokenizer st2 = new StringTokenizer(list.getSellvo().getSellSkill(),"/");
-		while(st2.hasMoreTokens()) {
-			skill.add(st2.nextToken());
-			m.addAttribute("skill", skill);
-			}
-		}
-		
 		m.addAttribute("sell", list);
 		m.addAttribute("sellView", list.getSellvo());
 		return "admin/sellOneView";
 	}
+	
 }

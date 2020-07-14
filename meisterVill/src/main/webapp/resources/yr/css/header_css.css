@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
-header, .normal-header{
-    top:0;
+header,
+.normal-header {
+    top: 0;
 }
 
 .navbar-brand {
@@ -30,7 +31,7 @@ header.masthead {
 
 .member-top-menu {
     color: #4D4D4D;
-   font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 15px;
     font-weight: 700;
 
@@ -61,6 +62,7 @@ header.masthead {
     box-shadow: 0px 0px 7px #FFBC42;
     color: #4D4D4D;
 }
+
 .btn-insert:active {
     background-color: #FFBC42;
     color: #4d4d4d;
@@ -244,7 +246,7 @@ header.masthead {
     border-bottom: 1px solid #dbdbdb;
 }
 
-.normal-header>.n-header {
+.normal-header > .n-header {
     width: 100%;
     border-top: 0.5px solid lightgray;
     padding-bottom: 5%;
@@ -296,7 +298,8 @@ section > .container {
     border-color: #FFBC42;
     box-shadow: 0px 0px 2px #FFBC42;
 }
-.header{
+
+.header {
     width: 100%;
 }
 
@@ -323,6 +326,7 @@ section > .container {
     box-shadow: 0px 0px 7px #FFBC42;
     color: #4D4D4D;
 }
+
 .btn-yr-normal:active {
     background-color: #4d4d4d;
     color: #ffbc42;
@@ -348,6 +352,7 @@ section > .container {
     box-shadow: 0px 0px 2px #4d4d4d;
     color: #ffbc42;
 }
+
 .btn-yr-normal-gray:active {
     background-color: #FFBC42;
     color: white;
@@ -357,7 +362,7 @@ section > .container {
 }
 
 /*일반 input*/
-.input-yr-normal{
+.input-yr-normal {
     border: 2px solid #eeeeee;
     box-shadow: 0px 0px 2px #eee;
     outline: 0 none;
@@ -365,7 +370,10 @@ section > .container {
     padding-left: 3%;
     padding-right: 3%;
 }
-.input-yr-normal:focus{
+
+.input-yr-normal:focus {
     border: 2px solid #ffbc42;
     box-shadow: 0px 0px 3px #ffbc42;
 }
+
+

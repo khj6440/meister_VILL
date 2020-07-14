@@ -27,7 +27,7 @@ jQuery(document).ready(function($) {
             
             // change active class on link
             $('nav a.active').removeClass('active');
-            $($('a')[currSlide]).addClass('active');
+            $($('a')[currSlide+1]).addClass('active');
             
         }
       

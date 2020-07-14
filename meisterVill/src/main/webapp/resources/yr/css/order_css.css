@@ -347,8 +347,16 @@
             color: #ffbc42;
         }
 
-        .payment-price>div:last-child {
+        .thePay {
             font-size: 25px;
+            font-weight: 700;
+            text-align: right;
+            color: #ffbc42;
+        }
+        .won{
+        	
+        float:right;
+        	font-size: 25px;
             font-weight: 700;
             text-align: right;
             color: #ffbc42;

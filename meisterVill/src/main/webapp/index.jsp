@@ -112,10 +112,7 @@
                                                 <div>제목</div>
                                             </div>
                                         </div>
-
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
@@ -129,7 +126,7 @@
                                     <li name="hd-menu1"><a href="#">찜한 서비스</a></li>
                                     <li name="hd-menu1"><a href="#">쿠폰</a></li>
                                     <li name="hd-menu1"><a href="/meister/member/logout.do">로그아웃</a></li>
-
+						</ul>
 
                     </div>
 
@@ -520,7 +517,11 @@
         <a href="/meister/member/couponListModal.do">쿠폰리스트 모달 테스트</a><br>
         <a href="/meister/member/couponWriteFrm.do">쿠폰이벤트 작성페이지</a><br>
         <a href="/meister/member/carouselTestFrm.do">캐러셀테스트</a><br>
-        <a href="/meister/member/carouselTestFrm2.do">캐러셀테스트2</a><br>
+        <a href="/meister/member/carouselTestFrm2.do">캐러셀테스트2</a><br>  
+        <a class="navbar-brand" href="/meister/employ/showList.do?reqPage=1">프로젝트</a>
+        <a href="/meister/employ/makeEmploy.do">모집글 작성하기</a><br>
+        <a href="/meister/sell/makeSell.do?sellWriter=${sessionScope.member.memberNo }">파내글 작성하기</a><br>
+        <a href="/meister/sell/sellList.do?reqPage=1">파내글 보기</a><br>
 
     </div>
 

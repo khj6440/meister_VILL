@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import kr.or.meister.admin.model.vo.AdminMemberJoinSellJoinOrdersVO;
 import kr.or.meister.admin.model.vo.AdminNoticePageVO;
+import kr.or.meister.admin.model.vo.AdminReportVO;
 import kr.or.meister.admin.model.vo.MemberInformVO;
+import kr.or.meister.admin.model.vo.MemberJoinEmployVO;
 import kr.or.meister.admin.model.vo.MemberJoinReportVO;
 import kr.or.meister.admin.model.vo.MemberJoinVO;
 import kr.or.meister.admin.model.vo.RequestListVO;
@@ -18,6 +20,7 @@ import kr.or.meister.admin.model.vo.SellJoinOrdersJoinOptionVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.notice.model.vo.NoticeVO;
 import kr.or.meister.notice.model.vo.QnAVO;
+import kr.or.meister.sell.model.vo.SellVO;
 
 
 
@@ -235,6 +238,24 @@ public class AdminDao {
 	public List<QnAVO> adminQnaList(HashMap<String, Integer> se) {
 		return sqlSession.selectList("joinSellJoinOrders.adminQnaList",se);
 	}
+
+	public List<AdminMemberJoinSellJoinOrdersVO> adminMainSellList() {
+		return sqlSession.selectList("adminMember.adminMainSellList");
+	}
+
+	public List<MemberJoinEmployVO> adminMainEmployList() {
+		return sqlSession.selectList("adminMember.adminMainEmployList");
+	}
+
+	public int reportCnt() {
+		return sqlSession.selectOne("adminMember.reportCnt");
+	}
+	
+	public List<AdminReportVO> reportPage(HashMap<String, Integer> se) {
+		return sqlSession.selectList("joinSellJoinOrders.reportPage",se);
+	}
+	
+
 
 
 

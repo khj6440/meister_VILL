@@ -23,6 +23,7 @@ import kr.or.meister.member.model.vo.MemberDataVO;
 import kr.or.meister.member.model.vo.MemberUpdateVO;
 import kr.or.meister.member.model.vo.CareerVO;
 import kr.or.meister.member.model.vo.LicenseVO;
+import kr.or.meister.member.model.vo.MemberJoinSellReviewVO;
 import kr.or.meister.member.model.vo.MemberCookieVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
@@ -252,7 +253,105 @@ public class MemberService {
 		requestMember.put("number", list.size());
 		requestMember.put("pageNavi", pageNavi);
 		return requestMember;
-	}
+	};
+
+	
+	
+
+	
+	/*public HashMap<String, Object> selectAllEmploy(int memberNo,int reqPage, int employstatus, int employappro) {
+	      int numPerPage = 5;
+	      int totalCount = dao.totalCount(memberNo);
+	      int totalPage = 0;
+	      if (totalCount % numPerPage == 0) {
+	         totalPage = totalCount / numPerPage;
+	      } else {
+	         totalPage = totalCount / numPerPage + 1;
+	      }
+	      int start = (reqPage - 1) * numPerPage + 1;
+	      int end = reqPage * numPerPage;
+	      HashMap<String, Integer> map = new HashMap<String, Integer>();
+	      map.put("start", start);
+	      map.put("end", end);
+	      map.put("employstatus", employstatus);
+	      map.put("employappro", employappro);
+	      List list = dao.selectAllEmploy(map);
+	      System.out.println("list : "+list);
+	      String pageNavi = "";
+	      int pageNaviSize = 5;
+	      int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+	      if (reqPage != 1) {
+	         pageNavi += "<a class='btn' href='/meister/member/selectAllEmploy.do?reqPage=" + (reqPage - 1) + "'><</a>";
+	      }
+	      for (int i = 0; i < pageNaviSize; i++) {
+	         if (reqPage == pageNo) {
+	            pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
+	         } else {
+	            pageNavi += "<a class='btn' href='/meister/member/selectAllEmploy.do?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+	         }
+	         pageNo++;
+	         if (pageNo > totalPage) {
+	            break;
+	         }
+	      }
+	      if (reqPage < totalPage) {
+	         pageNavi += "<a class='btn' href='/meister/member/selectAllEmploy.do?reqPage=" + (reqPage+1) + "'>></a>";
+	      }
+	      HashMap<String, Object> employMember = new HashMap<String, Object>();
+	      for (int i = 0; i < list.size(); i++) {
+	         EmployMemberVO employMemberVO = (EmployMemberVO)list.get(i);
+	         employMember.put("employ"+i, employMemberVO);
+	      }
+	      employMember.put("number", list.size());
+	      employMember.put("pageNavi", pageNavi);
+	      return employMember;
+	   }
+
+	public HashMap<String, Object> selectAllRequest(int memberNo, int reqPage, String memberNickname) {
+		 int numPerPage = 5;
+	      int totalCount = dao.totalCountRequest(memberNickname);
+	      int totalPage = 0;
+	      if (totalCount % numPerPage == 0) {
+	         totalPage = totalCount / numPerPage;
+	      } else {
+	         totalPage = totalCount / numPerPage + 1;
+	      }
+	      int start = (reqPage - 1) * numPerPage + 1;
+	      int end = reqPage * numPerPage;
+	      HashMap<String, Integer> map = new HashMap<String, Integer>();
+	      map.put("start", start);
+	      map.put("end", end);
+	      List list = dao.selectAllRequest(map);
+	      System.out.println("list : "+list);
+	      String pageNavi = "";
+	      int pageNaviSize = 5;
+	      int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+	      if (reqPage != 1) {
+	         pageNavi += "<a class='btn' href='/meister/member/selectAllRequest.do?reqPage=" + (reqPage - 1) + "'><</a>";
+	      }
+	      for (int i = 0; i < pageNaviSize; i++) {
+	         if (reqPage == pageNo) {
+	            pageNavi += "<span class='selectPage'>" + pageNo + "</span>";
+	         } else {
+	            pageNavi += "<a class='btn' href='/meister/member/selectAllRequest.do?reqPage=" + pageNo + "'>" + pageNo + "</a>";
+	         }
+	         pageNo++;
+	         if (pageNo > totalPage) {
+	            break;
+	         }
+	      }
+	      if (reqPage < totalPage) {
+	         pageNavi += "<a class='btn' href='/meister/member/selectAllRequest.do?reqPage=" + (reqPage+1) + "'>></a>";
+	      }
+	      HashMap<String, Object> requestMember = new HashMap<String, Object>();
+	      for (int i = 0; i < list.size(); i++) {
+	         RequestMemberVO requestMemberVO = (RequestMemberVO)list.get(i);
+	         requestMember.put("request"+i, requestMemberVO);
+	      }
+	      requestMember.put("number", list.size());
+	      requestMember.put("pageNavi", pageNavi);
+	      return requestMember;
+	}*/
 
 	public int readMsg(int msgNo) {
 		// hyeokjin
@@ -436,6 +535,16 @@ public class MemberService {
 		}
 		return 0;
 	}
+	public ArrayList<MemberJoinSellReviewVO> allMeister() {
+		return (ArrayList<MemberJoinSellReviewVO>)dao.allMeistser();
+	}
+
+	public int totalCountMeister() {
+		return dao.totalCountMeister();
+	}
+
+	
+
 
 	public SellData selectAllSell2(int memberNo, int reqPage, int sellstatus, int sellappro) {
 		int numPerPage = 5;

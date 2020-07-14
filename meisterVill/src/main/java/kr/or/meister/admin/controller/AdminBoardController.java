@@ -1,5 +1,6 @@
 package kr.or.meister.admin.controller;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,6 +18,8 @@ import kr.or.meister.admin.model.service.AdminBoardService;
 import kr.or.meister.admin.model.service.AdminService;
 import kr.or.meister.admin.model.vo.AdminNoticePageVO;
 import kr.or.meister.admin.model.vo.AdminQnaPageVO;
+import kr.or.meister.admin.model.vo.ReportPageVO;
+import kr.or.meister.admin.model.vo.ReportSaveVO;
 import kr.or.meister.admin.model.vo.SelectAllRequestPageVO;
 import kr.or.meister.admin.model.vo.selectAllSellPageVO;
 import kr.or.meister.notice.model.vo.NoticeVO;
@@ -27,7 +30,6 @@ import kr.or.meister.sell.model.service.SellService;
 @RequestMapping(value="/meister/adminBoard")
 public class AdminBoardController {
 
-	
 	@Autowired
 	@Qualifier("adminBoardService")
 	private AdminBoardService boardService;
@@ -112,8 +114,9 @@ public class AdminBoardController {
 	@ResponseBody
 	@RequestMapping(value="/sellAllView.do", produces="application/json; charset=utf-8;")
 	public String sellAllView(int reqPage, int memberNo) {
-					
+
 		selectAllSellPageVO srp = service.sellAllView(reqPage, memberNo);
+		
 		
         return new Gson().toJson(srp); 
 	}
@@ -169,6 +172,21 @@ public class AdminBoardController {
 		return "admin/adminNoticeList.jsp?"+reqPage;
 	}
 	
+	
+	
+	@RequestMapping(value="/mainNotice.do")
+	public String mainNotice(HttpServletRequest request,int reqPage) {
+		
+		AdminNoticePageVO adminNotice = boardService.mainNotice(reqPage);
+		int totalCnt = boardService.adminNoticeCnt();
+		
+		request.setAttribute("list", adminNotice.getList());
+		request.setAttribute("pageNavi", adminNotice.getPageNavi());
+		request.setAttribute("reqPage", reqPage);
+		request.setAttribute("totalCnt", totalCnt);
+		return "admin/mainNotice.jsp?"+reqPage;
+	}
+	
 /*-----------------------------------------------------------------------------------------------------------------------*/
 	
 		@RequestMapping(value="adminViewPage.do")
@@ -192,9 +210,24 @@ public class AdminBoardController {
 			}	
 		}
 		
+/*------------------------------------------QnA----------------------------------------------------------------*/
+		
 		
 		@RequestMapping(value="adminQnA.do")
 		public String adminQnA(HttpServletRequest request,int reqPage) {
+			
+			AdminQnaPageVO qna = boardService.qna(reqPage);
+			int totalCnt = boardService.qnaCnt();
+			request.setAttribute("list", qna.getList());
+			request.setAttribute("pageNavi", qna.getPageNavi());
+			request.setAttribute("reqPage", reqPage);
+			request.setAttribute("totalCnt", totalCnt);
+			return"admin/qna.jsp?"+reqPage;
+		}
+		
+		
+		@RequestMapping(value="mainAdminQnA.do")
+		public String mainAdminQnA(HttpServletRequest request,int reqPage) {
 			
 			AdminQnaPageVO qna = boardService.qna(reqPage);
 			int totalCnt = boardService.qnaCnt();
@@ -215,6 +248,8 @@ public class AdminBoardController {
 			
 			return "redirect:/meister/adminBoard/adminQnA.do?reqPage=1";
 		}
+		
+/*-----------------------------------------------------------------------------------------------------------------*/
 		
 		@RequestMapping(value="adminNoticeWrite.do")
 		public String adminNoticeWrite() {
@@ -237,5 +272,36 @@ public class AdminBoardController {
 			request.setAttribute("n", notice);
 			return "admin/noticeView";
 		}
-	
+		
+		
+/*--------------------------------------------------------------------------------------------------------------------------*/		
+		
+		
+		@RequestMapping(value="reportList.do")
+		public String ReportList(HttpServletRequest request,int reqPage) {
+			
+			ReportPageVO qna = boardService.reportPage(reqPage);
+			int totalCnt = boardService.reportCnt();
+			request.setAttribute("list", qna.getList());
+			request.setAttribute("pageNavi", qna.getPageNavi());
+			request.setAttribute("reqPage", reqPage);
+			request.setAttribute("totalCnt", totalCnt);
+			return"admin/report.jsp?"+reqPage;
+		}
+		
+		@RequestMapping(value="/reviewDelete.do")
+		public String reviewDelete(int reportNo, int sellNo, String reviewContent) {
+			System.out.println(reviewContent);
+			System.out.println( reportNo);
+			System.out.println(sellNo);
+			int result = boardService.reviewDelete(reportNo);
+			/* ReportSaveVO rs = boardService.reviewDelete(reportNo); */
+
+	       if(result>0) {
+	    	   return "redirect:/meister/adminBoard/reportList.do?reqPage=1";
+	       }else {
+	    	   return "redirect:/meister/adminBoard/reportList.do?reqPage=1";
+	       }
+		}
+		
 }
