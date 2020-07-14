@@ -695,15 +695,15 @@
 							<div class="p_user_star">
 								<div class="star_div">
 									<img class="star_div_img"
-										src="/resources/upload/common/star-on.png"> <img
+										src="/resources/upload/common/star-off.png"> <img
 										class="star_div_img"
-										src="/resources/upload/common/star-on.png"> <img
+										src="/resources/upload/common/star-off.png"> <img
 										class="star_div_img"
-										src="/resources/upload/common/star-on.png"> <img
+										src="/resources/upload/common/star-off.png"> <img
 										class="star_div_img"
-										src="/resources/upload/common/star-on.png"> <img
+										src="/resources/upload/common/star-off.png"> <img
 										class="star_div_img"
-										src="/resources/upload/common/star-off.png"> 4.0 | 1개의
+										src="/resources/upload/common/star-off.png"> 0.0 | 0개의
 									평가
 								</div>
 							</div>
@@ -789,8 +789,13 @@
 							<div class="p_user_service" onclick="location.href='#'">
 								<img src="/resources/upload/common/service.png"
 									style="width: 50px; height: 50px;"><br> 서비스를 등록하여
-								수익을 얻어보세요!<br> <span class="p_span_service">+ 서비스
-									등록하기</span>
+								수익을 얻어보세요!<br> <span class="p_span_service">
+								<a href="/meister/sell/makeSell.do?sellWriter=${sessionScope.member.memberNo }">+ 서비스
+									등록하기</a></span><br>
+									<span class="p_span_service">
+								<a href="/meister/request/makeRequest.do">+ 맞춤견적 작성하기</a></span><br>
+									<span class="p_span_service">
+								 <a href="/meister/employ/makeEmploy.do">+ 모집글 작성하기</a></span>
 							</div>
 						</c:if>
 					</section>
@@ -800,21 +805,21 @@
 						style="margin-top: -20px;">
 						<div class="container" style="margin-top: 0; padding: 0;">
 							<div class="p_user_star2">
-								<div class="star2_1">4.0</div>
+								<div class="star2_1">0.0</div>
 								<div class="star2_2">
 									<div class="star2_2_1">
 										<img class="star_div_img"
-											src="/resources/upload/common/star-on.png"> <img
+											src="/resources/upload/common/star-off.png"> <img
 											class="star_div_img"
-											src="/resources/upload/common/star-on.png"> <img
+											src="/resources/upload/common/star-off.png"> <img
 											class="star_div_img"
-											src="/resources/upload/common/star-on.png"> <img
+											src="/resources/upload/common/star-off.png"> <img
 											class="star_div_img"
-											src="/resources/upload/common/star-on.png"> <img
+											src="/resources/upload/common/star-off.png"> <img
 											class="star_div_img"
 											src="/resources/upload/common/star-off.png">
 									</div>
-									<div class="star2_2_2">(1개의 평가)</div>
+									<div class="star2_2_2">(0개의 평가)</div>
 								</div>
 
 							</div>
@@ -1132,6 +1137,11 @@
         	
         		
         	})
+        	$(document).on('click','.btn-next',function(){
+       if($(this).text() == "Finish") {
+          $('.btn-next').attr('disabled','disabled');
+       }
+   });
 
     </script>
 

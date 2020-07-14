@@ -51,7 +51,6 @@
             
               <li><a href="/meister/admin/sellApprovalFrm.do?reqPage=1">마이스터 판매글 승인</a></li>
               <li><a href="/meister/admin/requestApprovalFrm.do?reqPage=1">견적요청글 승인</a></li>
-              <li><a href="gallery.html">프로젝트글 승인</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -63,7 +62,6 @@
             
               <li><a href="/meister/admin/sellListFrm.do?reqPage=1">마이스터 판매글 관리</a></li>
               <li><a href="/meister/admin/requestListFrm.do?reqPage=1">견적요청글 관리</a></li>
-              <li><a href="gallery.html">프로젝트글 관리</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -84,47 +82,9 @@
               </a>
             <ul class="sub">
               <li><a href="/meister/adminBoard/reportList.do?reqPage=1">신고현황</a></li>
-              <li><a href="advanced_form_components.html">처리된 신고</a></li>
+
+
             </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;" style="background-color: #4D4D4D;">
-              <i class="fa fa-th"></i>
-              <span>Data Tables</span>
-              </a>
-            <ul class="sub">
-              <li><a href="basic_table.html">Basic Table</a></li>
-              <li><a href="responsive_table.html">Responsive Table</a></li>
-              <li><a href="advanced_table.html">Advanced Table</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;" style="background-color: #4D4D4D;">
-              <i class=" fa fa-bar-chart-o"></i>
-              <span>Charts</span>
-              </a>
-            <ul class="sub">
-              <li><a href="morris.html">Morris</a></li>
-              <li><a href="chartjs.html">Chartjs</a></li>
-              <li><a href="flot_chart.html">Flot Charts</a></li>
-              <li><a href="xchart.html">xChart</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;" style="background-color: #4D4D4D;">
-              <i class="fa fa-comments-o"></i>
-              <span>Chat Room</span>
-              </a>
-            <ul class="sub">
-              <li><a href="lobby.html">Lobby</a></li>
-              <li><a href="chat_room.html"> Chat Room</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="google_maps.html" style="background-color: #4D4D4D;">
-              <i class="fa fa-map-marker"></i>
-              <span>Google Maps </span>
-              </a>
           </li>
         </ul>
         <!-- sidebar menu end-->
@@ -132,3 +92,4 @@
     </aside>
     
     <!--sidebar end-->
+

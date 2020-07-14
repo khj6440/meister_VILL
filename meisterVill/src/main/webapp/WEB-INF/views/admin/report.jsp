@@ -64,13 +64,25 @@
           <div class="col-md-10 col-md-offset-1 mt mb">
             <div class="accordion" id="accordion2">
             
+
+            <div id="total">
+				    <div style="font-size: 20px; text-align: center;">목록없음</div>
+				</div>
+            
             <c:forEach items="${list }" var="r" varStatus="i">
+				<script>
+				    $("#total").css("display","none");
+				</script>
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="qna.jsp#${i.index}">
-                    <em class="glyphicon glyphicon-chevron-right icon-fixed-width"></em><br>
+                    <em class="glyphicon glyphicon-chevron-right icon-fixed-width"></em>                    	<c:if test="${r.reportBoardType == 1 }">
+                    	<span class="label label-info label-mini" style="background-color: #6c757d; font-size: 12.3px;">확인완료</span>
+                    	</c:if><br>
                     	신고한 회원 : <img src="/resources/upload/memberImg/${r.memberImg}" style="width: 25px; height: 25px; border-radius: 15px; ">${r.reportMemberNickname}<br>
                     	신고후기가 있는 게시판 : <img src="/resources/upload/sellImg/${r.sellImg}" style="width: 25px; height: 25px; border-radius: 15px; ">${r.sellTitle}
+
+
                     																	
                     </a>
                 </div>
@@ -83,12 +95,12 @@
                     	
                     	<button onclick="location.href='/meister/adminSellView/showList.do?sellNo='+${r.sellNo}+'&memberNo='+${r.memberNo}" class="btn btn-success btn-xs sellView" style="background-color: #FFBC42; border-color: #FFBC42; color: white;"><i class="fa fa-check"></i>상세보기</button>
                     	<c:if test="${r.reportBoardType == 0 }">
-                    	<button onclick="reviewDelete('${r.reportNo }','${r.sellNo}','${r.reviewContent}');" class="btn btn-danger btn-xs" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>후기삭제</button>
-                    	<button onclick="reviewDelete('${r.reportNo }','${r.sellNo}','${r.reviewContent}');" class="btn btn-danger btn-xs boardRollback" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>신고확인</button>
+
+                    	<button onclick="reviewDelete('${r.reportNo }','${r.sellNo}','${r.reviewContent}', '${r.reviewNo }', '${r.reportBoardNo }');" class="btn btn-danger btn-xs" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>후기삭제</button>
+						<button onclick="reviewOK('${r.reportNo }','${r.sellNo}','${r.reviewContent}');" class="btn btn-danger btn-xs" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-trash-o" ></i>신고확인</button>
 						</c:if>
 						<c:if test="${r.reportBoardType == 1}">
-						<div class="btn btn-xs boardRollback" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-trash-o" ></i>확인완료</div>
-						<button onclick="reviewDelete('${r.reportNo }','${r.sellNo}','${r.reviewContent}');" class="btn btn-danger btn-xs" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>후기삭제</button>
+						<button onclick="reviewDelete('${r.reportNo }','${r.sellNo}','${r.reviewContent}', '${r.reviewNo }', '${r.reportBoardNo }');" class="btn btn-danger btn-xs" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>후기삭제</button>
 						</c:if>
                   
                   </div>
@@ -165,7 +177,10 @@
     
     <script>
 
-  function reviewDelete(reportNo, sellNo, reviewContent) {
+
+  function reviewDelete(reportNo, sellNo, reviewContent, reviewNo, reportBoardNo) {
+	  var reqPage = ${reqPage};
+	  var totalCnt = ${totalCnt}-1;
 	  $("#exampleModal").modal("show");   
 	  $(".modal-title").html("후기삭제");
 	  $(".modal-header").css("background-color","#F16B6F");
@@ -178,12 +193,51 @@
 	 console.log(reviewContent);
    $(".memberValue").click(function() {		
 $.ajax({
-    url: "/meister/adminBoard/reviewDelete.do?reportNo="+reportNo+"&sellNo="+sellNo+"&reviewContent="+reviewContent,
+
+    url: "/meister/adminBoard/reviewDelete.do?reportNo="+reportNo+"&sellNo="+sellNo+"&reviewContent="+reviewContent+"&reviewNo="+reviewNo+"&reportBoardNo="+reportBoardNo,
 
     success: function(){
     	$("#exampleModal").modal("hide");
     	$(".modal2text").html("삭제되었습니다.");
     	$(".modal-content2").css("background-color","#F16B6F");
+    	$("#exampleModal2").modal("show");
+    	setTimeout(function() {
+    		location.reload();
+    		if(totalCnt%12 == 0){
+    			reqPage=reqPage-1;
+    		window.location.href="reportList.do?reqPage="+reqPage;
+    		}else{
+    			reqPage = 1;
+    			window.location.href="reportList.do?reqPage="+reqPage;
+    		}
+    		
+    		}, 1000);
+    }
+
+  		});
+	}); 
+  };
+  
+
+  function reviewOK(reportNo, sellNo, reviewContent) {
+	  $("#exampleModal").modal("show");   
+	  $(".modal-title").html("신고확인");
+	  $(".modal-header").css("background-color","#30A9DE");
+	  $(".memberValue").css("background-color","#30A9DE");
+	  $(".memberValue").css("border-color","#30A9DE");
+	  $(".memberValue").html("확인");
+	  $(".modal-body").html("신고를 확인하면 삭제처리가 되지않습니다. ");
+	 console.log(reportNo);
+	 console.log(sellNo);
+	 console.log(reviewContent);
+   $(".memberValue").click(function() {		
+$.ajax({
+    url: "/meister/adminBoard/reviewOk.do?reportNo="+reportNo+"&sellNo="+sellNo+"&reviewContent="+reviewContent,
+
+    success: function(){
+    	$("#exampleModal").modal("hide");
+    	$(".modal2text").html("확인되었습니다.");
+    	$(".modal-content2").css("background-color","#30A9DE");
     	$("#exampleModal2").modal("show");
     	setTimeout(function() {
     		location.reload();

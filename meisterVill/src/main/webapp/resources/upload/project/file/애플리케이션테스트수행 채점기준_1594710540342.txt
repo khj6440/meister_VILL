@@ -1,0 +1,27 @@
+1. 
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/root-context.xml",
+"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+2. 	
+	private static final Logger logger = LoggerFactory.getLogger(MemberControllerTest.class);
+	@Autowired
+	private WebApplicationContext wac;
+	private MockMvc mockMvc;
+
+3. 	
+mockMvc.perform(post("/beginSpring/memberRegister.action").param("userid","leess").
+param("passwd","qwer1234$").param("name","이순신").
+param("email","leess@gmail.com").
+param("tel","01023456789"))
+
+4. @Before : mockMvc 객체생성
+this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+5.
+.andDo(print())
+
+6. .andExpect(status().isOk());
+7. logger.error(">>> 테스트 수행 실패 : " + e.getMessage());/
+8. logger.info(">>> 테스트 수행 성공!!<<<");/
+9. status().isOk()
+10. pom.xml maven/servlet 버전 변경

@@ -243,14 +243,19 @@ public class SellController {
 	@RequestMapping("/order.do") 
 	 public String order(int sellNo, int memberNo,Model model) { 
 		 //유라: 구매하기 버튼 누름 
+		
 		 SellVO sellvo = service.selectSellInfo(sellNo);
+		 System.out.println(sellvo.getSellNo());
 		 MemberVO membervo = service.selectOneMember(memberNo);
 		 MemberVO sellervo = service.selectOneMember(sellvo.getSellWriter());
 		 ArrayList<OptionsVO> optionsvoArr = service.selectOptionsInfo(sellNo);
 		 System.out.println("구매타이틀"+sellvo.getSellTitle());
 		 System.out.println("구매가격"+sellvo.getSellPrice());
 		 System.out.println("구매자닉네임"+membervo.getMemberNickname());
-		 System.out.println("구매옵션1제목"+optionsvoArr.get(0).getOptionTitle());
+		 if(optionsvoArr.get(0)!=null) {
+			 System.out.println("구매옵션1제목"+optionsvoArr.get(0).getOptionTitle());
+			 
+		 }
 		 SellMemberOptionVO smo = new SellMemberOptionVO();
 		 smo.setMembervo(membervo);
 		 smo.setSellvo(sellvo);

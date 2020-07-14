@@ -90,7 +90,7 @@
                     <td>
                      <a href="/meister/adminBoard/noticeView.do?noticeNo=${n.noticeNo }" class="btn btn-danger btn-xs modalDelete" style="background-color: #FFBC42; border-color: #FFBC42; color: white;"><i class="fa fa-check" ></i>글보기</a>
                      <button value="${n.noticeNo }" class="btn btn-danger btn-xs noticeDelete" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>삭제</button>
-                     <button value="${n.noticeNo }" class="btn btn-danger btn-xs noticeModify" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-scissors" ></i>수정</button>
+                    <%--  <button value="${n.noticeNo }" class="btn btn-danger btn-xs noticeModify" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-scissors" ></i>수정</button> --%>
                     </td>
                     
                   </tr> 

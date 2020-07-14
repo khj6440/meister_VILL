@@ -65,10 +65,10 @@
 
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#">맞춤견적</a>
+                <a class="navbar-brand" href="/meister/request/showList.do?reqPage=1&&keyWord=no">맞춤견적</a>
                 <a class="navbar-brand" href="#">커뮤니티</a>
                 <a class="navbar-brand" href="/meister/member/meisterList.do">마이스터</a>
-                <a class="navbar-brand" href="#">프로젝트</a>
+                <a class="navbar-brand" href="/meister/employ/showList.do?reqPage=1">프로젝트</a>
 
             </div>
         </nav>
@@ -144,7 +144,7 @@
                         <c:if test="${sessionScope.member.memberLevel == 2 }">
                         <a class="member-top-menu" href="/meister/admin/adminIndexFrm.do">관리자페이지</a>
                         </c:if>
-                        <a class="member-top-menu" href="#">메세지</a>
+                        <a class="member-top-menu" href="/meister/member/goChat.do">메세지</a>
                     </div>
 
 
@@ -153,8 +153,8 @@
             </div>
             <div class="hd-category">
                 <ul>
-                    <li><a href="#">IT/Programming</a></li>
-                    <li><a href="#">Design</a></li>
+                    <li><a href="/meister/sell/sellList.do?reqPage=1&&keyWord=no">IT/Programming</a></li>
+                    <li><a href="/meister/sell/sellList.do?reqPage=1&&keyWord=no">Design</a></li>
                 </ul>
             </div>
         </div>
@@ -166,10 +166,10 @@
         <!-- Navigation -->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#">맞춤견적</a>
+                <a class="navbar-brand" href="/meister/request/showList.do?reqPage=1&&keyWord=no">맞춤견적</a>
                 <a class="navbar-brand" href="#">커뮤니티</a>
                 <a class="navbar-brand" href="/meister/member/meisterList.do">마이스터</a>
-                <a class="navbar-brand" href="#">프로젝트</a>
+                <a class="navbar-brand" href="/meister/employ/showList.do?reqPage=1">프로젝트</a>
             </div>
         </nav>
 
@@ -227,7 +227,7 @@
                         <c:if test="${sessionScope.member.memberLevel == 2 }">
                         <a class="member-top-menu" href="/meister/admin/adminIndexFrm.do">관리자페이지</a>
                         </c:if>
-                    <a class="member-top-menu" href="#">메세지</a>
+                    <a class="member-top-menu" href="/meister/member/goChat.do">메세지</a>
                 </div>
 
             </c:if>
@@ -263,7 +263,8 @@
             <div class="header-nav-menu">
                 <ul class="main-navi">
                     <li>
-                        <a href="#">
+                        <a href="/meister/sell/sellList.do?reqPage=1&&keyWord=no">
+                        
                             <div class="nav-icon">
                                 <i class="fa fa-2x fa-desktop" aria-hidden="true"></i>
                             </div>
@@ -274,7 +275,7 @@
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="/meister/sell/sellList.do?reqPage=1&&keyWord=no">
                             <div class="nav-icon">
 
                                 <i class="fa fa-2x fa-paint-brush" aria-hidden="true"></i>
