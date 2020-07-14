@@ -15,6 +15,7 @@ import kr.or.meister.member.model.vo.CareerVO;
 import kr.or.meister.member.model.vo.LicenseVO;
 import kr.or.meister.member.model.vo.MemberCookieVO;
 import kr.or.meister.member.model.vo.MemberDataVO;
+import kr.or.meister.member.model.vo.MemberUpdateVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
 import kr.or.meister.orders.model.vo.OrdersVO;
@@ -190,7 +191,7 @@ public class MemberDao {
 		return sqlSession.selectOne("sell.selectOneOfSell",sell_no);
 	}
 	
-	public int updateProfileMember(MemberVO member2) {
+	public int updateProfileMember(MemberUpdateVO member2) {
 		return sqlSession.update("member.updateProfileMember",member2);
 	}
 
@@ -202,7 +203,7 @@ public class MemberDao {
 		return sqlSession.update("member.updateProfileLicense",member4);
 	}
 
-	public MemberVO selectOneMember2(int memberNo) {
+	public MemberUpdateVO selectOneMember2(int memberNo) {
 		return sqlSession.selectOne("member.selectOneMember2", memberNo);
 	}
 	

@@ -426,7 +426,8 @@
 .sh_modal_content_wrap_333 {
 	font-size: 15px;
 	margin: 0 auto;
-	border: 2px solid #FFBC42; width : 730px;
+	border: 2px solid lightgray; 
+	width : 730px;
 	/*width : 95%;*/
 	height: 400px;
 	overflow: hidden;
@@ -1262,8 +1263,7 @@
                 
             </div>
                 `,
-                	label:'학력·전공',
-                	skip:true
+                	label:'학력·전공'
             },{
             	content:`
             		<div class='sh_modal_content_wrap_333'>
@@ -1284,8 +1284,7 @@
                     
                 </div>
             	`,
-            	label:'자격증',
-            	skip:true
+            	label:'자격증'
             },{
             	content:`
             		<div class='sh_modal_content_wrap_333'>
@@ -1322,8 +1321,7 @@
                     
                 </div>
             	`,
-            	label:'경력사항',
-            	skip:true
+            	label:'경력사항'
             }],
             
             final:`'마이스터로 등록 하시겠습니까?'<br>

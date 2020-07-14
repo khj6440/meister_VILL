@@ -20,6 +20,7 @@ import kr.or.meister.employ.model.vo.EmployVO;
 import kr.or.meister.member.model.dao.MemberDao;
 
 import kr.or.meister.member.model.vo.MemberDataVO;
+import kr.or.meister.member.model.vo.MemberUpdateVO;
 import kr.or.meister.member.model.vo.CareerVO;
 import kr.or.meister.member.model.vo.LicenseVO;
 import kr.or.meister.member.model.vo.MemberCookieVO;
@@ -77,11 +78,11 @@ public class MemberService {
 	}
 
 	public MemberDataVO selectOneMemberInf(int memberNo) {
-		MemberVO member = dao.selectOneMember2(memberNo);
+		MemberUpdateVO member = dao.selectOneMember2(memberNo);
 		CareerVO career = dao.selectOneCareer(memberNo);
 		LicenseVO license = dao.selectOneLicense(memberNo);
 		MemberDataVO m = new MemberDataVO();
-		m.setMembervo(member);
+		m.setMemberupdatevo(member);
 		m.setCareervo(career);
 		m.setLicensevo(license);
 		return m;
@@ -214,9 +215,9 @@ public class MemberService {
 		map.put("memberNickname", memberNickname);
 		map.put("requeststatus", requeststatus);
 		map.put("requestappro", requestappro);
-
+		
 		List list = dao.selectAllRequest(map);
-		System.out.println("list : " + list);
+		System.out.println("service list : " + list);
 		String pageNavi = "";
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
@@ -423,14 +424,14 @@ public class MemberService {
 	}
 
 	public int updateProfileMember(MemberDataVO member) {
-		MemberVO member2 = member.getMembervo();
+		MemberUpdateVO member2 = member.getMemberupdatevo();
 		CareerVO member3 = member.getCareervo();
 		LicenseVO member4 = member.getLicensevo();
 		
 		int result = dao.updateProfileMember(member2);
 		int result2 = dao.updateProfileCareer(member3);
 		int result3 = dao.updateProfileLicense(member4);
-		if(result ==1&& result==2&& result==3) {
+		if(result ==1&& result2==1&& result3==1) {
 			return 1;
 		}
 		return 0;

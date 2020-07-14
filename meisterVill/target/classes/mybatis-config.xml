@@ -53,6 +53,7 @@
 		<typeAlias type="kr.or.meister.member.model.vo.CareerVO" alias="career"/>
 		<typeAlias type="kr.or.meister.member.model.vo.LicenseVO" alias="license"/>
 		<typeAlias type="kr.or.meister.sell.model.vo.SellData" alias="sellData"/>
+		<typeAlias type="kr.or.meister.member.model.vo.MemberUpdateVO" alias="memberupdate"/>
 	</typeAliases>
 	
 </configuration>

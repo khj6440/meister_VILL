@@ -59,6 +59,7 @@ import kr.or.meister.member.model.service.MemberService;
 import kr.or.meister.member.model.vo.CareerVO;
 import kr.or.meister.member.model.vo.LicenseVO;
 import kr.or.meister.member.model.vo.MemberDataVO;
+import kr.or.meister.member.model.vo.MemberUpdateVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.message.model.vo.MessageVO;
 import kr.or.meister.orders.model.vo.OrdersVO;
@@ -109,7 +110,7 @@ public class MemberController {
 		SellData sell = service.selectAllSell2(memberNo, reqPage, sellstatus, sellappro);
 		MemberDataVO m = service.selectOneMemberInf(memberNo);
 		System.out.println("memberNo : "+memberNo);
-		MemberVO member = m.getMembervo();
+		MemberUpdateVO member = m.getMemberupdatevo();
 		CareerVO career = m.getCareervo();
 		LicenseVO license = m.getLicensevo();
 		String field = member.getMemberField1();
@@ -837,7 +838,7 @@ public class MemberController {
 		System.out.println(memberNo);
 		
 		
-		MemberVO mvo=new MemberVO();
+		MemberUpdateVO mvo=new MemberUpdateVO();
 		CareerVO cvo=new CareerVO();
 		LicenseVO lvo=new LicenseVO();
 		
@@ -864,7 +865,7 @@ public class MemberController {
 		cvo.setTypeFree(typeFree);
 		
 		MemberDataVO member = new MemberDataVO();
-		member.setMembervo(mvo);
+		member.setMemberupdatevo(mvo);
 		member.setCareervo(cvo);
 		member.setLicensevo(lvo);
 		System.out.println("mvo:"+mvo);

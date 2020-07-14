@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class MemberDataVO {
-	private MemberVO membervo;
+	private MemberUpdateVO memberupdatevo;
 	private LicenseVO licensevo;
 	private CareerVO careervo;
 	

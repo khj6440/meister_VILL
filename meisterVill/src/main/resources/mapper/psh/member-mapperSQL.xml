@@ -28,7 +28,7 @@
       	where member_email=#{memberEmail} and member_pw=#{memberPw}
 	</select>
 	
-	<select id="selectOneMember2" parameterType="_int" resultType="member">
+	<select id="selectOneMember2" parameterType="_int" resultType="memberupdate">
 		select 
          member_no as memberNo,
          member_email as memberEmail,
@@ -106,7 +106,7 @@
       	where member_nickname=#{memberNickname}
 	</select>
 	
-	<update id="updateProfileMember" parameterType="member">
+	<update id="updateProfileMember" parameterType="memberupdate">
 		update member set member_img=#{memberImg}, member_intro=#{memberIntro} ,member_field=#{memberField},member_skill=#{memberSkill}, member_school=#{memberSchool}, member_major=#{memberMajor}, member_grade=#{memberGrade}, member_level = 1 where member_no=#{memberNo}
 	</update>
 	
