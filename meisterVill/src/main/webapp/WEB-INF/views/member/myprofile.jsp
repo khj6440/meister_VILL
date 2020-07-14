@@ -786,11 +786,10 @@
 						
 						</c:if>
 						<c:if test="${empty list}">
-							<div class="p_user_service" onclick="location.href='#'">
+							<div class="p_user_service" onclick="location.href=''">
 								<img src="/resources/upload/common/service.png"
 									style="width: 50px; height: 50px;"><br> 서비스를 등록하여
-								수익을 얻어보세요!<br> <span class="p_span_service">+ 서비스
-									등록하기</span>
+								수익을 얻어보세요!<br> <span class="p_span_service"><a href="/meister/sell/makeSell.do?sellWriter=${sessionScope.member.memberNo }">+파내글 작성하기</a></span>
 							</div>
 						</c:if>
 					</section>
@@ -906,7 +905,7 @@
 		src="/resources/sh/dist/js/MultiStep.min.js"></script>
 
 	<script>
-	  
+	 
 		function categoryChange(e) {
 			   var s1_sub = ["웹사이트신규제작", "웹사이트개선", "모바일앱신규제작", "모바일앱개선","소프트웨어","임베디드시스템","데이터사이언스","게임"];
 		       var s2_sub = ["로고디자인", "로고+명함디자인", "로고+간판디자인", "웹·모바일디자인","전단지·포스터","현수막","북커버·앨범커버","3D프린팅·도면","배너광고·카드뉴스","SNS디자인(유튜브·블로그·모두 등)","PPT·인포그래픽","포토샵편집","의류디자인","일러스트","캘리그라피"];
@@ -1039,6 +1038,12 @@
 			 })
 			 
 		 }); */
+		 /* 
+		 $(document).on('click','#p_btn',function(){
+			$('.btn-next').html()=='finish')
+				
+			
+		 }) */
 		 var num = 0;
 			function test(){
 			 num++;
@@ -1065,7 +1070,7 @@
 			
 			
 		});
-		        
+	 
     </script>
 	<script>
 	
@@ -1132,7 +1137,11 @@
         	
         		
         	})
-
+	$(document).on('click','.btn-next',function(){
+		 if($(this).text() == "Finish") {
+			 $('.btn-next').attr('disabled','disabled');
+		 }
+	});
     </script>
 
 
