@@ -12,6 +12,8 @@ import kr.or.meister.employ.model.vo.EmployVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.project.model.vo.ProjectChatVO;
 import kr.or.meister.project.model.vo.ProjectFileVO;
+import kr.or.meister.project.model.vo.ProjectNoticeVO;
+import kr.or.meister.project.model.vo.ProjectScheduleVO;
 
 @Repository("projectDao")
 public class ProjectDao {
@@ -44,5 +46,20 @@ public class ProjectDao {
 	public ArrayList<ProjectFileVO> selectProjectFile(int projectNo) {
 		List list =  sqlSession.selectList("project.selectProjectFile",projectNo);
 		return (ArrayList<ProjectFileVO>)list;
+	}
+
+	public ArrayList<ProjectScheduleVO> selectProjectSchedule(int projectNo) {
+		List list = sqlSession.selectList("project.selectProjectSchedule",projectNo);
+		return (ArrayList<ProjectScheduleVO>)list;
+	}
+
+	public int insertProjectSchedule(ProjectScheduleVO pSchedule) {
+		return sqlSession.insert("project.insertProjectSchedule",pSchedule);
+	}
+
+	public ArrayList<ProjectNoticeVO> selectProjectNotice(int projectNo) {
+		List list = sqlSession.selectList("project.selectProjectNotice",projectNo);
+		return (ArrayList<ProjectNoticeVO>)list;
+
 	}
 }

@@ -12,6 +12,8 @@ import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.project.model.dao.ProjectDao;
 import kr.or.meister.project.model.vo.ProjectChatVO;
 import kr.or.meister.project.model.vo.ProjectFileVO;
+import kr.or.meister.project.model.vo.ProjectNoticeVO;
+import kr.or.meister.project.model.vo.ProjectScheduleVO;
 
 @Service("projectService")
 public class ProjectService {
@@ -44,6 +46,18 @@ public class ProjectService {
 
 	public ArrayList<ProjectFileVO> selectProjectFile(int projectNo) {
 		return dao.selectProjectFile(projectNo);
+	}
+
+	public ArrayList<ProjectScheduleVO> selectProjectSchedule(int projectNo) {
+		return dao.selectProjectSchedule(projectNo);
+	}
+
+	public int insertProjectSchedule(ProjectScheduleVO pSchedule) {
+		return dao.insertProjectSchedule(pSchedule);
+	}
+
+	public ArrayList<ProjectNoticeVO> selectProjectNotice(int projectNo) {
+		return dao.selectProjectNotice(projectNo);
 	}
 	
 	

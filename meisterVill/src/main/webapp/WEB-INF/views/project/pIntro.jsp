@@ -7,18 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="shortcut icon" href="../favicon.ico">
-<link rel="stylesheet" type="text/css"
-	href="/resources/hj/projectRoom/dynamicTab/css/demo.css" />
-<link rel="stylesheet" type="text/css"
-	href="/resources/hj/projectRoom/dynamicTab/css/component.css" />
-<link rel="stylesheet" href="/resources/hj/projectRoom/tab/demo.css">
-<link rel="stylesheet" href="/resources/hj/projectRoom/tab/tabs.css">
-<link rel="stylesheet"
-	href="/resources/hj/projectRoom/tab/tabstyles.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<script
-	src="/resources/hj/projectRoom/dynamicTab/js/modernizr.custom.25376.js"></script>
 <!-- --------------------------------------------------------------------------- -->
 <link href="https://fonts.googleapis.com/css?family=Roboto+Mono"
 	rel="stylesheet">
@@ -147,51 +137,10 @@ button.primary.ghost {
 </style>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/common/message.jsp" />
 	<div id="perspective" class="perspective effect-moveleft">
 		<div class="side-container">
-			<div class="side-wrapper">
-				<p style="margin: 0;">
-					<button id="showMenu">
-						<i class="fas fa-bars"></i>
-					</button>
-				</p>
-			</div>
-			<!-- <div class="project-header">
-				<div>PROJECT ROOM</div>
-			</div> -->
-			<%-- <div class="nav-container">
-				<section>
-					<div id="top-tabs" class="tabs tabs-style-bar">
-						<nav>
-							<ul>
-								<li><a
-									href="/meister/project/home.do?projectNo=${project.employNo }"
-									style="background-color: #FFBC42; color: white;"><i
-										style="margin-right: 15px" class="fas fa-home"></i><span>Home</span></a></li>
-								<li><a
-									href="/meister/project/chat.do?projectNo=${project.employNo }"><i
-										style="margin-right: 15px;" class="far fa-comments"></i><span>Chat</span></a></li>
-								<li><a
-									href="/meister/project/todo.do?projectNo=${project.employNo }"><i
-										style="margin-right: 15px;" class="fas fa-list-ul"></i><span>To
-											do</span></a></li>
-								<li><a
-									href="/meister/project/schedule.do?projectNo=${project.employNo }"><i
-										style="margin-right: 15px;" class="far fa-calendar-alt"></i><span>Schedule</span></a></li>
-								<li><a
-									href="/meister/project/files.do?projectNo=${project.employNo }"><i
-										style="margin-right: 15px;" class="far fa-file"></i><span>Files</span></a></li>
-							</ul>
-						</nav>
-					</div>
-				</section>
-			</div> --%>
 			<div class="project-content" style="">
-				<div
-					style="width: 100%; height: 450px; background-color: black; opacity: 0.7; position: absolute;"></div>
 				<div class="site-wrap">
-
 					<div class="site-mobile-menu">
 						<div class="site-mobile-menu-header">
 							<div class="site-mobile-menu-close mt-3">
@@ -201,52 +150,16 @@ button.primary.ghost {
 						<div class="site-mobile-menu-body"></div>
 					</div>
 
-					<header class="site-navbar py-3" role="banner">
-						<div class="container-fluid">
-							<div class="row align-items-center">
-								<div class="col-11 col-xl-2">
-									<h1 class="mb-0">
-										<a href="index.html" class="h2 mb-0"
-											style="color: white; font-weight: bold;">PROJECT<span
-											style="color: #FFBC42; margin-left: 15px;">Room</span>
-										</a>
-									</h1>
-								</div>
-								<div class="col-12 col-md-10 d-none d-xl-block">
-									<nav class="site-navigation position-relative text-right"
-										role="navigation">
-										<ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-											<li class="active"><a
-												href="/meister/project/home.do?projectNo=${project.employNo }">Home</a></li>
-											<li><a
-												href="/meister/project/chat.do?projectNo=${project.employNo }">Chat</a></li>
-											<li><a
-												href="/meister/project/todo.do?projectNo=${project.employNo }">ToDo</a></li>
-											<li><a
-												href="/meister/project/schedule.do?projectNo=${project.employNo }">Schedule</a></li>
-											<li><a
-												href="/meister/project/files.do?projectNo=${project.employNo }">Files</a></li>
-										</ul>
-									</nav>
-								</div>
-								<div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3"
-									style="position: relative; top: 3px;">
-									<a href="#" class="site-menu-toggle js-menu-toggle text-white"><span
-										class="icon-menu h3"></span></a>
-								</div>
-							</div>
-						</div>
 				</div>
-				</header>
 				<div class="site-section site-hero inner"
-					style="margin-bottom: 0px; padding-bottom: 0px; background-image: url('/resources/upload/project/bg2.jpg'); background-repeat: no-repeat; background-size: 100% 100%;">
+					style="margin-top:50px;margin-bottom: 0px; padding-bottom: 0px; /* background-image: url('/resources/upload/project/bg2.jpg');  background-repeat: no-repeat; background-size: 100% 100%;*/">
 
 					<div class="container">
 						<div class="row align-items-center">
 							<div class="col-md-10">
 								<span style="font-size: 20px; color: grey;" d-block mb-3
 									caption" data-aos="fade-up">PROJECT</span>
-								<div style="font-size: 40px; color: white; font-weight: bold"
+								<div style="font-size: 40px; font-weight: bold"
 									class="d-block mb-4" data-aos="fade-up" data-aos-delay="100">${project.employTitle }</div>
 							</div>
 						</div>
@@ -259,7 +172,7 @@ button.primary.ghost {
 							<div class="col-lg-4 ">
 								<div class="site-section-heading" data-aos="fade-up"
 									data-aos-delay="100">
-									<h2 style="font-size: 30px; color: black;">Project Info</h2>
+									<h2 style="font-size: 30px; color: black;">ABOUT PROJECT</h2>
 								</div>
 							</div>
 
@@ -313,12 +226,13 @@ button.primary.ghost {
 
 				<div class="site-section" style="padding-top: 2em;">
 					<div class="container">
-						<div class="row mb-5 justify-content-center">
+						<div class="row mb-5 justify-content-center" style="justify-content: none;">
 							<div class="col-lg-4 mb-5">
-								<div class="site-section-heading" data-aos="fade-up">
-									<h2 class="text-center"
-										style="color: #FFBC42; font-size: 25px;">TEAM MEMBERS</h2>
+								<div class="site-section-heading" data-aos="fade-up"
+									data-aos-delay="100">
+									<h2 style="font-size: 30px; color: black;">PROJECT MEMBER</h2>
 								</div>
+							
 							</div>
 						</div>
 						<div class="row" style="justify-content: space-between;">
@@ -373,51 +287,14 @@ button.primary.ghost {
 				</div>
 			</div>
 		</div>
-		<nav class="outer-nav right vertical">
-			<a style="color: #FFBC42;"
-				href="/meister/project/home.do?projectNo=${project.employNo }"
-				class=""><i style="margin-right: 15px;" class="fas fa-home"></i>Home</a>
-			<a href="/meister/project/chat.do?projectNo=${project.employNo }"
-				class=""><i style="margin-right: 15px;" class="far fa-comments"></i>Chat</a>
-			<a href="/meister/project/todo.do?projectNo=${project.employNo }"
-				class=""><i style="margin-right: 15px;" class="fas fa-list-ul"></i>To
-				do</a> <a
-				href="/meister/project/schedule.do?projectNo=${project.employNo }"
-				class=""><i style="margin-right: 15px;"
-				class="far fa-calendar-alt"></i>Schedule</a> <a
-				href="/meister/project/files.do?projectNo=${project.employNo }"
-				class=""><i style="margin-right: 15px;" class="far fa-file"></i>Files</a>
-		</nav>
+
 	</div>
 </body>
 <script>
 	$(function() {
-		var height = $(document).scrollTop();
-		if (height > 100) {
-			$('#showMenu').css({
-				"display" : "block"
-			});
-		} else {
-			$('#showMenu').css({
-				"display" : "none"
-			});
-		}
-		$(window).scroll(function() {
-			var height = $(document).scrollTop();
-			if (height > 100) {
-				$('#showMenu').css({
-					"display" : "block"
-				});
-			} else {
-				$('#showMenu').css({
-					"display" : "none"
-				});
-			}
-		});
+	
 	})
 </script>
-<script src="/resources/hj/projectRoom/dynamicTab/js/classie.js"></script>
-<script src="/resources/hj/projectRoom/dynamicTab/js/menu.js"></script>
 
 <!-------------------------------------------------------------------------------  -->
 <script src="/resources/hj/projectRoom/home/js/jquery-3.3.1.min.js"></script>

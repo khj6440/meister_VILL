@@ -402,10 +402,11 @@ public class MemberController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/readMsg.do")
-	public void readMsg(int msgNo) {
+	@RequestMapping(value="/readMsg.do")
+	public int readMsg(int msgNo,String memberNickname) {
 		// heokjin
 		int result = service.readMsg(msgNo);
+		return getUnreadMsgCnt(memberNickname);
 	}
 
 	@ResponseBody
