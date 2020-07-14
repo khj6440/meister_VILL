@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<link rel="shortcut icon" type="image⁄x-icon" href="/resources/yr/imgs/logo.png">
 <link type="text/css"
 	href="/resources/yr/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet">
@@ -558,37 +559,40 @@
 						$(".au-message-list").html("");
 						var html = "";
 						for (var i = 0; i < data.length; i++) {
-							html += `<div class="au-message__item unread one_msg" num=`+data[i].msgNo+` onclick=msgDetail("`
-									+ data[i].msgContent
-									+ `","`
-									+ data[i].msgNo	
-									+ `","`
-									+data[i].msgTime +`")>`;
+							html += "<div class='au-message__item unread one_msg' num="+data[i].msgNo+" onclick='msgDetail(";
+							html +='"';
+							html += data[i].msgContent;
+							html += '","';
+							html += data[i].msgNo;	
+							html += '","';
+							html += data[i].msgTime;
+							html += '")';
+							html += "'>";
 							if(data[i].msgRead==0){
-								html += `<div class="au-message__item-inner" style="border-left:5px solid #FFBC42">`;								
+								html += '<div class="au-message__item-inner" style="border-left:5px solid #FFBC42">';								
 							}else{
-								html += `<div class="au-message__item-inner" style="border-left:5px solid gray">`;								
+								html += '<div class="au-message__item-inner" style="border-left:5px solid gray">';								
 							}		
-							html += `<div class="au-message__item-text">`;
-							html += `<div class="avatar-wrap">`;
-							html += `<div class="avatar" style="height:100%;">`;
-							html += `<img src="/resources/upload/common/none_user.png" style="margin-top:10px;width:60px;height:60px;">`;
-							html += `</div>`;
-							html += `</div>`;
-							html += `<div class="text">`;
-							html += `<div class="name" style="display: flex; justify-content: space-between; width: 260px;">`;
-							html += `<span>` + data[i].msgSender + `</span>`;
+							html += '<div class="au-message__item-text">';
+							html += '<div class="avatar-wrap">';
+							html += '<div class="avatar" style="height:100%;">';
+							html += '<img src="/resources/upload/common/none_user.png" style="margin-top:10px;width:60px;height:60px;">';
+							html += '</div>';
+							html += '</div>';
+							html += '<div class="text">';
+							html += '<div class="name" style="display: flex; justify-content: space-between; width: 260px;">';
+							html += '<span>' + data[i].msgSender + '</span>';
 						
 							var result =  timeBefore(moment(data[i].msgTime, "YYYY-MM-DD/HH:mm:ss")._d);
 			
-							html += `<span class="msgTime" style="margin-right:25px; color: #878787; font-size: 12px;">`
-									+result + `</span>`;
-							html += `</div>`;
-							html += `<p class="msgContent" style="color:gray;">` + data[i].msgTitle+ `</p>`;
-							html += `</div>`;
-							html += `</div>`;
-							html += `</div>`;
-							html += `</div>`;
+							html += '<span class="msgTime" style="margin-right:25px; color: #878787; font-size: 12px;">'
+									+result + '</span>';
+							html += '</div>';
+							html += '<p class="msgContent" style="color:gray;">' + data[i].msgTitle+ '</p>';
+							html += '</div>';
+							html += '</div>';
+							html += '</div>';
+							html += '</div>';
 						}
 						$(".au-message-list").append(html);
 					},
@@ -618,15 +622,17 @@
 		$.ajax({
 			url : "/meister/member/readMsg.do",
 			data : {
-				msgNo:msgNo
+				msgNo:msgNo,
+				memberNickname:"${sessionScope.member.memberNickname}"
 			},
 			type : "get",
-			success : function() {
+			success : function(data) {
 				$(".au-message__item").each(function(index,item){
 					if($(item).attr("num")==msgNo){
 						$(item).find(".au-message__item-inner").css("border-left","5px solid gray");
 					}
-				}) 
+				});
+				$(".unreadCnt").html(data);
 			},
 			error : function() {
 				console.log("ajax 실패");

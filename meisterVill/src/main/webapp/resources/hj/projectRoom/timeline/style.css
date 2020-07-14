@@ -7,7 +7,7 @@ Modules - reusable parts of our design
 .cd-container {
   /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
   width: 90%;
-  max-width: 1170px;
+  max-width: 768px;
   margin: 0 auto;
 }
 .cd-container::after {
@@ -65,7 +65,7 @@ header h1 {
   font-size: 18px;
   font-size: 1.125rem;
 }
-@media only screen and (min-width: 1170px) {
+@media only screen and (min-width: 768px) {
   header {
     height: 300px;
   }
@@ -91,10 +91,11 @@ header h1 {
   width: 3px;
   background: #cccccc;
 }
-@media only screen and (min-width: 1170px) {
+@media only screen and (min-width: 768px) {
   .cd-timeline {
     margin-top: 3em;
     margin-bottom: 3em;
+    width: 60%;
   }
   .cd-timeline::before {
     left: 50%;
@@ -117,7 +118,7 @@ header h1 {
 .cd-timeline-block:last-child {
   margin-bottom: 0;
 }
-@media only screen and (min-width: 1170px) {
+@media only screen and (min-width: 768px) {
   .cd-timeline-block {
     margin: 3em 0;
   }
@@ -151,7 +152,7 @@ header h1 {
   font-size: 20px;
   line-height: 2;
 }
-@media only screen and (min-width: 1170px) {
+@media only screen and (min-width: 768px) {
   .cd-timeline-icon {
     z-index: 999;
     width: 45px;
@@ -279,7 +280,7 @@ header h1 {
     font-size: 14px;
   }
 }
-@media only screen and (min-width: 1170px) {
+@media only screen and (min-width: 768px) {
   .cd-timeline-content {
     margin-left: 0;
     width: 44%;
@@ -339,7 +340,7 @@ header h1 {
   }
 }
 
-@media only screen and (min-width: 1170px) {
+@media only screen and (min-width: 768px) {
   /* inverse bounce effect on odd content blocks */
   .cssanimations .cd-timeline-block:nth-child(odd) .cd-timeline-content.bounce-in {
     -webkit-animation: cd-bounce-2-inverse 0.6s;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="adminMember">
-<!-- 
+
 	<select id="memberLogin" parameterType="Map"  resultType="adminMember">
 		select 
 			member_no as memberNo,
@@ -232,22 +232,22 @@
 	</select>
 	
 	<select id="level0Cnt" resultType="_int">
-	일반 회원 총인원 
+	<!-- 일반 회원 총인원  -->
 		 select count(*) as level0Cnt from member where member_level = 0
 	</select>
 	
 	<select id="level1Cnt" resultType="_int">
-	전문가 회원 총인원 
+	<!-- 전문가 회원 총인원  -->
 		select count(*) as level1Cnt from member where member_level = 1
 	</select>
 	
 	<select id="adminNoticeCnt" resultType="_int">
-	전문가 회원 총인원 
+	<!-- 전문가 회원 총인원  -->
 		 select count(*) as adminNoticeCnt from notice
 	</select>
 	
 	<select id="level2Cnt" resultType="_int">
-	관리자 회원 총인원 
+	<!-- 관리자 회원 총인원  -->
 		select count(*) as level2Cnt from member where member_level = 2
 	</select>
 	
@@ -272,42 +272,42 @@
 	</select>
 	
 	<select id="sellCnt" resultType="_int">
-	sell 총 게시물 수 
+	<!-- sell 총 게시물 수  -->
 		 select count(*) as sellCnt from sell
 	</select>
 	
 	<select id="sellListCnt" resultType="_int">
-	sell 총 게시물 수 
+	<!-- sell 총 게시물 수  -->
 		 select count(*) as sellListCnt from sell where sell_appro = 1
 	</select>
 	
 	<select id="memberOneViewSellCnt" resultType="_int">
-	sell 총 게시물 수 
+	<!-- sell 총 게시물 수 --> 
 		 select count(*) as sellListCnt from sell where sell_writer = #{memberNo}
 	</select>
 	
 	<select id="memberOneViewPickCnt" resultType="_int">
-	sell 총 게시물 수 
+	<!-- sell 총 게시물 수 --> 
 		 select count(*) as pickListCnt from pick where member_no = #{memberNo}
 	</select>
 	
 	<select id="sellApprovalCnt" resultType="_int">
-	sell 총 게시물 수 
+	<!-- sell 총 게시물 수  -->
 		select count(*) as sellApprovalCnt from sell where sell_appro = 0
 	</select>
 
 	<select id="requestApprovalCnt" resultType="_int">
-	sell 총 게시물 수 
+	<!-- sell 총 게시물 수  -->
 		select count(*) as requestApprovalCnt from request where request_appro = 0
 	</select>
 	
 	<select id="requestCnt" resultType="_int">
-	request 총 게시물 수 
+	<!-- request 총 게시물 수  -->
 		select count(*) as requestCnt from request where request_appro = 1
 	</select>
 	
 	<select id="employCnt" resultType="_int">
-	employ 총 게시물 수 
+	<!-- employ 총 게시물 수  -->
 		select count(*) as employCnt from EMPLOY
 	</select>
 	
@@ -380,6 +380,10 @@
 	
 	<update id="sellDelete" parameterType="int">
 		UPDATE sell SET sell_status = 2 WHERE sell_no = #{sellNo}
+	</update>
+	
+	<update id="reviewDelete" parameterType="int">
+		 UPDATE report SET report_board_type = 2 WHERE report_no = #{reportNo}
 	</update>
 	
 	<update id="approval" parameterType="int">
@@ -456,5 +460,11 @@
             from notice where notice_no = #{noticeNo}
 	</select>
 	
- -->
+
+	<select id="reportCnt" resultType="_int">
+		select count(*) as reportCnt from report where REPORT_BOARD_TYPE = 0
+	</select>
+	
+
+
 </mapper>

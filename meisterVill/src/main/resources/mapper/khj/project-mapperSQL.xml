@@ -88,7 +88,83 @@
 		from 
 			project_file
 		where 
-			project_no =#{_parameter}		
+			project_no =#{_parameter}
+		order by
+			p_file_time desc	
+				
+	</select>
+	<select id="selectProjectSchedule" parameterType="int" resultType="pSchedule">
+		select
+			p_schedule_no as pScheduleNo,
+			project_no as projectNo,
+			p_schedule_writer as pScheduleWriter,
+			p_schedule_content as pScheduleContent,
+			p_schedule_start as pScheduleStart,
+			p_schedule_end as pScheduleEnd
+		from
+			project_schedule
+		where
+			project_no = #{_parameter}
+	</select>
+	<insert id="insertProjectSchedule" parameterType="pSchedule">
+		insert into project_schedule values
+		(project_schedule_seq.nextval,#{projectNo},#{pScheduleWriter},#{pScheduleContent},#{pScheduleStart},#{pScheduleEnd})
+		
+	</insert>
+	<select id="selectProjectNotice" parameterType="int" resultType="pNotice">
+		select
+			p_notice_no as pNoticeNo,
+			project_no as projectNo,
+			p_notice_writer as pNoticeWriter,
+			p_notice_content as pNoticeContent,
+			p_notice_date as pNoticeDate,
+			p_notice_done as pNoticeDone
+		from
+			project_notice
+		where
+			project_no =#{_parameter} and SUBSTR(p_notice_date,1,10)= to_char(sysdate,'YYYY-MM-DD')
+		order by
+			p_notice_date desc
+	</select>
+	<insert id="insertProjectNotice" parameterType="pNotice">
+		insert into project_notice values
+		(project_notice_seq.nextval,#{projectNo},#{pNoticeWriter},#{pNoticeContent}, to_char(SYSDATE,'YYYY-MM-DD/HH24:mi'),0)
+	</insert>
+	
+	<select id="selectProjectNoticePK" parameterType="pNotice" resultType="int">
+		select
+			p_notice_no as pNoticeNo
+		from
+			project_notice
+		where
+			p_notice_content =#{pNoticeContent} and p_notice_writer=#{pNoticeWriter} and project_no= #{projectNo}
 	</select>
 	
+	<delete id="deleteProjectNotice" parameterType="int">
+		delete from project_notice 
+		where p_notice_no = #{_parameter}
+	</delete>
+	
+	<select id="selectProjectNotice2" parameterType="map" resultType="pNotice">
+		select
+			p_notice_no as pNoticeNo,
+			project_no as projectNo,
+			p_notice_writer as pNoticeWriter,
+			p_notice_content as pNoticeContent,
+			p_notice_date as pNoticeDate,
+			p_notice_done as pNoticeDone
+		from
+			project_notice
+		where
+			project_no =#{projectNo} and SUBSTR(p_notice_date,1,10)=#{pickDate}
+		order by
+			p_notice_date desc
+	</select>
+	<update id="updateTodoDone" parameterType="int">
+		update project_notice set p_notice_done=1  where p_notice_no=#{_parameter} 
+		
+	</update>
+	<update id="updateTodoDont" parameterType="int">
+		update project_notice set p_notice_done=0  where p_notice_no=#{_parameter}
+	</update>
 </mapper>
