@@ -29,14 +29,16 @@ public class EmployController {
 	private EmployService service;
 	
 	@RequestMapping(value="/showList.do")
-	public String employList(int reqPage, Model m) {
+	public String employList(int reqPage, String keyWord, Model m) {
 		m.addAttribute("reqPage", reqPage);
+		m.addAttribute("keyWord", keyWord);
 		return "employ/employList";
 	}
 	@ResponseBody
 	@RequestMapping(value="/getEmployList.do", produces = "application/json;charset=utf-8")
-	public String getList(int reqPage) {
-		HashMap<String, Object> list = service.selectAllList(reqPage);
+	public String getList(int reqPage, String keyWord) {
+		HashMap<String, Object> list = service.selectAllList(reqPage, keyWord);
+		System.out.println(keyWord);
 		return new Gson().toJson(list);
 	}
 	@RequestMapping(value="/showOneList.do")

@@ -70,4 +70,23 @@
 <insert id="insertEmploy" parameterType="employ">
 	insert into employ values(employ_seq.nextval, #{employTitle}, #{employCategory1},#{employCategory2},#{employContent},#{employSkill},#{employPrice},to_char(SYSDATE,'YYYY/MM/DD'),#{employStartDate},#{employPeriod},#{employBoardEnd},'0','0',#{employWriter},#{employWriter},'변경')
 </insert>
+<select id="selectKeyTotal" parameterType="String" resultType="_int">
+	select count(*) as cnt from employ
+	<where>
+		<if test='value != null'>
+			employ_appro = 1 and employ_category2 = #{value}
+		</if>
+	</where>
+</select>
+<select id="selectKeyWordList" resultMap="employMap">
+	select * from
+		(select rownum as rnum, n.* from
+			(
+			select * from employ
+			where employ_appro = 1 and employ_category2 = #{keyWord}
+			order by 1 desc)n
+			)
+	where rnum between #{start} and #{end}
+</select>
+
 </mapper>
