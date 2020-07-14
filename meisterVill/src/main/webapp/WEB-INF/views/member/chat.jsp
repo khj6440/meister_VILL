@@ -333,7 +333,13 @@ ul.list-style-none li a:hover {
 													} else {
 														html += `<li class="chat-item list-style-none mt-3" style="word-break:break-all;text-align:left;">`;
 														html += `<div class="chat-img d-inline-block">`;
-														html += `<img src="/resources/upload/common/none_user.png"	alt="user" class="rounded-circle" width="45">`;
+														if(data[i].senderImg==null){
+															html += `<img src="/resources/upload/common/none_user.png"	alt="user" class="rounded-circle" style="width=45px;height:45px;">`;
+														}else{
+															html += `<img src="/resources/upload/memberImg/`;
+															html +=data[i].senderImg	
+															html +=`" alt="user" class="rounded-circle" style='width=45px;height:45px;'>`;
+														}
 														html += `</div>`;
 														html += `<div class="chat-content d-inline-block pl-3" style="width:70%;">`;
 														html += `<h6 class="font-weight-medium">`
@@ -386,7 +392,7 @@ ul.list-style-none li a:hover {
 		var ws;
 		var memberNickname = '${sessionScope.member.memberNickname}';
 		function connect() {
-			ws = new WebSocket("ws://192.168.0.6/chat.do"); //protocol이 http가 아닌 ws://임
+			ws = new WebSocket("ws://192.168.10.15/chat.do"); //protocol이 http가 아닌 ws://임
 			//연결 -> 메세지 받았을 때 -> 종료
 			//연결
 			ws.onopen = function() {
@@ -402,12 +408,19 @@ ul.list-style-none li a:hover {
 			};
 			//메세지 수신
 			ws.onmessage = function(e) {
-
+				
 				var data = JSON.parse(e.data);
+				console.log(data);
 				var html = $(".chat-list").html();
 				html += `<li class="chat-item list-style-none mt-3" style="word-break:break-all;text-align:left;">`;
 				html += `<div class="chat-img d-inline-block">`;
-				html += `<img src="/resources/upload/common/none_user.png"	alt="user" class="rounded-circle" width="45">`;
+				if(data.senderImg==null || data.senderImg==""){
+					html += `<img src="/resources/upload/common/none_user.png"	alt="user" class="rounded-circle" style="width=45px;height:45px;">`;
+				}else{
+					html += `<img src="/resources/upload/memberImg/`;
+					html +=data.senderImg	
+					html +=`" alt="user" class="rounded-circle" style='width=45px;height:45px;'>`;
+				}
 				html += `</div>`;
 				html += `<div class="chat-content d-inline-block pl-3" style="width:70%;">`;
 				html += `<h6 class="font-weight-medium">` + data.sender
@@ -487,12 +500,19 @@ ul.list-style-none li a:hover {
 				var chat = $(".chat-list").html();
 				chat += `<li class="chat-item odd list-style-none mt-3" style="word-break:break-all;text-align:right;">`;
 				chat += `<div class="chat-content text-right d-inline-block pl-3" style="width:70%;">`;
-				var arrDate = $(".chat-gap").last().html().split("/");
+				
+				if($(".chat-gap").eq(0).html() != undefined){
+					var arrDate = $(".chat-gap").last().html().split("/");
+					if (arrDate[0] != year || arrDate[1] != month || arrDate[2] != day) {
+						chat += `<div>2020</div>`;
+						}
+					}
+				/* var arrDate = $(".chat-gap").last().html().split("/");
 
 				if (arrDate[0] != year || arrDate[1] != month
-						|| arrDate[2] != day || arrDate[4] != minutes) {
+						|| arrDate[2] != day) {
 					chat += `<div>2020</div>`;
-				}
+				} */
 				chat += `<div style="font-size: 17px;border-radius:10px;padding:0.5rem 1.2rem !important;" class="box msg p-2 d-inline-block mb-1 box">`
 						+ msg + `</div>`
 				chat += `<br></div>`;
@@ -533,13 +553,14 @@ ul.list-style-none li a:hover {
 		});
 		$(function(){
 			$("#searchForm").keyup(function(){
-				console.log($(this).val())
+			
 				 if ($(this).val() != "") {
 			            var value = $(this).val();
 			            $(".message-item").attr("style", "display:none !important")
 			            $(".message-item").each(function (index, item) {
 			                if ($(item).find("h6").html().match(value)) {
 								$(item).attr("style","display:flex !important");
+							
 			                } 
 			            })
 			        } else {

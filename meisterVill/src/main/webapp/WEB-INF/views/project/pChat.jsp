@@ -109,14 +109,6 @@ html, body {
 										<div class="row no-gutters" style="border: 1px solid #bdbdbd;">
 											<div class="col-lg-3 col-xl-2 border-right"
 												style="height: 780px;">
-												<div class="card-body border-bottom">
-													<select name="select"
-														class="form-control form-control-warning fill">
-														<option value="opt2">ALL</option>
-														<option value="opt3">Online</option>
-														<option value="opt8">Offline</option>
-													</select>
-												</div>
 												<div class="scrollable position-relative"
 													style="height: calc(100vh - 111px);">
 													<ul class="mailbox list-style-none">
@@ -203,9 +195,18 @@ html, body {
 																<li class="chat-item list-style-none mt-3"
 																	style="word-break: break-all; text-align: left;">
 																	<div class="chat-img d-inline-block">
-																		<img src="/resources/upload/common/none_user.png"
+																	
+																	<c:if test="${empty c.PChatImg }">
+																			<img src="/resources/upload/common/none_user.png"
 																			alt="user" class="rounded-circle" width="45">
-																	</div>
+																	</c:if>
+																	<c:if test="${not empty c.PChatImg }">
+																			<img src="/resources/upload/memberImg/${c.PChatImg}"
+																			alt="user" class="rounded-circle" width="45">
+																	</c:if>
+<!-- 																		<img src="/resources/upload/common/none_user.png"
+																			alt="user" class="rounded-circle" width="45">
+ -->																</div>
 																	<div class="chat-content d-inline-block pl-3"
 																		style="width: 70%;">
 																		<h6 class="font-weight-medium">${c.PChatSender }</h6>
@@ -405,12 +406,12 @@ html, body {
 			var chat = $(".chat-list").html();
 			chat += `<li class="chat-item odd list-style-none mt-3" style="word-break:break-all;text-align:right;">`;
 			chat += `<div class="chat-content text-right d-inline-block pl-3" style="width:70%;">`;
-			console.log($(".chat-gap").eq(0).html());
+			
 			if($(".chat-gap").eq(0).html() != undefined){
 			var arrDate = $(".chat-gap").last().html().split("/");
 	
 			if (arrDate[0] != year || arrDate[1] != month || arrDate[2] != day
-					|| arrDate[4] != minutes) {
+					) {
 				chat += `<div>2020</div>`;
 				}
 			}
@@ -451,7 +452,7 @@ html, body {
 	var ws;
 	var memberNickname = '${sessionScope.member.memberNickname}';
 	function connect() {
-		ws = new WebSocket("ws://192.168.0.6/projectChat.do"); //protocol이 http가 아닌 ws://임
+		ws = new WebSocket("ws://192.168.10.15/projectChat.do"); //protocol이 http가 아닌 ws://임
 		//연결 -> 메세지 받았을 때 -> 종료
 		//연결
 		ws.onopen = function() {
@@ -474,7 +475,14 @@ html, body {
 			var html = $(".chat-list").html();
 			html += `<li class="chat-item list-style-none mt-3" style="word-break:break-all;text-align:left;">`;
 			html += `<div class="chat-img d-inline-block">`;
-			html += `<img src="/resources/upload/common/none_user.png"	alt="user" class="rounded-circle" width="45">`;
+			if(data.senderImg==null || data.senderImg==""){
+				html += `<img src="/resources/upload/common/none_user.png"	alt="user" class="rounded-circle" style="width=45px;height:45px;">`;
+			}else{
+				html += `<img src="/resources/upload/memberImg/`;
+				html +=data.senderImg	
+				html +=`" alt="user" class="rounded-circle" style='width=45px;height:45px;'>`;
+			}
+/* 			html += `<img src="/resources/upload/common/none_user.png"	alt="user" class="rounded-circle" width="45">`; */
 			html += `</div>`;
 			html += `<div class="chat-content d-inline-block pl-3" style="width:70%;">`;
 			html += `<h6 class="font-weight-medium">` + data.sender + `</h6>`;
