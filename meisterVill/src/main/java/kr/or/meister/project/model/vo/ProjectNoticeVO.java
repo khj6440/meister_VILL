@@ -9,4 +9,5 @@ public class ProjectNoticeVO {
 	private String pNoticeWriter;
 	private String pNoticeContent;
 	private String pNoticeDate;
+	private int pNoticeDone;
 }
