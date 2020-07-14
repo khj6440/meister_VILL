@@ -65,6 +65,7 @@
 		<typeAlias type="kr.or.meister.notice.model.vo.QnAVO" alias="qna"/>
 		
 		
+		
 		<typeAlias type="kr.or.meister.project.model.vo.ProjectScheduleVO" alias="pSchedule"/>
 		<typeAlias type="kr.or.meister.project.model.vo.ProjectNoticeVO" alias="pNotice"/>
 
