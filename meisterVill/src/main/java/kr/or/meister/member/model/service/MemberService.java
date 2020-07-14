@@ -136,13 +136,14 @@ public class MemberService {
 		return dao.welcomeCoupon(memberNo);
 	}
 
-	public ArrayList<CouponJoinCouponIssuedVO> selectAllCoupon(int memberNo) {
-		return (ArrayList<CouponJoinCouponIssuedVO>) dao.couponMoalOpen(memberNo);
-	}
-
-	public ArrayList<CouponJoinCouponIssuedVO> selectAllCoupon(SellJoinOthersVO sjo) {
-		return (ArrayList<CouponJoinCouponIssuedVO>) dao.selectAllCoupon(sjo);
-	}
+	/*
+	 * public ArrayList<CouponJoinCouponIssuedVO> selectAllCoupon(int memberNo) {
+	 * return (ArrayList<CouponJoinCouponIssuedVO>) dao.couponMoalOpen(memberNo); }
+	 * 
+	 * public ArrayList<CouponJoinCouponIssuedVO> selectAllCoupon(SellJoinOthersVO
+	 * sjo) { return (ArrayList<CouponJoinCouponIssuedVO>) dao.selectAllCoupon(sjo);
+	 * }
+	 */
 
 	public HashMap<String, Object> selectAllEmploy(int memberNo, int reqPage, int employstatus, int employappro) {
 		int numPerPage = 5;

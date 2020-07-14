@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="employ">
-<!-- <resultMap id="em" type="employMember">
+<resultMap id="em" type="employMember">
 <association property="employvo" javaType="employ">
 	    <id property="employNo" column="employ_no" />
 	    <result property="employTitle" column="employ_title" />
@@ -64,6 +64,6 @@
 	<if test="employappro!=3">
 		and employ_appro=#{employappro}
 	</if>
-</select> -->
+</select> 
 
 </mapper>

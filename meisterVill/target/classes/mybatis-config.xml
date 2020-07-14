@@ -12,6 +12,8 @@
 		<typeAlias type="kr.or.meister.sell.model.vo.SellJoinMemberVO" alias="sjm"/>
 		<typeAlias type="kr.or.meister.sell.model.vo.SellJoinOthersVO" alias="sjo"/>
 		<typeAlias type="kr.or.meister.member.model.vo.MemberVO" alias="member"/>
+		<typeAlias type="kr.or.meister.employ.model.vo.EmployVO" alias="employ"/>
+		<typeAlias type="kr.or.meister.employ.model.vo.EmployJoinMemberVO" alias="ejm"/>
 		<typeAlias type="kr.or.meister.etc.model.vo.PickVO" alias="pick"/>
 		<typeAlias type="kr.or.meister.etc.model.vo.ReportVO" alias="ReportVO"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.MemberJoinReportVO" alias="MemberJoinReportVO"/>
@@ -34,9 +36,20 @@
 		<typeAlias type="kr.or.meister.admin.model.vo.SellStatsVO" alias="sellStats"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.RequestSellVO" alias="requestSell"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.SellSellVO" alias="sellSell"/>
+		<typeAlias type="kr.or.meister.admin.model.vo.MemberJoinEmployVO" alias="memberJoinEmploy"/>
+
+		<typeAlias type="kr.or.meister.sell.model.vo.SellMemberOptionVO" alias="smo"/>
+		
+		<typeAlias type="kr.or.meister.orders.model.vo.OrderOptionVO" alias="oov"/>
+		<typeAlias type="kr.or.meister.orders.model.vo.OrdersVO" alias="orders"/>
+		<typeAlias type="kr.or.meister.coupon.model.vo.CouponMemberVO" alias="cm"/>
+
+		
+
 
 		<typeAlias type="kr.or.meister.coupon.model.vo.CouponVO" alias="coupon"/>
 		<typeAlias type="kr.or.meister.coupon.model.vo.CouponJoinCouponIssuedVO" alias="couponJoinCouponIssued"/>
+		<typeAlias type="kr.or.meister.member.model.vo.MemberJoinSellReviewVO" alias="meisters"/>
 
 		<typeAlias type="kr.or.meister.employ.model.vo.EmployVO" alias="employ"/>
 		<typeAlias type="kr.or.meister.employ.model.vo.EmployMemberVO" alias="employMember"/>
@@ -47,6 +60,7 @@
 		<typeAlias type="kr.or.meister.project.model.vo.ProjectFileVO" alias="pFile"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.MemberInformVO" alias="memberInform"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.RequestListVO" alias="requestList"/>
+		<typeAlias type="kr.or.meister.admin.model.vo.AdminReportVO" alias="adminReport"/>
 		<typeAlias type="kr.or.meister.notice.model.vo.NoticeVO" alias="notice"/>
 		<typeAlias type="kr.or.meister.notice.model.vo.QnAVO" alias="qna"/>
 		<typeAlias type="kr.or.meister.orders.model.vo.OrdersVO" alias="orders"/>
@@ -54,6 +68,9 @@
 		<typeAlias type="kr.or.meister.member.model.vo.LicenseVO" alias="license"/>
 		<typeAlias type="kr.or.meister.sell.model.vo.SellData" alias="sellData"/>
 		<typeAlias type="kr.or.meister.member.model.vo.MemberUpdateVO" alias="memberupdate"/>
+		<typeAlias type="kr.or.meister.project.model.vo.ProjectScheduleVO" alias="pSchedule"/>
+		<typeAlias type="kr.or.meister.project.model.vo.ProjectNoticeVO" alias="pNotice"/>
+
 	</typeAliases>
 	
 </configuration>
