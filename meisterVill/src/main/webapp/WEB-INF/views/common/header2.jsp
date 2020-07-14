@@ -207,6 +207,9 @@
                                         <li name="hd-menu1"><a href="#">마이스터 등록</a></li>
                                         <li name="hd-menu1"><a href="#">찜한 서비스</a></li>
                                         <li name="hd-menu1"><a href="#">쿠폰</a></li>
+                                        <c:if test="${sessionScope.member.memberLevel eq 2 }">
+                                        	<li name="hd-menu1"><a href="#">관리자 페이지</a></li>
+                                        </c:if>
                                         <li name="hd-menu1"><a href="/meister/member/logout.do">로그아웃</a></li>
 
                                     </ul>

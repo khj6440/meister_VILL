@@ -507,25 +507,7 @@
 
         </div>
 
-        <a href="/meister/member/changePw.do">비밀번호 변경</a><br>
-        <a href="/meister/member/pwChangeSuccessModalTest.do">비밀번호변경완료 모달테스트</a><br>
-        <a href="/meister/member/joinSuccessModalTest.do">회원가입완료 모달테스트</a><br>
-        <a href="/meister/member/forgetIdPwTest.do">아이디.비번찾기테스트</a><br>
-        <a href="/meister/member/joinEmail.do">이메일 인증페이지</a><br>
-        <a href="/meister/member/coupon.do">쿠폰</a><br>
-        <a href="/meister/member/order.do">결제페이지</a><br>
-        <a href="/meister/member/changePwLink.do">비번 변경 링크 이메일</a><br>
-        <a href="/meister/member/purchaseSuccess.do">결제완료 페이지</a><br>
-        <a href="/meister/sell/couponListModal.do">쿠폰리스트 모달 테스트</a><br>
-        <a href="/meister/member/couponWriteFrm.do">쿠폰이벤트 작성페이지</a><br>
-        <a href="/meister/member/carouselTestFrm.do">캐러셀테스트</a><br>
-        <a href="/meister/member/carouselTestFrm2.do">캐러셀테스트2</a><br>  
-        <a href="/meister/sell/orderModal.do">결제완료 모달</a><br>
-        <a class="navbar-brand" href="/meister/employ/showList.do?reqPage=1">프로젝트</a>
-        <a href="/meister/employ/makeEmploy.do">모집글 작성하기</a><br>
-        <a href="/meister/sell/makeSell.do?sellWriter=${sessionScope.member.memberNo }">파내글 작성하기</a><br>
-        <a href="/meister/sell/sellList.do?reqPage=1">파내글 보기</a><br>
-		<a class="navbar-brand" href="/meister/request/showList.do?reqPage=1">프로젝트</a>
+        
     </div>
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
@@ -838,6 +820,7 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+        	
         	
             $('.bigbox').slick({
                 slidesToShow: 5,
