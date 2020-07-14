@@ -155,4 +155,8 @@ public class MemberDao {
 		return sqlSession.selectOne("count.sellInfo",sellNo);
 	}
 
+	public List mainIt() {
+		return sqlSession.selectList("count.mainIt");
+	}
+
 }

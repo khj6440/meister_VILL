@@ -206,4 +206,6 @@ where rnum between 1 and 10;
 		where coupon_issued_member_no=#{memberNo} and coupon_issued_check=0 and (to_date(coupon_issued_end)-sysdate)>0 and coupon_less_money<#{sellPrice}]]>
 	</select>
 	
+	
+	
 </mapper>

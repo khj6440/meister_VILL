@@ -111,7 +111,12 @@
 			#{no}
 		</foreach>	
 </update>
-
+<select id="mainIt" resultMap="sellMap">
+		select k.* from (
+select rownum as rnum, s.* from (select * from sell order by sell_no desc)s)k
+where rnum between 1 and 10;
+		
+	</select>
 
 	
 

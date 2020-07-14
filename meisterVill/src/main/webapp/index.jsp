@@ -44,7 +44,7 @@
 
                                     <div class="bigbox">
 
-                                        <div class="minibox slider item1">
+                                        <div class="minibox slider item1">                                        
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
                                             </div>
@@ -146,6 +146,69 @@
                                     <div class="bigbox">
 	
 									<!-- 반복 -->
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
+                                        <div class="minibox slider item1">
+                                            <div class="slide-img">
+                                                <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
+                                            </div>
+                                            <div class="slide-msg">
+                                                <div>카테고리</div>
+                                                <div>제목</div>
+                                            </div>
+                                        </div>
                                         <div class="minibox slider item1">
                                             <div class="slide-img">
                                                 <img src="/resources/yr/imgs/peopleworking.jpg" width="100%">
@@ -775,13 +838,6 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-        	/*$.ajax({
-        		url:"/meister/member/mainIt.do",
-        		type:"json",
-        		
-        	});*/
-        	
-        	
         	
             $('.bigbox').slick({
                 slidesToShow: 5,

@@ -266,7 +266,11 @@
                     //결제하기
                     $("#payBtn").click(function() {
                     	
-                        var arr
+                        var arrOpt = $(".plusOptChk:checked").next().val();
+                        var arrCoup = $(".chk").next().val();
+                        console.log(arrOpt);
+                        console.log(arrCoup);
+                        
                     	var price1 = $(".thePay").html();
                         var d = new Date();
                         var memName = "${member.memberName}";

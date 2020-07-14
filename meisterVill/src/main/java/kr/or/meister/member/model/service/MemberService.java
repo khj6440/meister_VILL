@@ -240,6 +240,10 @@ public class MemberService {
 		return dao.totalCountMeister();
 	}
 
+	public ArrayList<SellVO> mainIt() {
+		return (ArrayList<SellVO>)dao.mainIt();
+	}
+
 	
 
 

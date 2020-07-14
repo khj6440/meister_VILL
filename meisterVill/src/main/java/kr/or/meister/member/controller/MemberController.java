@@ -332,7 +332,7 @@ public class MemberController {
 			msg.setSubject("메일제목: 인증메일", "UTF-8");
 
 			msg.setContent(
-					"    <div style='width:600px; height:400px; background-image: url(http://192.168.10.161/resources/yr/imgs/bg-5gray.png); background-position: bottom; background-repeat: no-repeat; background-size: 100%; padding: 50px; margin:100px auto; text-align: center; font-family: 'Noto Sans KR', sans-serif;'>"
+					"    <div style='width:600px; height:400px; background-image: url(http://192.168.10.15/resources/yr/imgs/bg-5gray.png); background-position: bottom; background-repeat: no-repeat; background-size: 100%; padding: 50px; margin:100px auto; text-align: center; font-family: 'Noto Sans KR', sans-serif;'>"
 							+ "        <div>"
 							+ "            <div style='margin-top: 70px; color: #4d4d4d; font-size: 24px; font-weight: 700px;'>"
 							+ "                이메일 인증 번호" + "            </div>"
@@ -393,6 +393,8 @@ public class MemberController {
 		ArrayList<MessageVO> list = service.getMessage(memberNickname);
 		return new Gson().toJson(list);
 	}
+	
+	
 
 	@ResponseBody
 	@RequestMapping(value = "/getUnreadMsgCnt.do", produces = "application/json; charset=utf-8")
@@ -511,12 +513,12 @@ public class MemberController {
 			msg.setRecipient(Message.RecipientType.TO, to);
 			msg.setSubject("메일제목: 비밀번호 수정", "UTF-8");
 			msg.setContent(
-					"    <div style='width:600px; height:400px; background-image: url(http://192.168.10.161/resources/yr/imgs/bg-5gray.png); background-position: bottom; background-repeat: no-repeat; background-size: 100%; padding: 50px; margin:100px auto; text-align: center; font-family: 'Noto Sans KR', sans-serif;'>"
+					"    <div style='width:600px; height:400px; background-image: url(http://192.168.10.15/resources/yr/imgs/bg-5gray.png); background-position: bottom; background-repeat: no-repeat; background-size: 100%; padding: 50px; margin:100px auto; text-align: center; font-family: 'Noto Sans KR', sans-serif;'>"
 							+ "        <div>"
 							+ "            <div style='margin-top: 70px; color: #4d4d4d; font-size: 24px; font-weight: 700px;'>"
 							+ "                비밀번호 변경" + "            </div>"
 							+ "            <div style='margin-top: 30px; font-size: 30px;'>"
-							+ "<form action='http://192.168.10.161/meister/member/changePw.do' method='post'>"
+							+ "<form action='http://192.168.10.15/meister/member/changePw.do' method='post'>"
 							+ "                    <input type='hidden' value=" + time + " name='time'>"
 							+ "                    <input type='hidden' value=" + memberEmail + " name='memberEmail'>"
 							+ "                    <button type='submit' style='border-radius: 4px; width: 300px; height: 45px; background-color: #FFBC42; border: white; font-family: 'Noto Sans KR', sans-serif;font-size: 17px; font-weight: 700; outline: 0 none; color: white;'>비밀번호 변경하기</button>"
@@ -700,5 +702,12 @@ public class MemberController {
 
 		return "member/test2";
 	}
+	@ResponseBody
+	@RequestMapping(value="/mainIt.do", produces = "application/json; charset=utf-8")
+	public String mainIt() {
+		ArrayList<SellVO> itList = service.mainIt();
+		return new Gson().toJson(itList);
+	}
+	
 
 }
