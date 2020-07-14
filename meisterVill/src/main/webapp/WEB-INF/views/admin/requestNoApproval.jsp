@@ -12,7 +12,7 @@
 	
 <!-- ******************************************************************************** -->
 
-<title>견적요청글 승인관리</title>
+<title>견적요청글 비승인 목록</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
@@ -34,7 +34,7 @@
 
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
-        ********************************************************************************************************************************************************** -->
+        *********************************************************************************************************************************************************** -->
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
@@ -44,7 +44,7 @@
           <div class="col-md-12">
             <div class="content-panel">
               <table class="table table-striped">
-                <h4><i class="fa fa-angle-right"></i>견적요청글 승인관리</h4>
+                <h4><i class="fa fa-angle-right"></i>견적요청글 비승인 목록</h4>
                 <hr>
 					 <thead>
                   <tr>
@@ -71,7 +71,7 @@
                 <tr>
                 
                 <c:forEach items="${list}" var="r" varStatus="i">
-                	<c:if test="${r.requestAppro == 0 }">
+                	
                 	<script>
                  			$("#total").css("display","none");
                  	</script>
@@ -106,8 +106,9 @@
                     <td>${r.requestPrice}￦ </td>
                     
                     <td>
-                    <span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 12px;">
-                   	요청
+                    
+                    <span class="label label-info label-mini"style="background-color: #6c757d; font-size: 12px;">
+                   	[비승인]
                     </span>
                     </td>
                     
@@ -117,13 +118,11 @@
                       <a href="/meister/admin/memberOneViewFrm.do?memberNo=${r.memberNo}" class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42; text-decoration: none; color: white;"><i class="fa fa-check"></i>게시물 보기</a>
                       <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
                     
-                    <c:if test="${r.requestAppro == 0 }">
-                    	<button value="${r.requestNo }" class="btn btn-danger btn-xs requestApproval" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-bell" ></i>승인</button>
-                        <button value="${r.requestNo }" class="btn btn-danger btn-xs requestNoApproval" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>비승인</button>
-				    </c:if>
+
+                    	<button value="${r.requestNo }" class="btn btn-danger btn-xs requestApproval" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-bell" ></i>재승인</button>
                     </td>
                   </tr> 
-                  </c:if>
+                  
                   </c:forEach>
                   </tr> 
               	</tbody>
@@ -223,7 +222,7 @@
     	    		location.reload();
     	    		if(totalCnt%6 == 0){
     	    			reqPage=reqPage-1;
-    	    		window.location.href="requestApprovalFrm.do?reqPage="+reqPage;
+    	    		window.location.href="requestApprovalNoListFrm.do?reqPage="+reqPage;
     	    		}
     	    		}, 1000);			
     	    } 
@@ -255,7 +254,7 @@
     	    		location.reload();
     	    		if(totalCnt%6 == 0){
     	    			reqPage=reqPage-1;
-    	    		window.location.href="requestApprovalFrm.do?reqPage="+reqPage;
+    	    		window.location.href="requestApprovalNoListFrm.do?reqPage="+reqPage;
     	    		}
     	    		}, 1000);
     	    	

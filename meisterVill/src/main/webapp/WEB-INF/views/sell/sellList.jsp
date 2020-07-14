@@ -168,11 +168,11 @@
         }
     }
     function showList(sellNo) {
-<<<<<<< HEAD
-    	location.href="/meister/sell/showList.do?sellNo="+sellNo+"&memberNo="+${sessionScope.member.memberNo};
-=======
+
+    	/* location.href="/meister/sell/showList.do?sellNo="+sellNo+"&memberNo="+${sessionScope.member.memberNo}; */
+
     	location.href="/meister/sell/showList.do?sellNo=" + sellNo;
->>>>>>> 75497a85e0172d314cf770a424460b4f2fc50671
+
     }
     </script>
 </body>

@@ -19,6 +19,13 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
+		<style>
+	#cke_ck4{
+		width: 80%;
+		margin: 0 auto;
+	}
+</style>
+
 <body>
 
  <section id="container">
@@ -43,17 +50,27 @@
 <section id="main-content">
 	<section class="wrapper ">
 
-<div style="width: 100%; height:100%; background-color: #FFEEE4;">
-
+<div>
+	<form action="/meister/adminBoard/adminNoticeInsert.do" method="post">
+	<input type="hidden" name="memberNickname" value="${sessionScope.member.memberNickname }">
+	<br><br><br>
+	<div style="width: 100%; margin: 0 auto; text-align: center;"><input type="text" name="noticeTitle" style="width: 80%; height: 30px; font-size: 20px;" placeholder="Title" value="${noticeTitle }"></div>
+	<br><br>
 	
-	<div style="width: 100%; height:130px; background-color: #E0E3DA; margin: 0 auto;">
-		<div style="font-size:25px; text-align: center; width: 100%; height: 100px; margin: 0 auto; line-height: 100px;">${n.noticeTitle }</div>
+	<div style="width: 100%;">
+		
+
+<script src="/resources/ckeditor/ckeditor.js" ></script>
+
+
+	<textarea id="ck4" name="ck4" style="width: 100px;">${noticeContent}</textarea>
+	<script>CKEDITOR.replace('ck4',{filebrowserUploadUrl:'/imageUpload.do'});</script>
 	
 	</div>
-
-	<div style="text-align: center; margin-top: 4%;">${n.noticeContent}</div>
 	
-	<div style="height: 100px; width: 100%;"></div>
+		<div style="text-align: center; margin-top: 2%;"><button type="submit" style="width: 150px; height: 30px; margin-right: 1%;">작성</button><button onclick="location.href='javascript:history.back();'" type="submit" style="width: 150px; height: 30px;">뒤로가기</button></div>
+	
+	</form>
 	
 </div>
 	</section>

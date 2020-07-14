@@ -37,6 +37,7 @@
 		<typeAlias type="kr.or.meister.admin.model.vo.RequestSellVO" alias="requestSell"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.SellSellVO" alias="sellSell"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.MemberJoinEmployVO" alias="memberJoinEmploy"/>
+		<typeAlias type="kr.or.meister.admin.model.vo.EmployListVO" alias="employList"/>
 
 		<typeAlias type="kr.or.meister.sell.model.vo.SellMemberOptionVO" alias="smo"/>
 		
@@ -61,6 +62,7 @@
 		<typeAlias type="kr.or.meister.admin.model.vo.MemberInformVO" alias="memberInform"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.RequestListVO" alias="requestList"/>
 		<typeAlias type="kr.or.meister.admin.model.vo.AdminReportVO" alias="adminReport"/>
+		<typeAlias type="kr.or.meister.admin.model.vo.ReportSaveVO" alias="reportSave"/>
 		<typeAlias type="kr.or.meister.notice.model.vo.NoticeVO" alias="notice"/>
 		<typeAlias type="kr.or.meister.notice.model.vo.QnAVO" alias="qna"/>
 		

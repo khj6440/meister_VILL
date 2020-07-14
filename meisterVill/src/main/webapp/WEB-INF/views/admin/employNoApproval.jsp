@@ -12,7 +12,7 @@
 	
 <!-- ******************************************************************************** -->
 
-<title>견적요청글 승인관리</title>
+<title>프로젝트글 비승인관리</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
@@ -34,7 +34,7 @@
 
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
-        ********************************************************************************************************************************************************** -->
+        *********************************************************************************************************************************************************** -->
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
@@ -44,86 +44,88 @@
           <div class="col-md-12">
             <div class="content-panel">
               <table class="table table-striped">
-                <h4><i class="fa fa-angle-right"></i>견적요청글 승인관리</h4>
+                <h4><i class="fa fa-angle-right"></i>프로젝트글 비승인관리</h4>
                 <hr>
 					 <thead>
                   <tr>
-                    <th><i class="fa fa-align-left"></i>제목</th>
-                    <th class="hidden-phone"><i class="fa fa-user"></i>작성자</th>
-                    <th><i class="fa fa-tags"></i>카테고리</th>
-                    <th><i class="fa fa-money"></i>가격</th>
-                     <th><i class="fa fa-question-circle"></i>상태</th>
+                    <th><i class="fa fa-sort-numeric-asc"></i>번호</th>
+                    <th class="hidden-phone"><i class="fa fa-align-left"></i>제목</th>
+                    <th class="hidden-phone"><i class="fa fa-user"></i>주최자</th>
+                    <th><i class="fa fa-tags"></i>(대)카테고리</th>
+                    <th><i class="fa fa-tag"></i>(소)카테고리</th>
+                     <th><i class="fa fa-money"></i>예산</th>
                     <!-- <i class="fa fa-bookmark"> -->
                     <!-- <i class=" fa fa-edit"> -->
-                    <th><i class="fa fa-bookmark"></i>작성일</th>
-                    <th></th>
+                    <th><i class="fa fa-question-circle"></i>상태</th>
+                    <th><i class="fa fa-calendar-check-o"></i>프로젝트 시작일</th>
+                    <th><i class="fa fa-calendar-times-o"></i>게시글 마감일</th>
                   </tr>
-                  
-
-                  
-                   <tr id="total">
-                 	<td colspan="6" style="font-size: 20px; text-align: center;">목록없음</td>
-                </tr>
                 </thead>
 					
 					
                <tbody>
+               		<tr id="total">
+           				<td colspan="9" style="font-size: 20px; text-align: center;">목록없음</td>
+					</tr>
+               
                 <tr>
-                
-                <c:forEach items="${list}" var="r" varStatus="i">
-                	<c:if test="${r.requestAppro == 0 }">
+                <c:forEach items="${list}" var="e" varStatus="i">
+                	
                 	<script>
-                 			$("#total").css("display","none");
-                 	</script>
+      					$("#total").css("display","none");
+					</script>
+					
                  	<tr>
-                 		<td>${r.requestTitle }</td>
-                    
-
-                    <td class="hidden-phone">
-
-                    <c:if test="${r.memberImg != null }">
-                        <c:if test="${r.memberLevel == 2}">
-                    		<img src="/resources/upload/memberImg/${r.memberImg}" style="width: 20px; height: 20px;"> 
-                    	</c:if>
-                    	<c:if test="${r.memberLevel != 2}">
-                    		<img src="/resources/upload/memberImg/${r.memberImg}" style="width: 20px; height: 20px;"> 
-                    	</c:if>
+                 	<td>${e.rnum }</td>
+                 	<td><span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 250px;">${e.employTitle }</span></td>
+                 	<td>
+                 	
+                 	<c:if test="${e.memberImg != null }">
+                    		<div><img src="/resources/upload/memberImg/${e.memberImg}" style="width: 25px; height: 25px;"> 
+                    		 <a href="/meister/admin/memberOneViewFrm.do?memberNo=${e.memberNo}">${e.memberName }</a></div>
                     </c:if>
                     
-                    <c:if test="${r.memberImg == null }">
-                    	<c:if test="${r.memberLevel == 2}">
-                    		<img src="/resources/upload/common/adminImg.jpg" style="width: 20px; height: 20px;"> 
+                    <c:if test="${e.memberImg == null }">
+                    	<c:if test="${e.memberLevel == 2}">
+                    		<img src="/resources/upload/common/adminImg.jpg" style="width: 25px; height: 25px;"> 
+                    		 <a href="/meister/admin/memberOneViewFrm.do?memberNo=${e.memberNo}">${e.memberName }</a>
                     	</c:if>
-                    	<c:if test="${r.memberLevel != 2}">
-                    		<img src="/resources/upload/memberImg/unnamed.png" style="width: 20px; height: 20px;"> 
+                    	<c:if test="${e.memberLevel != 2}">
+                    		<img src="/resources/upload/memberImg/unnamed.png" style="width: 25px; height: 25px;"> 
+                    		 <a href="/meister/admin/memberOneViewFrm.do?memberNo=${e.memberNo}">${e.memberName }</a>
                     	</c:if>
                     </c:if>
-                     <a href="/meister/admin/memberOneViewFrm.do?memberNo=${r.memberNo}">${r.memberName }</a></td>
-                    
-                   <td> ${r.requestCategory1 }</td>
-                    
-                    
-                    <td>${r.requestPrice}￦ </td>
+                 	
+                 	</td>
+                    <td> ${e.employCategory1 }</td>
+                    <td>${e.employCategory2}</td>
+                    <td>${e.employPrice}￦ </td>
                     
                     <td>
+
                     <span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 12px;">
-                   	요청
+                   	승인대기
                     </span>
+
+
+                    
                     </td>
                     
-                    <td>${r.requestDate } </td>
-                    <td>
-                      <!-- <span class="label label-info label-mini" style="background-color: red">신고 접수</span> -->
-                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${r.memberNo}" class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42; text-decoration: none; color: white;"><i class="fa fa-check"></i>게시물 보기</a>
-                      <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
+                    <td>${e.projectStart } </td>
+                    <td>${e.employBoardEnd}</td>
                     
-                    <c:if test="${r.requestAppro == 0 }">
-                    	<button value="${r.requestNo }" class="btn btn-danger btn-xs requestApproval" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-bell" ></i>승인</button>
-                        <button value="${r.requestNo }" class="btn btn-danger btn-xs requestNoApproval" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>비승인</button>
-				    </c:if>
+                     <td>
+                      <a href="/meister/admin/memberOneViewFrm.do?memberNo=${e.memberNo}" class="btn btn-success btn-xs" style="background-color: #FFBC42; border-color: #FFBC42; text-decoration: none; color: white;"><i class="fa fa-check"></i>게시물 보기</a>
+                    	<button value="${e.employNo }" class="btn btn-danger btn-xs employApproval" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-bell" ></i>재승인</button>
                     </td>
+                     
+                    
+
+                    	
+
+
                   </tr> 
-                  </c:if>
+     
                   </c:forEach>
                   </tr> 
               	</tbody>
@@ -182,6 +184,24 @@
     </div>
     
     
+<!-- --------------------------------sellViewModal----------------------------------------------------- -->
+    <div style="padding-top: 10%;" class="modal fade" id="sellExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="width: 70%;" class="modal-dialog" role="document">
+            <div  class="modal-content">
+                <div style="border-top-left-radius: 4px; border-top-right-radius: 4px; background-color: #6c757d;"class="sell-modal-header modal-header">
+                    <h5 class="modal-title sell-modal-title" id="exampleModalLabel">상세 내용</h5>
+                </div>
+                <div class="sell-modal-body modal-body">
+                   		 내용
+                </div>
+                <div class="sell-modal-footer modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    <button style="background-color: #6c757d;" type="button" class="btn btn-primary sellValue" data-dismiss="modal">닫기</button>       
+                </div>
+            </div>
+        </div>
+    </div>
+    
 <!-- --------------------------------Modal-mini----------------------------------------------------- -->  
     
         <div style="padding-top: 10%;" class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -200,22 +220,21 @@
       
       $(function(){
     	  
-    	  $(".requestApproval").click(function() {
-    		  $("#exampleModal").modal("show");  
-    		  var requestNo = $(this).val(); 
+    	  $(".employApproval").click(function() {
+    		  $("#sellExampleModal").modal("show");  
+    		  var employNo = $(this).val(); 
     		  var reqPage = ${reqPage};
     		  var totalCnt = ${totalCnt}-1;
-    		  console.log(pageNavi);
-    		  $(".modal-title").html("게시물 승인");
-    		  $(".modal-header").css("background-color","#6c757d");
-    		  $(".modal-body").html("게시물을 승인하시겠습니까?");
-    		  $(".memberValue").html("승인");
-    	  $(".memberValue").click(function() {		
+    		  $(".sell-modal-title").html("승인");
+    		  $(".sell-modal-header").css("background-color","#6c757d");
+    		  $(".sell-modal-body").html("게시물을 승인시키시겠습니까?");
+    		  $(".sellValue").html("승인");
+    	  $(".sellValue").click(function() {		
       $.ajax({
-    	    url: "/meister/adminBoard/requestApproval.do?requestNo="+requestNo,
+    	    url: "/meister/adminBoard/employApprovalOk.do?employNo="+employNo,
     	         
     	    success: function(){
-    	    	$("#exampleModal").modal("hide");
+    	    	$("#sellExampleModal").modal("hide");
     	    	$(".modal2text").html("승인되었습니다.");
     	    	$(".modal-content2").css("background-color","#6c757d");
     	    	$("#exampleModal2").modal("show");
@@ -223,7 +242,7 @@
     	    		location.reload();
     	    		if(totalCnt%6 == 0){
     	    			reqPage=reqPage-1;
-    	    		window.location.href="requestApprovalFrm.do?reqPage="+reqPage;
+    	    		window.location.href="employNoApproval.do?reqPage="+reqPage;
     	    		}
     	    		}, 1000);			
     	    } 
@@ -231,40 +250,6 @@
     		});
     	});
     	  
-    	  
-    	  
-    	  $(".requestNoApproval").click(function() {
-    		  $("#exampleModal").modal("show");  
-    		  var requestNo = $(this).val(); 
-    		  var reqPage = ${reqPage};
-    		  var totalCnt = ${totalCnt}-1;
-    		  $(".modal-title").html("게시물 비승인");
-    		  $(".modal-header").css("background-color","#6c757d");
-    		  $(".modal-body").html("게시물을 비승인하시겠습니까?");
-    		  $(".memberValue").html("비승인");
-    	  $(".memberValue").click(function() {		
-      $.ajax({
-    	    url: "/meister/adminBoard/requestNoApproval.do?requestNo="+requestNo,
-    	         
-    	    success: function(){
-    	    	$("#exampleModal").modal("hide");
-    	    	$(".modal2text").html("비승인되었습니다.");
-    	    	$(".modal-content2").css("background-color","#6c757d");
-    	    	$("#exampleModal2").modal("show");
-    	    	setTimeout(function() {
-    	    		location.reload();
-    	    		if(totalCnt%6 == 0){
-    	    			reqPage=reqPage-1;
-    	    		window.location.href="requestApprovalFrm.do?reqPage="+reqPage;
-    	    		}
-    	    		}, 1000);
-    	    	
-    	    } 
-    	  		});
-    		});
-    	});
-
-
 
 	  $("#close_modal").click(function() {
           $("#exampleModal").modal("hide");

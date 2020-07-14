@@ -20,5 +20,9 @@ public class AdminReportVO {
 	private String sellImg;
 	private String memberImg;
 	private int memberNo;
+	private int reportSaveNo;
+	private int reportNoS;
+	private int sellNoS;
+	private String reviewSaveContent;
 	
 }

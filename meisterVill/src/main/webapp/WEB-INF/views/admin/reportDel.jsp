@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>신고현황</title>
+  <title>처리된 신고현황</title>
 
 
 
@@ -50,7 +50,7 @@
       <section class="wrapper site-min-height">
 
           <div class="col-lg-12">
-            <h3><i class="fa fa-angle-right"></i> 신고현황</h3>
+            <h3><i class="fa fa-angle-right"></i>처리된 신고현황</h3>
             <hr>
             <br>
             
@@ -60,18 +60,17 @@
   
         <!-- /row -->
         <div class="row content-panel">
-          <h2 class="centered">신고현황</h2>
+          <h2 class="centered">처리된 신고현황</h2>
           <div class="col-md-10 col-md-offset-1 mt mb">
             <div class="accordion" id="accordion2">
             
-            <div id="total">
+				<div id="total">
 				    <div style="font-size: 20px; text-align: center;">목록없음</div>
 				</div>
-            
-            <c:forEach items="${list }" var="r" varStatus="i">
-				<script>
-				    $("#total").css("display","none");
-				</script>
+            <c:forEach items="${list }" var="r" varStatus="i"> 
+					<script>
+					    $("#total").css("display","none");
+					</script>
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="qna.jsp#${i.index}">
@@ -88,17 +87,14 @@
                   <div class="accordion-inner">
                     
                     	신고된 회원 : <img src="/resources/upload/memberImg/${r.reviewWriterImg}" style="width: 25px; height: 25px; border-radius: 15px; ">${r.reviewWriter }<br>
-                    	<br><br>후기 내용 : ${r.reviewContent}<br><br><br><br>
+                    	<br><br>블라인드 전 후기 내용 : ${r.reviewSaveContent}<br><br><br><br>
                     	작성일 : ${r.reviewDate }<br>
                     	
                     	<button onclick="location.href='/meister/adminSellView/showList.do?sellNo='+${r.sellNo}+'&memberNo='+${r.memberNo}" class="btn btn-success btn-xs sellView" style="background-color: #FFBC42; border-color: #FFBC42; color: white;"><i class="fa fa-check"></i>상세보기</button>
-                    	<c:if test="${r.reportBoardType == 0 }">
-                    	<button onclick="reviewDelete('${r.reportNo }','${r.sellNo}','${r.reviewContent}', '${r.reviewNo }', '${r.reportBoardNo }');" class="btn btn-danger btn-xs" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>후기삭제</button>
-						<button onclick="reviewOK('${r.reportNo }','${r.sellNo}','${r.reviewContent}');" class="btn btn-danger btn-xs" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-trash-o" ></i>신고확인</button>
-						</c:if>
-						<c:if test="${r.reportBoardType == 1}">
-						<button onclick="reviewDelete('${r.reportNo }','${r.sellNo}','${r.reviewContent}', '${r.reviewNo }', '${r.reportBoardNo }');" class="btn btn-danger btn-xs" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>후기삭제</button>
-						</c:if>
+                    	<button onclick="reviewDelete('${r.reportNo }','${r.sellNo}','${r.reviewContent}','${r.reviewNo }', '${r.reportSaveNo}', '${r.reportBoardNo}');" class="btn btn-danger btn-xs" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>후기삭제</button>
+						<button onclick="reviewBack('${r.reportNo }','${r.sellNo}','${r.reviewNo }', '${r.reportSaveNo}', '${r.reviewSaveContent }');" class="btn btn-danger btn-xs" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-trash-o" ></i>후기복구</button>
+
+
                   
                   </div>
                 </div>
@@ -174,7 +170,7 @@
     
     <script>
 
-  function reviewDelete(reportNo, sellNo, reviewContent, reviewNo, reportBoardNo) {
+  function reviewDelete(reportNo, sellNo, reviewContent, reviewNo, reportSaveNo, reportBoardNo) {
 	  var reqPage = ${reqPage};
 	  var totalCnt = ${totalCnt}-1;
 	  $("#exampleModal").modal("show");   
@@ -183,13 +179,13 @@
 	  $(".memberValue").css("background-color","#F16B6F");
 	  $(".memberValue").css("border-color","#F16B6F");
 	  $(".memberValue").html("삭제");
-	  $(".modal-body").html("정말로 후기를 삭제하시겠습니까?");
+	  $(".modal-body").html("정말로 후기를 삭제하시겠습니까?<br> 후기의 데이터를 삭제하고 복구할 수 없습니다.");
 	 console.log(reportNo);
 	 console.log(sellNo);
 	 console.log(reviewContent);
    $(".memberValue").click(function() {		
 $.ajax({
-    url: "/meister/adminBoard/reviewDelete.do?reportNo="+reportNo+"&sellNo="+sellNo+"&reviewContent="+reviewContent+"&reviewNo="+reviewNo+"&reportBoardNo="+reportBoardNo,
+    url: "/meister/adminBoard/reviewRealDelete.do?reportNo="+reportNo+"&sellNo="+sellNo+"&reviewContent="+reviewContent+"&reviewNo="+reviewNo+"&reportSaveNo="+reportSaveNo+"&reportBoardNo="+reportBoardNo,
 
     success: function(){
     	$("#exampleModal").modal("hide");
@@ -200,13 +196,12 @@ $.ajax({
     		location.reload();
     		if(totalCnt%12 == 0){
     			reqPage=reqPage-1;
-    		window.location.href="reportList.do?reqPage="+reqPage;
+    		window.location.href="reportDelList.do?reqPage="+reqPage;
     		}else{
     			reqPage = 1;
-    			window.location.href="reportList.do?reqPage="+reqPage;
+    			window.location.href="reportDelList.do?reqPage="+reqPage;
     		}
-    		
-    		}, 1000);
+    		}, 1000);		
     }
 
   		});
@@ -214,34 +209,47 @@ $.ajax({
   };
   
 
-  function reviewOK(reportNo, sellNo, reviewContent) {
+  function reviewBack(reportNo, sellNo, reviewNo, reportSaveNo, reviewSaveContent) {
+	  var reqPage = ${reqPage};
+	  var totalCnt = ${totalCnt}-1;
 	  $("#exampleModal").modal("show");   
-	  $(".modal-title").html("신고확인");
+	  $(".modal-title").html("후기 내용 복구");
 	  $(".modal-header").css("background-color","#30A9DE");
 	  $(".memberValue").css("background-color","#30A9DE");
 	  $(".memberValue").css("border-color","#30A9DE");
-	  $(".memberValue").html("확인");
-	  $(".modal-body").html("신고를 확인하면 삭제처리가 되지않습니다. ");
+	  $(".memberValue").html("복구");
+	  $(".modal-body").html("후기를 전에 내용으로 복구하시겠습니까?");
 	 console.log(reportNo);
 	 console.log(sellNo);
-	 console.log(reviewContent);
    $(".memberValue").click(function() {		
 $.ajax({
-    url: "/meister/adminBoard/reviewOk.do?reportNo="+reportNo+"&sellNo="+sellNo+"&reviewContent="+reviewContent,
+    url: "/meister/adminBoard/reviewBack.do?reportNo="+reportNo+"&sellNo="+sellNo+"&reviewNo="+reviewNo+"&reportSaveNo="+reportSaveNo+"&reviewSaveContent="+reviewSaveContent,
 
     success: function(){
     	$("#exampleModal").modal("hide");
-    	$(".modal2text").html("확인되었습니다.");
+    	$(".modal2text").html("복구되었습니다.");
     	$(".modal-content2").css("background-color","#30A9DE");
     	$("#exampleModal2").modal("show");
     	setTimeout(function() {
     		location.reload();
-    		}, 1000);	
+    		if(totalCnt%12 == 0){
+    			reqPage=reqPage-1;
+    		window.location.href="reportDelList.do?reqPage="+reqPage;
+    		}else{
+    			reqPage = 1;
+    			window.location.href="reportDelList.do?reqPage="+reqPage;
+    		}
+    		
+    		}, 1000);		
     }
 
   		});
 	}); 
   };
+
+  
+  
+
 
 
     </script>

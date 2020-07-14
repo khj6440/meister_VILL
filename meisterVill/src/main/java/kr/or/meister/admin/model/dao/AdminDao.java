@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.meister.admin.model.vo.AdminMemberJoinSellJoinOrdersVO;
 import kr.or.meister.admin.model.vo.AdminNoticePageVO;
 import kr.or.meister.admin.model.vo.AdminReportVO;
+import kr.or.meister.admin.model.vo.EmployListVO;
 import kr.or.meister.admin.model.vo.MemberInformVO;
 import kr.or.meister.admin.model.vo.MemberJoinEmployVO;
 import kr.or.meister.admin.model.vo.MemberJoinReportVO;
@@ -16,6 +17,7 @@ import kr.or.meister.admin.model.vo.MemberJoinVO;
 import kr.or.meister.admin.model.vo.RequestListVO;
 import kr.or.meister.admin.model.vo.RequestSellVO;
 import kr.or.meister.admin.model.vo.SellSellVO;
+import kr.or.meister.employ.model.vo.EmployVO;
 import kr.or.meister.admin.model.vo.SellJoinOrdersJoinOptionVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.notice.model.vo.NoticeVO;
@@ -100,6 +102,10 @@ public class AdminDao {
 		return sqlSession.selectList("joinSellJoinOrders.sellList",se);
 	}
 	
+	public List<AdminMemberJoinSellJoinOrdersVO> sellApprovalNoList(HashMap<String, Integer> se) {
+		return sqlSession.selectList("joinSellJoinOrders.sellApprovalNoList",se);
+	}
+	
 	public List<AdminMemberJoinSellJoinOrdersVO> sellAllViewSellList(HashMap<String, Integer> se) {
 		return sqlSession.selectList("joinSellJoinOrders.sellAllViewSellList",se);
 	}
@@ -114,6 +120,10 @@ public class AdminDao {
 	
 	public List<RequestListVO> requestListFrm(HashMap<String, Integer> se) {
 		return sqlSession.selectList("joinSellJoinOrders.requestListFrm",se);
+	}
+	
+	public List<RequestListVO> requestApprovalNoListFrm(HashMap<String, Integer> se) {
+		return sqlSession.selectList("joinSellJoinOrders.requestApprovalNoListFrm",se);
 	}
 
 	public List<RequestListVO> requestApprovalFrm(HashMap<String, Integer> se) {
@@ -170,6 +180,10 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMember.sellListCnt");
 	}
 	
+	public int sellApprovalNoListFrmCnt() {
+		return sqlSession.selectOne("adminMember.sellApprovalNoListFrmCnt");
+	}
+	
 	public int sellApprovalCnt() {
 		return sqlSession.selectOne("adminMember.sellApprovalCnt");
 	}
@@ -221,6 +235,10 @@ public class AdminDao {
 	public int approval(int sellNo) {
 		return sqlSession.update("adminMember.approval",sellNo);
 	}
+	
+	public int approvalNo(int sellNo) {
+		return sqlSession.update("adminMember.approvalNo",sellNo);
+	}
 
 	public int adminNoticeCnt() {
 		return sqlSession.selectOne("adminMember.adminNoticeCnt");
@@ -251,8 +269,45 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMember.reportCnt");
 	}
 	
+	public int reportDelCnt() {
+		return sqlSession.selectOne("adminMember.reportDelCnt");
+	}
+	
+	
 	public List<AdminReportVO> reportPage(HashMap<String, Integer> se) {
 		return sqlSession.selectList("joinSellJoinOrders.reportPage",se);
+	}
+	
+	public List<AdminReportVO> reportDelPage(HashMap<String, Integer> se) {
+		return sqlSession.selectList("joinSellJoinOrders.reportDelPage",se);
+	}
+
+	public int requestApprovalNoListFrmCnt() {
+		return sqlSession.selectOne("adminMember.requestApprovalNoListFrmCnt");
+	}
+
+	public int employListFrmCnt() {
+		return sqlSession.selectOne("adminMember.employListFrmCnt");
+	}
+
+	public List<EmployListVO> employListFrm(HashMap<String, Integer> se) {
+		return sqlSession.selectList("joinSellJoinOrders.employListFrm",se);
+	}
+	
+	public List<EmployListVO> employApproval(HashMap<String, Integer> se) {
+		return sqlSession.selectList("joinSellJoinOrders.employApproval",se);
+	}
+	
+	public List<EmployListVO> employNoApproval(HashMap<String, Integer> se) {
+		return sqlSession.selectList("joinSellJoinOrders.employNoApproval",se);
+	}
+
+	public int employApprovalCnt() {
+		return sqlSession.selectOne("adminMember.employApprovalCnt");
+	}
+	
+	public int employNoApprovalCnt() {
+		return sqlSession.selectOne("adminMember.employNoApprovalCnt");
 	}
 	
 
