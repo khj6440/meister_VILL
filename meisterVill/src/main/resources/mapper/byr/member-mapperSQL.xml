@@ -56,7 +56,8 @@
 			member_grade as memberGrade,
 			member_date as memberDate
 		from member
-		where member_email=#{memberEmail} and member_status=0	
+		where member_email=#{memberEmail} and member_status=0
+		
 	</select>
 
 	<select id="checkNickname" parameterType="string" resultType="member">

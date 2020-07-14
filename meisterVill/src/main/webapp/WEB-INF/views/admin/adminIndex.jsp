@@ -369,7 +369,7 @@
              <div style=" display: block;">
           <div class="col-md-4 mb">
                 <!-- WHITE PANEL - TOP USER -->
-                <a href="/meister/adminBoard/reportList.do?reqPage=1">
+                <a href="#">
                 <div class="white-panel pn" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/resources/upload/admin/reImg.png');  background-size: cover;">
                   <div class="white-header">
                     <h5>신고현황</h5>
@@ -449,7 +449,7 @@
                 <p>
                   <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 100%; display: inline-block;">${ms.sellTitle }</span>
                   <br/>
-                  <a href="/meister/adminSellView/showList.do?sellNo=${ms.sellNo}&memberNo=${ms.memberNo}">게시글 이동</a>
+                  <a href="#">게시글 이동</a>
                   <c:if test="${ms.sellStatus == 0}">
                   		<span class="label label-info label-mini"style="background-color: #5CAB7D; font-size: 9px;">
                    	상태&nbsp[정상]
@@ -476,7 +476,7 @@
            <a href="/meister/admin/sellListFrm.do?reqPage=1" style="border-style: none; color: #2b90d9; text-align: center;"><h6>VIEW ALL</h6></a>
           	<br><br>
             <!-- USERS ONLINE SECTION -->
-            <h4 class="centered mt">진행 중인  프로젝트</h4>
+            <h4 class="centered mt">프로젝트 현황</h4>
             <!-- First Member -->
             <c:if test="${empty mainEmploy}">
             <div class="desc" style="text-align: center;">목록없음</div>
@@ -516,7 +516,7 @@
             </div>
             </c:forEach>
             </c:if>
-            <a href="/meister/adminBoard/employListFrm.do?reqPage=1" style="border-style: none; color: #2b90d9; text-align: center;"><h6>VIEW ALL</h6></a>
+            <a href="#" style="border-style: none; color: #2b90d9; text-align: center;"><h6>VIEW ALL</h6></a>
           	<br><br>
             
           <!-- /col-lg-3 -->

@@ -12,7 +12,7 @@
 	
 <!-- ******************************************************************************** -->
 
-<title>견적요청글 승인관리</title>
+<title>판매글 리스트</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 
@@ -34,7 +34,7 @@
 
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
-        ********************************************************************************************************************************************************** -->
+        *********************************************************************************************************************************************************** -->
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
@@ -44,7 +44,7 @@
           <div class="col-md-12">
             <div class="content-panel">
               <table class="table table-striped">
-                <h4><i class="fa fa-angle-right"></i>견적요청글 승인관리</h4>
+                <h4><i class="fa fa-angle-right"></i>견적요청글 리스트</h4>
                 <hr>
 					 <thead>
                   <tr>
@@ -118,7 +118,7 @@
                       <!-- <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button> -->
                     
                     <c:if test="${r.requestAppro == 0 }">
-                    	<button value="${r.requestNo }" class="btn btn-danger btn-xs requestApproval" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-bell" ></i>승인</button>
+                    	<button value="${r.requestNo }" class="btn btn-danger btn-xs requestApproval" style="background-color: #30A9DE; border-color: #30A9DE; color: white;"><i class="fa fa-trash-o" ></i>승인</button>
                         <button value="${r.requestNo }" class="btn btn-danger btn-xs requestNoApproval" style="background-color: #F16B6F; border-color: #F16B6F; color: white;"><i class="fa fa-trash-o" ></i>비승인</button>
 				    </c:if>
                     </td>

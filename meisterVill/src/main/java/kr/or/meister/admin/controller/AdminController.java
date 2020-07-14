@@ -71,19 +71,6 @@ public class AdminController {
 			return "redirect:/meister/admin/sellApprovalFrm.do?reqPage=1";
 		}	
 	}
-	
-	
-	@RequestMapping(value="approvalNo.do")
-	public String approvalNo(int sellNo, HttpServletRequest request) {
-		
-		int result = service.approval(sellNo);
-		
-		if(result>0) {
-			return "redirect:/meister/admin/sellApprovalFrm.do?reqPage=1";
-		}else {
-			return "redirect:/meister/admin/sellApprovalFrm.do?reqPage=1";
-		}	
-	}
 
 	
 	@RequestMapping(value="/qwe.do")
@@ -220,7 +207,7 @@ public class AdminController {
 	public String memberOneViewFrm(HttpServletRequest request, int memberNo) {
 		NumberFormat df = NumberFormat.getNumberInstance();
 		MemberJoinVO member = new MemberJoinVO();
-
+		System.out.println("회원번호 : "+memberNo);
 		member = service.memberOneView(memberNo);
 		List<AdminMemberJoinSellJoinOrdersVO> sellList = service.memberSell(memberNo);
 		List<SellJoinOrdersJoinOptionVO> sellOrderList =service.memberOrder(memberNo);
@@ -263,7 +250,7 @@ public class AdminController {
 	@RequestMapping(value="/memberOneViewSellView.do", produces="application/json; charset=utf-8;")
 	public String memberOneViewSellView(HttpServletRequest request, int memberNo) {
 		MemberJoinVO member = new MemberJoinVO();
-
+		System.out.println("회원번호 : "+memberNo);
 		member = service.memberOneView(memberNo);
 		List<AdminMemberJoinSellJoinOrdersVO> sellList = service.memberSell(memberNo);
 		List<SellJoinOrdersJoinOptionVO> sellOrderList =service.memberOrder(memberNo);
@@ -427,7 +414,8 @@ public class AdminController {
 		
 
 		
-
+		System.out.println("셀 최고 가격 : "+sellSum+"맴버 넘버 : "+sellMember);
+		System.out.println("리퀘스트 최고 가격 : "+requestSum+"맴버 넘버 : "+requestMember);
 		
 
 		if(sellSum > requestSum) {
@@ -438,7 +426,7 @@ public class AdminController {
 			allMember = requestMember;
 		}
 
-
+		System.out.println("최고 가격 : "+allSum+"맴버 넘버 : "+allMember);
 		MemberJoinVO sm = new MemberJoinVO();
 		MemberJoinVO rm = new MemberJoinVO();
 		MemberJoinVO am = new MemberJoinVO();

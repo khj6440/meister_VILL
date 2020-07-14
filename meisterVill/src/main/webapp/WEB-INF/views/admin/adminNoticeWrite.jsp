@@ -54,7 +54,7 @@
 		<jsp:include page="/WEB-INF/views/notice/noticeCkeditor.jsp" />
 	</div>
 	
-		<div style="text-align: center; margin-top: 2%;"><button type="submit" style="width: 150px; height: 30px; margin-right: 1%;">작성</button><div style="width: 150px; height: 30px; display: inline-block;"><a href='/meister/adminBoard/adminNotice.do?reqPage=1' style="width: 150px; height: 30px;">뒤로가기</a></div></div>
+		<button type="submit">작성</button>
 	
 	</form>
 	

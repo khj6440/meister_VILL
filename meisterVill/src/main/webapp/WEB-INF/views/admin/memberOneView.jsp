@@ -52,7 +52,7 @@
                 <h5>닉네임 : ${m.memberNickname }</h5>
                 <p>${m.memberIntro}</p>
                 <br>
-                <p><button class="btn btn-theme mesege"><i class="fa fa-envelope">&nbsp&nbsp</i>메세지 보내기</button></p>
+                <p><button class="btn btn-theme"><i class="fa fa-envelope">&nbsp&nbsp</i>메세지 보내기</button></p>
               </div>
               <!-- /col-md-4 -->
               <div class="col-md-4 centered" style="float: right;">
@@ -413,31 +413,6 @@
         </div>
     </div>
     
-    
-    
-<!-- --------------------------------Modal--------------------------------------------------------------------------- -->  
-    
-    <div style="padding-top: 5%;" class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div style="width: 60%; height: 600px;" class="modal-dialog" role="document">
-            <div  class="modal-content">
-                <div style="border-top-left-radius: 4px; border-top-right-radius: 4px; background-color: #6c757d;"class="modal-header hh">
-                    <h5 class="modal-title2" id="exampleModalLabel">회원 정지</h5>
-                </div>
-                <div class="modal-body">
-                   		 
-					유저번호 : <input type="text" name="memberNo"><br>
-					내용 : <input type="text" name="content">
-                   		 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-secondary memberValue" data-dismiss="modal">닫기</button>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    
 <!-- --------------------------------Modal-mini----------------------------------------------------- -->  
     
         <div style="padding-top: 10%;" class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -454,41 +429,7 @@
   
       <script>
 	  
-      
 	  $(function(){
-		  
-		  
-		  $(".mesege").click(function() {
-			  $("#exampleModal2").modal("show");  
-			  var memberNo = $(this).val(); 
-			  $(".modal-title2").html("메세지 보내기");
-			  $(".modal-title2").css("color","white");
-			  $(".hh").css("background-color","#6c757d");
-			  $(".memberValue").css("background-color","#6c757d");
-			  $(".memberValue").css("border-color","#6c757d");
-			  $(".memberValue").html("보내기");
-			  $(".memberValue").css("color","white");
-		  $(".memberValue").click(function() {		
-	  $.ajax({
-		    url: "/meister/admin/memberHalt.do?memberNo="+memberNo,
-
-		    success: function(){
-		    	$("#exampleModal").modal("hide");
-		    	$(".modal2text").html("정지되었습니다.");
-		    	$(".modal-content2").css("background-color","#6c757d");
-		    	$("#exampleModal2").modal("show");
-		    	setTimeout(function() {
-		    		location.reload();
-		    		}, 1000);			
-		    }
-		    
-		    
-		  		});
-			});
-		});
-		  
-		  
-		  
 		  
 		  $(".modalHalt").click(function() {
 			  $("#exampleModal").modal("show");  

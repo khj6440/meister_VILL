@@ -161,7 +161,12 @@ function goLocation(where) {
         <img class="img-fluid rounded" src="/resources/upload/sellImg/${sell.sellvo.sellImg }">
         <!-- Post Content -->
         <hr>
-
+        <div id="navbar">
+		  <a href="javascript:void(0);" onclick="goLocation(this);" data-target="#mainContent" id="po1">상세페이지</a>
+		  <a href="javascript:void(0);" onclick="goLocation(this);">이미지</a>
+		  <a href="javascript:void(0);" onclick="goLocation(this);">취소 · 환불규정</a>
+		  <a href="javascript:void(0);" onclick="goLocation(this);">서비스 평가</a>
+		</div>
 	<script>
 		window.onscroll = function() {myFunction()};
 		var navbar = document.getElementById("navbar");

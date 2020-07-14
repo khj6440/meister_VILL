@@ -109,7 +109,7 @@
             employ_writer as employWriter,
             project_members as projectMembers,
             project_start as projectStart
-  			from employ LEFT JOIN member ON (member_no = employ_no) order by employ_no desc
+  			from employ LEFT JOIN member ON (member_no = employ_no) where employ_status = 1 order by employ_no desc
 	</select>
 	
 	
@@ -232,18 +232,22 @@
 	</select>
 	
 	<select id="level0Cnt" resultType="_int">
+	<!-- 일반 회원 총인원  -->
 		 select count(*) as level0Cnt from member where member_level = 0
 	</select>
 	
 	<select id="level1Cnt" resultType="_int">
+	<!-- 전문가 회원 총인원  -->
 		select count(*) as level1Cnt from member where member_level = 1
 	</select>
 	
 	<select id="adminNoticeCnt" resultType="_int">
+	<!-- 전문가 회원 총인원  -->
 		 select count(*) as adminNoticeCnt from notice
 	</select>
 	
 	<select id="level2Cnt" resultType="_int">
+	<!-- 관리자 회원 총인원  -->
 		select count(*) as level2Cnt from member where member_level = 2
 	</select>
 	
@@ -268,62 +272,42 @@
 	</select>
 	
 	<select id="sellCnt" resultType="_int">
+	<!-- sell 총 게시물 수  -->
 		 select count(*) as sellCnt from sell
 	</select>
 	
-	<select id="employListFrmCnt" resultType="_int">
-		 select count(*) as employListFrmCnt from employ
-	</select>
-	
-	<select id="employApprovalCnt" resultType="_int">
-		 select count(*) as employListFrmCnt from employ where employ_Appro = 0
-	</select>
-	
-	<select id="employNoApprovalCnt" resultType="_int">
-		 select count(*) as employNoApprovalCnt from employ where employ_Appro = 2
-	</select>
-	
-	<update id="employApprovalOk" parameterType="_int">
-		UPDATE employ SET employ_appro = 1 WHERE employ_no = #{employNo}
-	</update>
-	
-	<update id="employApprovalNo" parameterType="_int">
-		UPDATE employ SET employ_appro = 2 WHERE employ_no = #{employNo}
-	</update>
-	
 	<select id="sellListCnt" resultType="_int">
+	<!-- sell 총 게시물 수  -->
 		 select count(*) as sellListCnt from sell where sell_appro = 1
 	</select>
 	
-	<select id="sellApprovalNoListFrmCnt" resultType="_int">
-		 select count(*) as sellListCnt from sell where sell_appro = 2
-	</select>
-	
 	<select id="memberOneViewSellCnt" resultType="_int">
+	<!-- sell 총 게시물 수 --> 
 		 select count(*) as sellListCnt from sell where sell_writer = #{memberNo}
 	</select>
 	
-	<select id="requestApprovalNoListFrmCnt" resultType="_int">
-		 select count(*) as requestListCnt from request where request_appro = 2
-	</select>
-	
 	<select id="memberOneViewPickCnt" resultType="_int">
+	<!-- sell 총 게시물 수 --> 
 		 select count(*) as pickListCnt from pick where member_no = #{memberNo}
 	</select>
 	
 	<select id="sellApprovalCnt" resultType="_int">
+	<!-- sell 총 게시물 수  -->
 		select count(*) as sellApprovalCnt from sell where sell_appro = 0
 	</select>
 
 	<select id="requestApprovalCnt" resultType="_int">
+	<!-- sell 총 게시물 수  -->
 		select count(*) as requestApprovalCnt from request where request_appro = 0
 	</select>
 	
 	<select id="requestCnt" resultType="_int">
+	<!-- request 총 게시물 수  -->
 		select count(*) as requestCnt from request where request_appro = 1
 	</select>
 	
 	<select id="employCnt" resultType="_int">
+	<!-- employ 총 게시물 수  -->
 		select count(*) as employCnt from EMPLOY
 	</select>
 	
@@ -398,44 +382,12 @@
 		UPDATE sell SET sell_status = 2 WHERE sell_no = #{sellNo}
 	</update>
 	
-	<update id="reviewDelete" parameterType="Map">
+	<update id="reviewDelete" parameterType="int">
 		 UPDATE report SET report_board_type = 2 WHERE report_no = #{reportNo}
 	</update>
-
-	<update id="reviewOk" parameterType="int">
-		 UPDATE report SET report_board_type = 1 WHERE report_no = #{reportNo}
-	</update>
-	
-	
-	<delete id="reviewRealDelete" parameterType="Map">
-		    delete report where report_board_no = #{reportBoardNo}
-	</delete>
-
-	<delete id="reportBoardNoDelete" parameterType="Map">
-		    delete report where report_board_no = #{reportBoardNo} and report_no != #{reportNo}
-	</delete>
-	
-	
-	<update id="reviewBack" parameterType="int">
-		 UPDATE report SET report_board_type = 1 WHERE report_no = #{reportNo}
-	</update>
-	
-	<delete id="reDel" parameterType="int">
-		 delete review where review_no = #{reviewNo}
-	</delete>
-	
-	<delete id="resDel" parameterType="int">
-		 delete report_save where report_save_no = #{reportSaveNo}
-	</delete>
-
-
 	
 	<update id="approval" parameterType="int">
 		UPDATE sell SET sell_appro = 1 WHERE sell_no = #{sellNo}
-	</update>
-	
-	<update id="approvalNo" parameterType="int">
-		UPDATE sell SET sell_appro = 2 WHERE sell_no = #{sellNo}
 	</update>
 	
 	
@@ -509,33 +461,10 @@
 	</select>
 	
 
-
 	<select id="reportCnt" resultType="_int">
 		select count(*) as reportCnt from report where REPORT_BOARD_TYPE = 0
 	</select>
 	
-	<select id="reportDelCnt" resultType="_int">
-		select count(*) as reportCnt from report where REPORT_BOARD_TYPE = 2
-	</select>
-	
-	<insert id="reportReviewSave" parameterType="Map">
-		insert into report_save values(REPORT_SAVE_SEQ.NEXTVAL, #{reportNo}, #{sellNo}, #{reviewContent})
-	</insert>
 
-	<update id="reviewSaveBack" parameterType="Map">
-		 update review set review_content=#{reviewSaveContent} where review_no = #{reviewNo} and sell_no = #{sellNo}
-	</update>
-	
-	<update id="reviewDel" parameterType="Map">
-		  update review set review_content='신고로 인해 차단된 후기입니다.' where review_content = #{reviewContent} and review_no = #{reviewNo}
-	</update>
-	
-	<select id="reportIf" resultType="reportSave">
-		   select report_save_no as reportSaveNo,
-            report_no_s as reportNoS,
-            sell_no_s as sellNoS,
-            review_save_content as reviewSaveContent
-            from report_save
-	</select>
 
 </mapper>

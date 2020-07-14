@@ -43,17 +43,18 @@
 <section id="main-content">
 	<section class="wrapper ">
 
-<div style="width: 100%; height:100%; background-color: #FFEEE4;">
+<div>
 
 	
-	<div style="width: 100%; height:130px; background-color: #E0E3DA; margin: 0 auto;">
-		<div style="font-size:25px; text-align: center; width: 100%; height: 100px; margin: 0 auto; line-height: 100px;">${n.noticeTitle }</div>
-	
+	<br><br><br>
+	<div>${n.noticeTitle }</div>
+	<br><br>
+	${n.noticeWriter }
+	<div >
+		${n.noticeContent}
 	</div>
-
-	<div style="text-align: center; margin-top: 4%;">${n.noticeContent}</div>
 	
-	<div style="height: 100px; width: 100%;"></div>
+
 	
 </div>
 	</section>

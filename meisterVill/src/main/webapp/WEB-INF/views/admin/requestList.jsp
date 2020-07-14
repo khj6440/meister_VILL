@@ -12,7 +12,7 @@
 	
 <!-- ******************************************************************************** -->
 
-<title>견적요청글 리스트</title>
+<title>판매글 리스트</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 

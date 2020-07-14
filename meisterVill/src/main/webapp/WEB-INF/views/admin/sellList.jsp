@@ -58,7 +58,7 @@
                     <td style=" margin-left: 5%; margin-bottom: 5%; margin-top:5%; display: inline-block; border-top-style: none;">
                      <div onClick="location.href='/meister/adminSellView/showList.do?sellNo='+${s.sellNo}+'&memberNo='+${s.memberNo}" class="sellView"><img src="/resources/upload/sellImg/${s.sellImg}" style="width: 450px; height: 400px;"></div> 
 
-					<div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 440px; font-size: 17px;">${s.sellTitle}</div>
+				
 				<div>
                     <c:if test="${s.memberImg != null }">
                     		<div><img src="/resources/upload/memberImg/${s.memberImg}" style="width: 25px; height: 25px;"> 

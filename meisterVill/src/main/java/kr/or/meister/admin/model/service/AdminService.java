@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import kr.or.meister.admin.model.dao.AdminDao;
 import kr.or.meister.admin.model.vo.AdminMemberJoinSellJoinOrdersVO;
-import kr.or.meister.admin.model.vo.EmployListVO;
 import kr.or.meister.admin.model.vo.MemberInformVO;
 import kr.or.meister.admin.model.vo.MemberJoinEmployVO;
 import kr.or.meister.admin.model.vo.MemberJoinReportVO;
@@ -18,7 +17,6 @@ import kr.or.meister.admin.model.vo.MemberJoinVO;
 import kr.or.meister.admin.model.vo.MemberStatsVO;
 import kr.or.meister.admin.model.vo.RequestListVO;
 import kr.or.meister.admin.model.vo.RequestSellVO;
-import kr.or.meister.admin.model.vo.SelectAllEmployPageVO;
 import kr.or.meister.admin.model.vo.SelectAllMemberPageVO;
 import kr.or.meister.admin.model.vo.SelectAllRequestPageVO;
 import kr.or.meister.admin.model.vo.SellAndRequestVO;
@@ -26,7 +24,6 @@ import kr.or.meister.admin.model.vo.SellSellVO;
 import kr.or.meister.admin.model.vo.SellJoinOrdersJoinOptionVO;
 import kr.or.meister.admin.model.vo.SellStatsVO;
 import kr.or.meister.admin.model.vo.selectAllSellPageVO;
-import kr.or.meister.employ.model.vo.EmployVO;
 import kr.or.meister.member.model.vo.MemberVO;
 import kr.or.meister.sell.model.vo.SellVO;
 
@@ -75,10 +72,10 @@ public class AdminService {
 	public SelectAllMemberPageVO memberAllViewPage(int reqPage) {
 		
 		int numPerPage = 6;
-
+		System.out.println("한번에 표시할 회원 갯수 : "+numPerPage);
 		
 		int totalCount = dao.totalCount();
-
+		System.out.println("회원의 전체 갯수 : "+totalCount);
 		
 		int totalPage = 0;
 		
@@ -196,10 +193,10 @@ public class AdminService {
 
 	public SelectAllMemberPageVO memberHaltPage(int reqPage) {
 		int numPerPage = 6;
-
+		System.out.println("한번에 표시할 회원 갯수 : "+numPerPage);
 		
 		int totalCount = dao.totalHaltCount();
-
+		System.out.println("회원의 전체 갯수 : "+totalCount);
 		
 		int totalPage = 0;
 		
@@ -258,10 +255,10 @@ public class AdminService {
 	
 	public SelectAllMemberPageVO memberDeletion(int reqPage) {
 		int numPerPage = 6;
-
+		System.out.println("한번에 표시할 회원 갯수 : "+numPerPage);
 		
 		int totalCount = dao.totalDeletionCount();
-
+		System.out.println("회원의 전체 갯수 : "+totalCount);
 		
 		int totalPage = 0;
 		
@@ -315,10 +312,6 @@ public class AdminService {
 	public int approval(int sellNo) {
 		return dao.approval(sellNo);
 	}
-	
-	public int approvalNo(int sellNo) {
-		return dao.approvalNo(sellNo);
-	}
 
 	public int memberHalt(int memberNo) {
 		return dao.memberHalt(memberNo);
@@ -336,10 +329,10 @@ public class AdminService {
 
 	public selectAllSellPageVO sellList(int reqPage) {
 		int numPerPage = 6;
-
+		System.out.println("한번에 표시할 판매게시물 갯수 : "+numPerPage);
 		
 		int totalCount = dao.sellListCnt();
-
+		System.out.println("판매게시물의 전체 갯수 : "+totalCount);
 		
 		int totalPage = 0;
 		
@@ -389,314 +382,15 @@ public class AdminService {
 		
 		return sap;
 	}
-		
-
 	
-	public int sellApprovalNoListFrmCnt() {
-		return dao.sellApprovalNoListFrmCnt();
-	}
-	
-	public selectAllSellPageVO sellApprovalNoListFrm(int reqPage) {
-		int numPerPage = 6;
-
-		
-		int totalCount = dao.sellApprovalNoListFrmCnt();
-
-		
-		int totalPage = 0;
-		
-		if(totalCount%numPerPage == 0) {
-			totalPage = totalCount/numPerPage;
-		}else {
-			totalPage = totalCount/numPerPage+1;
-		}
-		
-		
-		int start = (reqPage-1)*numPerPage+1;
-		int end = reqPage*numPerPage;
-		
-		HashMap<String ,Integer> se = new HashMap<String, Integer>();
-		se.put("start", start);
-		se.put("end", end);
-		List<AdminMemberJoinSellJoinOrdersVO> list = dao.sellApprovalNoList(se);
-
-		
-		
-		String pageNavi = "";
-		
-		int pageNaviSize = 5; 
-		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
-		
-		if(pageNo != 1) {
-			pageNavi += "<a class='btn' href='/meister/admin/sellApprovalNoListFrm.do?reqPage="+(pageNo-pageNaviSize)+"' style=' background-color:#F4F4F4; border-radius: 5px; margin-left: 2px;'>이전</a>";
-		}
-		for(int i=0; i<pageNaviSize; i++) {
-			if(reqPage == pageNo) {
-				pageNavi += "<span class='btn' style=' background-color:#76D5FF; border-radius: 5px; margin-left: 2px;'>"+pageNo+"</span>";
-			}else {
-				pageNavi += "<a class='btn' href='/meister/admin/sellApprovalNoListFrm.do?reqPage="+pageNo+"' style=' background-color:#B6EAFA; border-radius: 5px; margin-left: 2px;'>"+pageNo+"</a>";			
-				}
-			pageNo++;
-			if(pageNo>totalPage) {
-				break;
-			}
-		}
-		
-		if(pageNo <= totalPage) {
-			pageNavi += "<a class='btn' href='/meister/admin/sellApprovalNoListFrm.do?reqPage="+pageNo+"' style=' background-color:#F4F4F4; border-radius: 5px; margin-left: 2px;'>다음</a>";
-		}
-
-		
-		selectAllSellPageVO sap = new selectAllSellPageVO(list, pageNavi);		
-		
-		return sap;
-	}
-	
-	public int requestApprovalNoListFrmCnt(){
-		return dao.requestApprovalNoListFrmCnt();
-	}
-	
-	
-	public int employApprovalCnt(){
-		return dao.employApprovalCnt();
-	}
-	
-	public int employNoApprovalCnt() {
-		return dao.employNoApprovalCnt();
-	}
-
-	public SelectAllEmployPageVO employNoApproval(int reqPage) {
-		int numPerPage = 6;
-
-		
-		int totalCount = dao.employNoApprovalCnt();
-
-		
-		int totalPage = 0;
-		
-		if(totalCount%numPerPage == 0) {
-			totalPage = totalCount/numPerPage;
-		}else {
-			totalPage = totalCount/numPerPage+1;
-		}
-		
-		
-		int start = (reqPage-1)*numPerPage+1;
-		int end = reqPage*numPerPage;
-		
-		HashMap<String ,Integer> se = new HashMap<String, Integer>();
-		se.put("start", start);
-		se.put("end", end);
-		List<EmployListVO> list = dao.employNoApproval(se);
-
-		
-		
-		String pageNavi = "";
-		
-		int pageNaviSize = 5; 
-		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
-		
-		if(pageNo != 1) {
-			pageNavi += "<a class='btn' href='/meister/admin/requestApprovalNoListFrm.do?reqPage="+(pageNo-pageNaviSize)+"' style=' background-color:#F4F4F4; border-radius: 5px; margin-left: 2px;'>이전</a>";
-		}
-		for(int i=0; i<pageNaviSize; i++) {
-			if(reqPage == pageNo) {
-				pageNavi += "<span class='btn' style=' background-color:#76D5FF; border-radius: 5px; margin-left: 2px;'>"+pageNo+"</span>";
-			}else {
-				pageNavi += "<a class='btn' href='/meister/admin/requestApprovalNoListFrm.do?reqPage="+pageNo+"' style=' background-color:#B6EAFA; border-radius: 5px; margin-left: 2px;'>"+pageNo+"</a>";			
-				}
-			pageNo++;
-			if(pageNo>totalPage) {
-				break;
-			}
-		}
-		
-		if(pageNo <= totalPage) {
-			pageNavi += "<a class='btn' href='/meister/admin/requestApprovalNoListFrm.do?reqPage="+pageNo+"' style=' background-color:#F4F4F4; border-radius: 5px; margin-left: 2px;'>다음</a>";
-		}
-
-		
-		SelectAllEmployPageVO srp = new SelectAllEmployPageVO(list, pageNavi);		
-		
-		return srp;
-	}
-	
-	
-	public SelectAllEmployPageVO employApproval(int reqPage) {
-		int numPerPage = 6;
-	
-		
-		int totalCount = dao.employApprovalCnt();
-
-		
-		int totalPage = 0;
-		
-		if(totalCount%numPerPage == 0) {
-			totalPage = totalCount/numPerPage;
-		}else {
-			totalPage = totalCount/numPerPage+1;
-		}
-		
-		
-		int start = (reqPage-1)*numPerPage+1;
-		int end = reqPage*numPerPage;
-		
-		HashMap<String ,Integer> se = new HashMap<String, Integer>();
-		se.put("start", start);
-		se.put("end", end);
-		List<EmployListVO> list = dao.employApproval(se);
-
-		
-		
-		String pageNavi = "";
-		
-		int pageNaviSize = 5; 
-		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
-		
-		if(pageNo != 1) {
-			pageNavi += "<a class='btn' href='/meister/admin/requestApprovalNoListFrm.do?reqPage="+(pageNo-pageNaviSize)+"' style=' background-color:#F4F4F4; border-radius: 5px; margin-left: 2px;'>이전</a>";
-		}
-		for(int i=0; i<pageNaviSize; i++) {
-			if(reqPage == pageNo) {
-				pageNavi += "<span class='btn' style=' background-color:#76D5FF; border-radius: 5px; margin-left: 2px;'>"+pageNo+"</span>";
-			}else {
-				pageNavi += "<a class='btn' href='/meister/admin/requestApprovalNoListFrm.do?reqPage="+pageNo+"' style=' background-color:#B6EAFA; border-radius: 5px; margin-left: 2px;'>"+pageNo+"</a>";			
-				}
-			pageNo++;
-			if(pageNo>totalPage) {
-				break;
-			}
-		}
-		
-		if(pageNo <= totalPage) {
-			pageNavi += "<a class='btn' href='/meister/admin/requestApprovalNoListFrm.do?reqPage="+pageNo+"' style=' background-color:#F4F4F4; border-radius: 5px; margin-left: 2px;'>다음</a>";
-		}
-
-		
-		SelectAllEmployPageVO srp = new SelectAllEmployPageVO(list, pageNavi);		
-		
-		return srp;
-	}
-	
-	public SelectAllEmployPageVO employListFrm(int reqPage) {
-		int numPerPage = 6;
-
-		
-		int totalCount = dao.employListFrmCnt();
-		
-		
-		int totalPage = 0;
-		
-		if(totalCount%numPerPage == 0) {
-			totalPage = totalCount/numPerPage;
-		}else {
-			totalPage = totalCount/numPerPage+1;
-		}
-		
-		
-		int start = (reqPage-1)*numPerPage+1;
-		int end = reqPage*numPerPage;
-		
-		HashMap<String ,Integer> se = new HashMap<String, Integer>();
-		se.put("start", start);
-		se.put("end", end);
-		List<EmployListVO> list = dao.employListFrm(se);
-
-		
-		
-		String pageNavi = "";
-		
-		int pageNaviSize = 5; 
-		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
-		
-		if(pageNo != 1) {
-			pageNavi += "<a class='btn' href='/meister/admin/requestApprovalNoListFrm.do?reqPage="+(pageNo-pageNaviSize)+"' style=' background-color:#F4F4F4; border-radius: 5px; margin-left: 2px;'>이전</a>";
-		}
-		for(int i=0; i<pageNaviSize; i++) {
-			if(reqPage == pageNo) {
-				pageNavi += "<span class='btn' style=' background-color:#76D5FF; border-radius: 5px; margin-left: 2px;'>"+pageNo+"</span>";
-			}else {
-				pageNavi += "<a class='btn' href='/meister/admin/requestApprovalNoListFrm.do?reqPage="+pageNo+"' style=' background-color:#B6EAFA; border-radius: 5px; margin-left: 2px;'>"+pageNo+"</a>";			
-				}
-			pageNo++;
-			if(pageNo>totalPage) {
-				break;
-			}
-		}
-		
-		if(pageNo <= totalPage) {
-			pageNavi += "<a class='btn' href='/meister/admin/requestApprovalNoListFrm.do?reqPage="+pageNo+"' style=' background-color:#F4F4F4; border-radius: 5px; margin-left: 2px;'>다음</a>";
-		}
-
-		
-		SelectAllEmployPageVO srp = new SelectAllEmployPageVO(list, pageNavi);		
-		
-		return srp;
-	}
-	
-	public SelectAllRequestPageVO requestApprovalNoListFrm(int reqPage) {
-		int numPerPage = 6;
-		
-		
-		int totalCount = dao.requestApprovalNoListFrmCnt();
-	
-		
-		int totalPage = 0;
-		
-		if(totalCount%numPerPage == 0) {
-			totalPage = totalCount/numPerPage;
-		}else {
-			totalPage = totalCount/numPerPage+1;
-		}
-		
-		
-		int start = (reqPage-1)*numPerPage+1;
-		int end = reqPage*numPerPage;
-		
-		HashMap<String ,Integer> se = new HashMap<String, Integer>();
-		se.put("start", start);
-		se.put("end", end);
-		List<RequestListVO> list = dao.requestApprovalNoListFrm(se);
-
-		
-		
-		String pageNavi = "";
-		
-		int pageNaviSize = 5; 
-		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
-		
-		if(pageNo != 1) {
-			pageNavi += "<a class='btn' href='/meister/admin/requestApprovalNoListFrm.do?reqPage="+(pageNo-pageNaviSize)+"' style=' background-color:#F4F4F4; border-radius: 5px; margin-left: 2px;'>이전</a>";
-		}
-		for(int i=0; i<pageNaviSize; i++) {
-			if(reqPage == pageNo) {
-				pageNavi += "<span class='btn' style=' background-color:#76D5FF; border-radius: 5px; margin-left: 2px;'>"+pageNo+"</span>";
-			}else {
-				pageNavi += "<a class='btn' href='/meister/admin/requestApprovalNoListFrm.do?reqPage="+pageNo+"' style=' background-color:#B6EAFA; border-radius: 5px; margin-left: 2px;'>"+pageNo+"</a>";			
-				}
-			pageNo++;
-			if(pageNo>totalPage) {
-				break;
-			}
-		}
-		
-		if(pageNo <= totalPage) {
-			pageNavi += "<a class='btn' href='/meister/admin/requestApprovalNoListFrm.do?reqPage="+pageNo+"' style=' background-color:#F4F4F4; border-radius: 5px; margin-left: 2px;'>다음</a>";
-		}
-
-		
-		SelectAllRequestPageVO srp = new SelectAllRequestPageVO(list, pageNavi);		
-		
-		return srp;
-	}
 	
 	
 	public SelectAllRequestPageVO requestListFrm(int reqPage) {
 		int numPerPage = 6;
-	
+		System.out.println("한번에 표시할 게시물 갯수 : "+numPerPage);
 		
 		int totalCount = dao.requestCnt();
-		
+		System.out.println("견적 게시물의 전체 갯수 : "+totalCount);
 		
 		int totalPage = 0;
 		
@@ -753,10 +447,10 @@ public class AdminService {
 	
 	public selectAllSellPageVO sellApproval(int reqPage) {
 		int numPerPage = 6;
-	
+		System.out.println("한번에 표시할 판매게시물 갯수 : "+numPerPage);
 		
 		int totalCount = dao.sellApprovalCnt();
-	
+		System.out.println("판매게시물의 전체 갯수 : "+totalCount);
 		
 		int totalPage = 0;
 		
@@ -815,10 +509,10 @@ public class AdminService {
 	
 	public SelectAllRequestPageVO requestApprovalFrm(int reqPage) {
 		int numPerPage = 6;
-	
+		System.out.println("한번에 표시할 게시물 갯수 : "+numPerPage);
 		
 		int totalCount = dao.requestApprovalCnt();
-		
+		System.out.println("견적 게시물의 전체 갯수 : "+totalCount);
 		
 		int totalPage = 0;
 
@@ -877,10 +571,10 @@ public class AdminService {
 		
 		
 		int totalCount = dao.memberOneViewSellCnt(memberNo);
-		
+		System.out.println("견적 게시물의 전체 갯수 : "+totalCount);
 		
 		int numPerPage = totalCount;
-	
+		System.out.println("한번에 표시할 게시물 갯수 : "+numPerPage);
 		int totalPage = 0;
 		
 		if(numPerPage == 0) {
@@ -942,10 +636,10 @@ public class AdminService {
 public selectAllSellPageVO pickAllView(int reqPage, int memberNo) {
 		
 		int totalCount = dao.memberOneViewPickCnt(memberNo);
-
+		System.out.println("견적 게시물의 전체 갯수 : "+totalCount);
 		
 		int numPerPage = totalCount;
-	
+		System.out.println("한번에 표시할 게시물 갯수 : "+numPerPage);
 		int totalPage = 0;
 		
 		if(numPerPage == 0) {
@@ -1028,11 +722,6 @@ public List<MemberJoinEmployVO> adminMainEmployList() {
 
 public int reportCnt() {
 	return dao.reportCnt();
-}
-
-
-public int employListFrmCnt() {
-	return dao.employListFrmCnt();
 }
 
 }
