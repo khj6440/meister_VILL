@@ -113,4 +113,13 @@ public class SellDao {
 		return sqlSession.selectList("sell.selectMultiImg", sellNo);
 	}
 
+	public int totalKeyCount(String keyWord) {
+		int result = sqlSession.selectOne("sell.selectKeyTotal", keyWord);
+		return result;
+	}
+	public List selectKeyWordList(HashMap<String, Object> map) {
+		List list = sqlSession.selectList("sell.selectKeyWordList", map);
+		return list;
+	}
+
 }

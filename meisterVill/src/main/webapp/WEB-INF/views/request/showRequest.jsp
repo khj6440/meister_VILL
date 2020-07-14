@@ -38,7 +38,6 @@ function getDateNum(obj) {
 	return enrollDate;
 }
 $(function() {
-	
 	var price = ${request.requestPrice };
 	var money = getSplitPrice(price);
 	var requestDate = "${request.requestDate }";
@@ -149,13 +148,13 @@ $(function() {
           <div class="card-body">
             <div class="row" style="padding:15px;">
                <br><br>
-               <c:if test="${sessionScope.member.memberLevel ne 1 }">
+               <%-- <c:if test="${sessionScope.member.memberLevel ne 1 }">
                <img src="/resources/upload/homeImg/forbidden.png" style="width:17px; height:17px; margin-top:5px; margin-right:8px;"><p class="fo-si-16" style="color:red;">전문가만 지원 가능합니다</p>
                	<button class="btn fo-si-14" style="width:100%; height:50px; background-color:#FFBC42; font-weight:bold;" disabled>견적 신청 불가</button>
-               </c:if>
-               <c:if test="${sessionScope.member.memberLevel eq 1 }">
-           		<button class="btn fo-si-14" style="width:100%; height:50px; background-color:#FFBC42; font-weight:bold;">맞춤 견적 신청</button>
-            	</c:if>
+               </c:if> --%>
+              <%--  <c:if test="${sessionScope.member.memberLevel eq 1 }"> --%>
+           		<button class="btn fo-si-14" style="width:100%; height:50px; background-color:#FFBC42; font-weight:bold;" onclick="creatChat();">맞춤 견적 신청</button>
+            	<%-- </c:if> --%>
             </div>
           </div>
         </div>
@@ -166,6 +165,12 @@ $(function() {
 
 
     </div>
+    <script>
+    function creatChat(){
+    	var requestWriter = "${request.requestWriter}";
+    	location.href="/meister/request/insertChat.do?requestWriter="+requestWriter;
+    }
+    </script>
   <!-- /.container -->
 
   <!-- Bootstrap core JavaScript -->
