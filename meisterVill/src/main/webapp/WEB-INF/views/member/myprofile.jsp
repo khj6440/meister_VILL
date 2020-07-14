@@ -786,7 +786,7 @@
 						
 						</c:if>
 						<c:if test="${empty list}">
-							<div class="p_user_service" onclick="location.href=''">
+							<div class="p_user_service" onclick="location.href='#'">
 								<img src="/resources/upload/common/service.png"
 									style="width: 50px; height: 50px;"><br> 서비스를 등록하여
 								수익을 얻어보세요!<br> <span class="p_span_service">
