@@ -150,5 +150,24 @@ delete from options where sell_no = #{sellNo} and option_title = #{optionsTitle}
 <select id="selectMultiImg" parameterType="_int" resultType="multiImg">
 	select * from multi_img where multi_board_no = #{parameter} and multi_board_type = 1
 </select>
+<select id="selectKeyTotal" parameterType="String" resultType="_int">
+	select count(*) as cnt from sell
+	<where>
+		<if test='value != null'>
+			sell_appro = 1 and sell_category2 = #{value}
+		</if>
+	</where>
+</select>
+<select id="selectKeyWordList" resultMap="sellMap" parameterType="map">
+	select * from
+		(select rownum as rnum, n.* from
+			(
+			select * from sell
+			where sell_appro = 1 and sell_category2 = #{keyWord}
+			order by 1 desc)n
+			)
+	where rnum between #{start} and #{end}
+</select>
+
 </mapper>
 

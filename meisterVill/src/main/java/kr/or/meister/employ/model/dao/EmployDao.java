@@ -20,7 +20,7 @@ public class EmployDao {
 		return sqlSession.selectOne("employ.selectTotal");
 	}
 
-	public List selectAllList(HashMap<String, Integer> map) {
+	public List selectAllList(HashMap<String, Object> map) {
 		return sqlSession.selectList("employ.selectAllList", map);
 	}
 
@@ -29,7 +29,14 @@ public class EmployDao {
 	}
 
 	public int insertEmploy(EmployVO employ) {
-		System.out.println("컨텐트값" + employ.getEmployContent());
 		return sqlSession.insert("employ.insertEmploy", employ);
 	}
+	/*
+	 * public int totalKeyCount(String keyWord) { int result =
+	 * sqlSession.selectOne("employ.selectKeyTotal", keyWord); return result; }
+	 * 
+	 * public List selectKeyWordList(HashMap<String, Object> map) { List list =
+	 * sqlSession.selectList("employ.selectKeyWordList", map); return list; }
+	 */
+	
 }

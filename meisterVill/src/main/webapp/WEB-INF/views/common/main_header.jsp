@@ -118,7 +118,7 @@
                             </div>
 
                                 <ul class="hd-profile-menu1">
-                                    <li id="none" name="hd-menu1"><a href="#">프로필 관리</a></li>
+                                    <li id="none" name="hd-menu1"><a href="/meister/member/myprofile.do?memberNo=${sessionScope.member.memberNo }&reqPage=1&sellstatus=0&sellappro=1">프로필 관리</a></li>
                                     <li name="hd-menu1"><a href="#">마이스터 등록</a></li>
                                     <li name="hd-menu1"><a href="#">찜한 서비스</a></li>
                                     <li name="hd-menu1"><a href="#">쿠폰</a></li>
@@ -131,7 +131,12 @@
                     </div>
                     <div class="member-top-line1 normal-mtl">
                     <c:if test="${sessionScope.member.memberLevel != 2 }">
-                        <a class="member-top-menu" href="#">마이페이지</a>
+                    <c:if test="${sessionScope.member.memberLevel==1 }">
+                        <a class="member-top-menu" href="/meister/member/selectAllEmploy.do?memberNo=${sessionScope.member.memberNo}&reqPage=1&memberNickname='${sessionScope.member.memberNickname}'&employstatus=3&memberLevel=1&employappro=3">마이페이지</a>
+                            </c:if>
+                        <c:if test="${sessionScope.member.memberLevel ==0}">
+                            <a class="member-top-menu" href="/meister/member/selectAllRequest.do?memberNo=${sessionScope.member.memberNo}&reqPage=1&memberNickname='${sessionScope.member.memberNickname}'&requeststatus=3&memberLevel=0&requestappro=3">마이페이지</a>
+                         </c:if>  
                     </c:if> 
                         <c:if test="${sessionScope.member.memberLevel == 2 }">
                         <a class="member-top-menu" href="/meister/admin/adminIndexFrm.do">관리자페이지</a>
@@ -193,7 +198,7 @@
                             </div>
 
                             <ul class="hd-profile-menu1">
-                                <li id="none" name="hd-menu1"><a href="#">프로필 관리</a></li>
+                                <li id="none" name="hd-menu1"><a href="/meister/member/myprofile.do?memberNo=${sessionScope.member.memberNo }&reqPage=1&sellstatus=0&sellappro=1">프로필 관리</a></li>
                                 <li name="hd-menu1"><a href="#">마이스터 등록</a></li>
                                 <li name="hd-menu1"><a href="#">찜한 서비스</a></li>
                                 <li name="hd-menu1"><a href="#">쿠폰</a></li>
@@ -205,8 +210,13 @@
 
                 </div>
                 <div class="member-top-line1">
-                    <c:if test="${sessionScope.member.memberLevel != 2 }">
-                        <a class="member-top-menu" href="#">마이페이지</a>
+                <c:if test="${sessionScope.member.memberLevel != 2 }">
+                    <c:if test="${sessionScope.member.memberLevel==1 }">
+                        <a class="member-top-menu" href="/meister/member/selectAllEmploy.do?memberNo=${sessionScope.member.memberNo}&reqPage=1&memberNickname='${sessionScope.member.memberNickname}'&employstatus=3&memberLevel=1&employappro=3">마이페이지</a>
+                            </c:if>
+                        <c:if test="${sessionScope.member.memberLevel ==0}">
+                            <a class="member-top-menu" href="/meister/member/selectAllRequest.do?memberNo=${sessionScope.member.memberNo}&reqPage=1&memberNickname='${sessionScope.member.memberNickname}'&requeststatus=3&memberLevel=0&requestappro=3">마이페이지</a>
+                         </c:if>  
                     </c:if> 
                         <c:if test="${sessionScope.member.memberLevel == 2 }">
                         <a class="member-top-menu" href="/meister/admin/adminIndexFrm.do">관리자페이지</a>

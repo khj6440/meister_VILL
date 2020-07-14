@@ -248,7 +248,8 @@
 
                         </div>
                         <div class="member-top-line1 normal-mtl">
-                            <a class="member-top-menu" href="#">마이페이지</a>
+                        <a class="member-top-menu" href="#">마이페이지</a>
+                           
                             <a class="member-top-menu" href="#">메세지</a>
                         </div>
 
